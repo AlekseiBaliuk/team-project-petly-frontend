@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import {theme} from '../../constants/theme'
+import { theme } from '../../constants/theme';
 
 export const LogoLink = styled(Link)`
   color: ${theme.colors.mainText};
