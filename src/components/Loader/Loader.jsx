@@ -33,9 +33,9 @@ export const Loader = ({ size = 200, color = '#f59256' }) => {
           cy="50"
           r="39.891"
           stroke={color}
-          stroke-width="14.4"
+          strokeWidth="14.4"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -53,9 +53,9 @@ export const Loader = ({ size = 200, color = '#f59256' }) => {
           cy="50"
           r="39.891"
           stroke="#eeeeee"
-          stroke-width="7.2"
+          strokeWidth="7.2"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -73,9 +73,9 @@ export const Loader = ({ size = 200, color = '#f59256' }) => {
           cy="50"
           r="32.771"
           stroke="#000000"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -93,9 +93,9 @@ export const Loader = ({ size = 200, color = '#f59256' }) => {
           cy="50"
           r="47.171"
           stroke="#000000"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
