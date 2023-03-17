@@ -1,6 +1,6 @@
 import style from './NoticeCategoryItem.styled';
 
-const { Image, Card, Category, Like, ItemTitle, ItemList } = style;
+const { Image, Card, Category, Like, ItemTitle, Item, Span, Button } = style;
 
 export const NoticeCategoryItem = () => {
   return (
@@ -12,19 +12,22 @@ export const NoticeCategoryItem = () => {
         alt="dog"
       />
       <ItemTitle>Сute dog looking for a home</ItemTitle>
-      <ItemList>
-        <li>
-          Breed:<span>Pomeranian</span>
-        </li>
-        <li>
-          Place:<span>Lviv</span>
-        </li>
-        <li>
-          Age:<span>one year</span>
-        </li>
-      </ItemList>
-      <button></button>
-      <button></button>
+      <ul>
+        <Item>
+          <Span>Breed:</Span>
+          <Span>Pomeranian</Span>
+        </Item>
+        <Item>
+          <Span>Place:</Span>
+          <Span>Lviv</Span>
+        </Item>
+        <Item>
+          <Span>Age:</Span>
+          <Span>one year</Span>
+        </Item>
+      </ul>
+      <Button>Learn more</Button>
+      <Button>Delete</Button>
     </Card>
   );
 };

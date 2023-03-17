@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 const Card = styled('div')`
   position: relative;
-  display: flex;
-  flex-direction: column;
+
   width: 280px;
   padding-bottom: 32px;
   border-radius: 0px 0px 20px 20px;
@@ -47,14 +46,12 @@ const Like = styled('button')`
 `;
 
 const Image = styled('img')`
-  display: block;
   width: 280px;
   height: 288px;
   object-fit: cover;
 `;
 
 const ItemTitle = styled('h3')`
-  display: flex;
   align-items: center;
   margin-bottom: 20px;
   padding: 0 20px;
@@ -67,8 +64,47 @@ const ItemTitle = styled('h3')`
   color: ${props => props.theme.colors.mainText};
 `;
 
-const ItemList = styled('ul')`
+const Item = styled('li')`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   margin-left: 20px;
+  font-weight: ${props => props.theme.fontWeights.fw500};
+  font-size: ${props => props.theme.fontSizes.fs16};
+  line-height: 1.375;
+  color: ${props => props.theme.colors.mainText};
+`;
+
+const Span = styled('span')`
+  font-weight: ${props => props.theme.fontWeights.fw500};
+  font-size: ${props => props.theme.fontSizes.fs16};
+  line-height: 1.375;
+  color: ${props => props.theme.colors.mainText};
+`;
+
+const Button = styled('button')`
+  display: block;
+  width: 248px;
+  height: 38px;
+  /* padding-top: 8px;
+  padding-bottom: 8px; */
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 12px;
+  border: ${props => props.theme.borders.main};
+  border-radius: 40px;
+  font-weight: ${props => props.theme.fontWeights.fw500};
+  font-size: ${props => props.theme.fontSizes.fs16};
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+  color: ${props => props.theme.colors.accent};
+  cursor: pointer;
+  :hover,
+  :focus {
+    border-color: #ff6101;
+    color: #ff6101;
+  }
+  background: ${props => props.theme.colors.white};
 `;
 
 const style = {
@@ -77,7 +113,9 @@ const style = {
   Category,
   Like,
   ItemTitle,
-  ItemList,
+  Item,
+  Span,
+  Button,
 };
 
 export default style;
