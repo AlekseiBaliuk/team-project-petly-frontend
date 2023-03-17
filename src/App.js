@@ -1,7 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 
 import SharedLayout from 'components/SharedLayout/SharedLayout';
+import { Loader } from 'components/Loader/Loader';
 
 import './App.css';
 
@@ -16,23 +17,33 @@ const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
 const UserPage = lazy(() => import('pages/UserPage/UserPage'));
 
 function App() {
-  return (
-    <>
-      <Suspense>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/friends" element={<OurFriendsPage />} />
-            <Route path="/news" element={<NewsPage />} />
-            <Route path="/notices/:categoryName" element={<NoticesPage />} />
-            <Route path="/user" element={<UserPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </>
+  // TODO remove after actual loading state will be added(also hooks in imports should be removed as well)
+  const [isPageRefreshing, setIsPageRefreshing] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsPageRefreshing(false);
+    }, 1500);
+  }, [setIsPageRefreshing]);
+  // ----
+
+  return isPageRefreshing ? (
+    <Loader />
+  ) : (
+    <Suspense>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/friends" element={<OurFriendsPage />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/notices/:categoryName" element={<NoticesPage />} />
+          <Route path="/user" element={<UserPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
