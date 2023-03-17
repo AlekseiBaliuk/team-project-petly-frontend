@@ -1,0 +1,15 @@
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+export const LogoLink = styled(Link)`
+  color: #111321;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.5;
+  letter-spacing: 0.07em;
+`;
+
+export const LogoSpan = styled.span`
+  color: #f59256;
+`;
