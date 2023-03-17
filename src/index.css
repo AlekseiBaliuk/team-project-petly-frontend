@@ -4,8 +4,7 @@
 body {
   background-color: #fdf7f2;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Manrope', 'Montserrat',
-    'Inter', 'Poppins' sans-serif;
+  font-family: -apple-system, 'Manrope', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
