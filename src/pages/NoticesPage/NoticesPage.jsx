@@ -5,12 +5,14 @@ import { Title } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   return (
-    <section>
-      <Container>
-        <Title>Find your favorite pet</Title>
-        <NoticeCategoryList />
-      </Container>
-    </section>
+    <main>
+      <section>
+        <Container>
+          <Title>Find your favorite pet</Title>
+          <NoticeCategoryList />
+        </Container>
+      </section>
+    </main>
   );
 };
 
