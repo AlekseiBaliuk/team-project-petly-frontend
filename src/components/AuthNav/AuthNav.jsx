@@ -2,7 +2,7 @@ import * as SC from './AuthNav.styled';
 
 export const AuthNav = () => {
   return (
-    <SC.Nav>
+    <nav>
       <SC.List>
         <SC.ListItem>
           <SC.Link to="/login">Login</SC.Link>
@@ -11,6 +11,6 @@ export const AuthNav = () => {
           <SC.Link to="/register">Registartion</SC.Link>
         </SC.ListItem>
       </SC.List>
-    </SC.Nav>
+    </nav>
   );
 };

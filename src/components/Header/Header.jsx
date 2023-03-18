@@ -9,9 +9,9 @@ export const Header = () => {
     <header>
       <Container>
         <Logo />
-        <Nav />
         <AuthNav />
         <UserNav />
+        <Nav />
       </Container>
     </header>
   );
