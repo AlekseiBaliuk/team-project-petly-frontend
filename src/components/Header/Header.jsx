@@ -4,7 +4,7 @@ import { Container } from 'components/Container/Container.styled';
 import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
 import { UserNav } from 'components/UserNav/UserNav';
-import { Toolbar } from '@mui/material';
+import { Toolbar, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
@@ -14,9 +14,15 @@ export const Header = () => {
   const toggleMenu = () => setMenu(value => !value);
 
   return (
-    <header>
+    <header style={{ marginBottom: '44px' }}>
       <Container>
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Toolbar
+          sx={{
+            justifyContent: 'space-between',
+            paddingTop: '16px',
+            marginBottom: '44px',
+          }}
+        >
           <Logo />
           <IconButton color="inherit" onClick={toggleMenu}>
             {!menu ? (
@@ -26,9 +32,13 @@ export const Header = () => {
             )}
           </IconButton>
         </Toolbar>
-        <AuthNav />
-        <UserNav />
-        <Nav />
+        {menu && (
+          <Box height={'100vh'}>
+            <AuthNav />
+            <UserNav />
+            <Nav />
+          </Box>
+        )}
       </Container>
     </header>
   );
