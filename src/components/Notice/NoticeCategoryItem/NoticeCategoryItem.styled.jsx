@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { ReactComponent as Heart } from '../../../staticImages/Heart.svg';
+import { ReactComponent as Heart } from 'staticImages/Heart.svg';
 
 const Card = styled('li')`
   position: relative;
-  width: 280px;
+  width: 288px;
   padding-bottom: 32px;
   border-radius: 0px 0px 20px 20px;
   background: ${props => props.theme.colors.white};
@@ -29,7 +29,6 @@ const Category = styled('span')`
 `;
 
 const HeartIcon = styled(Heart)`
-  scale: 1;
   fill: ${props => props.theme.colors.white};
   stroke: ${props => props.theme.colors.accent};
   :hover,
@@ -39,7 +38,6 @@ const HeartIcon = styled(Heart)`
 `;
 
 const Like = styled('button')`
-  content: '';
   position: absolute;
   top: 12px;
   right: 12px;
@@ -56,7 +54,7 @@ const Like = styled('button')`
 `;
 
 const Image = styled('img')`
-  width: 280px;
+  width: 288px;
   height: 288px;
   object-fit: cover;
   margin-bottom: 20px;
