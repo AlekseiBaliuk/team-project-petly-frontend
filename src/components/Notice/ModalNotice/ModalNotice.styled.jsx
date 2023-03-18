@@ -19,13 +19,15 @@ const ModalContent = styled('div')`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 500px;
-  height: 500px;
-  background: white;
-  transform: translate(-50%, -25%);
+  width: 90vw;
   @media ${device.tablet} {
+    width: 704px;
+    height: 540px;
     transform: translate(-50%, -50%);
   }
+  border-radius: ${props => props.theme.radii.br40};
+  background: ${props => props.theme.colors.white};
+  transform: translate(-50%, -25%);
 `;
 
 const BtnClose = styled('button')`
