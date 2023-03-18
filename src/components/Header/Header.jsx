@@ -4,9 +4,8 @@ import { Container } from 'components/Container/Container.styled';
 import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
 import { UserNav } from 'components/UserNav/UserNav';
-import { Toolbar, Box } from '@mui/material';
+import { Toolbar, Box, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
 export const Header = () => {
