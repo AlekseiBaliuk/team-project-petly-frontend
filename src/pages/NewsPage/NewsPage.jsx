@@ -1,7 +1,20 @@
 import React from 'react';
+import { Container } from 'components/Container/Container.styled';
+import { NewsList } from 'components/NewsList/NewsList';
+import { PageTitle } from 'components/PageTitle/PageTitle';
+import { NewsPageBox } from './NewsPage.styled';
 
 const NewsPage = () => {
-  return <div>News Page</div>;
+  return (
+    <NewsPageBox>
+      <section>
+        <Container>
+          <PageTitle text="News" />
+          <NewsList />
+        </Container>
+      </section>
+    </NewsPageBox>
+  );
 };
 
 export default NewsPage;
