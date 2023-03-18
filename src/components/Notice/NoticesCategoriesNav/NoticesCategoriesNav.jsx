@@ -1,6 +1,6 @@
 import {
   CategoriesList,
-  Button,
+  Link,
   CategoryItem,
 } from './NoticesCategoriesNav.styled';
 
@@ -8,19 +8,19 @@ export const NoticesCategoriesNav = () => {
   return (
     <CategoriesList>
       <CategoryItem>
-        <Button type="button">sell</Button>
+        <Link to="/notices/sell">sell</Link>
       </CategoryItem>
       <CategoryItem>
-        <Button type="button">lost/found</Button>
+        <Link to="/notices/lost-found">lost/found</Link>
       </CategoryItem>
       <CategoryItem>
-        <Button type="button">in good hands</Button>
+        <Link to="/notices/for-free">in good hands</Link>
       </CategoryItem>
       <CategoryItem>
-        <Button type="button">favorite ads</Button>
+        <Link to="/notices/favorite">favorite ads</Link>
       </CategoryItem>
       <CategoryItem>
-        <Button type="button">my ads</Button>
+        <Link to="/notices/own">my ads</Link>
       </CategoryItem>
     </CategoriesList>
   );
