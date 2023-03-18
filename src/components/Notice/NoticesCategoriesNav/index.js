@@ -1,3 +1,3 @@
-import { NoticesCategoriesNav } from './NoticeCategoryList';
+import { NoticesCategoriesNav } from './NoticesCategoriesNav';
 
 export default NoticesCategoriesNav;

@@ -1,21 +1,27 @@
+import {
+  CategoriesList,
+  Button,
+  CategoryItem,
+} from './NoticesCategoriesNav.styled';
+
 export const NoticesCategoriesNav = () => {
   return (
-    <ul>
-      <li>
-        <button type="button">sell</button>
-      </li>
-      <li>
-        <button type="button">lost/found</button>
-      </li>
-      <li>
-        <button type="button">in good hands</button>
-      </li>
-      <li>
-        <button type="button">favorite ads</button>
-      </li>
-      <li>
-        <button type="button">my ads</button>
-      </li>
-    </ul>
+    <CategoriesList>
+      <CategoryItem>
+        <Button type="button">sell</Button>
+      </CategoryItem>
+      <CategoryItem>
+        <Button type="button">lost/found</Button>
+      </CategoryItem>
+      <CategoryItem>
+        <Button type="button">in good hands</Button>
+      </CategoryItem>
+      <CategoryItem>
+        <Button type="button">favorite ads</Button>
+      </CategoryItem>
+      <CategoryItem>
+        <Button type="button">my ads</Button>
+      </CategoryItem>
+    </CategoriesList>
   );
 };

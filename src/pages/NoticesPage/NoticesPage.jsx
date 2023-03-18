@@ -4,7 +4,7 @@ import NoticesCategoriesNav from 'components/Notice/NoticesCategoriesNav';
 import AddNoticeButton from 'components/Notice/AddNoticeButton';
 import NoticeCategoryList from 'components/Notice/NoticeCategoryList';
 
-import { Title } from './NoticesPage.styled';
+import { Title, PetSearchNav } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   return (
@@ -12,8 +12,10 @@ const NoticesPage = () => {
       <section>
         <Container>
           <Title>Find your favorite pet</Title>
-          <NoticesCategoriesNav />
-          <AddNoticeButton />
+          <PetSearchNav>
+            <NoticesCategoriesNav />
+            <AddNoticeButton />
+          </PetSearchNav>
           <NoticeCategoryList />
         </Container>
       </section>

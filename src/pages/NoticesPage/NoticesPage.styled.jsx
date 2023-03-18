@@ -10,3 +10,10 @@ export const Title = styled('h2')`
   }
   text-align: center;
 `;
+
+export const PetSearchNav = styled('div')`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px;
+`;
