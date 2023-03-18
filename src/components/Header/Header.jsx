@@ -85,9 +85,7 @@ export const Header = () => {
         </Container>
       </header>
     );
-  }
-
-  if (width > 1200) {
+  } else {
     return (
       <header style={{ marginBottom: '44px' }}>
         <Container>
