@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import { ReactComponent as Heart } from '../../../staticImages/Heart.svg';
 
-const Card = styled('div')`
+const Card = styled('li')`
   position: relative;
-
   width: 280px;
   padding-bottom: 32px;
   border-radius: 0px 0px 20px 20px;
@@ -28,6 +28,16 @@ const Category = styled('span')`
   backdrop-filter: blur(2px);
 `;
 
+const HeartIcon = styled(Heart)`
+  scale: 1;
+  fill: ${props => props.theme.colors.white};
+  stroke: ${props => props.theme.colors.accent};
+  :hover,
+  :focus {
+    stroke: ${props => props.theme.colors.hoverAccent};
+  }
+`;
+
 const Like = styled('button')`
   content: '';
   position: absolute;
@@ -49,6 +59,7 @@ const Image = styled('img')`
   width: 280px;
   height: 288px;
   object-fit: cover;
+  margin-bottom: 20px;
 `;
 
 const ItemTitle = styled('h3')`
@@ -64,9 +75,16 @@ const ItemTitle = styled('h3')`
   color: ${props => props.theme.colors.mainText};
 `;
 
+const List = styled('ul')`
+  margin-bottom: 50px;
+`;
+
 const Item = styled('li')`
   display: grid;
   grid-template-columns: 1fr 2fr;
+  :not(:last-child) {
+    margin-bottom: 8px;
+  }
   margin-left: 20px;
   font-weight: ${props => props.theme.fontWeights.fw500};
   font-size: ${props => props.theme.fontSizes.fs16};
@@ -81,16 +99,32 @@ const Span = styled('span')`
   color: ${props => props.theme.colors.mainText};
 `;
 
-const Button = styled('button')`
+const Loadmore = styled('button')`
+  display: block;
+  margin: 0 auto 12px;
+  width: 248px;
+  height: 38px;
+  border: ${props => props.theme.borders.main};
+  border-radius: 40px;
+  font-weight: ${props => props.theme.fontWeights.fw500};
+  font-size: ${props => props.theme.fontSizes.fs16};
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+  color: ${props => props.theme.colors.accent};
+  cursor: pointer;
+  :hover,
+  :focus {
+    border-color: #ff6101;
+    color: #ff6101;
+  }
+  background: ${props => props.theme.colors.white};
+`;
+
+const Delete = styled('button')`
   display: block;
   width: 248px;
   height: 38px;
-  /* padding-top: 8px;
-  padding-bottom: 8px; */
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 12px;
+  margin: 0 auto;
   border: ${props => props.theme.borders.main};
   border-radius: 40px;
   font-weight: ${props => props.theme.fontWeights.fw500};
@@ -114,8 +148,11 @@ const style = {
   Like,
   ItemTitle,
   Item,
+  List,
   Span,
-  Button,
+  Loadmore,
+  Delete,
+  HeartIcon,
 };
 
 export default style;
