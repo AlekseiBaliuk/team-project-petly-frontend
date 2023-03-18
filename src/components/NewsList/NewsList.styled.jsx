@@ -1,19 +1,22 @@
 import styled from 'styled-components';
+import { device } from '../../devices';
 
 export const News = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: ${p => p.theme.space[5]}px 0;
+  margin-left: auto;
+  margin-right: auto;
 
-  @media screen and (min-width: 768px) {
+  @media ${device.tablet} {
     width: 704px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     gap: ${p => p.theme.space[7]}px ${p => p.theme.space[4]}px;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${device.desktop} {
     width: 1249px;
   }
 `;
@@ -27,11 +30,11 @@ export const NewsCard = styled.li`
   max-height: 286px;
   overflow: hidden;
 
-  @media screen and (min-width: 768px) {
+  @media ${device.tablet} {
     max-width: 336px;
     max-height: 288px;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${device.desktop} {
     max-width: 395px;
     max-height: 267px;
   }
@@ -45,11 +48,11 @@ export const NewsCard = styled.li`
     background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
     margin-bottom: ${p => p.theme.space[0]}px;
 
-    @media screen and (min-width: 768px) {
+    @media ${device.tablet} {
       width: 280px;
       height: 8px;
     }
-    @media screen and (min-width: 1280px) {
+    @media ${device.desktop} {
       width: 340px;
       height: 8px;
     }
@@ -70,7 +73,7 @@ export const NewsDescription = styled.p`
   color: ${p => p.theme.colors.newsText};
   margin-bottom: ${p => p.theme.space[3]}px;
 
-  @media screen and (min-width: 768px) {
+  @media ${device.tablet} {
     margin-bottom: ${p => p.theme.space[5]}px;
   }
 `;
@@ -88,4 +91,8 @@ export const NewsLink = styled.a`
   font-weight: ${p => p.theme.fontWeights.fw500};
   text-decoration-line: underline;
   color: ${p => p.theme.colors.accent};
+  transition: text-decoration-line 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover {
+    text-decoration-line: none;
+  }
 `;
