@@ -4,11 +4,11 @@ import NoticesCategoriesNav from 'components/Notice/NoticesCategoriesNav';
 import AddNoticeButton from 'components/Notice/AddNoticeButton';
 import NoticeCategoryList from 'components/Notice/NoticeCategoryList';
 
-import { Title, PetSearchNav } from './NoticesPage.styled';
+import { Title, PetSearchNav, Main } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   return (
-    <main>
+    <Main>
       <section>
         <Container>
           <Title>Find your favorite pet</Title>
@@ -19,7 +19,7 @@ const NoticesPage = () => {
           <NoticeCategoryList />
         </Container>
       </section>
-    </main>
+    </Main>
   );
 };
 
