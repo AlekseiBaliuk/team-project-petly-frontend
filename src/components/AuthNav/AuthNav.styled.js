@@ -26,6 +26,11 @@ export const Link = styled(NavLink)`
     background-color: ${theme.colors.accent};
   }
 `;
+export const Nav = styled.nav`
+  @media ${device.desktop} {
+    margin-left: auto;
+  }
+`;
 export const List = styled.ul`
   display: flex;
   justify-content: center;

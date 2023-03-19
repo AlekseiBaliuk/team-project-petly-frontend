@@ -27,10 +27,9 @@ export const Link = styled(NavLink)`
 export const Nav = styled.nav`
   @media ${device.beforeDesktop} {
     text-align: center;
-    margin-top: 60px;
   }
-  @media ${device.tabletOnly} {
-    margin-top: 46px;
+  @media (max-width: 767px) {
+    margin-top: 60px;
   }
 `;
 export const List = styled.ul`
@@ -50,6 +49,8 @@ export const ListItem = styled.li`
     }
   }
   @media ${device.desktop} {
-    margin-left: 80px;
+    &:not(:first-child) {
+      margin-left: 80px;
+    }
   }
 `;

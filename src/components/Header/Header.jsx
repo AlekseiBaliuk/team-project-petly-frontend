@@ -4,9 +4,10 @@ import { Container } from 'components/Container/Container.styled';
 import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
 import { UserNav } from 'components/UserNav/UserNav';
-import { Toolbar, Box, IconButton } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import * as SC from './Header.styled';
 
 export const Header = () => {
   const [menu, setMenu] = useState(false);
@@ -24,15 +25,9 @@ export const Header = () => {
   const toggleMenu = () => setMenu(value => !value);
   if (width < 768) {
     return (
-      <header style={{ marginBottom: '44px' }}>
+      <SC.Header>
         <Container>
-          <Toolbar
-            sx={{
-              justifyContent: 'space-between',
-              paddingTop: '16px',
-              marginBottom: '44px',
-            }}
-          >
+          <SC.ToolBar>
             <Logo />
             <IconButton color="inherit" onClick={toggleMenu}>
               {!menu ? (
@@ -41,59 +36,59 @@ export const Header = () => {
                 <CloseIcon sx={{ fontSize: '40px' }} />
               )}
             </IconButton>
-          </Toolbar>
+          </SC.ToolBar>
           {menu && (
-            <Box height={'100vh'}>
+            <Box height={'100vh'} marginTop={'46px'}>
               <AuthNav />
               <UserNav />
               <Nav />
             </Box>
           )}
         </Container>
-      </header>
+      </SC.Header>
     );
   }
 
   if (width >= 768 && width < 1200) {
     return (
-      <header style={{ marginBottom: '44px' }}>
+      <SC.Header>
         <Container>
-          <Toolbar
-            sx={{
-              justifyContent: 'space-between',
-              paddingTop: '16px',
-              marginBottom: '44px',
-            }}
-          >
+          <SC.ToolBar>
             <Logo />
             <AuthNav />
             <UserNav />
-            <IconButton color="inherit" onClick={toggleMenu}>
+            <IconButton
+              color="inherit"
+              onClick={toggleMenu}
+              sx={{ ml: '20px' }}
+            >
               {!menu ? (
                 <MenuIcon sx={{ fontSize: '40px' }} />
               ) : (
                 <CloseIcon sx={{ fontSize: '40px' }} />
               )}
             </IconButton>
-          </Toolbar>
+          </SC.ToolBar>
           {menu && (
-            <Box height={'100vh'}>
+            <Box height={'100vh'} marginTop={'88px'}>
               <Nav />
             </Box>
           )}
         </Container>
-      </header>
+      </SC.Header>
     );
   } else {
     return (
-      <header style={{ marginBottom: '44px' }}>
+      <SC.Header>
         <Container>
-          <Logo />
-          <Nav />
-          <AuthNav />
-          <UserNav />
+          <SC.ToolBar>
+            <Logo />
+            <Nav />
+            <AuthNav />
+            <UserNav />
+          </SC.ToolBar>
         </Container>
-      </header>
+      </SC.Header>
     );
   }
 };
