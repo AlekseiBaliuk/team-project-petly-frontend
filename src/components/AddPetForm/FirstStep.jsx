@@ -1,5 +1,3 @@
-// import men from '../../staticImages/icon-men.svg';
-// import women from '../../staticImages/icon-women.svg';
 import { Form, Title, Subtitle, BtnList, BtnItem } from './FirstStep.styled';
 
 export const FirstStep = () => {
