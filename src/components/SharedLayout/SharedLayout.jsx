@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { Header } from 'components/Header/Header';
 import { Outlet } from 'react-router-dom';
-import { NoticeCategoryItem } from '../NoticeCategoryItem/NoticeCategoryItem';
+import { Loader } from 'components/Loader/Loader';
 
 const SharedLayout = () => {
   return (
     <div>
-      <div>Header</div>
-      <NoticeCategoryItem />
-      <Outlet />
+      <Header />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
