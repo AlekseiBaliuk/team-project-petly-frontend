@@ -14,11 +14,11 @@ export const ModalNotice = ({ toggle }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   });
 
-  function handleKeyDown(e) {
+  const handleKeyDown = e => {
     if (e.code === 'Escape') {
       toggle();
     }
-  }
+  };
 
   const handleModalClick = e => {
     if (e.currentTarget === e.target) {
