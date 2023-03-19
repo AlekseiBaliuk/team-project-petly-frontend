@@ -14,6 +14,7 @@ export const Header = () => {
   const [menu, setMenu] = useState(false);
 
   const toggleMenu = () => setMenu(value => !value);
+  const closeMenu = () => setMenu(false);
 
   const beforeTablet = useMediaQuery({ query: '(max-width: 767px)' });
   const tablet = useMediaQuery({ query: '(min-width: 768px)' });
@@ -24,8 +25,10 @@ export const Header = () => {
     <SC.Header>
       <Container>
         <SC.ToolBar>
-          <Logo />
-          {tablet && beforeDesktop && (
+          <SC.LogoContainer onClick={closeMenu}>
+            <Logo />
+          </SC.LogoContainer>
+          {!menu && tablet && beforeDesktop && (
             <>
               <AuthNav />
               <UserNav />
@@ -50,14 +53,14 @@ export const Header = () => {
         </SC.ToolBar>
 
         {menu && beforeTablet && (
-          <Box height={'100vh'} marginTop={'46px'}>
+          <Box onClick={closeMenu} height={'100vh'} marginTop={'46px'}>
             <AuthNav />
             <UserNav />
             <Nav />
           </Box>
         )}
         {menu && tablet && beforeDesktop && (
-          <Box height={'100vh'} marginTop={'88px'}>
+          <Box onClick={closeMenu} height={'100vh'} marginTop={'88px'}>
             <Nav />
           </Box>
         )}

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { device } from '../../devices';
 import { ReactComponent as Search } from '../../staticImages/Search.svg';
-import { ReactComponent as Close } from '../../staticImages/Close.svg';
+import { ReactComponent as Close } from '../../staticImages/SearchClose.svg';
 
 export const SearchForm = styled.form`
   display: flex;
@@ -19,6 +19,12 @@ export const SearchForm = styled.form`
   @media ${device.tablet} {
     max-width: 608px;
     height: 44px;
+  }
+
+  &.News {
+    @media ${device.tablet} {
+      margin-bottom: ${p => p.theme.space[7]}px;
+    }
   }
 
   :focus-within {
@@ -51,18 +57,25 @@ export const SearchButton = styled.button`
   background-color: ${p => p.theme.colors.white};
   cursor: pointer;
   outline: none;
-`;
-
-export const SearchIcon = styled(Search)`
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  :hover {
+
+  :hover,
+  :focus {
+    :disabled {
+      fill: ${p => p.theme.colors.mainText};
+    }
     fill: ${p => p.theme.colors.accent};
   }
 `;
 
-export const CloseIcon = styled(Close)`
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  :hover {
-    fill: ${p => p.theme.colors.accent};
+export const SearchIcon = styled(Search)``;
+
+export const SearchCloseIcon = styled(Close)`
+  fill: ${p => p.theme.colors.white};
+  stroke: ${p => p.theme.colors.mainText};
+
+  :hover,
+  :focus {
+    stroke: ${p => p.theme.colors.accent};
   }
 `;

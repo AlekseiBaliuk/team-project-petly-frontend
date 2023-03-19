@@ -4,6 +4,7 @@ import { ReactComponent as Heart } from 'staticImages/Heart.svg';
 
 const Wrapper = styled('div')`
   padding: 60px 20px 40px;
+
   @media ${device.tablet} {
     padding: 32px 20px 20px;
     display: grid;
@@ -122,6 +123,13 @@ const Image = styled('img')`
   width: 240px;
   height: 240px;
   margin-bottom: 16px;
+  object-fit: cover;
+  transition: transform 0.25s;
+  border-radius: 0px 0px 40px 40px;
+  :hover,
+  focus {
+    transform: scale(1.1);
+  }
   @media ${device.tablet} {
     width: 288px;
     height: 328px;

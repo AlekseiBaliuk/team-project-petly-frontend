@@ -11,6 +11,7 @@ export const device = {
   mobile: `(min-width: ${size.mobile})`,
   mobileOnly: `(max-width: ${size.mobileOnly})`,
 
+  beforeTablet: `(max-width: ${size.tabletOnly})`,
   tablet: `(min-width: ${size.tablet})`,
   tabletOnly: `(min-width:${size.tablet}) and (max-width:${size.beforeDesktop})`,
 
@@ -20,3 +21,7 @@ export const device = {
 
 // how to use:
 // @media ${device.tablet} {}
+
+export const deviceWindows = {
+  beforeTablet: window.innerWidth < 768,
+};
