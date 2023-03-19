@@ -41,6 +41,7 @@ export const theme = {
     main: '2px solid #F59256',
     accent: '2px solid #FF6101',
     auth: '1px solid rgba(245, 146, 86, 0.5)',
+    none: 'none',
   },
   radii: {
     none: '0',
