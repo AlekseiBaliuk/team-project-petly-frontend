@@ -1,9 +1,10 @@
 import React from 'react';
 import { Container } from 'components/Container/Container.styled';
-import NoticeCategoryList from 'components/Notice/NoticeCategoryList';
+import NoticesCategoriesNav from 'components/Notice/NoticesCategoriesNav';
 import AddNoticeButton from 'components/Notice/AddNoticeButton';
+import NoticeCategoryList from 'components/Notice/NoticeCategoryList';
 
-import { Title } from './NoticesPage.styled';
+import { Title, PetSearchNav } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   return (
@@ -11,7 +12,10 @@ const NoticesPage = () => {
       <section>
         <Container>
           <Title>Find your favorite pet</Title>
-          <AddNoticeButton />
+          <PetSearchNav>
+            <AddNoticeButton />
+            <NoticesCategoriesNav />
+          </PetSearchNav>
           <NoticeCategoryList />
         </Container>
       </section>
