@@ -27,6 +27,9 @@ export const Link = styled(NavLink)`
   }
 `;
 export const Nav = styled.nav`
+  @media ${device.tabletOnly} {
+    margin-right: 20px;
+  }
   @media ${device.desktop} {
     margin-left: auto;
   }
