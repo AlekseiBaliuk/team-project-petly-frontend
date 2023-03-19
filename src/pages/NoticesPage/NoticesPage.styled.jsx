@@ -12,7 +12,9 @@ export const Title = styled('h2')`
 `;
 
 export const PetSearchNav = styled('div')`
-  position: relative;
+  @media ${device.tablet} {
+    position: relative;
+  }
 
   display: flex;
   align-items: center;

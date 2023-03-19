@@ -13,8 +13,8 @@ const NoticesPage = () => {
         <Container>
           <Title>Find your favorite pet</Title>
           <PetSearchNav>
-            <NoticesCategoriesNav />
             <AddNoticeButton />
+            <NoticesCategoriesNav />
           </PetSearchNav>
           <NoticeCategoryList />
         </Container>

@@ -6,7 +6,7 @@ export const CategoriesList = styled('ul')`
   display: flex;
   flex-wrap: wrap;
 
-  @media ${device.mobileOnly} {
+  @media ${device.beforeTablet} {
     max-width: 260px;
   }
 
@@ -20,13 +20,13 @@ export const CategoryItem = styled('li')`
     margin-right: 12px;
   }
 
-  @media ${device.mobileOnly} {
+  @media ${device.beforeTablet} {
     :nth-last-child(-n + 4) {
-      margin-top: 16px;
+      margin-top: 12px;
     }
   }
 
-  @media ${device.tablet} {
+  @media ${device.tabletOnly} {
     :nth-last-child(-n + 2) {
       margin-top: 16px;
     }
@@ -52,5 +52,11 @@ export const Link = styled(NavLink)`
   &:hover {
     color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.accent};
+  }
+
+  @media ${device.beforeTablet} {
+    font-size: ${props => props.theme.fontSizes.fs14};
+    padding: 8px 28px;
+    line-height: 1.21;
   }
 `;
