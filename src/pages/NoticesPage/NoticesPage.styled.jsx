@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { device } from 'devices';
 
+export const Main = styled('main')`
+  padding-bottom: 200px;
+`;
+
 export const Title = styled('h2')`
   font-size: ${props => props.theme.fontSizes.fs24};
   font-weight: ${props => props.theme.fontWeights.fw700};
