@@ -5,11 +5,11 @@ import {
   ButtonWrapper,
 } from './AddNoticeButton.styled';
 
-export const AddNoticeButton = () => {
+export const AddNoticeButton = ({openModal}) => {
   return (
     <ButtonWrapper>
       <Text>Add pet</Text>
-      <Button type="button">
+      <Button type="button" onClick={openModal}>
         <PlusIcon />
       </Button>
     </ButtonWrapper>
