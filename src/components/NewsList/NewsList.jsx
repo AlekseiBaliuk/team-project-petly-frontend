@@ -16,12 +16,13 @@ export const NewsList = () => {
   // const filterContacts = useSelector();
 
   const message = 'We have any news for you';
-  const titleLength = '38';
-  const descriptLength = '215';
+  const titleLength = 38;
+  const descriptLength = 215;
 
   // видалити
   const filterNews = [
     {
+      id: 1,
       title:
         'В День ветеринара в столиці пройде безкоштовний тренінг з надання першої допомоги тваринам',
       url: 'https://www.kmlvm.com.ua/v-den-veterynara-v-stolytsi-projde-bezkoshtovnyj-trening-z-nadannya-pershoyi-dopomogy-tvarynam/',
@@ -30,6 +31,7 @@ export const NewsList = () => {
       date: '2022-08-12',
     },
     {
+      id: 2,
       title:
         'У Телеграмі запрацював чат-бот, що надає безкоштовні консультації щодо догляду за тваринами',
       url: 'https://www.kmlvm.com.ua/u-telegrami-zapratsyuvav-chat-bot-shho-nadaye-bezkoshtovni-konsultatsiyi-shhodo-doglyadu-za-tvarynamy/',
@@ -38,6 +40,7 @@ export const NewsList = () => {
       date: '2022-07-19',
     },
     {
+      id: 3,
       title:
         'В День ветеринара в столиці пройде безкоштовний тренінг з надання першої допомоги тваринам',
       url: 'https://www.kmlvm.com.ua/v-den-veterynara-v-stolytsi-projde-bezkoshtovnyj-trening-z-nadannya-pershoyi-dopomogy-tvarynam/',
@@ -46,6 +49,7 @@ export const NewsList = () => {
       date: '2022-08-12',
     },
     {
+      id: 4,
       title:
         'У Телеграмі запрацював чат-бот, що надає безкоштовні консультації щодо догляду за тваринами',
       url: 'https://www.kmlvm.com.ua/u-telegrami-zapratsyuvav-chat-bot-shho-nadaye-bezkoshtovni-konsultatsiyi-shhodo-doglyadu-za-tvarynamy/',
@@ -54,6 +58,7 @@ export const NewsList = () => {
       date: '2022-07-19',
     },
     {
+      id: 5,
       title:
         'В День ветеринара в столиці пройде безкоштовний тренінг з надання першої допомоги тваринам',
       url: 'https://www.kmlvm.com.ua/v-den-veterynara-v-stolytsi-projde-bezkoshtovnyj-trening-z-nadannya-pershoyi-dopomogy-tvarynam/',
@@ -62,6 +67,7 @@ export const NewsList = () => {
       date: '2022-08-12',
     },
     {
+      id: 6,
       title:
         'У Телеграмі запрацював чат-бот, що надає безкоштовні консультації щодо догляду за тваринами',
       url: 'https://www.kmlvm.com.ua/u-telegrami-zapratsyuvav-chat-bot-shho-nadaye-bezkoshtovni-konsultatsiyi-shhodo-doglyadu-za-tvarynamy/',
@@ -74,10 +80,10 @@ export const NewsList = () => {
   return (
     <News>
       {filterNews.length > 0
-        ? filterNews.map(({ title, url, description, date }) => {
+        ? filterNews.map(({ id, title, url, description, date }) => {
             const formatDate = format(new Date(date), 'dd/MM/yyyy');
             return (
-              <NewsCard>
+              <NewsCard key={id}>
                 <NewsTitle>
                   <EllipsisText text={title} length={titleLength} />
                 </NewsTitle>

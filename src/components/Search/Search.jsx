@@ -1,24 +1,57 @@
 // import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import {
   SearchInput,
   SearchForm,
   SearchButton,
   SearchIcon,
+  SearchCloseIcon,
 } from './Search.styled';
 
-export const NewsSearch = () => {
+// дописать props slice, розкоментувать
+
+export const Search = () => {
+  const [search, setSearch] = useState('');
+  const [input, setInput] = useState(false);
+
   // const dispatch = useDispatch();
-  const handleChange = e => {
+
+  const handleSubmit = e => {
     e.preventDefault();
-    // const filter = e.target.value;
-    //   dispatch(slice(filter.trim()));
+
+    if (input === true) {
+      setSearch('');
+      setInput(false);
+    }
+
+    if (input === false) {
+      //   // dispatch(slice(search.trim()));
+      setInput(true);
+    }
+  };
+
+  const handleChange = e => {
+    if (input === true) {
+      setInput(false);
+    }
+
+    const filter = e.target.value;
+    setSearch(filter);
   };
 
   return (
-    <SearchForm onSubmit={handleChange}>
-      <SearchInput type="text" placeholder="Search" />
-      <SearchButton type="submit">
-        <SearchIcon />
+    <SearchForm className="News" onSubmit={handleSubmit}>
+      <SearchInput
+        name="search"
+        type="text"
+        value={search}
+        placeholder="Search"
+        pattern=".{5,}"
+        title="Please enter at least 5 characters"
+        onChange={handleChange}
+      />
+      <SearchButton type="submit" disabled={!search}>
+        {input === false ? <SearchIcon /> : <SearchCloseIcon />}
       </SearchButton>
     </SearchForm>
   );
