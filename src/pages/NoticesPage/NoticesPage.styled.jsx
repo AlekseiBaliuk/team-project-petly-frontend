@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import { device } from 'devices';
 
 export const Main = styled('main')`
-  padding-bottom: 200px;
+  padding-bottom: 100px;
+  @media ${device.desktop} {
+    padding-bottom: 200px;
+  }
 `;
 
 export const Title = styled('h2')`

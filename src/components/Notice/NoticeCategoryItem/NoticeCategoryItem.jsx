@@ -12,16 +12,21 @@ const {
   Item,
   Span,
   Loadmore,
-  // Delete,
+  Delete,
   HeartIcon,
 } = style;
 
 export const NoticeCategoryItem = () => {
   const [showModal, setShowModal] = useState(false);
 
+  if (showModal) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+
   const toggleModal = () => {
     setShowModal(prevState => !prevState);
-    document.body.style.overflow = 'visible';
   };
   return (
     <Card>
@@ -51,7 +56,7 @@ export const NoticeCategoryItem = () => {
       <Loadmore onClick={toggleModal} type="button">
         Learn more
       </Loadmore>
-      {/* <Delete>Delete</Delete> */}
+      <Delete>Delete</Delete>
       {showModal && <Modal toggle={toggleModal} />}
     </Card>
   );
