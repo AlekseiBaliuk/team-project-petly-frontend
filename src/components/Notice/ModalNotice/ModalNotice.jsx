@@ -2,6 +2,7 @@ import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import styles from './ModalNotice.styled';
 import { ReactComponent as Close } from 'staticImages/Close.svg';
+import { InfoPet } from './InfoPet/InfoPet';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -31,6 +32,7 @@ export const ModalNotice = ({ toggle }) => {
         <BtnClose onClick={() => toggle()} type="button">
           <Close />
         </BtnClose>
+        <InfoPet />
       </ModalContent>
     </ModalBackdrop>,
     modalRoot,
