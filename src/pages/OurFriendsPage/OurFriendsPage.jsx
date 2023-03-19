@@ -1,7 +1,13 @@
-import React from 'react';
-
+import { PageTitle } from 'components/PageTitle/PageTitle';
+import OurFriendsContainer from "../../components/OurFriends/OurFriendsContainer";
+import { Container } from "./OurFriendsPage.styled";
 const OurFriendsPage = () => {
-  return <div>Our Friends Page</div>;
+  return (
+    <Container>
+      <PageTitle title={"Our friends"} />
+      <OurFriendsContainer />
+    </Container>
+  );
 };
 
 export default OurFriendsPage;
