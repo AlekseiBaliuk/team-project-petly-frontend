@@ -28,6 +28,9 @@ export const Nav = styled.nav`
   @media ${device.beforeDesktop} {
     text-align: center;
   }
+  @media (max-width: 767px) {
+    margin-top: 60px;
+  }
 `;
 export const List = styled.ul`
   @media ${device.desktop} {
@@ -36,12 +39,18 @@ export const List = styled.ul`
 `;
 export const ListItem = styled.li`
   @media ${device.beforeDesktop} {
-    margin-bottom: 40px;
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
   }
   @media ${device.tabletOnly} {
-    margin-bottom: 60px;
+    &:not(:last-child) {
+      margin-bottom: 60px;
+    }
   }
   @media ${device.desktop} {
-    margin-left: 80px;
+    &:not(:first-child) {
+      margin-left: 80px;
+    }
   }
 `;

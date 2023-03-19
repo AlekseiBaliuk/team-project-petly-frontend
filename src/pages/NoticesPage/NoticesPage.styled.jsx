@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../../devices';
+import { device } from 'devices';
 
 export const Title = styled('h2')`
   font-size: ${props => props.theme.fontSizes.fs24};

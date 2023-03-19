@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as Heart } from '../../../staticImages/Heart.svg';
+import { ReactComponent as Heart } from 'staticImages/Heart.svg';
 
 const Card = styled('li')`
   position: relative;
@@ -114,8 +114,8 @@ const Loadmore = styled('button')`
   cursor: pointer;
   :hover,
   :focus {
-    border-color: #ff6101;
-    color: #ff6101;
+    border-color: ${props => props.theme.colors.hoverAccent};
+    color: ${props => props.theme.colors.hoverAccent};
   }
   background: ${props => props.theme.colors.white};
 `;

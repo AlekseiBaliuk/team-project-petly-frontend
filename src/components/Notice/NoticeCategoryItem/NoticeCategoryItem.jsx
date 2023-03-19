@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import style from './NoticeCategoryItem.styled';
+import Modal from 'components/Notice/ModalNotice';
 
 const {
   Image,
@@ -15,6 +17,12 @@ const {
 } = style;
 
 export const NoticeCategoryItem = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(prevState => !prevState);
+    document.body.style.overflow = 'visible';
+  };
   return (
     <Card>
       <Category>Sell</Category>
@@ -40,8 +48,11 @@ export const NoticeCategoryItem = () => {
           <Span>one year</Span>
         </Item>
       </List>
-      <Loadmore>Learn more</Loadmore>
+      <Loadmore onClick={toggleModal} type="button">
+        Learn more
+      </Loadmore>
       {/* <Delete>Delete</Delete> */}
+      {showModal && <Modal toggle={toggleModal} />}
     </Card>
   );
 };
