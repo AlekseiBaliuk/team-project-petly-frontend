@@ -1,4 +1,3 @@
-// import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import {
   SearchInput,
@@ -8,13 +7,9 @@ import {
   SearchCloseIcon,
 } from './Search.styled';
 
-// дописать props slice, розкоментувать
-
-export const Search = () => {
+export const Search = ({ sendSearch }) => {
   const [search, setSearch] = useState('');
   const [input, setInput] = useState(false);
-
-  // const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -22,11 +17,12 @@ export const Search = () => {
     if (input === true) {
       setSearch('');
       setInput(false);
+      sendSearch('');
     }
 
     if (input === false) {
-      //   // dispatch(slice(search.trim()));
       setInput(true);
+      sendSearch(search);
     }
   };
 
@@ -46,8 +42,8 @@ export const Search = () => {
         type="text"
         value={search}
         placeholder="Search"
-        pattern=".{5,}"
-        title="Please enter at least 5 characters"
+        pattern=".{4,}"
+        title="Please enter at least 4 characters"
         onChange={handleChange}
       />
       <SearchButton type="submit" disabled={!search}>
