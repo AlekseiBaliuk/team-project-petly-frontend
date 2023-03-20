@@ -61,7 +61,6 @@ export const Text = styled.div`
 `;
 
 export const StyledForm = styled(Form)`
-  margin-bottom: ${p => p.theme.space[5]}px;
   display: flex;
   flex-direction: column;
   gap: ${p => p.theme.space[1]}px;
@@ -92,7 +91,7 @@ export const BtnContainer = styled.div`
   display: flex;
   flex-direction: column-reverse;
   gap: 12px;
-  margin-top: ${p => p.theme.space[5]}px;;
+  margin-top: ${p => p.theme.space[5]}px;
 `;
 
 export const BtnActive = styled.button`

@@ -1,5 +1,8 @@
 import { Formik } from 'formik';
 import {
+  Btn,
+  BtnActive,
+  BtnContainer,
   CommentInput,
   Input,
   Label,
@@ -34,10 +37,12 @@ export const StepTwo = props => {
               placeholder="Type breed"
             />
           </Label>
-          <button type="button" onClick={() => props.prev(values)}>
-            Previous
-          </button>
-          <button type="submit">Done</button>
+          <BtnContainer>
+            <Btn type="button" onClick={() => props.prev(values)}>
+              Previous
+            </Btn>
+            <BtnActive type="submit">Done</BtnActive>
+          </BtnContainer>
         </StyledForm>
       )}
     </Formik>
