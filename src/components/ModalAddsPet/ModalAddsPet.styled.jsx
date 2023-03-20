@@ -108,6 +108,11 @@ export const BtnActive = styled.button`
   letter-spacing: 0.04em;
   outline: none;
   color: ${p => p.theme.colors.white};
+  cursor: pointer;
+  :hover,
+  :focus {
+    background-color: ${props => props.theme.colors.hoverAccent};
+  }
 `;
 
 export const Btn = styled.button`
@@ -124,6 +129,11 @@ export const Btn = styled.button`
   letter-spacing: 0.04em;
   outline: none;
   color: ${p => p.theme.colors.mainText};
+  cursor: pointer;
+  :hover,
+  :focus {
+    background-color: ${props => props.theme.colors.accent};
+  }
 `;
 
 export const BtnClose = styled.button`
