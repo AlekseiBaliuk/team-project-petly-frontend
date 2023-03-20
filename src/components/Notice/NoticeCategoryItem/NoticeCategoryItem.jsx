@@ -59,7 +59,7 @@ export const NoticeCategoryItem = ({ fetch }) => {
         Learn more
       </Loadmore>
       <Delete>Delete</Delete>
-      {showModal && <Modal toggle={toggleModal} />}
+      {showModal && <Modal toggle={toggleModal} noticeById={fetch} />}
     </Card>
   );
 };

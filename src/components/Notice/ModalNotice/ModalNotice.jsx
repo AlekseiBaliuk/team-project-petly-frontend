@@ -6,7 +6,7 @@ import { InfoPet } from './InfoPet/InfoPet';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const ModalNotice = ({ toggle }) => {
+export const ModalNotice = ({ toggle, noticeById }) => {
   const { ModalBackdrop, ModalContent, BtnClose } = styles;
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export const ModalNotice = ({ toggle }) => {
         <BtnClose onClick={() => toggle()} type="button">
           <Close />
         </BtnClose>
-        <InfoPet />
+        <InfoPet notice={noticeById} />
       </ModalContent>
     </ModalBackdrop>,
     modalRoot,
