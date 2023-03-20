@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Wrapper,
   Form,
@@ -8,7 +9,7 @@ import {
   BtnStepList,
   BtnStep,
   BtnClose,
-  LockBodyScroll,
+  //   LockBodyScroll,
   Label,
 } from './FirstStep.styled';
 import { LabelInput } from './Label';
@@ -24,11 +25,20 @@ import {
   Textarea,
   ItemWrapper,
 } from './SecondStep.styled';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+
+const body = document.getElementsByTagName('body')[0];
+const modalRoot = document.querySelector('#modal-root');
 
 export const SecondStep = ({ adminModal }) => {
   useEffect(() => {
+    console.log(body);
+    disableBodyScroll(body);
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      enableBodyScroll(body);
+    };
   });
 
   function handleKeyDown(e) {
@@ -43,10 +53,9 @@ export const SecondStep = ({ adminModal }) => {
     }
   };
 
-  return (
+  return createPortal(
     <Wrapper onClick={handleModalClick}>
-      <LockBodyScroll />
-      <Form>
+      <Form id="form">
         <BtnClose type="button" onClick={() => adminModal('none')}>
           <Close />
         </BtnClose>
@@ -111,6 +120,7 @@ export const SecondStep = ({ adminModal }) => {
           </li>
         </BtnStepList>
       </Form>
-    </Wrapper>
+    </Wrapper>,
+    modalRoot,
   );
 };

@@ -1,4 +1,5 @@
 import { LabelInput } from './Label';
+import { createPortal } from 'react-dom';
 import { ReactComponent as Close } from 'staticImages/Close.svg';
 import { useEffect } from 'react';
 import {
@@ -12,13 +13,21 @@ import {
   BtnStepList,
   BtnStep,
   BtnClose,
-  LockBodyScroll,
+  // LockBodyScroll,
 } from './FirstStep.styled';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+
+const body = document.getElementsByTagName('body')[0];
+const modalRoot = document.querySelector('#modal-root');
 
 export const FirstStep = ({ adminModal }) => {
   useEffect(() => {
+    disableBodyScroll(body);
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      enableBodyScroll(body);
+    };
   });
 
   function handleKeyDown(e) {
@@ -33,10 +42,9 @@ export const FirstStep = ({ adminModal }) => {
     }
   };
 
-  return (
+  return createPortal(
     <Wrapper onClick={handleModalClick}>
-      <LockBodyScroll />
-      <Form>
+      <Form id="form">
         <BtnClose type="button" onClick={() => adminModal('none')}>
           <Close />
         </BtnClose>
@@ -103,6 +111,7 @@ export const FirstStep = ({ adminModal }) => {
           </li>
         </BtnStepList>
       </Form>
-    </Wrapper>
+    </Wrapper>,
+    modalRoot,
   );
 };
