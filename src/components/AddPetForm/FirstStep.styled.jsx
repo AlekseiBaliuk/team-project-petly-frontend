@@ -1,18 +1,12 @@
 import styled from 'styled-components';
 import { device } from '../../devices';
-import { createGlobalStyle } from 'styled-components';
-
-export const LockBodyScroll = createGlobalStyle`
-body {
-    height: 100vh;
-    overflow-y: hidden;
-  }
-`;
 
 export const Wrapper = styled.div`
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
   z-index: 50;
+
+  overflow-y: scroll;
 
   position: fixed;
   top: 0;
@@ -37,9 +31,9 @@ export const Form = styled.form`
   }
 
   position: absolute;
-  top: 50%;
+  top: 32px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
   z-index: 100;
 `;
 

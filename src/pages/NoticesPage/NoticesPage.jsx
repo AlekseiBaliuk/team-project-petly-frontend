@@ -14,10 +14,7 @@ import { Title, PetSearchNav, Main } from './NoticesPage.styled';
 const NoticesPage = () => {
   const [isModalShow, setIsModalShow] = useState('none');
 
-  const adminModal = type => {
-    setIsModalShow(type);
-    return;
-  };
+  const adminModal = type => setIsModalShow(type);
 
   return (
     <Main>
