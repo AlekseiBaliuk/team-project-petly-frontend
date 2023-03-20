@@ -13,4 +13,11 @@ export const NewsPageBox = styled.main`
     /* padding-top: ${p => p.theme.space[7]}px; */
     padding-bottom: 200px;
   }
+
+  form {
+    margin-bottom: ${p => p.theme.space[5]}px;
+    @media ${device.tablet} {
+      margin-bottom: ${p => p.theme.space[7]}px;
+    }
+  }
 `;
