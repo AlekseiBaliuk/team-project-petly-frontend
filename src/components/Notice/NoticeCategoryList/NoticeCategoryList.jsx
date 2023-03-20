@@ -1,27 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import selectors from 'redux/notices/noticesSelectors';
+import { fetchNotices } from 'redux/notices/noticesOperations';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import { Grid } from './NoticeCategoryList.styled';
-import axios from 'axios';
+import { Loader } from 'components/Loader/Loader';
+
+const { selectNotices, selectLoadingStatus, selectErrorMessage } = selectors;
 
 export const NoticeCategoryList = () => {
-  const [sell, setSell] = useState([]);
+  const noticesList = useSelector(selectNotices);
+  const isLoading = useSelector(selectLoadingStatus);
+  const error = useSelector(selectErrorMessage);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    return async () => {
-      const result = await axios.get(
-        'https://team-project-petly-backend.onrender.com/api/notices/category/sell',
-      );
-
-      setSell(result.data.notices);
+    const fetch = async () => {
+      await dispatch(fetchNotices());
     };
-  }, []);
+    fetch();
+  }, [dispatch]);
 
   return (
-    <Grid>
-      {sell.length > 0 &&
-        sell.map(item => {
-          return <NoticeCategoryItem key={item._id} fetch={item} />;
-        })}
-    </Grid>
+    <>
+      {error && <p>Not found</p>}
+      {isLoading && <Loader />}
+      <Grid>
+        {noticesList.length > 0 &&
+          noticesList.map(item => {
+            return <NoticeCategoryItem key={item._id} fetch={item} />;
+          })}
+      </Grid>
+    </>
   );
 };
