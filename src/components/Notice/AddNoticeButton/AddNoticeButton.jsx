@@ -7,11 +7,11 @@ import {
 } from './AddNoticeButton.styled';
 import { deviceWindows } from '../../../devices';
 
-export const AddNoticeButton = () => {
+export const AddNoticeButton = ({openModal}) => {
   return (
     <ButtonWrapper>
       {!deviceWindows.beforeTablet && <Text>Add pet</Text>}
-      <Button type="button">
+      <Button type="button" onClick={openModal}>
         {deviceWindows.beforeTablet ? <PlusIconS /> : <PlusIcon />}
 
         {deviceWindows.beforeTablet && <Text>Add pet</Text>}
