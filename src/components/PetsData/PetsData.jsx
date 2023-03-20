@@ -30,13 +30,10 @@ export default function PetsData({ pets, setPets, petsData }) {
         <UserPetsTitle>Pets</UserPetsTitle>
         <PetBtnWrapper>
           <AddPetTitleBtn>Add</AddPetTitleBtn>
-          <AddPetBtn
-            onClick={() => setIsAddModalShown(true)}
-            onClose={toggleModal}
-          />
+          <AddPetBtn onClick={() => setIsAddModalShown(true)} />
         </PetBtnWrapper>
       </PetsTitleWrapper>
-      {isAddModalShown ? <ModalAddsPet></ModalAddsPet> : null}
+      {isAddModalShown && <ModalAddsPet onClose={toggleModal} />}
       {isPets ? (
         <PetList />
       ) : (
