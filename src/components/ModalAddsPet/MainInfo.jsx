@@ -1,20 +1,21 @@
-import { Input, Label } from './ModalAddsPet.styled';
+import { Form, Input, Label } from './ModalAddsPet.styled';
 
 export const MainInfo = () => {
   return (
-    <>
+    <Form>
       <Label>
-        Name pet
-        <Input type="text" />
+        <span>Name pet</span>
+
+        <Input name="name" type="text" placeholder="Type name pet" />
       </Label>
       <Label>
         Date of birth
-        <Input type="date" />
+        <Input name="date" type="date" placeholder="Type date of birth" />
       </Label>
       <Label>
         Breed
-        <Input type="text" />
+        <Input name="breed" type="text" placeholder="Type breed" />
       </Label>
-    </>
+    </Form>
   );
 };

@@ -49,22 +49,34 @@ export const Title = styled.h3`
   color: ${p => p.theme.colors.mainText};
 `;
 
-export const Form = styled.form`
+export const Form = styled.div`
+  margin-bottom: ${p => p.theme.space[5]}px;
   display: flex;
   flex-direction: column;
-  gap: ${p => p.theme.space[1]};
+  gap: ${p => p.theme.space[1]}px;
 `;
 
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
-  gap: ${p => p.theme.space[1]};
+  gap: ${p => p.theme.space[0]}px;
 `;
 
 export const Input = styled.input`
+  padding: 11px 16px 10px;
   background-color: ${p => p.theme.colors.background};
   border: ${p => p.theme.borders.auth};
   border-radius: ${p => p.theme.radii.br40};
+`;
+
+export const Text = styled.div`
+  text-align: center;
+  font-family: ${p => p.theme.fonts.main};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.fw500};
+  font-size: ${p => p.theme.fontSizes.fs36};
+  line-height: 1.1;
+  color: ${p => p.theme.colors.mainText};
 `;
 
 export const BtnClose = styled.button`
