@@ -24,3 +24,11 @@ export const ToolBar = styled.div`
     margin-bottom: 20px;
   }
 `;
+export const LogoContainer = styled.div`
+  @media ${device.tablet} {
+    margin-right: auto;
+  }
+  @media ${device.desktop} {
+    margin-right: 80px;
+  }
+`;
