@@ -1,21 +1,12 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { getNews } from 'services';
 
-import axios from 'axios';
-import { Container } from 'components/Container/Container.styled';
 import { NewsList } from 'components/NewsList/NewsList';
 import { PageTitle } from 'components/PageTitle/PageTitle';
-import { NewsPageBox } from './NewsPage.styled';
 import { Search } from 'components/Search/Search';
-
-// запит
-axios.defaults.baseURL = 'https://team-project-petly-backend.onrender.com/api';
-
-export const getNews = async () => {
-  const response = await axios.get('news');
-  return response.data.news;
-};
-//
+import { Container } from 'components/Container/Container.styled';
+import { NewsPageBox } from './NewsPage.styled';
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
