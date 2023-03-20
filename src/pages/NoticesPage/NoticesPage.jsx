@@ -20,7 +20,7 @@ const NoticesPage = () => {
         <Container>
           <Title>Find your favorite pet</Title>
           <AddNoticeButton openModal={openModal} />
-          {isModalShow && <FirstStep />};
+          {isModalShow && <FirstStep />}
           <NoticeCategoryList />
         </Container>
       </section>

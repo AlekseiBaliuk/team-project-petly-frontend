@@ -1,6 +1,18 @@
 import styled from 'styled-components';
 import { device } from '../../devices';
 
+export const Wrapper = styled.div`
+  background: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(10px);
+  z-index: 50;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+`;
+
 export const Form = styled.form`
   border: 1px red solid;
   max-width: 280px;
@@ -15,6 +27,12 @@ export const Form = styled.form`
     padding-left: ${props => props.theme.space[9]}px;
     padding-right: ${props => props.theme.space[9]}px;
   }
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
 `;
 
 export const Title = styled.h2`
@@ -45,7 +63,7 @@ export const Subtitle = styled.p`
   }
 `;
 
-export const BtnList = styled.ul`
+export const BtnListCategory = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: ${props => props.theme.space[1]}px;
@@ -57,7 +75,7 @@ export const BtnList = styled.ul`
   }
 `;
 
-export const BtnItem = styled.button`
+export const BtnCategory = styled.button`
   padding: ${props => props.theme.space[1]}px 28px;
   border: 2px solid ${props => props.theme.colors.accent};
   border-radius: 40px;
@@ -74,5 +92,99 @@ export const BtnItem = styled.button`
   :focus {
     background-color: ${props => props.theme.colors.accent};
     color: ${props => props.theme.colors.white};
+  }
+`;
+
+export const LabelList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: ${props => props.theme.space[2]}px;
+  text-align: left;
+  margin-bottom: ${props => props.theme.space[5]}px;
+
+  @media ${device.tablet} {
+    gap: 28px;
+  }
+`;
+
+export const Label = styled.label`
+  font-size: ${props => props.theme.fontSizes.fs18};
+  color: ${props => props.theme.colors.mainText};
+
+  @media ${device.tablet} {
+    font-size: ${props => props.theme.fontSizes.fs24};
+    color: ${props => props.theme.colors.black};
+  }
+`;
+
+export const Input = styled.input`
+  background: ${props => props.theme.colors.background};
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  font-weight: ${props => props.theme.fontWeights.fw400};
+  font-size: ${props => props.theme.fontSizes.fs14};
+  color: rgba(27, 27, 27, 0.6);
+  padding: 11px 0 12px 14px;
+  width: 100%;
+  margin-top: ${props => props.theme.space[1]}px;
+
+  @media ${device.tablet} {
+    margin-top: 12px;
+    font-size: ${props => props.theme.fontSizes.fs16};
+    color: rgba(17, 17, 17, 0.6);
+    padding: 11px 0 10px 16px;
+  }
+`;
+
+export const BtnStepList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+
+  @media ${device.tablet} {
+    flex-direction: row-reverse;
+    gap: 20px;
+    justify-content: center;
+  }
+`;
+
+export const BtnStep = styled.button`
+  width: 240px;
+  height: 40px;
+  border: 2px solid ${props => props.theme.colors.accent};
+  border-radius: 40px;
+  background-color: transparent;
+  font-size: ${props => props.theme.fontSizes.fs14};
+  transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media ${device.tablet} {
+    width: 180px;
+    height: 44px;
+  }
+
+  :hover,
+  :focus {
+    background-color: ${props => props.theme.colors.accent};
+    color: ${props => props.theme.colors.white};
+  }
+`;
+
+export const BtnClose = styled.button`
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: #fdf7f2;
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  :hover,
+  :focus {
+    border: 1px ${props => props.theme.colors.accent} solid;
   }
 `;
