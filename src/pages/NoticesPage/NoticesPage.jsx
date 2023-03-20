@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Container } from 'components/Container/Container.styled';
-import NoticeCategoryList from 'components/Notice/NoticeCategoryList';
+import NoticesCategoriesNav from 'components/Notice/NoticesCategoriesNav';
 import AddNoticeButton from 'components/Notice/AddNoticeButton';
 import { FirstStep } from 'components/AddPetForm/FirstStep';
-import { Title } from './NoticesPage.styled';
 import { SecondStep } from 'components/AddPetForm/SecondStep';
+import NoticeCategoryList from 'components/Notice/NoticeCategoryList';
+import { Title, PetSearchNav, Main } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   const [isModalShow, setIsModalShow] = useState('none');
@@ -15,17 +16,20 @@ const NoticesPage = () => {
   };
 
   return (
-    <main>
+    <Main>
       <section>
         <Container>
           <Title>Find your favorite pet</Title>
-          <AddNoticeButton openModal={() => adminModal('step1')} />
-          {isModalShow === 'step1' && <FirstStep adminModal={adminModal} />}
-          {isModalShow === 'step2' && <SecondStep adminModal={adminModal} />}
+          <PetSearchNav>
+            <AddNoticeButton openModal={() => adminModal('step1')} />
+            {isModalShow === 'step1' && <FirstStep adminModal={adminModal} />}
+            {isModalShow === 'step2' && <SecondStep adminModal={adminModal} />}
+            <NoticesCategoriesNav />
+          </PetSearchNav>
           <NoticeCategoryList />
         </Container>
       </section>
-    </main>
+    </Main>
   );
 };
 

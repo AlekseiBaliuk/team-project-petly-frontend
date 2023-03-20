@@ -13,7 +13,7 @@ export const News = styled.ul`
     width: 704px;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: start;
     gap: ${p => p.theme.space[7]}px ${p => p.theme.space[4]}px;
   }
   @media ${device.desktop} {

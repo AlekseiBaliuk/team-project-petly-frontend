@@ -12,10 +12,6 @@ export const LogoLink = styled(Link)`
   letter-spacing: 0.07em;
   @media ${device.tablet} {
     font-size: ${theme.fontSizes.fs32};
-    margin-right: auto;
-  }
-  @media ${device.desktop} {
-    margin-right: 80px;
   }
 `;
 export const LogoSpan = styled.span`

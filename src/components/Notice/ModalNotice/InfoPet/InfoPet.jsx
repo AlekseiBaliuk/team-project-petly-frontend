@@ -6,7 +6,6 @@ export const InfoPet = () => {
     Image,
     Wrapper,
     Title,
-
     Item,
     ItemText,
     Text,
@@ -16,7 +15,7 @@ export const InfoPet = () => {
     WrapperGrid,
   } = style;
 
-  const date = moment('01.01.2021', 'DD.MM.YYYY').fromNow(true);
+  const date = moment('01.01.2021').fromNow(true);
 
   return (
     <Wrapper>
@@ -24,6 +23,7 @@ export const InfoPet = () => {
         src="https://img.tsn.ua/cached/905/tsn-f31867ea2500d8c162f8e1b3822736e1/thumbs/1116x628/3b/a5/bf386a0a6b5fb77653ad65c3ca3da53b.jpeg"
         alt="dog"
       />
+
       <WrapperGrid>
         <Title>Сute dog looking for a home</Title>
         <ul>
