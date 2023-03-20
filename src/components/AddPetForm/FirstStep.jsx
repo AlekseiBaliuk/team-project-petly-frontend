@@ -1,5 +1,6 @@
 import { LabelInput } from './Label';
 import { ReactComponent as Close } from 'staticImages/Close.svg';
+import { useEffect } from 'react';
 import {
   Wrapper,
   Form,
@@ -11,13 +12,32 @@ import {
   BtnStepList,
   BtnStep,
   BtnClose,
+  LockBodyScroll,
 } from './FirstStep.styled';
 
-export const FirstStep = () => {
+export const FirstStep = ({ adminModal }) => {
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  });
+
+  function handleKeyDown(e) {
+    if (e.code === 'Escape') {
+      adminModal('none');
+    }
+  }
+
+  const handleModalClick = e => {
+    if (e.currentTarget === e.target) {
+      adminModal('none');
+    }
+  };
+
   return (
-    <Wrapper>
+    <Wrapper onClick={handleModalClick}>
+      <LockBodyScroll />
       <Form>
-        <BtnClose type="button">
+        <BtnClose type="button" onClick={() => adminModal('none')}>
           <Close />
         </BtnClose>
         <Title>Add pet</Title>
@@ -72,10 +92,14 @@ export const FirstStep = () => {
         </LabelList>
         <BtnStepList>
           <li>
-            <BtnStep type="submit">Next</BtnStep>
+            <BtnStep type="submit" onClick={() => adminModal('step2')}>
+              Next
+            </BtnStep>
           </li>
           <li>
-            <BtnStep type="button">Cancel</BtnStep>
+            <BtnStep type="button" onClick={() => adminModal('none')}>
+              Cancel
+            </BtnStep>
           </li>
         </BtnStepList>
       </Form>

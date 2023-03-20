@@ -4,13 +4,13 @@ import NoticeCategoryList from 'components/Notice/NoticeCategoryList';
 import AddNoticeButton from 'components/Notice/AddNoticeButton';
 import { FirstStep } from 'components/AddPetForm/FirstStep';
 import { Title } from './NoticesPage.styled';
+import { SecondStep } from 'components/AddPetForm/SecondStep';
 
 const NoticesPage = () => {
-  const [isModalShow, setIsModalShow] = useState(false);
+  const [isModalShow, setIsModalShow] = useState('none');
 
-  const openModal = () => {
-    setIsModalShow(true);
-
+  const adminModal = type => {
+    setIsModalShow(type);
     return;
   };
 
@@ -19,8 +19,9 @@ const NoticesPage = () => {
       <section>
         <Container>
           <Title>Find your favorite pet</Title>
-          <AddNoticeButton openModal={openModal} />
-          {isModalShow && <FirstStep />}
+          <AddNoticeButton openModal={() => adminModal('step1')} />
+          {isModalShow === 'step1' && <FirstStep adminModal={adminModal} />}
+          {isModalShow === 'step2' && <SecondStep adminModal={adminModal} />}
           <NoticeCategoryList />
         </Container>
       </section>

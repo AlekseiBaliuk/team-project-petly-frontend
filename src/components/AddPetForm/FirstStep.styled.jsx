@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 import { device } from '../../devices';
+import { createGlobalStyle } from 'styled-components';
+
+export const LockBodyScroll = createGlobalStyle`
+body {
+    height: 100vh;
+    overflow-y: hidden;
+  }
+`;
 
 export const Wrapper = styled.div`
   background: rgba(17, 17, 17, 0.6);
@@ -158,6 +166,7 @@ export const BtnStep = styled.button`
   transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media ${device.tablet} {
+    font-size: ${props => props.theme.fontSizes.fs20};
     width: 180px;
     height: 44px;
   }
