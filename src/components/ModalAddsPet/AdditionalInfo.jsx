@@ -1,8 +1,8 @@
-import { Form, Input, Label, Text } from './ModalAddsPet.styled';
+import { StyledForm, Input, Label, Text } from './ModalAddsPet.styled';
 
 export const AdditionalInfo = () => {
   return (
-    <Form>
+    <StyledForm>
       <Text>Add photo and come comments</Text>
       <Label>
         <Input name="Photo" type="file" placeholder="Type name pet" />
@@ -11,6 +11,6 @@ export const AdditionalInfo = () => {
         Breed
         <Input name="comments" type="text" placeholder="Type breed" />
       </Label>
-    </Form>
+    </StyledForm>
   );
 };

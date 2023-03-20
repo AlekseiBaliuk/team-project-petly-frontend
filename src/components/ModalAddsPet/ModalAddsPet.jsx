@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { FormikWizard } from 'formik-wizard-form';
 import * as Yup from 'yup';
@@ -6,10 +6,21 @@ import { ReactComponent as Close } from 'staticImages/Close.svg';
 import * as SC from './ModalAddsPet.styled';
 import { MainInfo } from './MainInfo';
 import { AdditionalInfo } from './AdditionalInfo';
+import { StepTwo } from './StepTwo';
+import { StepOne } from './StepOne';
 
 const modalRoot = document.querySelector('#modal-root');
 
 export const ModalAddsPet = ({ onClose }) => {
+  const [data, setData] = useState({
+    namePet: '',
+    dateOfBirth: '',
+    breed: '',
+    photo: null,
+    comments: '',
+  });
+  const [currentStep, setCurrentStep] = useState(0);
+
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
@@ -27,11 +38,44 @@ export const ModalAddsPet = ({ onClose }) => {
     }
   };
 
+  const makeRequest = formData => {
+    console.log('Form submitted', formData);
+  };
+
+  const handleNextStep = (newData, final = false) => {
+    setData(prevState => ({ ...prevState, ...newData }));
+
+    if (final) {
+      makeRequest(newData);
+      return;
+    }
+
+    setCurrentStep(prev => prev + 1);
+  };
+
+  const handlePrevStep = newData => {
+    setData(prevState => ({ ...prevState, ...newData }));
+    setCurrentStep(prev => prev - 1);
+  };
+
+  const steps = [
+    <StepOne onClose={onClose} next={handleNextStep} data={data} />,
+    <StepTwo
+      onClose={onClose}
+      prev={handlePrevStep}
+      next={handleNextStep}
+      data={data}
+    />,
+  ];
+
+  console.log('data', data);
+
   return createPortal(
     <SC.Backdrop onClick={handleBackdropClick}>
       <SC.Content>
         <SC.Title>Add pet</SC.Title>
-        <FormikWizard
+        {steps[currentStep]}
+        {/* <FormikWizard
           initialValues={{
             namePet: '',
             dateOfBirth: '',
@@ -40,7 +84,6 @@ export const ModalAddsPet = ({ onClose }) => {
             comments: '',
           }}
           onSubmit={values => console.log(values)}
-          validateOnNext
           activeStepIndex={0}
           steps={[
             {
@@ -58,34 +101,44 @@ export const ModalAddsPet = ({ onClose }) => {
               component: AdditionalInfo,
               validationSchema: Yup.object().shape({
                 photo: Yup.mixed(),
-                comments: Yup.string()
-                  .min(2)
-                  .max(16)
-                  .required('Email is required'),
+                comments: Yup.string().min(2).max(16),
               }),
             },
           ]}
         >
           {({
-            currentStepIndex,
             renderComponent,
             handlePrev,
             handleNext,
+            handleSubmit,
             isNextDisabled,
             isPrevDisabled,
             isLastStep,
+            isFirstStep,
           }) => (
             <>
               {renderComponent()}
-              <button type="button" onClick={handlePrev}>
-                {currentStepIndex === 0 ? 'Cancel' : 'Previous'}
-              </button>
-              <button type="button" onClick={handleNext}>
-                {currentStepIndex === 1 ? 'Done' : 'Next'}
-              </button>
+              {isFirstStep ? (
+                <button type="button" onClick={() => onClose()}>
+                  Cancel2
+                </button>
+              ) : (
+                <button type="button" onClick={handlePrev}>
+                  Previous2
+                </button>
+              )}
+              {!isLastStep ? (
+                <button type="button" onClick={handleNext}>
+                  Next2
+                </button>
+              ) : (
+                <button type="submit" onClick={handleSubmit}>
+                  Done2
+                </button>
+              )}
             </>
           )}
-        </FormikWizard>
+        </FormikWizard> */}
         <SC.BtnClose onClick={() => onClose()} type="button">
           <Close />
         </SC.BtnClose>

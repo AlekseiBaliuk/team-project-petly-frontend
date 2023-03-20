@@ -1,4 +1,5 @@
 import { device } from 'devices';
+import { Form, Field } from 'formik';
 import styled from 'styled-components';
 
 export const Backdrop = styled.div`
@@ -49,7 +50,17 @@ export const Title = styled.h3`
   color: ${p => p.theme.colors.mainText};
 `;
 
-export const Form = styled.div`
+export const Text = styled.div`
+  text-align: center;
+  font-family: ${p => p.theme.fonts.main};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.fw500};
+  font-size: ${p => p.theme.fontSizes.fs16};
+  line-height: 1.1;
+  color: ${p => p.theme.colors.mainText};
+`;
+
+export const StyledForm = styled(Form)`
   margin-bottom: ${p => p.theme.space[5]}px;
   display: flex;
   flex-direction: column;
@@ -62,20 +73,57 @@ export const Label = styled.label`
   gap: ${p => p.theme.space[0]}px;
 `;
 
-export const Input = styled.input`
-  padding: 11px 16px 10px;
+export const Input = styled(Field)`
+  padding: 12px 14px 11px;
   background-color: ${p => p.theme.colors.background};
   border: ${p => p.theme.borders.auth};
-  border-radius: ${p => p.theme.radii.br40};
+  border-radius: ${p => p.theme.radii.br20};
 `;
 
-export const Text = styled.div`
-  text-align: center;
+export const CommentInput = styled.textarea`
+  height: 100px;
+  padding: 12px 14px 11px;
+  background-color: ${p => p.theme.colors.background};
+  border: ${p => p.theme.borders.auth};
+  border-radius: ${p => p.theme.radii.br20};
+`;
+
+export const BtnContainer = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 12px;
+  margin-top: ${p => p.theme.space[5]}px;;
+`;
+
+export const BtnActive = styled.button`
+  padding-top: ${p => p.theme.space[1]}px;
+  padding-bottom: ${p => p.theme.space[1]}px;
+  background: ${p => p.theme.colors.accent};
+  border: ${p => p.theme.borders.main};
+  border-radius: ${p => p.theme.radii.br40};
   font-family: ${p => p.theme.fonts.main};
   font-style: normal;
   font-weight: ${p => p.theme.fontWeights.fw500};
-  font-size: ${p => p.theme.fontSizes.fs36};
-  line-height: 1.1;
+  font-size: ${p => p.theme.fontSizes.fs16};
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  outline: none;
+  color: ${p => p.theme.colors.white};
+`;
+
+export const Btn = styled.button`
+  padding-top: ${p => p.theme.space[1]}px;
+  padding-bottom: ${p => p.theme.space[1]}px;
+  background: ${p => p.theme.colors.white};
+  border: ${p => p.theme.borders.main};
+  border-radius: ${p => p.theme.radii.br40};
+  font-family: ${p => p.theme.fonts.main};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.fw500};
+  font-size: ${p => p.theme.fontSizes.fs16};
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  outline: none;
   color: ${p => p.theme.colors.mainText};
 `;
 
