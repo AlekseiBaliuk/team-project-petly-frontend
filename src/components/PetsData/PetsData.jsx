@@ -12,12 +12,17 @@ import {
   NonPetWrapper,
 } from './PetsData.styled';
 import { PetList } from 'components/PetsList/PetsList.styled';
+import { ModalAddsPet } from 'components/ModalAddsPet/ModalAddsPet';
 
 export default function PetsData({ pets, setPets, petsData }) {
   // const isPets = Boolean(petsData.length);
   const isPets = true;
-  const [isOpen, setIsOpen] = useState(false);
+  const [isAddModalShown, setIsAddModalShown] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const toggleModal = () => {
+    setIsAddModalShown(state => !state);
+  };
 
   return (
     <PetsWrapper>
@@ -25,17 +30,13 @@ export default function PetsData({ pets, setPets, petsData }) {
         <UserPetsTitle>Pets</UserPetsTitle>
         <PetBtnWrapper>
           <AddPetTitleBtn>Add</AddPetTitleBtn>
-          <AddPetBtn onClick={() => setIsOpen(true)} />
+          <AddPetBtn
+            onClick={() => setIsAddModalShown(true)}
+            onClose={toggleModal}
+          />
         </PetBtnWrapper>
       </PetsTitleWrapper>
-      {/*{isOpen ? (*/}
-      {/*  <ModalAddsPetApp*/}
-      {/*    petsData={pets}*/}
-      {/*    setPets={setPets}*/}
-      {/*    onOpenModal={}*/}
-      {/*    onCloseModal={}*/}
-      {/*  />*/}
-      {/*) : null}*/}
+      {isAddModalShown ? <ModalAddsPet></ModalAddsPet> : null}
       {isPets ? (
         <PetList />
       ) : (

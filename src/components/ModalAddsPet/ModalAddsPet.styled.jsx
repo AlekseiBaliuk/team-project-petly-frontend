@@ -18,18 +18,18 @@ export const Content = styled.div`
   position: relative;
   width: 280px;
   padding: ${p => p.theme.space[5]}px ${p => p.theme.space[3]}px;
-  
+
   /* display: flex;
   flex-direction: column;
   align-items: center; */
 
-  border-radius: ${p=>p.theme.radii.br20};
+  border-radius: ${p => p.theme.radii.br20};
+  background-color: ${p => p.theme.colors.white};
 
-  @media screen and (min-width:${device.tablet}){
-    width: 280px;
+  @media screen and ${device.tablet} {
+    width: 608px;
     padding: ${p => p.theme.space[5]}px ${p => p.theme.space[9]}px;
-    
-    border-radius: ${p=>p.theme.radii.br40};
 
+    border-radius: ${p => p.theme.radii.br40};
   }
-  `;
+`;
