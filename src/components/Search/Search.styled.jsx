@@ -42,13 +42,13 @@ export const SearchInput = styled.input`
 `;
 
 export const SearchButton = styled.button`
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   height: 40px;
   border: none;
-  background-size: 40%;
-  background-repeat: no-repeat;
-  background-position: center;
+  padding: 0;
   background-color: ${p => p.theme.colors.white};
   cursor: pointer;
   outline: none;

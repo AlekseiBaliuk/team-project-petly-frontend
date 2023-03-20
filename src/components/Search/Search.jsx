@@ -16,22 +16,27 @@ export const Search = ({ sendSearch }) => {
 
     if (input === true) {
       setSearch('');
-      setInput(false);
+      setTimeout(() => setInput(false), 500);
       sendSearch('');
     }
 
     if (input === false) {
-      setInput(true);
+      setTimeout(() => setInput(true), 500);
       sendSearch(search);
     }
   };
 
   const handleChange = e => {
     if (input === true) {
-      setInput(false);
+      setTimeout(() => setInput(false), 500);
     }
 
     const filter = e.target.value;
+
+    if (!filter) {
+      sendSearch(filter);
+    }
+
     setSearch(filter);
   };
 
