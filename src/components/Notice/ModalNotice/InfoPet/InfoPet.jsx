@@ -15,7 +15,7 @@ export const InfoPet = () => {
     WrapperGrid,
   } = style;
 
-  const date = moment('01.01.2021', 'DD.MM.YYYY').fromNow(true);
+  const date = moment('01.01.2021').fromNow(true);
 
   return (
     <Wrapper>
