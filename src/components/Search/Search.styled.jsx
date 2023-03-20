@@ -12,19 +12,14 @@ export const SearchForm = styled.form`
   border-radius: ${p => p.theme.radii.br20};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   overflow: hidden;
-  margin-bottom: ${p => p.theme.space[5]}px;
+  margin-bottom: ${p => p.theme.space[4]}px;
   margin-left: auto;
   margin-right: auto;
 
   @media ${device.tablet} {
     max-width: 608px;
     height: 44px;
-  }
-
-  &.News {
-    @media ${device.tablet} {
-      margin-bottom: ${p => p.theme.space[7]}px;
-    }
+    margin-bottom: ${p => p.theme.space[5]}px;
   }
 
   :focus-within {

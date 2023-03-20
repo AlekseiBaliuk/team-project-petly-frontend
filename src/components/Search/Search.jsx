@@ -36,7 +36,7 @@ export const Search = ({ sendSearch }) => {
   };
 
   return (
-    <SearchForm className="News" onSubmit={handleSubmit}>
+    <SearchForm onSubmit={handleSubmit}>
       <SearchInput
         name="search"
         type="text"
