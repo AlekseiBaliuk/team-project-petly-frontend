@@ -23,7 +23,6 @@ export const Header = () => {
   const toggleMenu = () => setMenu(value => !value);
   const closeMenu = () => setMenu(false);
 
-  console.log(isLoggedIn);
   const beforeTablet = useMediaQuery({ query: '(max-width: 767px)' });
   const tablet = useMediaQuery({ query: '(min-width: 768px)' });
   const beforeDesktop = useMediaQuery({ query: '(max-width: 1279px)' });
@@ -36,9 +35,13 @@ export const Header = () => {
           <SC.LogoContainer onClick={closeMenu}>
             <Logo />
           </SC.LogoContainer>
+
+          {/* tablet user nav */}
           {!menu && tablet && beforeDesktop && (
-            <>{!isLoggedIn ? <AuthNav /> : <UserNav />}</>
+            <>{isLoggedIn === false ? <AuthNav /> : <UserNav />}</>
           )}
+
+          {/* mobile & tablet burger icon */}
           {beforeDesktop && (
             <IconButton color="inherit" onClick={toggleMenu}>
               {!menu ? (
@@ -48,20 +51,25 @@ export const Header = () => {
               )}
             </IconButton>
           )}
+
+          {/* desktop nav, user nav */}
           {desktop && (
             <>
               <Nav />
-              {!isLoggedIn ? <AuthNav /> : <UserNav />}
+              {isLoggedIn === false ? <AuthNav /> : <UserNav />}
             </>
           )}
         </SC.ToolBar>
 
+        {/* mobile burger menu */}
         {menu && beforeTablet && (
           <Box onClick={closeMenu} height={'100vh'} marginTop={'46px'}>
-            {!isLoggedIn ? <AuthNav /> : <UserNav />}
+            {isLoggedIn === false ? <AuthNav /> : <UserNav />}
             <Nav />
           </Box>
         )}
+
+        {/* tablet burger menu */}
         {menu && tablet && beforeDesktop && (
           <Box onClick={closeMenu} height={'100vh'} marginTop={'88px'}>
             <Nav />
