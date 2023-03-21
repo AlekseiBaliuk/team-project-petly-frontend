@@ -9,30 +9,24 @@ import {
   BtnStepList,
   BtnStep,
   BtnClose,
-  //   LockBodyScroll,
   Label,
-} from './FirstStep.styled';
-import { LabelInput } from './Label';
-import { ReactComponent as Close } from 'staticImages/Close.svg';
-import { ReactComponent as Men } from 'staticImages/icon-men.svg';
-import { ReactComponent as Women } from 'staticImages/icon-women.svg';
-import { ReactComponent as Plus } from 'staticImages/icon-plus.svg';
-import {
-  SexList,
-  SexItem,
   TitlePoint,
-  AddBtn,
+  AddDiv,
   Textarea,
   ItemWrapper,
-} from './SecondStep.styled';
+  AddInput,
+} from './ModalAddNotice.styled';
+import { LabelInput } from './Label';
+import { ReactComponent as Close } from 'staticImages/Close.svg';
+import { ReactComponent as Plus } from 'staticImages/icon-plus.svg';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { SexLists } from './SexList';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
 
-export const SecondStep = ({ adminModal }) => {
+export const SecondStep = ({ adminModal, isBtnCategory }) => {
   useEffect(() => {
-    console.log(body);
     disableBodyScroll(body);
     window.addEventListener('keydown', handleKeyDown);
     return () => {
@@ -65,16 +59,7 @@ export const SecondStep = ({ adminModal }) => {
           consectetur
         </Subtitle>
         <TitlePoint>The sex:</TitlePoint>
-        <SexList>
-          <SexItem>
-            <Men />
-            Male
-          </SexItem>
-          <SexItem>
-            <Women />
-            Female
-          </SexItem>
-        </SexList>
+        <SexLists />
         <LabelList>
           <li>
             <LabelInput
@@ -84,20 +69,25 @@ export const SecondStep = ({ adminModal }) => {
               placeholder={'Type location'}
             />
           </li>
-          <li>
-            <LabelInput
-              title={'Price:'}
-              name={'price'}
-              type={'text'}
-              placeholder={'Type price'}
-            />
-          </li>
+          {isBtnCategory === 'sell' && (
+            <li>
+              <LabelInput
+                title={'Price:'}
+                name={'price'}
+                type={'text'}
+                placeholder={'Type price'}
+              />
+            </li>
+          )}
           <li>
             <ItemWrapper>
-              <Label>Load the pet’s image:</Label>{' '}
-              <AddBtn type="button">
-                <Plus />
-              </AddBtn>
+              <Label>
+                Load the pet’s image:
+                <AddDiv>
+                  <Plus />
+                  <AddInput type="file"></AddInput>
+                </AddDiv>
+              </Label>
             </ItemWrapper>
           </li>
           <li>

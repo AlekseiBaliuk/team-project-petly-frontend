@@ -16,7 +16,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Form = styled.form`
-  border: 1px red solid;
   max-width: 280px;
   padding: ${props => props.theme.space[5]}px ${props => props.theme.space[3]}px;
   background: ${props => props.theme.colors.white};
@@ -90,7 +89,7 @@ export const BtnCategory = styled.button`
     font-size: ${props => props.theme.fontSizes.fs20};
   }
 
-  :hover,
+  &:hover,
   :focus {
     background-color: ${props => props.theme.colors.accent};
     color: ${props => props.theme.colors.white};
@@ -180,14 +179,125 @@ export const BtnClose = styled.button`
   height: 44px;
   border: none;
   border-radius: 50%;
-  background: #fdf7f2;
+  background-color: ${props => props.theme.colors.background};
   backdrop-filter: blur(2px);
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover,
+  :focus {
+    background-color: ${props => props.theme.colors.accent};
+  }
+`;
+
+// SecondForm styles
+export const TitlePoint = styled.p`
+  text-align: left;
+  font-size: ${props => props.theme.fontSizes.fs18};
+  color: ${props => props.theme.colors.mainText};
+
+  @media ${device.tablet} {
+    font-size: ${props => props.theme.fontSizes.fs24};
+    color: ${props => props.theme.colors.black};
+    margin-bottom: 28px;
+  }
+`;
+
+export const SexList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  gap: ${props => props.theme.space[9]}px;
+  margin-bottom: ${props => props.theme.space[4]}px;
+
+  @media ${device.tablet} {
+    margin-bottom: ${props => props.theme.space[5]}px;
+  }
+`;
+
+export const SexItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  gap: ${props => props.theme.space[3]}px;
+  align-items: center;
+  transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
+export const InputSex = styled.input`
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+  width: 0.4px;
+  height: 0.4px;
+`;
+
+export const LabelSex = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: ${props => props.theme.space[3]}px;
+
+  :hover,
+  :focus {
+    color: ${props => props.theme.colors.accent};
+  }
+
+  :has(${InputSex}:checked) {
+    color: ${props => props.theme.colors.accent};
+  }
+`;
+
+export const ItemWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+export const AddDiv = styled.div`
+  width: 116px;
+  height: 116px;
+  background-color: ${props => props.theme.colors.background};
+  border-radius: 20px;
+  border: none;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
   :hover,
   :focus {
     border: 1px ${props => props.theme.colors.accent} solid;
+  }
+
+  @media ${device.tablet} {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 0;
+  }
+`;
+
+export const AddInput = styled.input`
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+  width: 0.4px;
+  height: 0.4px;
+`;
+
+export const Textarea = styled.textarea`
+  padding-top: 16px;
+  padding-left: 18px;
+  background: ${props => props.theme.colors.background};
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 20px;
+  border: none;
+  height: 40px;
+
+  @media ${device.tablet} {
+    height: 113px;
   }
 `;

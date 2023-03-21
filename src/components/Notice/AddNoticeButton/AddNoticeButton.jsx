@@ -25,7 +25,7 @@ export const AddNoticeButton = ({ openModal }) => {
     <ButtonWrapper>
       <Button type="button" onClick={openModal}>
         {deviceWindows.beforeTablet ? <PlusIconS /> : <PlusIcon />}
-        <Text>Add pet</Text>
+        {deviceWindows.beforeTablet && <Text>Add pet</Text>}
       </Button>
     </ButtonWrapper>
   );
