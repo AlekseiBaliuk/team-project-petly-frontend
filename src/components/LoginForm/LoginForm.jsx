@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+
+import { logIn } from '../../redux/auth/authOperations';
 import CustomField from '../CustomAuthField';
 import { ButtonRegister } from '../RegisterForm/RegisterForm/RegisterForm.styled';
 import eyeClosed from 'staticImages/eye-closed.png';
@@ -10,6 +13,7 @@ import {
   Label,
   ValidationMessage,
 } from '../RegisterForm/RegisterSteps/StepOne/stepOne.styled';
+
 const schema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().min(7, 'Too short!').max(32, 'Too lond!').required(),
@@ -21,6 +25,7 @@ const initialValues = {
 };
 
 export const LoginForm = () => {
+  const dispatch = useDispatch();
   const [passwordType, setPasswordType] = useState('password');
   const [spanBgIcon, setSpanBgIcon] = useState(eyeOpen);
 
@@ -35,7 +40,7 @@ export const LoginForm = () => {
   }
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
+    dispatch(logIn(values));
     resetForm();
   };
 
