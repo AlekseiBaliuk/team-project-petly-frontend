@@ -9,6 +9,7 @@ export const PlusIcon = styled(Plus)``;
 export const PlusIconS = styled(Plus_Mobile)``;
 
 export const Button = styled('button')`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,6 +41,8 @@ export const Text = styled('p')`
   margin-top: 6px;
 
   @media ${device.tablet} {
+    position: absolute;
+    right: 42px;
     font-size: ${props => props.theme.fontSizes.fs20};
     color: ${props => props.theme.colors.black};
     line-height: 1.35;

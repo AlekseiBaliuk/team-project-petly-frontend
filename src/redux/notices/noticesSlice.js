@@ -1,16 +1,25 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   fetchNotices,
+  addFavNotice,
+  removeFavNotice,
   // addNotice,
   // getFavorite,
   // getMyNotices,
   // deleteNotice,
 } from './noticesOperations';
 
-const noticesInitialState = { items: [], isLoading: false, error: null };
+const noticesInitialState = {
+  items: [],
+  userFavorite: { userId: '', favorite: [] },
+  isLoading: false,
+  error: null,
+};
 
 const extraActions = [
   fetchNotices,
+  addFavNotice,
+  removeFavNotice,
   // addNotice,
   // getFavorite,
   // getMyNotices,
@@ -22,6 +31,24 @@ const onFetchSuccessReducer = (state, action) => {
   state.items = action.payload;
   state.isLoading = false;
   state.error = null;
+};
+
+const onAddFavNoticeReducer = (state, action) => {
+  state.isLoading = false;
+  state.error = false;
+  const newFavorite = state.userFavorite.favorite.includes(action.payload)
+    ? state.favorite
+    : [...state.userFavorite.favorite, action.payload];
+  state.userFavorite.favorite = newFavorite;
+};
+
+const onRemoveFavNoticeReducer = (state, action) => {
+  state.isLoading = false;
+  state.error = false;
+  const newFavorite = state.userFavorite.favorite.filter(
+    item => item !== action.payload,
+  );
+  state.userFavorite.favorite = newFavorite;
 };
 
 const onPendingReducer = state => {
@@ -39,6 +66,8 @@ const noticesSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(fetchNotices.fulfilled, onFetchSuccessReducer)
+      .addCase(addFavNotice.fulfilled, onAddFavNoticeReducer)
+      .addCase(removeFavNotice.fulfilled, onRemoveFavNoticeReducer)
       .addMatcher(isAnyOf(...getActionsByType('pending')), onPendingReducer)
       .addMatcher(isAnyOf(...getActionsByType('rejected')), onRejectedReducer),
 });

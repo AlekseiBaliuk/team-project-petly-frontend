@@ -7,10 +7,22 @@ import {
 } from './AddNoticeButton.styled';
 import { deviceWindows } from '../../../devices';
 
-export const AddNoticeButton = ({openModal}) => {
+// export const AddNoticeButton = ({openModal}) => {
+//   return (
+//     <ButtonWrapper>
+//       {!deviceWindows.beforeTablet && <Text>Add pet</Text>}
+//       <Button type="button" onClick={openModal}>
+//         {deviceWindows.beforeTablet ? <PlusIconS /> : <PlusIcon />}
+
+//         {deviceWindows.beforeTablet && <Text>Add pet</Text>}
+//       </Button>
+//     </ButtonWrapper>
+//   );
+// };
+
+export const AddNoticeButton = ({ openModal }) => {
   return (
     <ButtonWrapper>
-      {!deviceWindows.beforeTablet && <Text>Add pet</Text>}
       <Button type="button" onClick={openModal}>
         {deviceWindows.beforeTablet ? <PlusIconS /> : <PlusIcon />}
         {deviceWindows.beforeTablet && <Text>Add pet</Text>}

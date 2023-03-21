@@ -14,3 +14,31 @@ export const fetchNotices = createAsyncThunk(
     }
   },
 );
+
+export const addFavNotice = createAsyncThunk(
+  '/notices/addFavNotice',
+  async (noticeId, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `https://team-project-petly-backend.onrender.com/api/notices/favorites/${noticeId}`,
+      );
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
+export const removeFavNotice = createAsyncThunk(
+  '/notices/removeFavNotice',
+  async (noticeId, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `https://team-project-petly-backend.onrender.com/api/notices/favorites/${noticeId}`,
+      );
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
