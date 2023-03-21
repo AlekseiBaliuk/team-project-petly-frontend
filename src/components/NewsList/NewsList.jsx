@@ -1,4 +1,4 @@
-import EllipsisText from 'react-ellipsis-text';
+import ellipsize from 'ellipsize';
 import { format } from 'date-fns';
 import {
   News,
@@ -12,8 +12,8 @@ import {
 
 export const NewsList = ({ news }) => {
   const message = 'We have any news for you';
-  const titleLength = 38;
-  const descriptLength = 215;
+  const titleLength = 45;
+  const descriptLength = 220;
 
   const sortNews = news.sort((a, b) => {
     if (a.date < b.date) {
@@ -33,10 +33,10 @@ export const NewsList = ({ news }) => {
             return (
               <NewsCard key={_id}>
                 <NewsTitle>
-                  <EllipsisText text={title} length={titleLength} />
+                  {ellipsize(title, titleLength, { chars: ' ' })}
                 </NewsTitle>
                 <NewsDescription>
-                  <EllipsisText text={description} length={descriptLength} />
+                  {ellipsize(description, descriptLength, { chars: ' ' })}
                 </NewsDescription>
                 <NewsMoreInfo>
                   {date === null ? (
