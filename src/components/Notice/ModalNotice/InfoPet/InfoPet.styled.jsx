@@ -18,6 +18,26 @@ const Wrapper = styled('div')`
   }
 `;
 
+const Category = styled('span')`
+  position: absolute;
+  top: 80px;
+  @media ${device.tablet} {
+    top: 50px;
+  }
+  padding: 6px 0 6px 20px;
+  width: 158px;
+  text-align: center;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  font-family: ${props => props.theme.fonts.secondary};
+  font-weight: ${props => props.theme.fontWeights.fw500};
+  font-size: ${props => props.theme.fontSizes.fs12};
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+`;
+
 const WrapperGrid = styled('div')`
   grid-area: grid;
 `;
@@ -48,6 +68,13 @@ const Item = styled('li')`
 
 const ItemText = styled('span')`
   font-weight: ${props => props.theme.fontWeights.fw500};
+  & > a {
+    color: ${props => props.theme.colors.mainText};
+    :hover,
+    :focus {
+      color: ${props => props.theme.colors.accent};
+    }
+  }
 `;
 
 const Text = styled('p')`
@@ -126,10 +153,7 @@ const Image = styled('img')`
   object-fit: cover;
   transition: transform 0.25s;
   border-radius: 0px 0px 40px 40px;
-  :hover,
-  focus {
-    transform: scale(1.1);
-  }
+
   @media ${device.tablet} {
     width: 288px;
     height: 328px;
@@ -154,7 +178,7 @@ const style = {
   Image,
   Wrapper,
   Title,
-
+  Category,
   Item,
   ItemText,
   Text,

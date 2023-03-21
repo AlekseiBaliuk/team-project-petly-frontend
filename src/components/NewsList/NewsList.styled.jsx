@@ -13,7 +13,7 @@ export const News = styled.ul`
     width: 704px;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: start;
     gap: ${p => p.theme.space[7]}px ${p => p.theme.space[4]}px;
   }
   @media ${device.desktop} {
@@ -25,18 +25,18 @@ export const NewsCard = styled.li`
   font-family: ${p => p.theme.fonts.main};
   font-size: ${p => p.theme.fontSizes.fs16};
   line-height: 1.38;
-  max-width: 280px;
+  width: 280px;
   /* додала ширину before + margin */
-  max-height: 286px;
+  height: 286px;
   overflow: hidden;
 
   @media ${device.tablet} {
-    max-width: 336px;
-    max-height: 288px;
+    width: 336px;
+    height: 288px;
   }
   @media ${device.desktop} {
-    max-width: 395px;
-    max-height: 267px;
+    width: 395px;
+    height: 267px;
   }
 
   &:before {
@@ -64,7 +64,7 @@ export const NewsTitle = styled.h2`
   letter-spacing: -0.01em;
   color: ${p => p.theme.colors.mainText};
   box-sizing: border-box;
-  max-height: 66px;
+  height: 66px;
   overflow: hidden;
   margin-bottom: ${p => p.theme.space[2]}px;
 `;

@@ -1,7 +1,9 @@
 import moment from 'moment';
 import style from './InfoPet.styled';
 
-export const InfoPet = () => {
+export const InfoPet = ({ notice }) => {
+  const { breed, location, birthday, avatarURL, name, sex, price, comments } =
+    notice;
   const {
     Image,
     Wrapper,
@@ -13,23 +15,22 @@ export const InfoPet = () => {
     Link,
     HeartIcon,
     WrapperGrid,
+    Category,
   } = style;
 
-  const date = moment('01.01.2021', 'DD.MM.YYYY').fromNow(true);
+  const date = moment(birthday, 'DD.MM.YYYY').fromNow(true);
 
   return (
     <Wrapper>
-      <Image
-        src="https://img.tsn.ua/cached/905/tsn-f31867ea2500d8c162f8e1b3822736e1/thumbs/1116x628/3b/a5/bf386a0a6b5fb77653ad65c3ca3da53b.jpeg"
-        alt="dog"
-      />
+      <Category>Sell</Category>
+      <Image src={avatarURL} alt="dog" />
 
       <WrapperGrid>
         <Title>Сute dog looking for a home</Title>
         <ul>
           <Item>
             <span>Name:</span>
-            <ItemText>Rich</ItemText>
+            <ItemText>{name}</ItemText>
           </Item>
           <Item>
             <span>Birthday:</span>
@@ -37,34 +38,37 @@ export const InfoPet = () => {
           </Item>
           <Item>
             <span>Breed:</span>
-            <ItemText>Pomeranian</ItemText>
+            <ItemText>{breed}</ItemText>
           </Item>
           <Item>
             <span>Location:</span>
-            <ItemText>Lviv</ItemText>
+            <ItemText>{location}</ItemText>
           </Item>
           <Item>
             <span>The sex:</span>
-            <ItemText>Male</ItemText>
+            <ItemText>{sex}</ItemText>
           </Item>
           <Item>
             <span>Email:</span>
-            <ItemText>sobaka@gmail.com</ItemText>
+            <ItemText>
+              <a href="meilto: sobaka@gmail.com">sobaka@gmail.com</a>
+            </ItemText>
           </Item>
           <Item>
             <span>Phone:</span>
-            <ItemText>+380971234567</ItemText>
+            <ItemText>
+              <a href="tel: +380971234567">+380971234567</a>
+            </ItemText>
           </Item>
           <Item>
             <span>Price:</span>
-            <ItemText>150$</ItemText>
+            <ItemText>{price}$</ItemText>
           </Item>
         </ul>
       </WrapperGrid>
       <Text>
         <span>Comments: </span>
-        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-        consectetur Lorem ipsum dolor sit amet, consectetur Lorem
+        {comments}
       </Text>
 
       <Link href="tel:+380971234567">Contact</Link>
