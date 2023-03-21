@@ -1,17 +1,24 @@
 import { useState } from 'react';
-import { AuthNav } from 'components/AuthNav/AuthNav';
-import { Container } from 'components/Container/Container.styled';
+import { useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
+
 import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
+import { AuthNav } from 'components/AuthNav/AuthNav';
 import { UserNav } from 'components/UserNav/UserNav';
+
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+
+import { Container } from 'components/Container/Container.styled';
 import { Box, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useMediaQuery } from 'react-responsive';
 import CloseIcon from '@mui/icons-material/Close';
 import * as SC from './Header.styled';
 
 export const Header = () => {
   const [menu, setMenu] = useState(false);
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const toggleMenu = () => setMenu(value => !value);
   const closeMenu = () => setMenu(false);
@@ -29,10 +36,7 @@ export const Header = () => {
             <Logo />
           </SC.LogoContainer>
           {!menu && tablet && beforeDesktop && (
-            <>
-              <AuthNav />
-              <UserNav />
-            </>
+            <>{isLoggedIn === false ? <AuthNav /> : <UserNav />}</>
           )}
           {beforeDesktop && (
             <IconButton color="inherit" onClick={toggleMenu}>
@@ -46,16 +50,14 @@ export const Header = () => {
           {desktop && (
             <>
               <Nav />
-              <AuthNav />
-              <UserNav />
+              {isLoggedIn === false ? <AuthNav /> : <UserNav />}
             </>
           )}
         </SC.ToolBar>
 
         {menu && beforeTablet && (
           <Box onClick={closeMenu} height={'100vh'} marginTop={'46px'}>
-            <AuthNav />
-            <UserNav />
+            {isLoggedIn === false ? <AuthNav /> : <UserNav />}
             <Nav />
           </Box>
         )}
