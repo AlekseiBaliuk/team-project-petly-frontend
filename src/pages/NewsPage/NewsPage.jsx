@@ -44,7 +44,7 @@ const NewsPage = () => {
     <NewsPageBox>
       <section>
         <Container>
-          <PageTitle text="News" />
+          <PageTitle>News</PageTitle>
           <Search sendSearch={setFilter} />
           <NewsList news={searchNews()} />
         </Container>
