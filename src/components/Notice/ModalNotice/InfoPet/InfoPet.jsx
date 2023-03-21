@@ -18,7 +18,7 @@ export const InfoPet = ({ notice }) => {
     Category,
   } = style;
 
-  const date = moment(birthday).fromNow(true);
+  const date = moment(birthday, 'DD.MM.YYYY').fromNow(true);
 
   return (
     <Wrapper>

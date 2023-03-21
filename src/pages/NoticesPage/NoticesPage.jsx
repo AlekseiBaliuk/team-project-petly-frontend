@@ -5,11 +5,11 @@ import AddNoticeButton from 'components/Notice/AddNoticeButton';
 import { FirstStep } from 'components/AddPetForm/FirstStep';
 import { SecondStep } from 'components/AddPetForm/SecondStep';
 import NoticeCategoryList from 'components/Notice/NoticeCategoryList';
+import { PageTitle } from 'components/PageTitle/PageTitle';
 
 import { Search } from 'components/Search/Search';
 
-
-import { Title, PetSearchNav, Main } from './NoticesPage.styled';
+import { PetSearchNav, Main } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   const [isModalShow, setIsModalShow] = useState('none');
@@ -20,7 +20,7 @@ const NoticesPage = () => {
     <Main>
       <section>
         <Container>
-          <Title>Find your favorite pet</Title>
+          <PageTitle>Find your favorite pet</PageTitle>
           <Search />
           <PetSearchNav>
             <AddNoticeButton openModal={() => adminModal('step1')} />
