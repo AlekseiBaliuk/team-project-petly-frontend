@@ -20,7 +20,7 @@ const {
 export const NoticeCategoryItem = ({ fetch }) => {
   const { title, breed, location, birthday, avatarURL } = fetch;
 
-  const date = moment(birthday).fromNow(true);
+  const date = moment(birthday, 'DD.MM.YYYY').fromNow(true);
 
   const [showModal, setShowModal] = useState(false);
 
