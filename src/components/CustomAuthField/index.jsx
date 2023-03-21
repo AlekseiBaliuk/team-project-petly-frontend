@@ -3,12 +3,15 @@ import { Field } from 'formik';
 import styled from 'styled-components';
 import { theme } from '../../constants';
 import { device } from '../../devices';
+import { rgbToHex } from '@mui/material';
 
 const Input = styled(Field)`
   color: ${theme.colors.inputText};
   font-size: ${theme.fontSizes.fs14};
   border: ${props =>
     props.isError ? theme.borders.accent : theme.borders.auth};
+  background: ${props =>
+    props.isError ? 'rgba(255, 164, 122, 0.034) ' : theme.colors.white};
   width: 280px;
   height: 40px;
   border-radius: ${theme.radii.br20};

@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import CustomField from '../CustomAuthField';
 import { ButtonRegister } from '../RegisterForm/RegisterForm/RegisterForm.styled';
-
+import eyeClosed from 'staticImages/eye-closed.png';
+import eyeOpen from 'staticImages/eye-open.png';
+import {
+  Icon,
+  Label,
+  ValidationMessage,
+} from '../RegisterForm/RegisterSteps/StepOne/stepOne.styled';
 const schema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().min(7, 'Too short!').max(32, 'Too lond!').required(),
@@ -15,10 +21,24 @@ const initialValues = {
 };
 
 export const LoginForm = () => {
+  const [passwordType, setPasswordType] = useState('password');
+  const [spanBgIcon, setSpanBgIcon] = useState(eyeOpen);
+
+  function handleToggleBtn() {
+    if (passwordType === 'text') {
+      setPasswordType('password');
+      setSpanBgIcon(eyeOpen);
+    } else {
+      setPasswordType('text');
+      setSpanBgIcon(eyeClosed);
+    }
+  }
+
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
     resetForm();
   };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -27,7 +47,7 @@ export const LoginForm = () => {
     >
       {({ errors, touched }) => (
         <Form autoComplete="off">
-          <label htmlFor="email">
+          <Label htmlFor="email">
             <CustomField
               type="text"
               name="email"
@@ -35,19 +55,24 @@ export const LoginForm = () => {
               errors={errors}
               touched={touched}
             />
-            <ErrorMessage name="email" render={msg => <div>{msg}</div>} />
-          </label>
+            <ValidationMessage name="email" component="div" />
+          </Label>
 
-          <label htmlFor="password">
+          <Label htmlFor="password">
+            <Icon
+              url={spanBgIcon}
+              id="passwordEye"
+              onClick={event => handleToggleBtn(event)}
+            />
             <CustomField
-              type="password"
+              type={passwordType}
               name="password"
               placeholder="password"
               errors={errors}
               touched={touched}
             />
-            <ErrorMessage name="password" component="div" />
-          </label>
+            <ValidationMessage name="password" component="div" />
+          </Label>
           <ButtonRegister type="submit">Login</ButtonRegister>
         </Form>
       )}
