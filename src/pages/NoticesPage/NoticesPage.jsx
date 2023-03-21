@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Container } from 'components/Container/Container.styled';
 import NoticesCategoriesNav from 'components/Notice/NoticesCategoriesNav';
 import AddNoticeButton from 'components/Notice/AddNoticeButton';
-import { FirstStep } from 'components/AddPetForm/FirstStep';
-import { SecondStep } from 'components/AddPetForm/SecondStep';
+import { FirstStep } from 'components/ModalAddNotice/FirstStep';
+import { SecondStep } from 'components/ModalAddNotice/SecondStep';
 import NoticeCategoryList from 'components/Notice/NoticeCategoryList';
 import { PageTitle } from 'components/PageTitle/PageTitle';
 
@@ -13,8 +13,13 @@ import { PetSearchNav, Main } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   const [isModalShow, setIsModalShow] = useState('none');
+  const [isBtnCategory, setBtnCategory] = useState('none');
 
   const adminModal = type => setIsModalShow(type);
+
+  const findCategoryNotice = category => {
+    setBtnCategory(category);
+  };
 
   return (
     <Main>
@@ -24,8 +29,19 @@ const NoticesPage = () => {
           <Search />
           <PetSearchNav>
             <AddNoticeButton openModal={() => adminModal('step1')} />
-            {isModalShow === 'step1' && <FirstStep adminModal={adminModal} />}
-            {isModalShow === 'step2' && <SecondStep adminModal={adminModal} />}
+            {isModalShow === 'step1' && (
+              <FirstStep
+                adminModal={adminModal}
+                findCategoryNotice={findCategoryNotice}
+                isBtnCategory={isBtnCategory}
+              />
+            )}
+            {isModalShow === 'step2' && (
+              <SecondStep
+                adminModal={adminModal}
+                isBtnCategory={isBtnCategory}
+              />
+            )}
             <NoticesCategoriesNav />
           </PetSearchNav>
           <NoticeCategoryList />

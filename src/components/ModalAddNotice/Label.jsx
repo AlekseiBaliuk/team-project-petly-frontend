@@ -1,4 +1,4 @@
-import { Label, Input } from './FirstStep.styled';
+import { Label, Input } from './ModalAddNotice.styled';
 
 export const LabelInput = ({ title, name, type, placeholder }) => {
   return (

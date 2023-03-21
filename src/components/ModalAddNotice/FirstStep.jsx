@@ -1,4 +1,3 @@
-import { LabelInput } from './Label';
 import { createPortal } from 'react-dom';
 import { ReactComponent as Close } from 'staticImages/Close.svg';
 import { useEffect } from 'react';
@@ -7,20 +6,23 @@ import {
   Form,
   Title,
   Subtitle,
-  BtnListCategory,
-  BtnCategory,
-  LabelList,
   BtnStepList,
   BtnStep,
   BtnClose,
-  // LockBodyScroll,
-} from './FirstStep.styled';
+} from './ModalAddNotice.styled';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { BtnCategoryList } from './BtnCategoryList';
+import { LabelInputList } from './LabelInputList';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
 
-export const FirstStep = ({ adminModal }) => {
+export const FirstStep = ({
+  adminModal,
+  findCategoryNotice,
+  isBtnCategory,
+  setNoticesDate,
+}) => {
   useEffect(() => {
     disableBodyScroll(body);
     window.addEventListener('keydown', handleKeyDown);
@@ -42,9 +44,13 @@ export const FirstStep = ({ adminModal }) => {
     }
   };
 
+  const onSubmitForm = e => {
+    console.log(e);
+  };
+
   return createPortal(
     <Wrapper onClick={handleModalClick}>
-      <Form id="form">
+      <Form id="form" onSubmit={onSubmitForm}>
         <BtnClose type="button" onClick={() => adminModal('none')}>
           <Close />
         </BtnClose>
@@ -53,51 +59,11 @@ export const FirstStep = ({ adminModal }) => {
           Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
           consectetur
         </Subtitle>
-        <BtnListCategory>
-          <li>
-            <BtnCategory type="button">lost/found</BtnCategory>
-          </li>
-          <li>
-            <BtnCategory type="button">in good hands</BtnCategory>
-          </li>
-          <li>
-            <BtnCategory type="button">sell</BtnCategory>
-          </li>
-        </BtnListCategory>
-        <LabelList>
-          <li>
-            <LabelInput
-              title={'Tittle of ad:'}
-              name={'title'}
-              type={'text'}
-              placeholder={'Type name pet'}
-            />
-          </li>
-          <li>
-            <LabelInput
-              title={'Name pet:'}
-              name={'name'}
-              type={'text'}
-              placeholder={'Type name pet'}
-            />
-          </li>
-          <li>
-            <LabelInput
-              title={'Date of birth:'}
-              name={'dateOfBirth'}
-              type={'text'}
-              placeholder={'Type date of birth'}
-            />
-          </li>
-          <li>
-            <LabelInput
-              title={'Breed:'}
-              name={'breed'}
-              type={'text'}
-              placeholder={'Type breed'}
-            />
-          </li>
-        </LabelList>
+        <BtnCategoryList
+          findCategoryNotice={findCategoryNotice}
+          isBtnCategory={isBtnCategory}
+        />
+        <LabelInputList />
         <BtnStepList>
           <li>
             <BtnStep type="submit" onClick={() => adminModal('step2')}>
