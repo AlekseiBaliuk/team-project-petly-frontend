@@ -1,24 +1,40 @@
 import React, { Fragment, useState } from 'react';
-import { ErrorMessage } from 'formik';
 
+import { Icon, Label, ValidationMessage } from './stepOne.styled';
 import CustomField from '../../../CustomAuthField';
-import styled from 'styled-components';
-
-const Icon = styled.span`
-  display: inline-block;
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: red;
-`;
+import eyeClosed from 'staticImages/eye-closed.png';
+import eyeOpen from 'staticImages/eye-open.png';
 
 const RegisterFormStepOne = props => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [passwordType, setPasswordType] = useState('password');
+  const [confirmPasswordType, setConfirmPasswordType] = useState('password');
+  const [spanBgIcon, setSpanBgIcon] = useState(eyeOpen);
+  const [spanConfirmBgIcon, setSpanConfirmBgIcon] = useState(eyeOpen);
+
+  function handleToggleBtn(event) {
+    if (event.currentTarget.id === 'passwordEye') {
+      if (passwordType === 'text') {
+        setPasswordType('password');
+        setSpanBgIcon(eyeOpen);
+      } else {
+        setPasswordType('text');
+        setSpanBgIcon(eyeClosed);
+      }
+    } else {
+      if (confirmPasswordType === 'text') {
+        setConfirmPasswordType('password');
+        setSpanConfirmBgIcon(eyeOpen);
+      } else {
+        setConfirmPasswordType('text');
+        setSpanConfirmBgIcon(eyeClosed);
+      }
+    }
+  }
 
   const { errors } = props;
   return (
     <Fragment>
-      <label>
+      <Label>
         <CustomField
           id="email"
           name="email"
@@ -27,28 +43,44 @@ const RegisterFormStepOne = props => {
           errors={errors}
           touched={{}}
         />
-        <ErrorMessage name="email" component="div" />
-      </label>
-      <Icon onClick={() => setShowPassword(!showPassword)} />
-      <CustomField
-        id="password"
-        type={showPassword ? 'text' : 'password'}
-        // type="password"
-        name="password"
-        label="password"
-        placeholder="password"
-        errors={errors}
-        touched={{}}
-      />
-      <CustomField
-        id="confirmPassword"
-        type="password"
-        name="confirmPassword"
-        label="confirmPassword"
-        placeholder="confirm password"
-        errors={errors}
-        touched={{}}
-      />
+        <ValidationMessage name="email" component="div" />
+      </Label>
+
+      <Label>
+        <Icon
+          url={spanBgIcon}
+          id="passwordEye"
+          onClick={event => handleToggleBtn(event)}
+        />
+        <CustomField
+          id="password"
+          type={passwordType}
+          name="password"
+          label="password"
+          placeholder="password"
+          errors={errors}
+          touched={{}}
+        />
+
+        <ValidationMessage name="password" component="div" />
+      </Label>
+      <Label>
+        <Icon
+          url={spanConfirmBgIcon}
+          id="confirmPassword"
+          onClick={event => handleToggleBtn(event)}
+        />
+        <CustomField
+          id="confirmPassword"
+          type={confirmPasswordType}
+          name="confirmPassword"
+          label="confirmPassword"
+          placeholder="confirm password"
+          errors={errors}
+          touched={{}}
+        />
+        <ValidationMessage name="confirmPassword" component="div" />
+      </Label>
     </Fragment>
   );
 };
