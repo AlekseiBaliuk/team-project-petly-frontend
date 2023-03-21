@@ -23,6 +23,7 @@ export const Header = () => {
   const toggleMenu = () => setMenu(value => !value);
   const closeMenu = () => setMenu(false);
 
+  console.log(isLoggedIn);
   const beforeTablet = useMediaQuery({ query: '(max-width: 767px)' });
   const tablet = useMediaQuery({ query: '(min-width: 768px)' });
   const beforeDesktop = useMediaQuery({ query: '(max-width: 1279px)' });
@@ -36,7 +37,7 @@ export const Header = () => {
             <Logo />
           </SC.LogoContainer>
           {!menu && tablet && beforeDesktop && (
-            <>{isLoggedIn === false ? <AuthNav /> : <UserNav />}</>
+            <>{!isLoggedIn ? <AuthNav /> : <UserNav />}</>
           )}
           {beforeDesktop && (
             <IconButton color="inherit" onClick={toggleMenu}>
@@ -50,14 +51,14 @@ export const Header = () => {
           {desktop && (
             <>
               <Nav />
-              {isLoggedIn === false ? <AuthNav /> : <UserNav />}
+              {!isLoggedIn ? <AuthNav /> : <UserNav />}
             </>
           )}
         </SC.ToolBar>
 
         {menu && beforeTablet && (
           <Box onClick={closeMenu} height={'100vh'} marginTop={'46px'}>
-            {isLoggedIn === false ? <AuthNav /> : <UserNav />}
+            {!isLoggedIn ? <AuthNav /> : <UserNav />}
             <Nav />
           </Box>
         )}
