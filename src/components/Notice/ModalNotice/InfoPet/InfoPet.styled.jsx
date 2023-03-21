@@ -68,6 +68,13 @@ const Item = styled('li')`
 
 const ItemText = styled('span')`
   font-weight: ${props => props.theme.fontWeights.fw500};
+  & > a {
+    color: ${props => props.theme.colors.mainText};
+    :hover,
+    :focus {
+      color: ${props => props.theme.colors.accent};
+    }
+  }
 `;
 
 const Text = styled('p')`

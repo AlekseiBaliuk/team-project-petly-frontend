@@ -50,11 +50,15 @@ export const InfoPet = ({ notice }) => {
           </Item>
           <Item>
             <span>Email:</span>
-            <ItemText>sobaka@gmail.com</ItemText>
+            <ItemText>
+              <a href="meilto: sobaka@gmail.com">sobaka@gmail.com</a>
+            </ItemText>
           </Item>
           <Item>
             <span>Phone:</span>
-            <ItemText>+380971234567</ItemText>
+            <ItemText>
+              <a href="tel: +380971234567">+380971234567</a>
+            </ItemText>
           </Item>
           <Item>
             <span>Price:</span>
