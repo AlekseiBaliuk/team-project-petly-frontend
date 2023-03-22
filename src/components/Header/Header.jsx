@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
@@ -18,17 +18,23 @@ import * as SC from './Header.styled';
 export const Header = () => {
   const [menu, setMenu] = useState(false);
 
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
-  const toggleMenu = () => setMenu(value => !value);
-  const closeMenu = () => setMenu(false);
+  useEffect(() => {
+    menu ? disableBodyScroll(document) : enableBodyScroll(document);
+  }, [menu]);
 
   const beforeTablet = useMediaQuery({ query: '(max-width: 767px)' });
   const tablet = useMediaQuery({ query: '(min-width: 768px)' });
   const beforeDesktop = useMediaQuery({ query: '(max-width: 1279px)' });
   const desktop = useMediaQuery({ query: '(min-width: 1280px)' });
 
-  menu ? disableBodyScroll(document) : enableBodyScroll(document);
+  useEffect(() => {
+    desktop && setMenu(false);
+  }, [desktop]);
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const toggleMenu = () => setMenu(value => !value);
+  const closeMenu = () => setMenu(false);
 
   return (
     <SC.Header>
