@@ -34,7 +34,7 @@ const CatLoader = ({ size, color }) => {
           stroke="#f59256"
           strokeWidth="14.4"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -54,7 +54,7 @@ const CatLoader = ({ size, color }) => {
           stroke="#eeeeee"
           strokeWidth="7.2"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -74,7 +74,7 @@ const CatLoader = ({ size, color }) => {
           stroke="#000000"
           strokeWidth="1"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -94,7 +94,7 @@ const CatLoader = ({ size, color }) => {
           stroke="#000000"
           strokeWidth="1"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -245,7 +245,7 @@ const PigLoader = ({ size, color }) => {
           stroke="#f59256"
           strokeWidth="14.4"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -265,7 +265,7 @@ const PigLoader = ({ size, color }) => {
           stroke="#ffffff"
           strokeWidth="7.2"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -285,7 +285,7 @@ const PigLoader = ({ size, color }) => {
           stroke="#000000"
           strokeWidth="1"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -305,7 +305,7 @@ const PigLoader = ({ size, color }) => {
           stroke="#000000"
           strokeWidth="1"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -464,7 +464,7 @@ const KappiLoader = ({ size, color }) => {
           stroke="#f59256"
           strokeWidth="14.4"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -484,7 +484,7 @@ const KappiLoader = ({ size, color }) => {
           stroke="#fff794"
           strokeWidth="7.2"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -504,7 +504,7 @@ const KappiLoader = ({ size, color }) => {
           stroke="#000000"
           strokeWidth="1"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -524,7 +524,7 @@ const KappiLoader = ({ size, color }) => {
           stroke="#000000"
           strokeWidth="1"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -686,7 +686,7 @@ const DogLoader = ({ size, color }) => {
           stroke="#f59256"
           strokeWidth="14.4"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -706,7 +706,7 @@ const DogLoader = ({ size, color }) => {
           stroke="#ffffff"
           strokeWidth="7.2"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -726,7 +726,7 @@ const DogLoader = ({ size, color }) => {
           stroke="#000000"
           strokeWidth="1"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -746,7 +746,7 @@ const DogLoader = ({ size, color }) => {
           stroke="#000000"
           strokeWidth="1"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -902,7 +902,7 @@ const FoxLoader = ({ size, color }) => {
           stroke="#f59256"
           strokeWidth="14.4"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -922,7 +922,7 @@ const FoxLoader = ({ size, color }) => {
           stroke="#fff1cf"
           strokeWidth="7.2"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -942,7 +942,7 @@ const FoxLoader = ({ size, color }) => {
           stroke="#000000"
           strokeWidth="1"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -962,7 +962,7 @@ const FoxLoader = ({ size, color }) => {
           stroke="#000000"
           strokeWidth="1"
           fill="none"
-          stroke-dasharray="0 300"
+          strokeDasharray="0 300"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -1155,7 +1155,7 @@ const GhostLoader = ({ size, color }) => {
                 stroke="#f2f2f2"
                 strokeWidth="14.4"
                 fill="none"
-                stroke-dasharray="0 300"
+                strokeDasharray="0 300"
               >
                 <animate
                   attributeName="stroke-dasharray"
@@ -1174,7 +1174,7 @@ const GhostLoader = ({ size, color }) => {
                 stroke="#f2f2f2"
                 strokeWidth="7.2"
                 fill="none"
-                stroke-dasharray="0 300"
+                strokeDasharray="0 300"
               >
                 <animate
                   attributeName="stroke-dasharray"
@@ -1193,7 +1193,7 @@ const GhostLoader = ({ size, color }) => {
                 stroke="#f59256"
                 strokeWidth="1"
                 fill="none"
-                stroke-dasharray="0 300"
+                strokeDasharray="0 300"
               >
                 <animate
                   attributeName="stroke-dasharray"
@@ -1212,7 +1212,7 @@ const GhostLoader = ({ size, color }) => {
                 stroke="#f59256"
                 strokeWidth="1"
                 fill="none"
-                stroke-dasharray="0 300"
+                strokeDasharray="0 300"
               >
                 <animate
                   attributeName="stroke-dasharray"
