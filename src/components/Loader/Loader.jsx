@@ -1,4 +1,5 @@
 import React from 'react';
+
 const CatLoader = ({ size, color }) => {
   return (
     <svg
@@ -1313,7 +1314,6 @@ const GhostLoader = ({ size, color }) => {
 
 export const Loader = ({ size = 200, color = '#f59256' }) => {
   const randomizer = Math.floor(Math.random() * 1200) + 1;
-  console.log(randomizer);
 
   return (
     <>
