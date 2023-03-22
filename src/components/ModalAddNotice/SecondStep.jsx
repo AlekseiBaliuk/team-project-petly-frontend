@@ -99,7 +99,7 @@ export const SecondStep = ({ adminModal, isBtnCategory }) => {
         </LabelList>
         <BtnStepList>
           <li>
-            <BtnStep type="submit" onClick={() => adminModal('none')}>
+            <BtnStep type="submit" onClick={() => adminModal('none', true)}>
               Done
             </BtnStep>
           </li>
