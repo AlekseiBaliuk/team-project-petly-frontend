@@ -34,13 +34,13 @@ export const FirstStep = ({
 
   function handleKeyDown(e) {
     if (e.code === 'Escape') {
-      adminModal('none');
+      adminModal('none', true);
     }
   }
 
   const handleModalClick = e => {
     if (e.currentTarget === e.target) {
-      adminModal('none');
+      adminModal('none', true);
     }
   };
 
@@ -51,7 +51,7 @@ export const FirstStep = ({
   return createPortal(
     <Wrapper onClick={handleModalClick}>
       <Form id="form" onSubmit={onSubmitForm}>
-        <BtnClose type="button" onClick={() => adminModal('none')}>
+        <BtnClose type="button" onClick={() => adminModal('none', true)}>
           <Close />
         </BtnClose>
         <Title>Add pet</Title>
@@ -66,12 +66,12 @@ export const FirstStep = ({
         <LabelInputList />
         <BtnStepList>
           <li>
-            <BtnStep type="submit" onClick={() => adminModal('step2')}>
+            <BtnStep type="submit" onClick={() => adminModal('step2', false)}>
               Next
             </BtnStep>
           </li>
           <li>
-            <BtnStep type="button" onClick={() => adminModal('none')}>
+            <BtnStep type="button" onClick={() => adminModal('none', true)}>
               Cancel
             </BtnStep>
           </li>
