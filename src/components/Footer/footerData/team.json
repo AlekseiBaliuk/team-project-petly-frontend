@@ -2,13 +2,17 @@
   {
     "name": "asd asd",
     "photo": "sdfsdf",
+    "position": "Backend",
+    "part": "database",
     "github": "asd",
     "linkedin": "dsa"
   },
   {
-    "name": "asddsa asddsa",
+    "name": "Yevhen Ziuskin",
     "photo": "sdfsdf",
-    "github": "asd",
-    "linkedin": "dsa"
+    "position": "Frontend",
+    "part": "header, footer",
+    "github": "https://github.com/Yevhenns",
+    "linkedin": "https://linkedin.com/in/yevhen-ziuskin-031b7b23b"
   }
 ]

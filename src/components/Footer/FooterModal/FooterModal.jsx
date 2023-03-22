@@ -31,12 +31,14 @@ export const FooterModal = ({ open, handleClose }) => {
         </Typography>
         <Typography id="modal-modal-title" variant="h6" component="h2">
           <ul>
-            {team.map(({ name, photo, github, linkedin }) => {
+            {team.map(({ name, photo, position, part, github, linkedin }) => {
               return (
                 <FooterModalItem
                   key={name}
                   name={name}
                   photo={photo}
+                  position={position}
+                  part={part}
                   github={github}
                   linkedin={linkedin}
                 />
