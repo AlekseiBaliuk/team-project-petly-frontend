@@ -1,15 +1,16 @@
 import styled from 'styled-components';
-import AddIcon from '@mui/icons-material/Add';
+import plusUser from 'staticImages/userPage/plusUser.svg';
 
-export const UserInfoWrapper = styled.div`
-  @media screen and (min-width: 768px) {
-    width: 100%;
-    margin-right: 52px;
-  }
-  @media screen and (min-width: 1280px) {
-    margin-right: 0;
-  }
-`;
+// export const UserInfoWrapper = styled.div`
+//   @media screen and (min-width: 768px) {
+//     width: 100%;
+//     margin-right: 52px;
+//   }
+//   @media screen and (min-width: 1280px) {
+//     margin-right: 0;
+//   }
+// `;
+
 export const AvatarInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,7 +24,7 @@ export const FormWrapper = styled.form`
 `;
 
 export const AvatarImg = styled.img`
-  background-image: url(${AddIcon});
+  background-image: url(${plusUser});
   background-color: ${p => p.theme.colors.background};
   background-repeat: no-repeat;
   background-position: center;
@@ -43,7 +44,7 @@ export const AvatarImg = styled.img`
 
 export const LabelEditPhoto = styled.button`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   line-height: 1.83;
   margin-left: auto;
   cursor: pointer;
@@ -104,7 +105,7 @@ export const UserInfoTitle = styled.p`
   margin-right: 10px;
   margin-bottom: 12px;
   font-family: ${p => p.theme.fonts.main};
-  font-weight: ${p => p.theme.fontWeights.fw600};
+  font-weight: ${p => p.theme.fontWeights.fw500};
   font-size: ${p => p.theme.fontSizes.fs12};
   line-height: 1.33;
   display: flex;

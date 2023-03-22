@@ -7,7 +7,6 @@ import { useAuth } from 'hooks/useAuth';
 
 export const NoticesCategoriesNav = () => {
   const { isLoggedIn } = useAuth();
-  console.log(isLoggedIn);
 
   return (
     <CategoriesList>
