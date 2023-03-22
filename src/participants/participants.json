@@ -40,5 +40,17 @@
         "name": "Yevhen Ziuskin",
         "github": "https://github.com/Yevhenns",
         "linkedin": "https://linkedin.com/in/yevhen-ziuskin-031b7b23b/"
+    },
+    {
+        "id": "id-8",
+        "name": "Serhii Arkhypiuk",
+        "github": "https://github.com/serhiiarkhypiuk",
+        "linkedin": "https://www.linkedin.com/in/serhii-arkhypiuk/"
+    },
+    {
+        "id": "id-9",
+        "name": "Anna Matvieieva",
+        "github": "https://github.com/annamatvieieva",
+        "linkedin": "https://www.linkedin.com/in/anna-matvieieva-kharkiv/"
     }
 ]

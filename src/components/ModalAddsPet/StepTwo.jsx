@@ -1,4 +1,5 @@
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
+import * as Yup from 'yup';
 import {
   AddDiv,
   AddInput,
@@ -13,6 +14,13 @@ import {
 } from './ModalAddsPet.styled';
 import { ReactComponent as Plus } from 'staticImages/icon-plus.svg';
 
+const validationSchema = Yup.object().shape({
+  photo: Yup.mixed(),
+  comments: Yup.string()
+    .min(8, 'The message is too short')
+    .max(120, 'The message is too long'),
+});
+
 export const StepTwo = props => {
   const handleSubmit = values => {
     props.next(values, true);
@@ -20,7 +28,11 @@ export const StepTwo = props => {
   };
 
   return (
-    <Formik initialValues={props.data} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={props.data}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
       {({ values }) => (
         <StyledForm>
           <Text>Add photo and some comments</Text>
@@ -38,6 +50,7 @@ export const StepTwo = props => {
               type="text"
               placeholder="Type breed"
             />
+            <ErrorMessage name="comments" />
           </Label>
           <BtnContainer>
             <Btn type="button" onClick={() => props.prev(values)}>

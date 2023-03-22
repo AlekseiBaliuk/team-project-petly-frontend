@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import * as Yup from 'yup';
 import { ReactComponent as Close } from 'staticImages/Close.svg';
 import * as SC from './ModalAddsPet.styled';
 import { StepTwo } from './StepTwo';
