@@ -25,8 +25,10 @@ export const StepOne = props => {
             <Subtitle>Date of birth</Subtitle>
             <Input
               name="dateOfBirth"
-              type="date"
+              type="text"
               placeholder="Type date of birth"
+              onFocus={e => (e.target.type = 'date')}
+              onBlur={e => (e.target.type = 'text')}
             />
           </Label>
           <Label>
