@@ -54,7 +54,7 @@ const UserDataList = () => {
             ref={updateBtn}
           />
           {avatarUrl ? (
-            <AvatarImg src={avatarUrl.secure_url} alt="uploaded" />
+            <AvatarImg src={avatarUrl} alt="uploaded" />
           ) : (
             <AvatarImg src={ava} />
           )}

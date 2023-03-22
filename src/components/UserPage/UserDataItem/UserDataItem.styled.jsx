@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import pencil from 'staticImages/userPage/pencil.svg';
-import pencilDeactive from 'staticImages/userPage/pencilDeactive.svg';
+import pencilDeactivated from 'staticImages/userPage/pencilDeactivated.svg';
 import btnOk from 'staticImages/userPage/btnOk.svg';
 
 export const InputWrapper = styled.form`
@@ -65,5 +65,5 @@ export const PencilBtn = styled(UpdateBtn)`
 `;
 
 export const DeactivatedBtn = styled(UpdateBtn)`
-  background-image: url(${pencilDeactive});
+  background-image: url(${pencilDeactivated});
 `;

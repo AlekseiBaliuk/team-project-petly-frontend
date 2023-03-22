@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
 // import { getPetInfo } from 'redux/pets/petsOperations';
 // import { getLoading, getError, getPets } from 'redux/pets/petsSelectors';
 // import ModalAddPet from 'components/ModalAddPet/ModalAddPet';
-import { Loader } from 'components/Loader/Loader';
-import PetsList from 'components/UserPage/PetsList/PetsList';
+// import { Loader } from 'components/Loader/Loader';
+// import PetsList from 'components/UserPage/PetsList/PetsList';
 import {
   PetsWrapper,
   PetsTitleWrapper,
@@ -55,7 +55,7 @@ const PetsData = ({ pets, setPets }) => {
           <p>No pets</p>
         </NonPetWrapper>
       )}
-      {/*{isLoading*/}
+      {/*{isLoading && !error*/}
       {/*  ? <Loader />*/}
       {/*  : <PetsList dataPets={pets} setDataPets={setPets} />*/}
       {/*}*/}

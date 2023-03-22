@@ -8,7 +8,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export const Logout = () => {
+const Logout = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -50,3 +50,5 @@ export const Logout = () => {
     </>
   );
 };
+
+export default Logout;

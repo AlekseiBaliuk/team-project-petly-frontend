@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { UserWrapper, UserDataWrapper, UserDataTitle } from './UserData.styled';
-import { Logout } from '../Logout/Logout';
+import Logout from '../Logout/Logout';
 import UserDataList from '../UserDataList/UserDataList';
 import { useDispatch } from 'react-redux';
 import { getUserInfo } from 'redux/user/userOperations';
 
-export default function UserData() {
+const UserData = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,4 +21,6 @@ export default function UserData() {
       </UserDataWrapper>
     </UserWrapper>
   );
-}
+};
+
+export default UserData;

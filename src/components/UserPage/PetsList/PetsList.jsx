@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 // import { getPetInfo, deletePet } from 'redux/pets/petsOperations';
 import {
   PetWrapper,
@@ -16,9 +16,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const PetsList = ({ dataPets }) => {
-  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const [petId, setPetId] = useState('');
+  // const [petId, setPetId] = useState('');
 
   // const removePet = () => {
   //   const action = deletePet(petId);
@@ -28,7 +27,7 @@ const PetsList = ({ dataPets }) => {
 
   const handleClickOpen = id => {
     setOpen(true);
-    setPetId(id);
+    // setPetId(id);
   };
 
   const handleClose = () => {

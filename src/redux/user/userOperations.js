@@ -4,17 +4,14 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://team-project-petly-backend.onrender.com/api';
 
 // GET @ /user
-export const getUserInfo = createAsyncThunk(
-  'users/get',
-  async (_, thunkAPI) => {
-    try {
-      const res = await axios.get(`/users`);
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  },
-);
+export const getUserInfo = createAsyncThunk('users', async (_, thunkAPI) => {
+  try {
+    const res = await axios.get(`/users`);
+    return res.data.user;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
 
 // // PUT @ /userData
 // export const updateUserData = createAsyncThunk(
