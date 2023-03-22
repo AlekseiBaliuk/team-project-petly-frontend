@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
@@ -8,7 +9,6 @@ import { AuthNav } from 'components/AuthNav/AuthNav';
 import { UserNav } from 'components/UserNav/UserNav';
 
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-
 import { Container } from 'components/Container/Container.styled';
 import { Box, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -27,6 +27,8 @@ export const Header = () => {
   const tablet = useMediaQuery({ query: '(min-width: 768px)' });
   const beforeDesktop = useMediaQuery({ query: '(max-width: 1279px)' });
   const desktop = useMediaQuery({ query: '(min-width: 1280px)' });
+
+  menu ? disableBodyScroll(document) : enableBodyScroll(document);
 
   return (
     <SC.Header>
