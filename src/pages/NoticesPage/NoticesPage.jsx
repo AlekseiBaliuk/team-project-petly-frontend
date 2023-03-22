@@ -14,8 +14,12 @@ import { PetSearchNav, Main } from './NoticesPage.styled';
 const NoticesPage = () => {
   const [isModalShow, setIsModalShow] = useState('none');
   const [isBtnCategory, setBtnCategory] = useState('none');
+  const [isShown, setIsShown] = useState(false);
 
-  const adminModal = type => setIsModalShow(type);
+  const adminModal = (type, value) => {
+    setIsShown(!value);
+    setIsModalShow(type);
+  };
 
   const findCategoryNotice = category => {
     setBtnCategory(category);
@@ -28,7 +32,9 @@ const NoticesPage = () => {
           <PageTitle>Find your favorite pet</PageTitle>
           <Search />
           <PetSearchNav>
-            <AddNoticeButton openModal={() => adminModal('step1')} />
+            {!isShown && (
+              <AddNoticeButton openModal={() => adminModal('step1', false)} />
+            )}
             {isModalShow === 'step1' && (
               <FirstStep
                 adminModal={adminModal}
