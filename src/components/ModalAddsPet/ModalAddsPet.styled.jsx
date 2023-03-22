@@ -142,6 +142,8 @@ export const BtnActive = styled.button`
   letter-spacing: 0.04em;
   outline: none;
   color: ${p => p.theme.colors.white};
+  transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
   cursor: pointer;
   :hover,
   :focus {
@@ -168,6 +170,8 @@ export const Btn = styled.button`
   letter-spacing: 0.04em;
   outline: none;
   color: ${p => p.theme.colors.mainText};
+  transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
   cursor: pointer;
   :hover,
   :focus {
@@ -191,13 +195,48 @@ export const BtnClose = styled.button`
   height: 34px;
   padding: 9px;
   background-color: ${props => props.theme.colors.background};
-
   backdrop-filter: blur(2px);
   border-radius: ${props => props.theme.radii.round};
   border: none;
   cursor: pointer;
+  transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
   :hover,
   :focus {
     background-color: ${props => props.theme.colors.accent};
   }
+`;
+
+export const AddDiv = styled.div`
+  width: 116px;
+  height: 116px;
+  background-color: ${props => props.theme.colors.background};
+  border-radius: 20px;
+  border: none;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover,
+  :focus {
+    border: 1px ${props => props.theme.colors.accent} solid;
+  }
+
+  @media ${device.tablet} {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 0;
+  }
+`;
+
+export const AddInput = styled.input`
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+  width: 0.4px;
+  height: 0.4px;
 `;
