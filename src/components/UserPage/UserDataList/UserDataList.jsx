@@ -21,7 +21,7 @@ import { regExp } from '../../../helpers/regExp';
 
 const UserDataList = () => {
   const dataUser = useSelector(getUserData);
-  const { _id, name, email, birthday, phone, address, avatarUrl } =
+  const { _id, name, email, location, phone, birthday, avatarUrl } =
     dataUser.user;
   const [activeBtn, setActiveBtn] = useState(true);
   const updateBtn = useRef(null);
@@ -147,14 +147,14 @@ const UserDataList = () => {
 
         <UserInfoItem>
           <UserInfoTitle>City:</UserInfoTitle>
-          {address ? (
+          {location ? (
             <UserDataItem
               typeInput="text"
-              nameInput="address"
-              valueUser={address.split(',').splice(0, 1)}
+              nameInput="location"
+              valueUser={location.split(',').splice(0, 1)}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
-              paramValid={regExp.address}
+              paramValid={regExp.location}
             />
           ) : (
             <UserDataItem
