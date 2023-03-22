@@ -8,7 +8,7 @@ export const Nav = () => {
           <SC.Link to="/news">News</SC.Link>
         </SC.ListItem>
         <SC.ListItem>
-          <SC.Link to="/notices/:categoryName">Find pet</SC.Link>
+          <SC.Link to="/notices/sell">Find pet</SC.Link>
         </SC.ListItem>
         <SC.ListItem>
           <SC.Link to="/friends">Our friends</SC.Link>
