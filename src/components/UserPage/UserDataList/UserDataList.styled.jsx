@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import AddIcon from '@mui/icons-material/Add';
+import plusUser from 'staticImages/userPage/plusUser.svg';
 
 export const UserInfoWrapper = styled.div`
   @media screen and (min-width: 768px) {
@@ -23,7 +23,7 @@ export const FormWrapper = styled.form`
 `;
 
 export const AvatarImg = styled.img`
-  background-image: url(${AddIcon});
+  background-image: url(${plusUser});
   background-color: ${p => p.theme.colors.background};
   background-repeat: no-repeat;
   background-position: center;

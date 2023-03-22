@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import ModalAddPet from 'components/ModalAddPet/ModalAddPet';
 import { Loader } from 'components/Loader/Loader';
-import PetsList from 'components/PetsList/PetsList';
+import PetsList from 'components/UserPage/PetsList/PetsList';
 import {
   PetsWrapper,
   PetsTitleWrapper,
@@ -11,18 +11,19 @@ import {
   AddPetBtn,
   NonPetWrapper,
 } from './PetsData.styled';
-import { PetList } from 'components/PetsList/PetsList.styled';
+import { PetList } from 'components/UserPage/PetsList/PetsList.styled';
 
 export default function PetsData({ pets, setPets, petsData }) {
   // const isPets = Boolean(petsData.length);
-  const isPets = true;
+  const isPets = false;
+
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   return (
     <PetsWrapper>
       <PetsTitleWrapper>
-        <UserPetsTitle>Pets</UserPetsTitle>
+        <UserPetsTitle>Pets:</UserPetsTitle>
         <PetBtnWrapper>
           <AddPetTitleBtn>Add</AddPetTitleBtn>
           <AddPetBtn onClick={() => setIsOpen(true)} />
