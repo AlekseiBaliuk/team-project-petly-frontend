@@ -6,3 +6,9 @@ export const getNews = async () => {
   const response = await axios.get('news');
   return response.data.news;
 };
+
+export const getFriends = async () => {
+  const response = await axios.get('friends');
+
+  return response;
+};
