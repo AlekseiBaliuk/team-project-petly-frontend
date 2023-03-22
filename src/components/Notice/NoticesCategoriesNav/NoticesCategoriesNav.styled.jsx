@@ -39,6 +39,7 @@ export const CategoryItem = styled('li')`
   @media ${device.desktop} {
     :nth-child(3) {
       order: 0;
+      margin-right: 12px;
     }
   }
 
@@ -49,7 +50,8 @@ export const CategoryItem = styled('li')`
   }
 
   @media ${device.tabletOnly} {
-    :nth-last-child(-n + 2) {
+    :nth-child(4),
+    :nth-child(5) {
       margin-top: 16px;
     }
   }
