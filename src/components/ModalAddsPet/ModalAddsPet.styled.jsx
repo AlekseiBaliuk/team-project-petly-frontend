@@ -13,10 +13,11 @@ export const Backdrop = styled.div`
   align-items: center;
   background-color: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
-  overflow-y: scroll;
+  overflow-y: hidden;
   &::-webkit-scrollbar {
     display: none;
   }
+  z-index: 1000;
 `;
 
 export const Content = styled.div`
@@ -92,6 +93,39 @@ export const Subtitle = styled.span`
 `;
 
 export const Input = styled(Field)`
+  padding: 11px 14px 12px;
+  background-color: ${p => p.theme.colors.background};
+  border: ${p => p.theme.borders.auth};
+  border-radius: ${p => p.theme.radii.br20};
+  font-family: ${p => p.theme.fonts.main};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.fw400};
+  font-size: ${p => p.theme.fontSizes.fs14};
+  line-height: 1.36;
+  @media ${device.tablet} {
+    padding: 11px 16px 10px;
+    font-size: ${p => p.theme.fontSizes.fs16};
+    line-height: 1.66;
+  }
+`;
+
+export const BirthInput = styled(Field)`
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+`;
+
+export const BirthDiv = styled.div`
+  width: 100%;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${props => props.theme.colors.background};
+  border-radius: ${props => props.theme.radii.br20};
+  border: none;
+  transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
   padding: 11px 14px 12px;
   background-color: ${p => p.theme.colors.background};
   border: ${p => p.theme.borders.auth};
@@ -208,16 +242,15 @@ export const BtnClose = styled.button`
 `;
 
 export const AddDiv = styled.div`
-  width: 116px;
-  height: 116px;
-  background-color: ${props => props.theme.colors.background};
-  border-radius: 20px;
-  border: none;
-  margin-bottom: 12px;
+  width: 208px;
+  height: 208px;
+  margin: ${p => p.theme.space[3]}px auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 12px;
+  background-color: ${props => props.theme.colors.background};
+  border-radius: ${props => props.theme.radii.br20};
+  border: none;
   transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
   :hover,
@@ -226,13 +259,13 @@ export const AddDiv = styled.div`
   }
 
   @media ${device.tablet} {
-    width: 140px;
-    height: 140px;
-    margin-bottom: 0;
+    width: 182px;
+    height: 182px;
+    margin-bottom: ${p => p.theme.space[5]}px;
   }
 `;
 
-export const AddInput = styled.input`
+export const AddInput = styled(Field)`
   opacity: 0;
   position: absolute;
   z-index: -1;

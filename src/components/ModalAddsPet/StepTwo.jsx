@@ -1,5 +1,7 @@
 import { Formik } from 'formik';
 import {
+  AddDiv,
+  AddInput,
   Btn,
   BtnActive,
   BtnContainer,
@@ -10,6 +12,7 @@ import {
   Subtitle,
   Text,
 } from './ModalAddsPet.styled';
+import { ReactComponent as Plus } from 'staticImages/icon-plus.svg';
 
 export const StepTwo = props => {
   const handleSubmit = values => {
@@ -23,12 +26,10 @@ export const StepTwo = props => {
         <StyledForm>
           <Text>Add photo and some comments</Text>
           <Label>
-            <Input
-              name="photo"
-              type="file"
-              accept="image/*"
-              placeholder="Type name pet"
-            />
+            <AddDiv>
+              <Plus />
+              <AddInput name="photo" type="file" accept="image/*"></AddInput>
+            </AddDiv>
           </Label>
           <Label>
             <Subtitle>Comments</Subtitle>
