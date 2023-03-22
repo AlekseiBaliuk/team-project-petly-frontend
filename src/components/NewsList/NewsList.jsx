@@ -11,7 +11,7 @@ import {
 } from './NewsList.styled';
 
 export const NewsList = ({ news }) => {
-  const message = 'We have any news for you';
+  const message = 'We have no news for you';
   const titleLength = 45;
   const descriptLength = 220;
 
