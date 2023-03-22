@@ -6,7 +6,6 @@ import {
   BtnActive,
   BtnContainer,
   CommentInput,
-  Input,
   Label,
   StyledForm,
   Subtitle,
@@ -34,6 +33,7 @@ export const StepTwo = props => {
           <Label>
             <Subtitle>Comments</Subtitle>
             <CommentInput
+              as="textarea"
               name="comments"
               type="text"
               placeholder="Type breed"

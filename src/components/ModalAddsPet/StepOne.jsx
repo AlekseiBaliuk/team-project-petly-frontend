@@ -19,12 +19,12 @@ export const StepOne = props => {
         <StyledForm>
           <Label>
             <Subtitle>Name pet</Subtitle>
-            <Input name="namePet" type="text" placeholder="Type name pet" />
+            <Input name="name" type="text" placeholder="Type name pet" />
           </Label>
           <Label>
             <Subtitle>Date of birth</Subtitle>
             <Input
-              name="dateOfBirth"
+              name="date"
               type="text"
               placeholder="Type date of birth"
               onFocus={e => (e.target.type = 'date')}
