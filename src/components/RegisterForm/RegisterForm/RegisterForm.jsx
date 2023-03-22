@@ -1,4 +1,6 @@
 import { FormikWizard } from 'formik-wizard-form';
+import { useDispatch } from 'react-redux';
+import { signup } from '../../../redux/auth/authOperations';
 import RegisterFormStepOne from 'components/RegisterForm/RegisterSteps/StepOne';
 import RegisterFormStepTwo from 'components/RegisterForm/RegisterSteps/StepTwo';
 import * as yup from 'yup';
@@ -9,6 +11,17 @@ import {
 } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = evt => {
+    const newData = { ...evt };
+    const phoneNumber = Object.values(evt.phone).join('').toString();
+    const pattern = /\+38\((\d{3})\)(\d{3})-(\d{2})-(\d{2})/;
+
+    newData['phone'] = phoneNumber.replace(pattern, '+38$1$2$3$4');
+    delete newData.confirmPassword;
+    dispatch(signup(newData));
+  };
   return (
     <FormikWizard
       initialValues={{
@@ -19,7 +32,7 @@ export const RegisterForm = () => {
         phone: '',
         confirmPassword: '',
       }}
-      onSubmit={values => console.log(values)}
+      onSubmit={values => handleSubmit(values)}
       activeStepIndex={0}
       steps={[
         {

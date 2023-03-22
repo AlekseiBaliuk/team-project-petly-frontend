@@ -16,8 +16,31 @@ export const CategoriesList = styled('ul')`
 `;
 
 export const CategoryItem = styled('li')`
+  :nth-child(1) {
+    order: 1;
+  }
+  :nth-child(2) {
+    order: 2;
+  }
+  :nth-child(3) {
+    order: 3;
+  }
+  :nth-child(4) {
+    order: 4;
+  }
+  :nth-child(5) {
+    order: 5;
+  }
+
   :not(:last-child) {
     margin-right: 12px;
+  }
+
+  @media ${device.desktop} {
+    :nth-child(3) {
+      order: 0;
+      margin-right: 12px;
+    }
   }
 
   @media ${device.beforeTablet} {
@@ -27,7 +50,8 @@ export const CategoryItem = styled('li')`
   }
 
   @media ${device.tabletOnly} {
-    :nth-last-child(-n + 2) {
+    :nth-child(4),
+    :nth-child(5) {
       margin-top: 16px;
     }
   }
