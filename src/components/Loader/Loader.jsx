@@ -32,7 +32,7 @@ const CatLoader = ({ size, color }) => {
           cy="50"
           r="39.891"
           stroke="#f59256"
-          stroke-width="14.4"
+          strokeWidth="14.4"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -52,7 +52,7 @@ const CatLoader = ({ size, color }) => {
           cy="50"
           r="39.891"
           stroke="#eeeeee"
-          stroke-width="7.2"
+          strokeWidth="7.2"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -72,7 +72,7 @@ const CatLoader = ({ size, color }) => {
           cy="50"
           r="32.771"
           stroke="#000000"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -92,7 +92,7 @@ const CatLoader = ({ size, color }) => {
           cy="50"
           r="47.171"
           stroke="#000000"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -243,7 +243,7 @@ const PigLoader = ({ size, color }) => {
           cy="50"
           r="39.891"
           stroke="#f59256"
-          stroke-width="14.4"
+          strokeWidth="14.4"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -263,7 +263,7 @@ const PigLoader = ({ size, color }) => {
           cy="50"
           r="39.891"
           stroke="#ffffff"
-          stroke-width="7.2"
+          strokeWidth="7.2"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -283,7 +283,7 @@ const PigLoader = ({ size, color }) => {
           cy="50"
           r="32.771"
           stroke="#000000"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -303,7 +303,7 @@ const PigLoader = ({ size, color }) => {
           cy="50"
           r="47.171"
           stroke="#000000"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -462,7 +462,7 @@ const KappiLoader = ({ size, color }) => {
           cy="50"
           r="39.891"
           stroke="#f59256"
-          stroke-width="14.4"
+          strokeWidth="14.4"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -482,7 +482,7 @@ const KappiLoader = ({ size, color }) => {
           cy="50"
           r="39.891"
           stroke="#fff794"
-          stroke-width="7.2"
+          strokeWidth="7.2"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -502,7 +502,7 @@ const KappiLoader = ({ size, color }) => {
           cy="50"
           r="32.771"
           stroke="#000000"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -522,7 +522,7 @@ const KappiLoader = ({ size, color }) => {
           cy="50"
           r="47.171"
           stroke="#000000"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -684,7 +684,7 @@ const DogLoader = ({ size, color }) => {
           cy="50"
           r="39.891"
           stroke="#f59256"
-          stroke-width="14.4"
+          strokeWidth="14.4"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -704,7 +704,7 @@ const DogLoader = ({ size, color }) => {
           cy="50"
           r="39.891"
           stroke="#ffffff"
-          stroke-width="7.2"
+          strokeWidth="7.2"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -724,7 +724,7 @@ const DogLoader = ({ size, color }) => {
           cy="50"
           r="32.771"
           stroke="#000000"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -744,7 +744,7 @@ const DogLoader = ({ size, color }) => {
           cy="50"
           r="47.171"
           stroke="#000000"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -900,7 +900,7 @@ const FoxLoader = ({ size, color }) => {
           cy="50"
           r="39.891"
           stroke="#f59256"
-          stroke-width="14.4"
+          strokeWidth="14.4"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -920,7 +920,7 @@ const FoxLoader = ({ size, color }) => {
           cy="50"
           r="39.891"
           stroke="#fff1cf"
-          stroke-width="7.2"
+          strokeWidth="7.2"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -940,7 +940,7 @@ const FoxLoader = ({ size, color }) => {
           cy="50"
           r="32.771"
           stroke="#000000"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -960,7 +960,7 @@ const FoxLoader = ({ size, color }) => {
           cy="50"
           r="47.171"
           stroke="#000000"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
           stroke-dasharray="0 300"
         >
@@ -1153,7 +1153,7 @@ const GhostLoader = ({ size, color }) => {
                 cy="50"
                 r="39.891"
                 stroke="#f2f2f2"
-                stroke-width="14.4"
+                strokeWidth="14.4"
                 fill="none"
                 stroke-dasharray="0 300"
               >
@@ -1172,7 +1172,7 @@ const GhostLoader = ({ size, color }) => {
                 cy="50"
                 r="39.891"
                 stroke="#f2f2f2"
-                stroke-width="7.2"
+                strokeWidth="7.2"
                 fill="none"
                 stroke-dasharray="0 300"
               >
@@ -1191,7 +1191,7 @@ const GhostLoader = ({ size, color }) => {
                 cy="50"
                 r="32.771"
                 stroke="#f59256"
-                stroke-width="1"
+                strokeWidth="1"
                 fill="none"
                 stroke-dasharray="0 300"
               >
@@ -1210,7 +1210,7 @@ const GhostLoader = ({ size, color }) => {
                 cy="50"
                 r="47.171"
                 stroke="#f59256"
-                stroke-width="1"
+                strokeWidth="1"
                 fill="none"
                 stroke-dasharray="0 300"
               >
