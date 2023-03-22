@@ -66,12 +66,12 @@ export const FirstStep = ({
         <LabelInputList />
         <BtnStepList>
           <li>
-            <BtnStep type="submit" onClick={() => adminModal('step2')}>
+            <BtnStep type="submit" onClick={() => adminModal('step2', false)}>
               Next
             </BtnStep>
           </li>
           <li>
-            <BtnStep type="button" onClick={() => adminModal('none')}>
+            <BtnStep type="button" onClick={() => adminModal('none', true)}>
               Cancel
             </BtnStep>
           </li>
