@@ -1,0 +1,38 @@
+[
+    {
+        "id": "id-1",
+        "name": "Oksana Kuzich",
+        "github": "https://github.com/OksanaKuzich",
+        "linkedin": "https://www.linkedin.com/in/oksana-kuzich/"
+    },
+    {
+        "id": "id-2",
+        "name": "Max Siomak",
+        "github": "https://github.com/Pleomax07",
+        "linkedin": "https://www.linkedin.com/in/max-siomak/"
+    },
+    {
+        "id": "id-3",
+        "name": "Oleksii Baliuk",
+        "github": "https://github.com/AlekseiBaliuk",
+        "linkedin": "https://www.linkedin.com/in/aleksei-baliuk/"
+    },
+    {
+        "id": "id-4",
+        "name": "Serhiy Koba",
+        "github": "https://github.com/kobaserg",
+        "linkedin": "https://www.linkedin.com/in/serhiy-koba/"
+    },
+    {
+        "id": "id-5",
+        "name": "Yurii Kavuza",
+        "github": "https://github.com/Yurii-Kavuza",
+        "linkedin": "https://www.linkedin.com/in/yurii-kavuza/"
+    },
+    {
+        "id": "id-6",
+        "name": "Dmytro Kobeza",
+        "github": "https://github.com/kobeza1",
+        "linkedin": "https://www.linkedin.com/in/kobeza/"
+    }
+]

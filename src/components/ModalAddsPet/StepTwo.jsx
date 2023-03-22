@@ -7,6 +7,7 @@ import {
   Input,
   Label,
   StyledForm,
+  Subtitle,
   Text,
 } from './ModalAddsPet.styled';
 
@@ -20,7 +21,7 @@ export const StepTwo = props => {
     <Formik initialValues={props.data} onSubmit={handleSubmit}>
       {({ values }) => (
         <StyledForm>
-          <Text>Add photo and come comments</Text>
+          <Text>Add photo and some comments</Text>
           <Label>
             <Input
               name="photo"
@@ -30,7 +31,7 @@ export const StepTwo = props => {
             />
           </Label>
           <Label>
-            Breed
+            <Subtitle>Comments</Subtitle>
             <CommentInput
               name="comments"
               type="text"

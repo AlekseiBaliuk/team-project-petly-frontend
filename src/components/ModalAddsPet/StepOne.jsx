@@ -6,6 +6,7 @@ import {
   Input,
   Label,
   StyledForm,
+  Subtitle,
 } from './ModalAddsPet.styled';
 
 export const StepOne = props => {
@@ -17,11 +18,11 @@ export const StepOne = props => {
       {() => (
         <StyledForm>
           <Label>
-            Name pet
+            <Subtitle>Name pet</Subtitle>
             <Input name="namePet" type="text" placeholder="Type name pet" />
           </Label>
           <Label>
-            Date of birth
+            <Subtitle>Date of birth</Subtitle>
             <Input
               name="dateOfBirth"
               type="date"
@@ -29,7 +30,7 @@ export const StepOne = props => {
             />
           </Label>
           <Label>
-            Breed
+            <Subtitle>Breed</Subtitle>
             <Input name="breed" type="text" placeholder="Type breed" />
           </Label>
           <BtnContainer>
