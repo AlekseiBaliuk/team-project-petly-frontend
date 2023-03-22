@@ -36,15 +36,10 @@ const PetsList = ({ dataPets }) => {
   };
 
   const elements = dataPets.map(
-    ({ name, date, breed, avatarUrl, comment, _id }) => {
+    ({ name, birthday, breed, petsPhotoURL, comments, _id }) => {
       return (
         <PetWrapper key={_id}>
-          <PetAvatar
-            src={avatarUrl.secure_url}
-            alt={name}
-            width="150"
-            height="150"
-          />
+          <PetAvatar src={petsPhotoURL} alt={name} width="150" height="150" />
           <PetList>
             <PetItem>
               <PetDescriptionInfo>
@@ -55,7 +50,7 @@ const PetsList = ({ dataPets }) => {
             <PetItem>
               <PetDescriptionInfo>
                 <PetTitleInfo>Date of birth: </PetTitleInfo>
-                {date.split('-').reverse().join('.')}
+                {birthday}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
@@ -67,7 +62,7 @@ const PetsList = ({ dataPets }) => {
             <PetItem>
               <PetDescriptionInfo>
                 <PetTitleInfo>Comments: </PetTitleInfo>
-                {comment}
+                {comments}
               </PetDescriptionInfo>
             </PetItem>
           </PetList>

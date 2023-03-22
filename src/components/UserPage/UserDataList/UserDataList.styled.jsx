@@ -104,7 +104,7 @@ export const UserInfoTitle = styled.p`
   margin-right: 10px;
   margin-bottom: 12px;
   font-family: ${p => p.theme.fonts.main};
-  font-weight: ${p => p.theme.fontWeights.fw600};
+  font-weight: ${p => p.theme.fontWeights.fw500};
   font-size: ${p => p.theme.fontSizes.fs12};
   line-height: 1.33;
   display: flex;
