@@ -38,6 +38,16 @@ const HeartIcon = styled(Heart)`
   }
 `;
 
+const HeartIconFav = styled(Heart)`
+  scale: 1;
+  fill: ${props => props.theme.colors.accent};
+  stroke: ${props => props.theme.colors.accent};
+  :hover,
+  :focus {
+    stroke: ${props => props.theme.colors.hoverAccent};
+  }
+`;
+
 const Like = styled('button')`
   content: '';
   position: absolute;
@@ -153,6 +163,7 @@ const style = {
   Loadmore,
   Delete,
   HeartIcon,
+  HeartIconFav,
 };
 
 export default style;

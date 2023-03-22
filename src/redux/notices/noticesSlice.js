@@ -4,14 +4,14 @@ import {
   addFavNotice,
   removeFavNotice,
   // addNotice,
-  // getFavorite,
+  getFavorites,
   // getMyNotices,
   // deleteNotice,
 } from './noticesOperations';
 
 const noticesInitialState = {
   items: [],
-  userFavorite: { userId: '', favorite: [] },
+  favorites: [],
   isLoading: false,
   error: null,
 };
@@ -21,7 +21,7 @@ const extraActions = [
   addFavNotice,
   removeFavNotice,
   // addNotice,
-  // getFavorite,
+  getFavorites,
   // getMyNotices,
   // deleteNotice,
 ];
@@ -33,22 +33,26 @@ const onFetchSuccessReducer = (state, action) => {
   state.error = null;
 };
 
+const onFetchFavoritesSuccessReducer = (state, action) => {
+  state.favorites = action.payload;
+  state.isLoading = false;
+  state.error = null;
+};
+
 const onAddFavNoticeReducer = (state, action) => {
   state.isLoading = false;
   state.error = false;
-  const newFavorite = state.userFavorite.favorite.includes(action.payload)
-    ? state.favorite
-    : [...state.userFavorite.favorite, action.payload];
-  state.userFavorite.favorite = newFavorite;
+  const newFavorite = state.favorites.includes(action.payload)
+    ? state.favorites
+    : [...state.favorites, action.payload];
+  state.favorites = newFavorite;
 };
 
 const onRemoveFavNoticeReducer = (state, action) => {
   state.isLoading = false;
   state.error = false;
-  const newFavorite = state.userFavorite.favorite.filter(
-    item => item !== action.payload,
-  );
-  state.userFavorite.favorite = newFavorite;
+  const newFavorite = state.favorites.filter(item => item !== action.payload);
+  state.favorites = newFavorite;
 };
 
 const onPendingReducer = state => {
@@ -66,10 +70,10 @@ const noticesSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(fetchNotices.fulfilled, onFetchSuccessReducer)
+      .addCase(getFavorites.fulfilled, onFetchFavoritesSuccessReducer)
       .addCase(addFavNotice.fulfilled, onAddFavNoticeReducer)
       .addCase(removeFavNotice.fulfilled, onRemoveFavNoticeReducer)
       .addMatcher(isAnyOf(...getActionsByType('pending')), onPendingReducer)
       .addMatcher(isAnyOf(...getActionsByType('rejected')), onRejectedReducer),
 });
-
 export const noticesReducer = noticesSlice.reducer;
