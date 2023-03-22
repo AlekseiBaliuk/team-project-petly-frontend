@@ -43,7 +43,7 @@ export const AvatarImg = styled.img`
 
 export const LabelEditPhoto = styled.button`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   line-height: 1.83;
   margin-left: auto;
   cursor: pointer;

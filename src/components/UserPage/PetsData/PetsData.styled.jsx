@@ -26,7 +26,7 @@ export const UserPetsTitle = styled.h2`
   font-family: ${p => p.theme.fonts.main};
   color: ${p => p.theme.colors.black};
   font-size: ${p => p.theme.fontSizes.m};
-  font-weight: ${p => p.theme.fontWeights.fw600};
+  font-weight: ${p => p.theme.fontWeights.fw500};
   line-height: 1.35;
   @media screen and (min-width: 768px) {
     font-size: 28px;

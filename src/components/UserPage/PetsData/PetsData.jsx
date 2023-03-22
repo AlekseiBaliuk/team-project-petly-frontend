@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+// import { getPetInfo } from 'redux/pets/petsOperations';
+// import { getLoading, getError, getPets } from 'redux/pets/petsSelectors';
 // import ModalAddPet from 'components/ModalAddPet/ModalAddPet';
 import { Loader } from 'components/Loader/Loader';
 import PetsList from 'components/UserPage/PetsList/PetsList';
@@ -13,12 +16,19 @@ import {
 } from './PetsData.styled';
 import { PetList } from 'components/UserPage/PetsList/PetsList.styled';
 
-export default function PetsData({ pets, setPets, petsData }) {
+const PetsData = ({ pets, setPets }) => {
+  // const isLoading = useSelector(getLoading);
+  // const error = useSelector(getError);
+  // const petsData = useSelector(getPets);
   // const isPets = Boolean(petsData.length);
   const isPets = false;
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  // const dispatch = useDispatch();
+  //
+  // useEffect(() => {
+  //   dispatch(getPetInfo());
+  // }, [dispatch]);
 
   return (
     <PetsWrapper>
@@ -29,14 +39,15 @@ export default function PetsData({ pets, setPets, petsData }) {
           <AddPetBtn onClick={() => setIsOpen(true)} />
         </PetBtnWrapper>
       </PetsTitleWrapper>
-      {/*{isOpen ? (*/}
-      {/*  <ModalAddsPetApp*/}
+      {/*{isOpen*/}
+      {/*  ? <ModalAddsPetApp*/}
       {/*    petsData={pets}*/}
       {/*    setPets={setPets}*/}
-      {/*    onOpenModal={}*/}
-      {/*    onCloseModal={}*/}
+      {/*    onOpenModal={isOpen}*/}
+      {/*    onCloseModal={() => setIsOpen(false)}*/}
       {/*  />*/}
-      {/*) : null}*/}
+      {/*  : null*/}
+      {/*}*/}
       {isPets ? (
         <PetList />
       ) : (
@@ -44,11 +55,12 @@ export default function PetsData({ pets, setPets, petsData }) {
           <p>No pets</p>
         </NonPetWrapper>
       )}
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <PetsList dataPets={pets} setDataPets={setPets} />
-      )}
+      {/*{isLoading*/}
+      {/*  ? <Loader />*/}
+      {/*  : <PetsList dataPets={pets} setDataPets={setPets} />*/}
+      {/*}*/}
     </PetsWrapper>
   );
-}
+};
+
+export default PetsData;

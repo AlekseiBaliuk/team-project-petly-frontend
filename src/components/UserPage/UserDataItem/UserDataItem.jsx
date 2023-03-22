@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Input,
@@ -8,9 +8,7 @@ import {
   PencilBtn,
   DeactivatedBtn,
 } from './UserDataItem.styled';
-// import { updateUserData } from '../../redux/users/operations';
-import { getUserData } from 'redux/user/userSelectors';
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { getUserData, updateUserData } from 'redux/user/userSelectors';
 
 const UserDataItem = ({
   typeInput,
@@ -22,8 +20,8 @@ const UserDataItem = ({
   min,
   max,
 }) => {
-  const user = useSelector(getUserData);
-  const dispatch = useDispatch();
+  // const user = useSelector(getUserData);
+  // const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(valueUser);
   const [error, setError] = useState(null);
@@ -59,7 +57,6 @@ const UserDataItem = ({
     }
     if (!validInput.test(editedValue)) {
       setError(`Invalid ${nameInput}`);
-      // Notify.warning(`Invalid ${nameInput}`);
     } else {
       setError(null);
 

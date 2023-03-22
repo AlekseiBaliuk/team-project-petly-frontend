@@ -60,7 +60,7 @@ const UserDataList = () => {
           )}
           <LabelEditPhoto type="button" onClick={onButtonClick}>
             <SVG src={editAvatar} />
-            Edit
+            Edit photo
           </LabelEditPhoto>
         </FormWrapper>
       </AvatarInfoWrapper>
@@ -118,7 +118,11 @@ const UserDataList = () => {
               max="2015-12-31"
             />
           ) : (
-            <UserDataItem typeInput="date" pattern={regExp.bdayRegexp} />
+            <UserDataItem
+              typeInput="date"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+            />
           )}
         </UserInfoItem>
 
@@ -127,12 +131,17 @@ const UserDataList = () => {
           {phone ? (
             <UserDataItem
               typeInput="phone"
+              nameInput="phone"
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
               pattern={regExp.bdayRegexp}
             />
           ) : (
-            <UserDataItem typeInput="phone" />
+            <UserDataItem
+              typeInput="phone"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+            />
           )}
         </UserInfoItem>
 

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+// import { getPetInfo, deletePet } from 'redux/pets/petsOperations';
 import {
   PetWrapper,
   PetAvatar,
@@ -8,52 +10,85 @@ import {
   PetDescriptionInfo,
   DeleteBtn,
 } from './PetsList.styled';
-// import Button from '@mui/material/Button';
-// import Dialog from '@mui/material/Dialog';
-// import DialogActions from '@mui/material/DialogActions';
-// import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const PetsList = ({ dataPets }) => {
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const [petId, setPetId] = useState('');
+
+  // const removePet = () => {
+  //   const action = deletePet(petId);
+  //   dispatch(action);
+  //   dispatch(getPetInfo());
+  // };
+
+  const handleClickOpen = id => {
+    setOpen(true);
+    setPetId(id);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const elements = dataPets.map(
     ({ name, date, breed, avatarUrl, comment, _id }) => {
       return (
         <PetWrapper key={_id}>
-          <PetAvatar src={avatarUrl} alt={name} width="150" height="150" />
+          <PetAvatar
+            src={avatarUrl.secure_url}
+            alt={name}
+            width="150"
+            height="150"
+          />
           <PetList>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>Pet name </PetTitleInfo> {name}
+                <PetTitleInfo>Name: </PetTitleInfo>
+                {name}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>Pet birth </PetTitleInfo>
+                <PetTitleInfo>Date of birth: </PetTitleInfo>
                 {date.split('-').reverse().join('.')}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>Pet breed </PetTitleInfo>
+                <PetTitleInfo>Breed: </PetTitleInfo>
                 {breed}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>Prt comment </PetTitleInfo>
+                <PetTitleInfo>Comments: </PetTitleInfo>
                 {comment}
               </PetDescriptionInfo>
             </PetItem>
           </PetList>
-          <DeleteBtn variant="outlined"></DeleteBtn>
-          {/*<Dialog open={open} aria-labelledby="alert-dialog-title">*/}
-          {/*  <DialogTitle id="alert-dialog-title">*/}
-          {/*    Yes*/}
-          {/*  </DialogTitle>*/}
-          {/*  <DialogActions>*/}
-          {/*    <Button style={{color: '#F59256',}}>No</Button>*/}
-          {/*    <Button autoFocus style={{color: '#F59256',}}>Yes</Button>*/}
-          {/*  </DialogActions>*/}
-          {/*</Dialog>*/}
+          <DeleteBtn variant="outlined" onClick={() => handleClickOpen(_id)} />
+          <Dialog open={open} aria-labelledby="alert-dialog-title">
+            <DialogTitle id="alert-dialog-title">
+              Are you sure you want to remove?
+            </DialogTitle>
+            <DialogActions>
+              <Button onClick={handleClose} style={{ color: '#F59256' }}>
+                No
+              </Button>
+              <Button
+                // onClick={removePet}
+                autoFocus
+                style={{ color: '#F59256' }}
+              >
+                Yes
+              </Button>
+            </DialogActions>
+          </Dialog>
         </PetWrapper>
       );
     },
