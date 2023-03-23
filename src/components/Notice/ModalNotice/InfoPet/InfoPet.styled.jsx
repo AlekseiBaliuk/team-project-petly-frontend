@@ -106,6 +106,7 @@ const Button = styled('button')`
   font-size: ${props => props.theme.fontSizes.fs16};
   line-height: 1.33;
   letter-spacing: 0.04em;
+  background: ${props => props.theme.colors.white};
   color: ${props => props.theme.colors.black};
   cursor: pointer;
   :hover,
@@ -113,7 +114,7 @@ const Button = styled('button')`
     background: ${props => props.theme.colors.accent};
     color: ${props => props.theme.colors.white};
   }
-  background: ${props => props.theme.colors.white};
+
   @media ${device.tablet} {
     width: 160px;
   }

@@ -1,7 +1,7 @@
 import moment from 'moment';
 import style from './InfoPet.styled';
 
-export const InfoPet = ({ notice }) => {
+export const InfoPet = ({ notice, toggle, favorite }) => {
   const { breed, location, birthday, avatarURL, name, sex, price, comments } =
     notice;
   const {
@@ -72,8 +72,8 @@ export const InfoPet = ({ notice }) => {
       </Text>
 
       <Link href="tel:+380971234567">Contact</Link>
-      <Button type="button">
-        Add to
+      <Button type="button" onClick={toggle}>
+        {favorite ? 'Remove from' : 'Add to'}
         <HeartIcon />
       </Button>
     </Wrapper>
