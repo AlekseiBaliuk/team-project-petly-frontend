@@ -6,7 +6,7 @@ import {
   // addNotice,
   getFavorites,
   // getMyNotices,
-  // deleteNotice,
+  deleteUserPet,
 } from './noticesOperations';
 
 const noticesInitialState = {
@@ -23,7 +23,7 @@ const extraActions = [
   // addNotice,
   getFavorites,
   // getMyNotices,
-  // deleteNotice,
+  deleteUserPet,
 ];
 const getActionsByType = type => extraActions.map(action => action[type]);
 
@@ -55,6 +55,11 @@ const onRemoveFavNoticeReducer = (state, action) => {
   state.favorites = newFavorite;
 };
 
+const onDeleteUserPetReducer = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+};
+
 const onPendingReducer = state => {
   state.isLoading = true;
   state.error = null;
@@ -73,6 +78,7 @@ const noticesSlice = createSlice({
       .addCase(getFavorites.fulfilled, onFetchFavoritesSuccessReducer)
       .addCase(addFavNotice.fulfilled, onAddFavNoticeReducer)
       .addCase(removeFavNotice.fulfilled, onRemoveFavNoticeReducer)
+      .addCase(deleteUserPet.fulfilled, onDeleteUserPetReducer)
       .addMatcher(isAnyOf(...getActionsByType('pending')), onPendingReducer)
       .addMatcher(isAnyOf(...getActionsByType('rejected')), onRejectedReducer),
 });

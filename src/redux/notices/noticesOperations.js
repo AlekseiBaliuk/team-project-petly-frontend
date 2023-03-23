@@ -56,3 +56,17 @@ export const removeFavNotice = createAsyncThunk(
     }
   },
 );
+
+export const deleteUserPet = createAsyncThunk(
+  '/notices/deletePet',
+  async (petId, thunkAPI) => {
+    try {
+      const response = await axios.delete(
+        `https://team-project-petly-backend.onrender.com/api/notices/${petId}`,
+      );
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);

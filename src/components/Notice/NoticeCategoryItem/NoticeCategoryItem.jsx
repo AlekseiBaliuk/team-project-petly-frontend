@@ -23,7 +23,8 @@ const {
 } = style;
 
 export const NoticeCategoryItem = ({ fetch }) => {
-  const { title, breed, location, birthday, avatarURL, _id, favorite } = fetch;
+  const { title, breed, location, birthday, avatarURL, _id, favorite, owner } =
+    fetch;
   const { user } = useAuth();
   const dispatch = useDispatch();
   const ref = useRef(user);
@@ -85,8 +86,15 @@ export const NoticeCategoryItem = ({ fetch }) => {
       <Loadmore onClick={toggleModal} type="button">
         Learn more
       </Loadmore>
-      <Delete>Delete</Delete>
-      {showModal && <Modal toggle={toggleModal} noticeById={fetch} />}
+      {ref.current.user.id === owner && <Delete>Delete</Delete>}
+      {showModal && (
+        <Modal
+          toggleFav={handleFavoriteToggle}
+          toggle={toggleModal}
+          noticeById={fetch}
+          fav={addedToFav}
+        />
+      )}
     </Card>
   );
 };
