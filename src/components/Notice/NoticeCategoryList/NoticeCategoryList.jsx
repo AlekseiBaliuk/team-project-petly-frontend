@@ -4,7 +4,7 @@ import selectors from 'redux/notices/noticesSelectors';
 import { fetchNotices, getFavorites } from 'redux/notices/noticesOperations';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import { Grid } from './NoticeCategoryList.styled';
-import { Loader } from 'components/Loader/Loader';
+// import { Loader } from 'components/Loader/Loader';
 
 const { selectNotices, selectLoadingStatus, selectErrorMessage } = selectors;
 
@@ -25,7 +25,7 @@ export const NoticeCategoryList = () => {
   return (
     <>
       {error && <p>Not found</p>}
-      {isLoading && <Loader />}
+      {/* {isLoading && <Loader />} */}
       <Grid>
         {noticesList.length > 0 &&
           noticesList.map(notice => {
