@@ -296,6 +296,7 @@ export const Textarea = styled.textarea`
   border-radius: 20px;
   border: none;
   height: 40px;
+  resize: none;
 
   @media ${device.tablet} {
     height: 113px;

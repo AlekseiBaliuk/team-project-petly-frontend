@@ -21,11 +21,18 @@ import { ReactComponent as Close } from 'staticImages/Close.svg';
 import { ReactComponent as Plus } from 'staticImages/icon-plus.svg';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { SexLists } from './SexList';
+import { useFormik } from 'formik';
+// import * as yup from 'yup';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
 
-export const SecondStep = ({ adminModal, isBtnCategory }) => {
+export const SecondStep = ({
+  adminModal,
+  isBtnCategory,
+  setModalData,
+  modalData,
+}) => {
   useEffect(() => {
     disableBodyScroll(body);
     window.addEventListener('keydown', handleKeyDown);
@@ -47,9 +54,41 @@ export const SecondStep = ({ adminModal, isBtnCategory }) => {
     }
   };
 
+  // const validationSchema = yup.object().shape({
+  //   sex: yup.string().required('Required'),
+  //   location: yup
+  //     .string()
+  //     .min(2, 'Too Short!')
+  //     .max(28, 'Too Long!')
+  //     .required('Required'),
+  //   ptice: yup
+  //     .string()
+  //     .min(2, 'Too Short!')
+  //     .max(16, 'Too Long!')
+  //     .required('Required'),
+  //   urlImg: yup.string().url().nullable().required('Required'),
+  //   comments: yup
+  //     .string()
+  //     .min(2, 'Too Short!')
+  //     .max(24, 'Too Long!')
+  //     .required('Required'),
+  // });
+
+  const formik = useFormik({
+    initialValues: modalData,
+    // validationSchema,
+    onSubmit: values => {
+      setModalData({
+        ...modalData,
+        ...values,
+      });
+      adminModal('none', true);
+    },
+  });
+
   return createPortal(
     <Wrapper onClick={handleModalClick}>
-      <Form id="form">
+      <Form onSubmit={formik.handleSubmit}>
         <BtnClose type="button" onClick={() => adminModal('none', true)}>
           <Close />
         </BtnClose>
@@ -59,7 +98,7 @@ export const SecondStep = ({ adminModal, isBtnCategory }) => {
           consectetur
         </Subtitle>
         <TitlePoint>The sex:</TitlePoint>
-        <SexLists />
+        <SexLists formik={formik} />
         <LabelList>
           <li>
             <LabelInput
@@ -67,6 +106,7 @@ export const SecondStep = ({ adminModal, isBtnCategory }) => {
               name={'location'}
               type={'text'}
               placeholder={'Type location'}
+              formik={formik}
             />
           </li>
           {isBtnCategory === 'sell' && (
@@ -76,6 +116,7 @@ export const SecondStep = ({ adminModal, isBtnCategory }) => {
                 name={'price'}
                 type={'text'}
                 placeholder={'Type price'}
+                formik={formik}
               />
             </li>
           )}
@@ -85,7 +126,12 @@ export const SecondStep = ({ adminModal, isBtnCategory }) => {
                 Load the pet’s image:
                 <AddDiv>
                   <Plus />
-                  <AddInput type="file"></AddInput>
+                  <AddInput
+                    type="file"
+                    name="urlImg"
+                    onChange={formik.handleChange}
+                    value={formik.values.name}
+                  ></AddInput>
                 </AddDiv>
               </Label>
             </ItemWrapper>
@@ -93,15 +139,18 @@ export const SecondStep = ({ adminModal, isBtnCategory }) => {
           <li>
             <ItemWrapper>
               <Label>Comments</Label>
-              <Textarea placeholder="Type comments" />
+              <Textarea
+                placeholder="Type comments"
+                name="comments"
+                onChange={formik.handleChange}
+                value={formik.values.name}
+              />
             </ItemWrapper>
           </li>
         </LabelList>
         <BtnStepList>
           <li>
-            <BtnStep type="submit" onClick={() => adminModal('none', true)}>
-              Done
-            </BtnStep>
+            <BtnStep type="submit">Done</BtnStep>
           </li>
           <li>
             <BtnStep type="button" onClick={() => adminModal('step1')}>

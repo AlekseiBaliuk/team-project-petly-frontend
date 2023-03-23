@@ -15,6 +15,19 @@ const NoticesPage = () => {
   const [isModalShow, setIsModalShow] = useState('none');
   const [isBtnCategory, setBtnCategory] = useState('none');
   const [isShown, setIsShown] = useState(false);
+  const initialValuesModalData = {
+    category: '',
+    title: '',
+    namePet: '',
+    dateOfBirth: '',
+    breed: '',
+    sex: '',
+    location: '',
+    price: '',
+    urlImg: '',
+    comments: '',
+  };
+  const [modalData, setModalData] = useState(initialValuesModalData);
 
   const adminModal = (type, value) => {
     setIsShown(!value);
@@ -40,12 +53,16 @@ const NoticesPage = () => {
                 adminModal={adminModal}
                 findCategoryNotice={findCategoryNotice}
                 isBtnCategory={isBtnCategory}
+                setModalData={setModalData}
+                modalData={modalData}
               />
             )}
             {isModalShow === 'step2' && (
               <SecondStep
                 adminModal={adminModal}
                 isBtnCategory={isBtnCategory}
+                setModalData={setModalData}
+                modalData={modalData}
               />
             )}
             <NoticesCategoriesNav />
