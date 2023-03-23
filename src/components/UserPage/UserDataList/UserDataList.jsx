@@ -170,3 +170,9 @@ const UserDataList = () => {
 };
 
 export default UserDataList;
+
+// const { userData } = useUser();
+// console.log(userData);
+// const { _id, name, email, location, phone, birthday, avatarUrl } =
+//   dataUser.user;
+// const { _id, name, email, location, phone, birthday, avatarUrl } = userData;
