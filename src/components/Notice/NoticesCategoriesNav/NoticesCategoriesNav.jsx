@@ -3,8 +3,11 @@ import {
   Link,
   CategoryItem,
 } from './NoticesCategoriesNav.styled';
+import { useAuth } from 'hooks/useAuth';
 
 export const NoticesCategoriesNav = () => {
+  const { isLoggedIn } = useAuth();
+
   return (
     <CategoriesList>
       <CategoryItem>
@@ -19,13 +22,17 @@ export const NoticesCategoriesNav = () => {
         <Link to="/notices/sell">sell</Link>
       </CategoryItem>
 
-      <CategoryItem>
-        <Link to="/notices/favorite">favorite ads</Link>
-      </CategoryItem>
+      {isLoggedIn && (
+        <CategoryItem>
+          <Link to="/notices/favorite">favorite ads</Link>
+        </CategoryItem>
+      )}
 
-      <CategoryItem>
-        <Link to="/notices/own">my ads</Link>
-      </CategoryItem>
+      {isLoggedIn && (
+        <CategoryItem>
+          <Link to="/notices/own">my ads</Link>
+        </CategoryItem>
+      )}
     </CategoriesList>
   );
 };

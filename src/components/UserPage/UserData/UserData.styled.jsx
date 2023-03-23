@@ -6,7 +6,7 @@ export const UserDataTitle = styled.h2`
   font-family: ${p => p.theme.fonts.main};
   color: ${p => p.theme.colors.black};
   font-size: ${p => p.theme.fontSizes.fs20};
-  font-weight: ${p => p.theme.fontWeights.fw600};
+  font-weight: ${p => p.theme.fontWeights.fw500};
   line-height: 1.35;
   margin-bottom: 20px;
   margin-left: 20px;

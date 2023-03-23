@@ -8,6 +8,9 @@ import SharedLayout from 'components/SharedLayout/SharedLayout';
 import { Loader } from 'components/Loader/Loader';
 
 import './App.css';
+import { useDispatch } from 'react-redux';
+import { useAuth } from 'hooks/useAuth';
+import { refreshUser } from 'redux/auth/authOperations';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -20,17 +23,14 @@ const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
 const UserPage = lazy(() => import('pages/UserPage/UserPage'));
 
 function App() {
-  // TODO remove after actual loading state will be added(also hooks in imports should be removed as well)
-  const [isPageRefreshing, setIsPageRefreshing] = useState(true);
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsPageRefreshing(false);
-    }, 1500);
-  }, [setIsPageRefreshing]);
-  // ----
+    dispatch(refreshUser());
+  }, [dispatch]);
 
-  return isPageRefreshing ? (
+  return isRefreshing ? (
     <Loader />
   ) : (
     <>

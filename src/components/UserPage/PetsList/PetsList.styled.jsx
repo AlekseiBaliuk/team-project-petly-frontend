@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import DeleteIcon from '@mui/icons-material/Delete';
+import deleteUserPet from 'staticImages/userPage/deleteUserPet.svg';
 
 export const PetWrapper = styled.li`
   position: relative;
@@ -60,7 +60,7 @@ export const DeleteBtn = styled.button`
   top: 274px;
   margin-left: 200px;
   cursor: pointer;
-  background-image: url(${DeleteIcon});
+  background-image: url(${deleteUserPet});
   background-color: inherit;
   border: none;
   width: 20px;

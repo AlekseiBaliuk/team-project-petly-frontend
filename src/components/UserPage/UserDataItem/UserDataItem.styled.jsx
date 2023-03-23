@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import EditIcon from '@mui/icons-material/Edit';
-import CheckIcon from '@mui/icons-material/Check';
+import pencil from 'staticImages/userPage/pencil.svg';
+import pencilDeactivated from 'staticImages/userPage/pencilDeactivated.svg';
+import btnOk from 'staticImages/userPage/btnOk.svg';
 
 export const InputWrapper = styled.form`
   display: flex;
@@ -29,9 +30,9 @@ export const Input = styled.input`
   &:disabled {
     border: ${p => p.theme.borders.none};
     background-color: inherit;
-    /* & ~ button {
-      background-image: url(${EditIcon});
-    } */
+    & ~ button {
+      background-image: url(${pencil});
+    }
   }
   @media screen and (min-width: 768px) {
     width: 60%;
@@ -44,7 +45,7 @@ export const Input = styled.input`
 
 export const UpdateBtn = styled.button`
   cursor: pointer;
-  background-image: url(${CheckIcon});
+  background-image: url(${btnOk});
   background-repeat: no-repeat;
   background-position: center;
   background-color: ${p => p.theme.colors.background};
@@ -60,9 +61,9 @@ export const UpdateBtn = styled.button`
 `;
 
 export const PencilBtn = styled(UpdateBtn)`
-  background-image: url(${EditIcon});
+  background-image: url(${pencil});
 `;
 
 export const DeactivatedBtn = styled(UpdateBtn)`
-  background-image: url(${EditIcon});
+  background-image: url(${pencilDeactivated});
 `;
