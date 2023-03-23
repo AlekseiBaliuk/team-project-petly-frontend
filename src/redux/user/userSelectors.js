@@ -1,5 +1,3 @@
-export const getUserData = ({ user }) => user;
-
 export const selectUserData = state => state.user.user;
 
 export const selectUserPets = state => state.user.userPets;

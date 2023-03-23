@@ -64,26 +64,16 @@ export const removeUserPet = createAsyncThunk(
   },
 );
 
-export const updateUserAvatar = createAsyncThunk(
-  'user/updateUserAvatar',
-  async (credentials, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.post('/users/auth/changeData', credentials);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  },
-);
-
 // export const updateUserAvatar = createAsyncThunk(
-//   'users/updateAvatar',
-//   async (userAvatar, thunkAPI) => {
+//   'user/updateUserAvatar',
+//   async (credentials, { rejectWithValue }) => {
 //     try {
-//       const { data } = await axios.patch('/user/avatar', userAvatar);
+//       const { data } = await axios.post('/users/auth/changeData', credentials);
+//       console.log({data})
 //       return data;
 //     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
+//       console.log({error})
+//       return rejectWithValue(error.message);
 //     }
-//   }
+//   },
 // );

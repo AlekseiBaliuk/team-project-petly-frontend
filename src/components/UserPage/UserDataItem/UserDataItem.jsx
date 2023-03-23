@@ -35,7 +35,6 @@ const UserDataItem = ({
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log({ editedValue });
     if (!editedValue) {
       setActiveBtn(true);
       setIsEditing(false);

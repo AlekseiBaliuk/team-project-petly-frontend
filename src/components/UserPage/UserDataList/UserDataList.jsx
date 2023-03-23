@@ -10,36 +10,34 @@ import {
   InputEditPhoto,
   SVG,
 } from './UserDataList.styled';
-// import { useSelector, useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-
-import { getUserData } from 'redux/user/userSelectors';
+import { useDispatch } from 'react-redux';
+import { useUser } from 'hooks/useUser';
 import UserDataItem from 'components/UserPage/UserDataItem/UserDataItem';
-// import { updateUserAvatar } from 'redux/user/userOperations';
+import { updateUserData } from 'redux/user/userOperations';
 import editAvatar from 'staticImages/userPage/editAvatar.svg';
-import { regExp } from '../../../helpers/regExp';
+import { regExp } from 'helpers/regExp';
 
 const UserDataList = () => {
-  const dataUser = useSelector(getUserData);
-  const { _id, name, email, location, phone, birthday, avatarUrl } =
-    dataUser?.user;
-  console.log({ dataUser });
+  const {
+    userData: { id, name, email, location, phone, birthday, avatarURL },
+  } = useUser();
   const [activeBtn, setActiveBtn] = useState(true);
   const updateBtn = useRef(null);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [ava, setAva] = useState(null);
   const onButtonClick = e => {
     e.preventDefault();
     updateBtn.current.click();
   };
+
   const handleChange = e => {
     e.preventDefault();
     const av = URL.createObjectURL(e.target.files[0]);
     const data = new FormData();
-    data.append('userAvatar', e.target.files[0]);
+    data.append('image', e.target.files[0]);
     setAva(av);
-    // dispatch(updateUserAvatar(data));
+    dispatch(updateUserData(data));
   };
 
   return (
@@ -54,8 +52,8 @@ const UserDataList = () => {
             onChange={handleChange}
             ref={updateBtn}
           />
-          {avatarUrl ? (
-            <AvatarImg src={avatarUrl} alt="uploaded" />
+          {avatarURL ? (
+            <AvatarImg src={avatarURL} alt="uploaded" />
           ) : (
             <AvatarImg src={ava} />
           )}
@@ -70,7 +68,7 @@ const UserDataList = () => {
           <UserInfoTitle>Name:</UserInfoTitle>
           {name ? (
             <UserDataItem
-              userId={_id}
+              userId={id}
               typeInput="name"
               nameInput="name"
               valueUser={name}
@@ -172,9 +170,3 @@ const UserDataList = () => {
 };
 
 export default UserDataList;
-
-// const { userData } = useUser();
-// console.log(userData);
-// const { _id, name, email, location, phone, birthday, avatarUrl } =
-//   dataUser.user;
-// const { _id, name, email, location, phone, birthday, avatarUrl } = userData;
