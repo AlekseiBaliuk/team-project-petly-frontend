@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import style from './NoticeCategoryItem.styled';
@@ -9,7 +9,6 @@ import {
   removeFavNotice,
   deleteUserPet,
 } from 'redux/notices/noticesOperations';
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { useAuth } from 'hooks/useAuth';
 
 const {
@@ -27,19 +26,17 @@ const {
   HeartIconFav,
 } = style;
 
-export const NoticeCategoryItem = ({ fetch }) => {
-  const { title, breed, location, birthday, avatarURL, _id, favorite, owner } =
-    fetch;
+export const NoticeCategoryItem = ({ fetch, fav }) => {
+  const { title, breed, location, birthday, avatarURL, _id } = fetch;
 
-  const { user } = useAuth();
+  const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
-  const ref = useRef(user);
 
   const date = moment(birthday, 'DD.MM.YYYY').fromNow(true);
 
   const [showModal, setShowModal] = useState(false);
   const [addedToFav, setAddedToFav] = useState(() => {
-    return favorite.includes(ref.current.user.id);
+    return fav ? true : false;
   });
 
   const handleDelete = () => {
@@ -52,7 +49,7 @@ export const NoticeCategoryItem = ({ fetch }) => {
   };
 
   const handleFavoriteToggle = () => {
-    if (!selectIsLoggedIn) {
+    if (!isLoggedIn) {
       return;
     }
     const removeFavorite = async () => {
@@ -101,9 +98,9 @@ export const NoticeCategoryItem = ({ fetch }) => {
       <Loadmore onClick={toggleModal} type="button">
         Learn more
       </Loadmore>
-      {ref.current.user.id === owner && (
-        <Delete onClick={handleDelete}>Delete</Delete>
-      )}
+
+      <Delete onClick={handleDelete}>Delete</Delete>
+
       {showModal && (
         <Modal
           toggleFav={() => handleFavoriteToggle()}

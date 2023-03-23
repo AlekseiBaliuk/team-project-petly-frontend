@@ -73,8 +73,8 @@ const Image = styled('img')`
 `;
 
 const ItemTitle = styled('h3')`
-  align-items: center;
   margin-bottom: 20px;
+  min-height: 80px;
   padding: 0 20px;
   word-break: break-word;
   font-weight: ${props => props.theme.fontWeights.fw700};
@@ -111,7 +111,7 @@ const Span = styled('span')`
 
 const Loadmore = styled('button')`
   display: block;
-  margin: 0 auto 12px;
+  margin: 0 auto;
   width: 248px;
   height: 38px;
   border: ${props => props.theme.borders.main};
@@ -134,7 +134,7 @@ const Delete = styled('button')`
   display: block;
   width: 248px;
   height: 38px;
-  margin: 0 auto;
+  margin: 12px auto 0;
   border: ${props => props.theme.borders.main};
   border-radius: 40px;
   font-weight: ${props => props.theme.fontWeights.fw500};
