@@ -22,7 +22,8 @@ import { regExp } from '../../../helpers/regExp';
 const UserDataList = () => {
   const dataUser = useSelector(getUserData);
   const { _id, name, email, location, phone, birthday, avatarUrl } =
-    dataUser.user;
+    dataUser?.user;
+  console.log({ dataUser });
   const [activeBtn, setActiveBtn] = useState(true);
   const updateBtn = useRef(null);
   // const dispatch = useDispatch();
@@ -110,7 +111,7 @@ const UserDataList = () => {
             <UserDataItem
               typeInput="date"
               nameInput="birthday"
-              valueUser={birthday.split('-').reverse().join('.')}
+              valueUser={birthday}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
               pattern={regExp.bdayRegexp}
@@ -132,6 +133,7 @@ const UserDataList = () => {
             <UserDataItem
               typeInput="phone"
               nameInput="phone"
+              valueUser={phone}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
               pattern={regExp.bdayRegexp}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { updateUserData } from 'redux/user/userOperations';
+import { useDispatch } from 'react-redux';
 
 import {
   Input,
@@ -8,7 +9,6 @@ import {
   PencilBtn,
   DeactivatedBtn,
 } from './UserDataItem.styled';
-// import { getUserData, updateUserData } from 'redux/user/userSelectors';
 
 const UserDataItem = ({
   typeInput,
@@ -16,16 +16,13 @@ const UserDataItem = ({
   valueUser,
   activeBtn,
   setActiveBtn,
-  paramValid,
+  // paramValid,
   min,
   max,
 }) => {
-  // const user = useSelector(getUserData);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(valueUser);
-  const [error, setError] = useState(null);
-
   const handleEdit = e => {
     e.preventDefault();
     setIsEditing(true);
@@ -38,36 +35,30 @@ const UserDataItem = ({
 
   const handleSubmit = e => {
     e.preventDefault();
-
+    console.log({ editedValue });
     if (!editedValue) {
       setActiveBtn(true);
       setIsEditing(false);
       return;
     }
-    const validInput = paramValid;
 
     if (nameInput === 'birthday') {
       setActiveBtn(true);
       setIsEditing(false);
-      // dispatch(
-      //   updateUserData({
-      //     [nameInput]: editedValue,
-      //   })
-      // );
+      dispatch(
+        updateUserData({
+          [nameInput]: editedValue.split('-').reverse().join('.'),
+        }),
+      );
     }
-    if (!validInput.test(editedValue)) {
-      setError(`Invalid ${nameInput}`);
-    } else {
-      setError(null);
 
-      setActiveBtn(true);
-      setIsEditing(false);
-      // dispatch(
-      //   updateUserData({
-      //     [nameInput]: editedValue,
-      //   })
-      // );
-    }
+    setActiveBtn(true);
+    setIsEditing(false);
+    dispatch(
+      updateUserData({
+        [nameInput]: editedValue,
+      }),
+    );
   };
 
   return (

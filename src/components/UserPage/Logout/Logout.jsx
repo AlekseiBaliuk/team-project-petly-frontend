@@ -39,7 +39,9 @@ const Logout = () => {
             No
           </Button>
           <Button
-            onClick={() => dispatch(logOut())}
+            onClick={() => {
+              dispatch(logOut());
+            }}
             autoFocus
             style={{ color: '#F59256' }}
           >
