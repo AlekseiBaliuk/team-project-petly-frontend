@@ -30,8 +30,6 @@ export const NoticeCategoryItem = ({ fetch }) => {
 
   const date = moment(birthday, 'DD.MM.YYYY').fromNow(true);
 
-  console.log(ref.current.user.id);
-
   const [showModal, setShowModal] = useState(false);
   const [addedToFav, setAddedToFav] = useState(() => {
     return favorite.includes(ref.current.user.id);
