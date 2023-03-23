@@ -118,3 +118,40 @@ export const CardLink = styled.a`
     line-height: 19px;
   }
 `;
+export const Time = styled.span`
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: ${(p) => p.theme.fontWeights.fw500};
+  font-size: ${(p) => p.theme.fontSizes.fs16};
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: ${(p) => p.theme.colors.black};
+   @media ${device.mobile} and (max-width: 767px) {
+    font-size: ${(p) => p.theme.fontSizes.fs14};
+    line-height: 19px;
+  }
+  @media ${device.tablet} and (max-width: 1279px) {
+    font-size: ${(p) => p.theme.fontSizes.fs12};
+    line-height: 16px;
+  }
+`;
+
+export const Text = styled.p`
+   font-family: "Manrope";
+  font-style: normal;
+  font-weight: ${(p) => p.theme.fontWeights.fw500};
+  font-size: ${(p) => p.theme.fontSizes.fs16};
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: ${(p) => p.theme.colors.black};
+   @media ${device.mobile} and (max-width: 767px) {
+    font-size: ${(p) => p.theme.fontSizes.fs14};
+    line-height: 19px;
+  }
+  @media ${device.tablet} and (max-width: 1279px) {
+    font-size: ${(p) => p.theme.fontSizes.fs12};
+    line-height: 16px;
+  }
+`;

@@ -9,6 +9,8 @@ import {
   CardLink,
   CardList,
   TitleLink,
+  Time,
+  Text,
 } from "./OurFriendsCard.styled";
 const OurFriendsCard = ({ data }) => {
   const { title, url, addressUrl, imageUrl, address, workDays, phone, email } =
@@ -66,15 +68,30 @@ const OurFriendsCard = ({ data }) => {
                 color: workDays && isHoveringTime && "#f59256",
               }}
             >
-              Time: <br />
-              {workDays && (workDays[0].from || workDays[6].from)
-                ? workDays[0].from || workDays[6].from
-                : "--------"}
-              -
-              {workDays && (workDays[0].to || workDays[6].to)
-                ? workDays[0].to || workDays[6].to
-                : "--------"}
-              {isHoveringTime && <TimeContainer workDays={workDays} />}
+              {workDays === null || workDays === undefined ? (
+                <>
+                  <Text>Time: </Text>
+                  <Text>------------</Text>
+                </>
+              ) : (
+                <>
+                  {' '}
+                  {workDays[0]?.isOpen ? (
+                    <>
+                      <Text>Time:</Text>
+                      <Time>
+                        {workDays[0].from}-{workDays[0].to}
+                      </Time>
+                    </>
+                  ) : (
+                    <>
+                      <Text>Time:</Text>
+                      <Time>Closed</Time>
+                    </>
+                  )}
+                  {isHoveringTime && <TimeContainer workDays={workDays} />}
+                </>
+              )}
             </CardLink>
           </CardItem>
           <CardItem>
