@@ -15,6 +15,7 @@ const NoticesPage = () => {
   const [isModalShow, setIsModalShow] = useState('none');
   const [isBtnCategory, setBtnCategory] = useState('none');
   const [isShown, setIsShown] = useState(false);
+  const [filter, setFilter] = useState('');
   const initialValuesModalData = {
     category: '',
     title: '',
@@ -43,7 +44,7 @@ const NoticesPage = () => {
       <section>
         <Container>
           <PageTitle>Find your favorite pet</PageTitle>
-          <Search />
+          <Search sendSearch={setFilter} />
           <PetSearchNav>
             {!isShown && (
               <AddNoticeButton openModal={() => adminModal('step1', false)} />
@@ -67,7 +68,7 @@ const NoticesPage = () => {
             )}
             <NoticesCategoriesNav />
           </PetSearchNav>
-          <NoticeCategoryList />
+          <NoticeCategoryList search={filter} />
         </Container>
       </section>
     </Main>
