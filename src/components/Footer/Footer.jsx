@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Container } from 'components/Container/Container.styled';
 import { FooterModal } from './FooterModal/FooterModal';
-import Button from '@mui/material/Button';
+import PetsIcon from '@mui/icons-material/Pets';
+import * as SC from './Footer.styled';
 
 export const Footer = () => {
   const [open, setOpen] = useState(false);
@@ -10,8 +11,12 @@ export const Footer = () => {
 
   return (
     <footer>
-      <Container>
-        <Button onClick={handleOpen}>Team 9</Button>
+      <Container style={{ paddingTop: '10px', paddingBottom: '10px' }}>
+        <SC.Button onClick={handleOpen} sx={{ textAlign: 'center' }}>
+          <PetsIcon />
+          <SC.ButtonText>Team 9</SC.ButtonText>
+          <PetsIcon />
+        </SC.Button>
         <FooterModal open={open} handleClose={handleClose} />
       </Container>
     </footer>
