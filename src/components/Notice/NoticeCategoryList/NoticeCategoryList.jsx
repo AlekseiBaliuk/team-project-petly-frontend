@@ -10,7 +10,7 @@ const { selectNotices, selectLoadingStatus, selectErrorMessage } = selectors;
 
 export const NoticeCategoryList = () => {
   const noticesList = useSelector(selectNotices);
-  // const isLoading = useSelector(selectLoadingStatus);
+  const isLoading = useSelector(selectLoadingStatus);
   const error = useSelector(selectErrorMessage);
   const dispatch = useDispatch();
 
