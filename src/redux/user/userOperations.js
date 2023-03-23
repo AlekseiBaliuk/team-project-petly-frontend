@@ -69,21 +69,11 @@ export const updateUserAvatar = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/auth/changeData', credentials);
+      console.log({ data });
       return data;
     } catch (error) {
+      console.log({ error });
       return rejectWithValue(error.message);
     }
   },
 );
-
-// export const updateUserAvatar = createAsyncThunk(
-//   'users/updateAvatar',
-//   async (userAvatar, thunkAPI) => {
-//     try {
-//       const { data } = await axios.patch('/user/avatar', userAvatar);
-//       return data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
