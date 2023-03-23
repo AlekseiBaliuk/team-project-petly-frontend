@@ -4,15 +4,21 @@ import selectors from 'redux/notices/noticesSelectors';
 import { fetchNotices, getFavorites } from 'redux/notices/noticesOperations';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import { Grid } from './NoticeCategoryList.styled';
+import { useAuth } from 'hooks/useAuth';
 // import { Loader } from 'components/Loader/Loader';
 
-const { selectNotices, selectLoadingStatus, selectErrorMessage } = selectors;
+const {
+  selectNotices,
+  // selectLoadingStatus,
+  // selectErrorMessage,
+} = selectors;
 
 export const NoticeCategoryList = () => {
   const noticesList = useSelector(selectNotices);
-  const isLoading = useSelector(selectLoadingStatus);
-  const error = useSelector(selectErrorMessage);
+  // const isLoading = useSelector(selectLoadingStatus);
+  // const error = useSelector(selectErrorMessage);
   const dispatch = useDispatch();
+  const { user, isLoggedIn } = useAuth();
 
   useEffect(() => {
     const fetch = async () => {
@@ -22,14 +28,24 @@ export const NoticeCategoryList = () => {
     fetch();
   }, [dispatch]);
 
+  let isFavorite = false;
+
   return (
     <>
-      {error && <p>Not found</p>}
+      {/* {error && <p>Not found</p>} */}
       {/* {isLoading && <Loader />} */}
       <Grid>
         {noticesList.length > 0 &&
           noticesList.map(notice => {
-            return <NoticeCategoryItem key={notice._id} fetch={notice} />;
+            isFavorite = isLoggedIn && notice.favorite.includes(user.id);
+
+            return (
+              <NoticeCategoryItem
+                key={notice._id}
+                fetch={notice}
+                fav={isFavorite}
+              />
+            );
           })}
       </Grid>
     </>

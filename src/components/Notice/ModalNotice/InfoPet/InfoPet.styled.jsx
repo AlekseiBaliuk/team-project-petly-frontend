@@ -57,7 +57,7 @@ const Item = styled('li')`
   font-size: ${props => props.theme.fontSizes.fs14};
   line-height: 1.375;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 3fr;
   :not(:last-child) {
     padding-bottom: 8px;
   }
@@ -109,8 +109,7 @@ const Button = styled('button')`
   background: ${props => props.theme.colors.white};
   color: ${props => props.theme.colors.black};
   cursor: pointer;
-  :hover,
-  :focus {
+  :hover {
     background: ${props => props.theme.colors.accent};
     color: ${props => props.theme.colors.white};
   }
