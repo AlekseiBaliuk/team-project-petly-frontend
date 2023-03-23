@@ -3,7 +3,7 @@ import { ReactComponent as Heart } from 'staticImages/Heart.svg';
 
 const Card = styled('li')`
   position: relative;
-  width: 280px;
+  width: 290px;
   padding-bottom: 32px;
   border-radius: 0px 0px 20px 20px;
   background: ${props => props.theme.colors.white};
@@ -111,8 +111,8 @@ const Span = styled('span')`
 
 const Loadmore = styled('button')`
   display: block;
-  margin: 0 auto;
-  width: 248px;
+  margin-bottom: 10px;
+  width: 250px;
   height: 38px;
   border: ${props => props.theme.borders.main};
   border-radius: 40px;
@@ -132,9 +132,9 @@ const Loadmore = styled('button')`
 
 const Delete = styled('button')`
   display: block;
-  width: 248px;
+  width: 250px;
   height: 38px;
-  margin: 12px auto 0;
+
   border: ${props => props.theme.borders.main};
   border-radius: 40px;
   font-weight: ${props => props.theme.fontWeights.fw500};
@@ -151,6 +151,11 @@ const Delete = styled('button')`
   background: ${props => props.theme.colors.white};
 `;
 
+const ButtonWrap = styled('div')`
+  height: 90px;
+  margin-left: 20px;
+`;
+
 const style = {
   Image,
   Card,
@@ -164,6 +169,7 @@ const style = {
   Delete,
   HeartIcon,
   HeartIconFav,
+  ButtonWrap,
 };
 
 export default style;

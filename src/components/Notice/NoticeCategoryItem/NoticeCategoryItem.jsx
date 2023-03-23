@@ -24,20 +24,24 @@ const {
   Delete,
   HeartIcon,
   HeartIconFav,
+  ButtonWrap,
 } = style;
 
-export const NoticeCategoryItem = ({ fetch, fav }) => {
-  const { title, breed, location, birthday, avatarURL, _id } = fetch;
+export const NoticeCategoryItem = ({ fetch }) => {
+  const { title, breed, location, birthday, avatarURL, _id, favorite, owner } =
+    fetch;
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
 
   const date = moment(birthday, 'DD.MM.YYYY').fromNow(true);
 
   const [showModal, setShowModal] = useState(false);
   const [addedToFav, setAddedToFav] = useState(() => {
-    return fav ? true : false;
+    return isLoggedIn ? favorite.includes(user.id) : false;
   });
+
+  console.log(user);
 
   const handleDelete = () => {
     const getNoticesAfterDelete = async () => {
@@ -95,11 +99,14 @@ export const NoticeCategoryItem = ({ fetch, fav }) => {
           <Span>{date}</Span>
         </Item>
       </List>
-      <Loadmore onClick={toggleModal} type="button">
-        Learn more
-      </Loadmore>
-
-      <Delete onClick={handleDelete}>Delete</Delete>
+      <ButtonWrap>
+        <Loadmore onClick={toggleModal} type="button">
+          Learn more
+        </Loadmore>
+        {owner._id === user?.id && (
+          <Delete onClick={handleDelete}>Delete</Delete>
+        )}
+      </ButtonWrap>
 
       {showModal && (
         <Modal

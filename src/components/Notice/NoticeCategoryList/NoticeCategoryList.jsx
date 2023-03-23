@@ -4,7 +4,6 @@ import selectors from 'redux/notices/noticesSelectors';
 import { fetchNotices, getFavorites } from 'redux/notices/noticesOperations';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import { Grid } from './NoticeCategoryList.styled';
-import { useAuth } from 'hooks/useAuth';
 // import { Loader } from 'components/Loader/Loader';
 
 const {
@@ -18,7 +17,6 @@ export const NoticeCategoryList = () => {
   // const isLoading = useSelector(selectLoadingStatus);
   // const error = useSelector(selectErrorMessage);
   const dispatch = useDispatch();
-  const { user, isLoggedIn } = useAuth();
 
   useEffect(() => {
     const fetch = async () => {
@@ -28,8 +26,6 @@ export const NoticeCategoryList = () => {
     fetch();
   }, [dispatch]);
 
-  let isFavorite = false;
-
   return (
     <>
       {/* {error && <p>Not found</p>} */}
@@ -37,15 +33,7 @@ export const NoticeCategoryList = () => {
       <Grid>
         {noticesList.length > 0 &&
           noticesList.map(notice => {
-            isFavorite = isLoggedIn && notice.favorite.includes(user.id);
-
-            return (
-              <NoticeCategoryItem
-                key={notice._id}
-                fetch={notice}
-                fav={isFavorite}
-              />
-            );
+            return <NoticeCategoryItem key={notice._id} fetch={notice} />;
           })}
       </Grid>
     </>
