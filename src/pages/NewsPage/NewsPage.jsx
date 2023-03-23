@@ -50,7 +50,8 @@ const NewsPage = () => {
         <Container>
           <PageTitle>News</PageTitle>
           <Search sendSearch={setFilter} />
-          {!isLoading ? <NewsList news={searchNews()} /> : <Loader />}
+          {news.length > 0 && <NewsList news={searchNews()} />}
+          {isLoading && <Loader />}
         </Container>
       </section>
     </NewsPageBox>
