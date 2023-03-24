@@ -41,8 +41,6 @@ export const NoticeCategoryItem = ({ fetch }) => {
     return isLoggedIn ? favorite.includes(user.id) : false;
   });
 
-  console.log(user);
-
   const handleDelete = () => {
     const getNoticesAfterDelete = async () => {
       await dispatch(deleteUserPet(_id));
