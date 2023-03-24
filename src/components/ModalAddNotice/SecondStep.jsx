@@ -25,8 +25,8 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { ValidationMessage } from './ModalAddNotice.styled';
-import { useDispatch } from 'react-redux';
-import { addNotice } from 'redux/notices/noticesOperations';
+// import { useDispatch } from 'react-redux';
+// import { addNotice } from 'redux/notices/noticesOperations';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
@@ -63,10 +63,19 @@ export const SecondStep = ({
     location: yup
       .string()
       .required('Required')
-      .matches(/[a-zA-zа-яА-яёЁ]$/, 'Country, city!')
+      .matches(/[a-zA-zа-яА-яёЁ]$/, 'Country, City!')
       .min(2, 'Too Short!')
-      .max(28, 'Too Long!'),
-    price: yup.number().notOneOf([0], 'my message').positive(),
+      .max(28, 'Too Long!')
+      .test({
+        name: 'Location type',
+        exclusive: true,
+        message: 'You must type your *Country, City*',
+        test: value =>
+          value.split(' ').length === 2 &&
+          value.split(' ')[0].endsWith(',') &&
+          value.indexOf(',') === value.lastIndexOf(','),
+      }),
+    price: yup.number().notOneOf([0], 'Please enter another number').positive(),
     // image: yup.string().url().nullable().required('Required'),
     comments: yup
       .string()
@@ -75,28 +84,24 @@ export const SecondStep = ({
       .max(120, 'Too Long!'),
   });
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: modalData,
     validationSchema,
     onSubmit: values => {
-      // if (values.price[0] === 0) {
-      //   Notify.warning('Not null');
-      //   return;
-      // }
-      console.log(values.price);
-      setModalData({
-        ...modalData,
-        ...values,
-      });
       if (values.sex === 'none') {
         Notify.warning('Please select the gender of your pet!');
         return;
       }
+
+      setModalData({
+        ...modalData,
+        ...values,
+      });
       // dispatch(addNotice(modalData));
       adminModal('none', true);
-      // setModalData(initialValuesModalData);
+      setModalData(initialValuesModalData);
     },
   });
 
@@ -133,18 +138,17 @@ export const SecondStep = ({
           )}
           <li>
             <ItemWrapper>
-              <Label>
-                Load the pet’s image:
-                <AddDiv>
-                  <Plus />
-                  <AddInput
-                    type="file"
-                    name="image"
-                    onChange={formik.handleChange}
-                    value={formik.values.image}
-                  ></AddInput>
-                </AddDiv>
-              </Label>
+              <Label>Load the pet’s image:</Label>
+              <AddDiv>
+                <Plus />
+                <AddInput
+                  type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={formik.handleChange}
+                  value={formik.values.image}
+                ></AddInput>
+              </AddDiv>
             </ItemWrapper>
           </li>
           <li>

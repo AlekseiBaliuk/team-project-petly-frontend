@@ -259,6 +259,7 @@ export const ItemWrapper = styled.div`
 `;
 
 export const AddDiv = styled.div`
+  position: relative;
   width: 116px;
   height: 116px;
   background-color: ${props => props.theme.colors.background};
@@ -286,10 +287,11 @@ export const AddDiv = styled.div`
 export const AddInput = styled.input`
   opacity: 0;
   position: absolute;
-  z-index: -1;
-  overflow: hidden;
-  width: 0.4px;
-  height: 0.4px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
 `;
 
 export const Textarea = styled.textarea`

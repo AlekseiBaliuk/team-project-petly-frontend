@@ -83,7 +83,6 @@ export const FirstStep = ({
     validationSchema,
     onSubmit: values => {
       const birthday = format(parseISO(values.birthday), 'dd.MM.yyy');
-      console.log(birthday);
       setModalData({
         ...modalData,
         ...values,
