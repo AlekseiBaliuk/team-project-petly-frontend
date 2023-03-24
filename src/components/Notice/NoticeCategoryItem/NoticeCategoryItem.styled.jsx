@@ -72,7 +72,7 @@ const Image = styled('img')`
 `;
 
 const ItemTitle = styled('h3')`
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   min-height: 80px;
   padding: 0 20px;
   word-break: break-word;

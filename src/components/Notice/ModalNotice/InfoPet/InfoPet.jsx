@@ -2,8 +2,17 @@ import moment from 'moment';
 import style from './InfoPet.styled';
 
 export const InfoPet = ({ notice, toggle, favorite }) => {
-  const { breed, location, birthday, avatarURL, name, sex, price, comments } =
-    notice;
+  const {
+    breed,
+    location,
+    birthday,
+    avatarURL,
+    name,
+    sex,
+    price,
+    comments,
+    owner,
+  } = notice;
   const {
     Image,
     Wrapper,
@@ -51,13 +60,15 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
           <Item>
             <span>Email:</span>
             <ItemText>
-              <a href="mailto: sobaka@gmail.com">sobaka@gmail.com</a>
+              <a href={`mailto: ${owner.email}`}>{owner.email}</a>
             </ItemText>
           </Item>
           <Item>
             <span>Phone:</span>
             <ItemText>
-              <a href="tel: +380971234567">+380971234567</a>
+              <a rel="noreferrer" target="_blank" href={`tel: ${owner.phone}`}>
+                {owner.phone}
+              </a>
             </ItemText>
           </Item>
           <Item>

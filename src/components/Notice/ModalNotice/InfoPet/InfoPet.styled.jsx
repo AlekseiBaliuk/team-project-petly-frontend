@@ -12,7 +12,7 @@ const Wrapper = styled('div')`
       'image grid grid'
       'text text text'
       '. but link'
-      /288px 150px 150px;
+      /288px 150px 160px;
     grid-column-gap: 20px;
   }
 `;
@@ -45,7 +45,8 @@ const Title = styled('h3')`
   font-size: ${props => props.theme.fontSizes.fs24};
   font-weight: ${props => props.theme.fontWeights.fw700};
   line-height: 1.375;
-  padding-bottom: 16px;
+  padding-bottom: 15px;
+  max-width: 280px;
   @media ${device.tablet} {
     font-size: ${props => props.theme.fontSizes.fs28};
   }
