@@ -4,7 +4,6 @@ import { ReactComponent as Heart } from 'staticImages/Heart.svg';
 
 const Wrapper = styled('div')`
   padding: 60px 20px 40px;
-
   @media ${device.tablet} {
     padding: 32px 20px 20px;
     display: grid;
@@ -13,7 +12,7 @@ const Wrapper = styled('div')`
       'image grid grid'
       'text text text'
       '. but link'
-      /288px 150px 150px;
+      /288px 150px 160px;
     grid-column-gap: 20px;
   }
 `;
@@ -46,7 +45,8 @@ const Title = styled('h3')`
   font-size: ${props => props.theme.fontSizes.fs24};
   font-weight: ${props => props.theme.fontWeights.fw700};
   line-height: 1.375;
-  padding-bottom: 16px;
+  padding-bottom: 15px;
+  max-width: 280px;
   @media ${device.tablet} {
     font-size: ${props => props.theme.fontSizes.fs28};
   }
@@ -121,12 +121,12 @@ const Button = styled('button')`
 
 const Link = styled('a')`
   grid-area: link;
-  display: block;
+  display: flex;
   margin: 0 auto 12px;
-  padding-top: 6px;
   height: 40px;
   width: 248px;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
   border: ${props => props.theme.borders.main};
   border-radius: 40px;
   font-weight: ${props => props.theme.fontWeights.fw500};

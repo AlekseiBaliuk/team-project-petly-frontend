@@ -13,16 +13,16 @@ const ModalBackdrop = styled('div')`
   &::-webkit-scrollbar {
     display: none;
   }
-  z-index: 1000;
+  z-index: 100;
 `;
 const ModalContent = styled('div')`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 90vw;
+  max-width: 400px;
   @media ${device.tablet} {
-    width: 704px;
-    height: 540px;
+    max-width: 700px;
+    height: 510px;
     transform: translate(-50%, -50%);
   }
   border-radius: ${props => props.theme.radii.br40};
