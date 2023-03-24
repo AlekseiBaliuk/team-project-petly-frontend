@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from 'components/Container/Container.styled';
 import NoticesCategoriesNav from 'components/Notice/NoticesCategoriesNav';
 import AddNoticeButton from 'components/Notice/AddNoticeButton';
@@ -19,13 +19,13 @@ const NoticesPage = () => {
   const initialValuesModalData = {
     category: '',
     title: '',
-    namePet: '',
-    dateOfBirth: '',
+    name: '',
+    birthday: '',
     breed: '',
-    sex: '',
+    sex: 'none',
     location: '',
     price: '',
-    urlImg: '',
+    image: '',
     comments: '',
   };
   const [modalData, setModalData] = useState(initialValuesModalData);
@@ -64,6 +64,7 @@ const NoticesPage = () => {
                 isBtnCategory={isBtnCategory}
                 setModalData={setModalData}
                 modalData={modalData}
+                initialValuesModalData={initialValuesModalData}
               />
             )}
             <NoticesCategoriesNav />

@@ -16,13 +16,17 @@ import {
   ItemWrapper,
   AddInput,
 } from './ModalAddNotice.styled';
-import { LabelInput } from './Label';
+import { LabelInput } from './LabelInput';
 import { ReactComponent as Close } from 'staticImages/Close.svg';
 import { ReactComponent as Plus } from 'staticImages/icon-plus.svg';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { SexLists } from './SexList';
 import { useFormik } from 'formik';
-// import * as yup from 'yup';
+import * as yup from 'yup';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { ValidationMessage } from './ModalAddNotice.styled';
+import { useDispatch } from 'react-redux';
+import { addNotice } from 'redux/notices/noticesOperations';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
@@ -32,6 +36,7 @@ export const SecondStep = ({
   isBtnCategory,
   setModalData,
   modalData,
+  initialValuesModalData,
 }) => {
   useEffect(() => {
     disableBodyScroll(body);
@@ -54,35 +59,44 @@ export const SecondStep = ({
     }
   };
 
-  // const validationSchema = yup.object().shape({
-  //   sex: yup.string().required('Required'),
-  //   location: yup
-  //     .string()
-  //     .min(2, 'Too Short!')
-  //     .max(28, 'Too Long!')
-  //     .required('Required'),
-  //   ptice: yup
-  //     .string()
-  //     .min(2, 'Too Short!')
-  //     .max(16, 'Too Long!')
-  //     .required('Required'),
-  //   urlImg: yup.string().url().nullable().required('Required'),
-  //   comments: yup
-  //     .string()
-  //     .min(2, 'Too Short!')
-  //     .max(24, 'Too Long!')
-  //     .required('Required'),
-  // });
+  const validationSchema = yup.object().shape({
+    location: yup
+      .string()
+      .required('Required')
+      .matches(/[a-zA-zа-яА-яёЁ]$/, 'Country, city!')
+      .min(2, 'Too Short!')
+      .max(28, 'Too Long!'),
+    price: yup.number().notOneOf([0], 'my message').positive(),
+    // image: yup.string().url().nullable().required('Required'),
+    comments: yup
+      .string()
+      .required('Required')
+      .min(8, 'Too Short!')
+      .max(120, 'Too Long!'),
+  });
+
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: modalData,
-    // validationSchema,
+    validationSchema,
     onSubmit: values => {
+      // if (values.price[0] === 0) {
+      //   Notify.warning('Not null');
+      //   return;
+      // }
+      console.log(values.price);
       setModalData({
         ...modalData,
         ...values,
       });
+      if (values.sex === 'none') {
+        Notify.warning('Please select the gender of your pet!');
+        return;
+      }
+      // dispatch(addNotice(modalData));
       adminModal('none', true);
+      // setModalData(initialValuesModalData);
     },
   });
 
@@ -93,29 +107,26 @@ export const SecondStep = ({
           <Close />
         </BtnClose>
         <Title>Add pet</Title>
-        <Subtitle>
-          Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-          consectetur
-        </Subtitle>
+        <Subtitle>Please, fill the data about the pet</Subtitle>
         <TitlePoint>The sex:</TitlePoint>
         <SexLists formik={formik} />
         <LabelList>
           <li>
             <LabelInput
-              title={'Location:'}
-              name={'location'}
-              type={'text'}
-              placeholder={'Type location'}
+              title="Location:"
+              name="location"
+              type="text"
+              placeholder="Type location"
               formik={formik}
             />
           </li>
           {isBtnCategory === 'sell' && (
             <li>
               <LabelInput
-                title={'Price:'}
-                name={'price'}
-                type={'text'}
-                placeholder={'Type price'}
+                title="Price:"
+                name="price"
+                type="number"
+                placeholder="Type price"
                 formik={formik}
               />
             </li>
@@ -128,9 +139,9 @@ export const SecondStep = ({
                   <Plus />
                   <AddInput
                     type="file"
-                    name="urlImg"
+                    name="image"
                     onChange={formik.handleChange}
-                    value={formik.values.name}
+                    value={formik.values.image}
                   ></AddInput>
                 </AddDiv>
               </Label>
@@ -143,8 +154,12 @@ export const SecondStep = ({
                 placeholder="Type comments"
                 name="comments"
                 onChange={formik.handleChange}
-                value={formik.values.name}
+                onBlur={formik.handleBlur}
+                value={formik.values.comments}
               />
+              {formik.touched.comments && formik.errors.comments ? (
+                <ValidationMessage>{formik.errors.comments}</ValidationMessage>
+              ) : null}
             </ItemWrapper>
           </li>
         </LabelList>
