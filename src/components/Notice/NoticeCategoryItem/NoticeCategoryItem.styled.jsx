@@ -4,7 +4,7 @@ import { ReactComponent as Heart } from 'staticImages/Heart.svg';
 const Card = styled('li')`
   position: relative;
   width: 290px;
-  padding-bottom: 32px;
+  padding-bottom: 10px;
   border-radius: 0px 0px 20px 20px;
   background: ${props => props.theme.colors.white};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
@@ -66,8 +66,7 @@ const Like = styled('button')`
 `;
 
 const Image = styled('img')`
-  width: 280px;
-  height: 288px;
+  height: 290px;
   object-fit: cover;
   margin-bottom: 20px;
 `;
@@ -86,7 +85,7 @@ const ItemTitle = styled('h3')`
 `;
 
 const List = styled('ul')`
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `;
 
 const Item = styled('li')`
@@ -110,7 +109,6 @@ const Span = styled('span')`
 `;
 
 const Loadmore = styled('button')`
-  display: block;
   margin-bottom: 10px;
   width: 250px;
   height: 38px;
@@ -134,7 +132,6 @@ const Delete = styled('button')`
   display: block;
   width: 250px;
   height: 38px;
-
   border: ${props => props.theme.borders.main};
   border-radius: 40px;
   font-weight: ${props => props.theme.fontWeights.fw500};
@@ -153,7 +150,10 @@ const Delete = styled('button')`
 
 const ButtonWrap = styled('div')`
   height: 90px;
-  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const style = {

@@ -4,7 +4,6 @@ import { ReactComponent as Heart } from 'staticImages/Heart.svg';
 
 const Wrapper = styled('div')`
   padding: 60px 20px 40px;
-
   @media ${device.tablet} {
     padding: 32px 20px 20px;
     display: grid;
@@ -121,12 +120,12 @@ const Button = styled('button')`
 
 const Link = styled('a')`
   grid-area: link;
-  display: block;
+  display: flex;
   margin: 0 auto 12px;
-  padding-top: 6px;
   height: 40px;
   width: 248px;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
   border: ${props => props.theme.borders.main};
   border-radius: 40px;
   font-weight: ${props => props.theme.fontWeights.fw500};
