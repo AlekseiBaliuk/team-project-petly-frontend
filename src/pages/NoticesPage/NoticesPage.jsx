@@ -14,8 +14,26 @@ import { PetSearchNav, Main } from './NoticesPage.styled';
 const NoticesPage = () => {
   const [isModalShow, setIsModalShow] = useState('none');
   const [isBtnCategory, setBtnCategory] = useState('none');
+  const [isShown, setIsShown] = useState(false);
+  const [filter, setFilter] = useState('');
+  const initialValuesModalData = {
+    category: '',
+    title: '',
+    namePet: '',
+    dateOfBirth: '',
+    breed: '',
+    sex: '',
+    location: '',
+    price: '',
+    urlImg: '',
+    comments: '',
+  };
+  const [modalData, setModalData] = useState(initialValuesModalData);
 
-  const adminModal = type => setIsModalShow(type);
+  const adminModal = (type, value) => {
+    setIsShown(!value);
+    setIsModalShow(type);
+  };
 
   const findCategoryNotice = category => {
     setBtnCategory(category);
@@ -26,25 +44,31 @@ const NoticesPage = () => {
       <section>
         <Container>
           <PageTitle>Find your favorite pet</PageTitle>
-          <Search />
+          <Search sendSearch={setFilter} />
           <PetSearchNav>
-            <AddNoticeButton openModal={() => adminModal('step1')} />
+            {!isShown && (
+              <AddNoticeButton openModal={() => adminModal('step1', false)} />
+            )}
             {isModalShow === 'step1' && (
               <FirstStep
                 adminModal={adminModal}
                 findCategoryNotice={findCategoryNotice}
                 isBtnCategory={isBtnCategory}
+                setModalData={setModalData}
+                modalData={modalData}
               />
             )}
             {isModalShow === 'step2' && (
               <SecondStep
                 adminModal={adminModal}
                 isBtnCategory={isBtnCategory}
+                setModalData={setModalData}
+                modalData={modalData}
               />
             )}
             <NoticesCategoriesNav />
           </PetSearchNav>
-          <NoticeCategoryList />
+          <NoticeCategoryList search={filter} />
         </Container>
       </section>
     </Main>

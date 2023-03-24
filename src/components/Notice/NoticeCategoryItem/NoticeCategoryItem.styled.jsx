@@ -3,8 +3,8 @@ import { ReactComponent as Heart } from 'staticImages/Heart.svg';
 
 const Card = styled('li')`
   position: relative;
-  width: 280px;
-  padding-bottom: 32px;
+  width: 290px;
+  padding-bottom: 10px;
   border-radius: 0px 0px 20px 20px;
   background: ${props => props.theme.colors.white};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
@@ -38,6 +38,16 @@ const HeartIcon = styled(Heart)`
   }
 `;
 
+const HeartIconFav = styled(Heart)`
+  scale: 1;
+  fill: ${props => props.theme.colors.accent};
+  stroke: ${props => props.theme.colors.accent};
+  :hover,
+  :focus {
+    stroke: ${props => props.theme.colors.hoverAccent};
+  }
+`;
+
 const Like = styled('button')`
   content: '';
   position: absolute;
@@ -56,15 +66,14 @@ const Like = styled('button')`
 `;
 
 const Image = styled('img')`
-  width: 280px;
-  height: 288px;
+  height: 290px;
   object-fit: cover;
   margin-bottom: 20px;
 `;
 
 const ItemTitle = styled('h3')`
-  align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  min-height: 80px;
   padding: 0 20px;
   word-break: break-word;
   font-weight: ${props => props.theme.fontWeights.fw700};
@@ -76,7 +85,7 @@ const ItemTitle = styled('h3')`
 `;
 
 const List = styled('ul')`
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `;
 
 const Item = styled('li')`
@@ -100,9 +109,8 @@ const Span = styled('span')`
 `;
 
 const Loadmore = styled('button')`
-  display: block;
-  margin: 0 auto 12px;
-  width: 248px;
+  margin-bottom: 10px;
+  width: 250px;
   height: 38px;
   border: ${props => props.theme.borders.main};
   border-radius: 40px;
@@ -122,9 +130,8 @@ const Loadmore = styled('button')`
 
 const Delete = styled('button')`
   display: block;
-  width: 248px;
+  width: 250px;
   height: 38px;
-  margin: 0 auto;
   border: ${props => props.theme.borders.main};
   border-radius: 40px;
   font-weight: ${props => props.theme.fontWeights.fw500};
@@ -141,6 +148,14 @@ const Delete = styled('button')`
   background: ${props => props.theme.colors.white};
 `;
 
+const ButtonWrap = styled('div')`
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 const style = {
   Image,
   Card,
@@ -153,6 +168,8 @@ const style = {
   Loadmore,
   Delete,
   HeartIcon,
+  HeartIconFav,
+  ButtonWrap,
 };
 
 export default style;

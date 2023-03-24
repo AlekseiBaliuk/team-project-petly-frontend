@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-
+import { useNavigate } from 'react-router-dom';
 import { logIn } from '../../redux/auth/authOperations';
 import CustomField from '../CustomAuthField';
 import { ButtonRegister } from '../RegisterForm/RegisterForm/RegisterForm.styled';
@@ -19,13 +19,9 @@ const schema = yup.object().shape({
   password: yup.string().min(7, 'Too short!').max(32, 'Too lond!').required(),
 });
 
-const initialValues = {
-  email: '',
-  password: '',
-};
-
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [passwordType, setPasswordType] = useState('password');
   const [spanBgIcon, setSpanBgIcon] = useState(eyeOpen);
 
@@ -41,12 +37,16 @@ export const LoginForm = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     dispatch(logIn(values));
+    navigate('/user');
     resetForm();
   };
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{
+        email: '',
+        password: '',
+      }}
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
@@ -56,6 +56,7 @@ export const LoginForm = () => {
             <CustomField
               type="text"
               name="email"
+              // onChange={console.log(12345)}
               placeholder="email"
               errors={errors}
               touched={touched}

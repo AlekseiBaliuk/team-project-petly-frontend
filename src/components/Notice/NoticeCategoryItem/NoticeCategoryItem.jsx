@@ -1,10 +1,15 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import style from './NoticeCategoryItem.styled';
 import Modal from 'components/Notice/ModalNotice';
-import { addFavNotice, removeFavNotice } from 'redux/notices/noticesOperations';
-import selectors from 'redux/notices/noticesSelectors';
+import {
+  fetchNotices,
+  addFavNotice,
+  removeFavNotice,
+  deleteUserPet,
+} from 'redux/notices/noticesOperations';
+import { useAuth } from 'hooks/useAuth';
 
 const {
   Image,
@@ -18,26 +23,37 @@ const {
   Loadmore,
   Delete,
   HeartIcon,
+  HeartIconFav,
+  ButtonWrap,
 } = style;
 
 export const NoticeCategoryItem = ({ fetch }) => {
-  const { title, breed, location, birthday, avatarURL, _id } = fetch;
+  const { title, breed, location, birthday, avatarURL, _id, favorite, owner } =
+    fetch;
 
-  const { selectUserFavorites } = selectors;
+  const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
 
-  const favoriteNotices = useSelector(selectUserFavorites);
   const date = moment(birthday, 'DD.MM.YYYY').fromNow(true);
 
   const [showModal, setShowModal] = useState(false);
   const [addedToFav, setAddedToFav] = useState(() => {
-    return favoriteNotices.includes(_id) ? true : false;
+    return isLoggedIn ? favorite.includes(user.id) : false;
   });
 
+  const handleDelete = () => {
+    const getNoticesAfterDelete = async () => {
+      await dispatch(deleteUserPet(_id));
+      await dispatch(fetchNotices());
+    };
+
+    getNoticesAfterDelete();
+  };
+
   const handleFavoriteToggle = () => {
-    // if (!isLoggedIn) {
-    //   return;
-    // }
+    if (!isLoggedIn) {
+      return;
+    }
     const removeFavorite = async () => {
       setAddedToFav(false);
       await dispatch(removeFavNotice(_id));
@@ -63,7 +79,7 @@ export const NoticeCategoryItem = ({ fetch }) => {
     <Card>
       <Category>Sell</Category>
       <Like type="button" onClick={handleFavoriteToggle}>
-        <HeartIcon />
+        {addedToFav ? <HeartIconFav /> : <HeartIcon />}
       </Like>
       <Image src={avatarURL} alt="dog" />
       <ItemTitle>{title}</ItemTitle>
@@ -81,11 +97,23 @@ export const NoticeCategoryItem = ({ fetch }) => {
           <Span>{date}</Span>
         </Item>
       </List>
-      <Loadmore onClick={toggleModal} type="button">
-        Learn more
-      </Loadmore>
-      <Delete>Delete</Delete>
-      {showModal && <Modal toggle={toggleModal} noticeById={fetch} />}
+      <ButtonWrap>
+        <Loadmore onClick={toggleModal} type="button">
+          Learn more
+        </Loadmore>
+        {owner._id === user?.id && (
+          <Delete onClick={handleDelete}>Delete</Delete>
+        )}
+      </ButtonWrap>
+
+      {showModal && (
+        <Modal
+          toggleFav={() => handleFavoriteToggle()}
+          toggle={toggleModal}
+          noticeById={fetch}
+          fav={addedToFav}
+        />
+      )}
     </Card>
   );
 };
