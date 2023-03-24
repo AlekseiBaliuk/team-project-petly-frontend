@@ -15,6 +15,7 @@ export const Button = styled.button`
   margin-left: auto;
   margin-right: auto;
   align-items: center;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     color: ${theme.colors.accent};
   }

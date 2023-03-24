@@ -15,9 +15,9 @@ export const FooterModal = ({ open, handleClose }) => {
       position={'fixed'}
     >
       <SC.ModalContainer>
-        <Typography id="modal-modal-description" sx={{ mb: 2 }}>
-          Team 9
-        </Typography>
+        <SC.ModalHeader>
+          Te<SC.ModalSpan>a</SC.ModalSpan>m 9
+        </SC.ModalHeader>
         <Typography id="modal-modal-title" variant="h6" component="h2">
           <SC.List
             container

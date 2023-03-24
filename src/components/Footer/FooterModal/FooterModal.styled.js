@@ -12,6 +12,7 @@ export const ModalContainer = styled.div`
   padding: 10px;
   overflow-y: scroll;
   height: 100%;
+  text-align: center;
   @media ${device.desktop} {
     padding: 30px;
   }
@@ -38,12 +39,33 @@ export const ListItem = styled.li`
   box-shadow: rgba(0, 0, 0, 0.11) 7px 4px 14px;
   max-width: 300px;
   background-color: ${theme.colors.white};
+  transform: scale(1);
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
   &:hover {
     transform: scale(1.2);
+    z-index: 9;
   }
   @media ${device.tablet} {
     width: 200px;
   }
+`;
+export const ModalHeader = styled.p`
+  color: ${theme.colors.mainText};
+  font-family: ${theme.fonts.logo};
+  font-weight: ${theme.fontWeights.fw700};
+  font-size: ${theme.fontSizes.fs28};
+  line-height: 1.5;
+  letter-spacing: 0.07em;
+  margin-bottom: 20px;
+  @media ${device.tablet} {
+    font-size: ${theme.fontSizes.fs32};
+  }
+`;
+export const ModalSpan = styled.span`
+  color: ${theme.colors.accent};
 `;
 
 export const IconSet = styled.div`
@@ -52,6 +74,7 @@ export const IconSet = styled.div`
 `;
 export const SocialLink = styled.a`
   color: ${theme.colors.mainText};
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     color: ${theme.colors.accent};
   }
