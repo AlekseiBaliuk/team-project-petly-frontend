@@ -13,7 +13,7 @@ const ModalBackdrop = styled('div')`
   &::-webkit-scrollbar {
     display: none;
   }
-  z-index: 1000;
+  z-index: 100;
 `;
 const ModalContent = styled('div')`
   position: absolute;
