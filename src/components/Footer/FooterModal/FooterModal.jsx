@@ -1,23 +1,9 @@
 import participants from '../participants/participants.json';
 import { FooterModalItem } from './FooterModalItem';
 
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-// import Grid from '@mui/material/Grid';
-import { List } from './FooterModal.styled';
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  minWidth: 320,
-  bgcolor: 'background.paper',
-  borderRadius: '40px',
-  boxShadow: 24,
-  p: 4,
-};
+import * as SC from './FooterModal.styled';
 
 export const FooterModal = ({ open, handleClose }) => {
   return (
@@ -26,13 +12,14 @@ export const FooterModal = ({ open, handleClose }) => {
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      position={'fixed'}
     >
-      <Box sx={style}>
+      <SC.ModalContainer>
         <Typography id="modal-modal-description" sx={{ mb: 2 }}>
           Team 9
         </Typography>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          <List
+          <SC.List
             container
             rowSpacing={1}
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
@@ -52,9 +39,9 @@ export const FooterModal = ({ open, handleClose }) => {
                 );
               },
             )}
-          </List>
+          </SC.List>
         </Typography>
-      </Box>
+      </SC.ModalContainer>
     </Modal>
   );
 };

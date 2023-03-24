@@ -12,7 +12,7 @@ export const FooterModalItem = ({
 }) => {
   return (
     <SC.ListItem>
-      <img src={photo} alt="member" width={150} height={150} />
+      <img src={photo} alt="member" width={300} height={300} />
       <p>{name}</p>
       <p>{position}</p>
       <p>{part}</p>

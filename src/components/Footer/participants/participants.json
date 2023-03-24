@@ -79,5 +79,86 @@
     "part": "section",
     "github": "https://github.com/annamatvieieva",
     "linkedin": "https://www.linkedin.com/in/anna-matvieieva-kharkiv/"
+  },
+  {
+    "id": "id-11",
+    "name": "Oksana Kuzich",
+    "photo": "images/OksanaKuzich.jpg",
+    "position": "Frontend",
+    "part": "section",
+    "github": "https://github.com/OksanaKuzich",
+    "linkedin": "https://www.linkedin.com/in/oksana-kuzich/"
+  },
+  {
+    "id": "id-21",
+    "name": "Max Siomak",
+    "photo": "images/MaxSiomak.jpg",
+    "position": "Frontend",
+    "part": "section",
+    "github": "https://github.com/Pleomax07",
+    "linkedin": "https://www.linkedin.com/in/max-siomak/"
+  },
+  {
+    "id": "id-31",
+    "name": "Oleksii Baliuk",
+    "photo": "images/OleksiiBaliuk.jpg",
+    "position": "Frontend",
+    "part": "section",
+    "github": "https://github.com/AlekseiBaliuk",
+    "linkedin": "https://www.linkedin.com/in/aleksei-baliuk/"
+  },
+  {
+    "id": "id-41",
+    "name": "Serhiy Koba",
+    "photo": "images/SerhiyKoba.jpg",
+    "position": "Frontend",
+    "part": "section",
+    "github": "https://github.com/kobaserg",
+    "linkedin": "https://www.linkedin.com/in/serhiy-koba/"
+  },
+  {
+    "id": "id-51",
+    "name": "Yurii Kavuza",
+    "photo": "images/YuriiKavuza.jpg",
+    "position": "Frontend",
+    "part": "section",
+    "github": "https://github.com/Yurii-Kavuza",
+    "linkedin": "https://www.linkedin.com/in/yurii-kavuza/"
+  },
+  {
+    "id": "id-61",
+    "name": "Dmytro Kobeza",
+    "photo": "images/DmytroKobeza.jpg",
+    "position": "Frontend",
+    "part": "section",
+    "github": "https://github.com/kobeza1",
+    "linkedin": "https://www.linkedin.com/in/kobeza/"
+  },
+  {
+    "id": "id-71",
+    "name": "Yevhen Ziuskin",
+    "photo": "images/YevhenZiuskin.jpg",
+    "position": "Frontend",
+    "part": "section",
+    "github": "https://github.com/Yevhenns",
+    "linkedin": "https://linkedin.com/in/yevhen-ziuskin-031b7b23b/"
+  },
+  {
+    "id": "id-81",
+    "name": "Serhii Arkhypiuk",
+    "photo": "images/SerhiiArkhypiuk.jpg",
+    "position": "Frontend",
+    "part": "section",
+    "github": "https://github.com/serhiiarkhypiuk",
+    "linkedin": "https://www.linkedin.com/in/serhii-arkhypiuk/"
+  },
+  {
+    "id": "id-91",
+    "name": "Anna Matvieieva",
+    "photo": "images/AnnaMatvieieva.jpg",
+    "position": "Frontend",
+    "part": "section",
+    "github": "https://github.com/annamatvieieva",
+    "linkedin": "https://www.linkedin.com/in/anna-matvieieva-kharkiv/"
   }
 ]
