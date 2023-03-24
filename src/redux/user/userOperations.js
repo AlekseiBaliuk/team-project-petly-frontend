@@ -4,37 +4,76 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://team-project-petly-backend.onrender.com/api';
 
 // GET @ /user
-export const getUserInfo = createAsyncThunk('users', async (_, thunkAPI) => {
-  try {
-    const res = await axios.get(`/users`);
-    return res.data.user;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
+export const getUserInfo = createAsyncThunk(
+  'users/getUserData',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(`/users`);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
 
-// // PUT @ /userData
-// export const updateUserData = createAsyncThunk(
-//   'user/updateUserData',
-//   async (user, thunkAPI) => {
-//     // console.log('user data', user);
-//     try {
-//       const response = await axios.patch(`/user`, user);
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
+export const updateUserData = createAsyncThunk(
+  'user/updateUser',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.patch('/auth/changeData', credentials);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
 
-// export const updateUserAvatar = createAsyncThunk(
-//   'users/updateAvatar',
-//   async (userAvatar, thunkAPI) => {
-//     try {
-//       const { data } = await axios.patch('/user/avatar', userAvatar);
-//       return data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const getUserPets = createAsyncThunk(
+  'user/getUserPets',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get('/users/pets');
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const addUserPet = createAsyncThunk(
+  'user/addUserPet',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/users/pets', credentials);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const removeUserPet = createAsyncThunk(
+  'user/removeUserPet',
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.delete(`/users/pets/${id}`);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const updateUserAvatar = createAsyncThunk(
+  'user/updateUserAvatar',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/users/auth/changeData', credentials);
+      console.log({ data });
+      return data;
+    } catch (error) {
+      console.log({ error });
+      return rejectWithValue(error.message);
+    }
+  },
+);

@@ -1,5 +1,6 @@
 import { FormikWizard } from 'formik-wizard-form';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { signup } from '../../../redux/auth/authOperations';
 import RegisterFormStepOne from 'components/RegisterForm/RegisterSteps/StepOne';
 import RegisterFormStepTwo from 'components/RegisterForm/RegisterSteps/StepTwo';
@@ -12,6 +13,7 @@ import {
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = evt => {
     const newData = { ...evt };
@@ -21,6 +23,7 @@ export const RegisterForm = () => {
     newData['phone'] = phoneNumber.replace(pattern, '+38$1$2$3$4');
     delete newData.confirmPassword;
     dispatch(signup(newData));
+    navigate('/user');
   };
   return (
     <FormikWizard
@@ -53,6 +56,7 @@ export const RegisterForm = () => {
         },
         {
           component: RegisterFormStepTwo,
+
           validationSchema: yup.object().shape({
             name: yup
               .string()
@@ -88,14 +92,22 @@ export const RegisterForm = () => {
         isNextDisabled,
         isPrevDisabled,
         isLastStep,
-        activeStepIndex,
+        validateForm,
+        setTouched,
       }) => (
         <>
           {renderComponent()}
           {isLastStep && (
             <ButtonRegister
               type="submit"
-              onClick={handleSubmit}
+              onClick={() => {
+                handleSubmit();
+                setTouched({
+                  name: true,
+                  location: true,
+                  phone: true,
+                });
+              }}
               disabled={isNextDisabled}
             >
               Register
@@ -113,7 +125,15 @@ export const RegisterForm = () => {
           {!isLastStep && (
             <ButtonNext
               type="button"
-              onClick={handleNext}
+              onClick={() => {
+                validateForm();
+                setTouched({
+                  email: true,
+                  password: true,
+                  confirmPassword: true,
+                });
+                handleNext();
+              }}
               disabled={isNextDisabled}
             >
               Next

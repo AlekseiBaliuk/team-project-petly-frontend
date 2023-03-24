@@ -1,17 +1,17 @@
 import { LabelList } from './ModalAddNotice.styled';
 import { LabelInput } from './Label';
 
-export const LabelInputList = () => {
+export const LabelInputList = ({ formik}) => {
   const labelForm = [
     {
       title: 'Tittle of ad:',
       name: 'title',
       type: 'text',
-      placeholder: 'Type name pet',
+      placeholder: 'Type title',
     },
     {
       title: 'Name pet:',
-      name: 'name',
+      name: 'namePet',
       type: 'text',
       placeholder: 'Type name pet',
     },
@@ -38,6 +38,7 @@ export const LabelInputList = () => {
           name={name}
           type={type}
           placeholder={placeholder}
+          formik={formik}
         />
       ))}
     </LabelList>
