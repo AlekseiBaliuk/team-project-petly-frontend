@@ -13,6 +13,8 @@ import {
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { BtnCategoryList } from './BtnCategoryList';
 import { LabelInputList } from './LabelInputList';
+import { useFormik } from 'formik';
+// import * as yup from 'yup';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
@@ -21,7 +23,8 @@ export const FirstStep = ({
   adminModal,
   findCategoryNotice,
   isBtnCategory,
-  setNoticesDate,
+  setModalData,
+  modalData,
 }) => {
   useEffect(() => {
     disableBodyScroll(body);
@@ -44,14 +47,42 @@ export const FirstStep = ({
     }
   };
 
-  const onSubmitForm = e => {
-    console.log(e);
-  };
+  // const validationSchema = yup.object().shape({
+  //   // category: yup.string().required(),
+  //   title: yup
+  //     .string()
+  //     .required('Required')
+  //     .min(2, 'Too Short!')
+  //     .max(28, 'Too Long!'),
+  //   name: yup
+  //     .string()
+  //     .required('Required')
+  //     .min(2, 'Too Short!')
+  //     .max(16, 'Too Long!'),
+  //   dateOfBirth: yup
+  //     .date()
+  //     .default(() => new Date())
+  //     .required('Required'),
+  //   breed: yup
+  //     .string()
+  //     .required('Required')
+  //     .min(2, 'Too Short!')
+  //     .max(24, 'Too Long!'),
+  // });
+
+  const formik = useFormik({
+    initialValues: modalData,
+    // validationSchema,
+    onSubmit: values => {
+      setModalData({ ...values, category: isBtnCategory });
+      adminModal('step2');
+    },
+  });
 
   return createPortal(
     <Wrapper onClick={handleModalClick}>
-      <Form id="form" onSubmit={onSubmitForm}>
-        <BtnClose type="button" onClick={() => adminModal('none', true)}>
+      <Form onSubmit={formik.handleSubmit}>
+        <BtnClose type="button" onClick={() => adminModal('none')}>
           <Close />
         </BtnClose>
         <Title>Add pet</Title>
@@ -63,15 +94,13 @@ export const FirstStep = ({
           findCategoryNotice={findCategoryNotice}
           isBtnCategory={isBtnCategory}
         />
-        <LabelInputList />
+        <LabelInputList formik={formik} />
         <BtnStepList>
           <li>
-            <BtnStep type="submit" onClick={() => adminModal('step2', false)}>
-              Next
-            </BtnStep>
+            <BtnStep type="submit">Next</BtnStep>
           </li>
           <li>
-            <BtnStep type="button" onClick={() => adminModal('none', true)}>
+            <BtnStep type="button" onClick={() => adminModal('none')}>
               Cancel
             </BtnStep>
           </li>
