@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { lazy, useEffect, useState } from 'react';
+import { lazy, useEffect } from 'react';
 
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import { Loader } from 'components/Loader/Loader';

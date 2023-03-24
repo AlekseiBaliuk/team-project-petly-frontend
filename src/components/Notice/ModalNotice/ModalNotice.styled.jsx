@@ -19,9 +19,9 @@ const ModalContent = styled('div')`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 90vw;
+  max-width: 400px;
   @media ${device.tablet} {
-    width: 704px;
+    max-width: 700px;
     height: 540px;
     transform: translate(-50%, -50%);
   }
