@@ -20,8 +20,12 @@ export const NoticeCategoryList = ({ search }) => {
 
   useEffect(() => {
     const fetch = async () => {
+<<<<<<< Updated upstream
       await dispatch(fetchNotices());
       await dispatch(getFavorites());
+=======
+      await dispatch(fetchNotices('sell'));
+>>>>>>> Stashed changes
     };
     fetch();
   }, [dispatch]);

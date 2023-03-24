@@ -3,10 +3,10 @@ import axios from 'axios';
 
 export const fetchNotices = createAsyncThunk(
   'notices/category',
-  async (_, thunkAPI) => {
+  async (category, thunkAPI) => {
     try {
       const response = await axios.get(
-        'https://team-project-petly-backend.onrender.com/api/notices/category/sell',
+        `https://team-project-petly-backend.onrender.com/api/notices/category/${category}`,
       );
       return response.data.notices;
     } catch (e) {
