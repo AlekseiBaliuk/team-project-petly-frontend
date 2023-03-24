@@ -22,7 +22,7 @@ const ModalContent = styled('div')`
   max-width: 400px;
   @media ${device.tablet} {
     max-width: 700px;
-    height: 540px;
+    height: 510px;
     transform: translate(-50%, -50%);
   }
   border-radius: ${props => props.theme.radii.br40};
