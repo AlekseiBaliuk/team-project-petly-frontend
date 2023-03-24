@@ -1,16 +1,18 @@
-import team from '../footerData/team.json';
+import participants from '../participants/participants.json';
 import { FooterModalItem } from './FooterModalItem';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+// import Grid from '@mui/material/Grid';
+import { List } from './FooterModal.styled';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  minWidth: 320,
   bgcolor: 'background.paper',
   borderRadius: '40px',
   boxShadow: 24,
@@ -30,21 +32,27 @@ export const FooterModal = ({ open, handleClose }) => {
           Team 9
         </Typography>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          <ul>
-            {team.map(({ name, photo, position, part, github, linkedin }) => {
-              return (
-                <FooterModalItem
-                  key={name}
-                  name={name}
-                  photo={photo}
-                  position={position}
-                  part={part}
-                  github={github}
-                  linkedin={linkedin}
-                />
-              );
-            })}
-          </ul>
+          <List
+            container
+            rowSpacing={1}
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          >
+            {participants.map(
+              ({ id, name, photo, position, part, github, linkedin }) => {
+                return (
+                  <FooterModalItem
+                    key={id}
+                    name={name}
+                    photo={photo}
+                    position={position}
+                    part={part}
+                    github={github}
+                    linkedin={linkedin}
+                  />
+                );
+              },
+            )}
+          </List>
         </Typography>
       </Box>
     </Modal>

@@ -8,7 +8,7 @@ export const FooterModalItem = ({
 }) => {
   return (
     <li>
-      <img src={photo} alt="member" />
+      <img src={photo} alt="member" width={150} height={150} />
       <p>{name}</p>
       <p>{position}</p>
       <p>{part}</p>
