@@ -12,7 +12,7 @@ export const ModalAddsPet = ({ onClose }) => {
     name: '',
     date: '',
     breed: '',
-    photo: null,
+    photo: '',
     comments: '',
   });
   const [currentStep, setCurrentStep] = useState(0);

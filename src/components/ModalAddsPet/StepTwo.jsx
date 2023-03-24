@@ -1,16 +1,17 @@
-import { ErrorMessage, Formik } from 'formik';
+import { ErrorMessage, Field, Formik } from 'formik';
 import * as Yup from 'yup';
 import {
-  AddDiv,
-  AddInput,
   Btn,
   BtnActive,
   BtnContainer,
-  CommentInput,
+  CommentTextarea,
   Label,
   StyledForm,
   Subtitle,
   Text,
+  UploadDiv,
+  UploadInput,
+  UploadLabel,
 } from './ModalAddsPet.styled';
 import { ReactComponent as Plus } from 'staticImages/icon-plus.svg';
 
@@ -36,20 +37,23 @@ export const StepTwo = props => {
       {({ values }) => (
         <StyledForm>
           <Text>Add photo and some comments</Text>
-          <Label>
-            <AddDiv>
+          <UploadLabel>
+            <UploadDiv>
               <Plus />
-              <AddInput name="photo" type="file" accept="image/*"></AddInput>
-            </AddDiv>
-          </Label>
+              <UploadInput
+                name="photo"
+                type="file"
+                onChange={e => {
+                  console.dir(e.currentTarget.files[0]);
+                }}
+              ></UploadInput>
+            </UploadDiv>
+          </UploadLabel>
           <Label>
             <Subtitle>Comments</Subtitle>
-            <CommentInput
-              as="textarea"
-              name="comments"
-              type="text"
-              placeholder="Type breed"
-            />
+            <Field name="comments" placeholder="Type breed">
+              {({ field }) => <CommentTextarea {...field} />}
+            </Field>
             <ErrorMessage name="comments" />
           </Label>
           <BtnContainer>

@@ -51,7 +51,7 @@ export const Title = styled.h3`
 `;
 
 export const Text = styled.div`
-  margin-bottom: ${p => p.theme.space[1]}px;
+  margin-bottom: 12px;
   text-align: center;
   font-family: ${p => p.theme.fonts.main};
   font-style: normal;
@@ -142,7 +142,7 @@ export const BirthDiv = styled.div`
   }
 `;
 
-export const CommentInput = styled(Field)`
+export const CommentTextarea = styled.textarea`
   height: 100px;
   padding: 12px 14px 11px;
   background-color: ${p => p.theme.colors.background};
@@ -241,10 +241,16 @@ export const BtnClose = styled.button`
   }
 `;
 
-export const AddDiv = styled.div`
+export const UploadLabel = styled.label`
+  display: inline-flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 12px;
+`;
+
+export const UploadDiv = styled.div`
   width: 208px;
   height: 208px;
-  margin: ${p => p.theme.space[3]}px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -261,11 +267,10 @@ export const AddDiv = styled.div`
   @media ${device.tablet} {
     width: 182px;
     height: 182px;
-    margin-bottom: ${p => p.theme.space[5]}px;
   }
 `;
 
-export const AddInput = styled(Field)`
+export const UploadInput = styled(Field)`
   opacity: 0;
   position: absolute;
   z-index: -1;
