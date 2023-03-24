@@ -1,25 +1,40 @@
-import { useState } from 'react';
-import { AuthNav } from 'components/AuthNav/AuthNav';
-import { Container } from 'components/Container/Container.styled';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+
 import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
+import { AuthNav } from 'components/AuthNav/AuthNav';
 import { UserNav } from 'components/UserNav/UserNav';
+
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { Container } from 'components/Container/Container.styled';
 import { Box, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useMediaQuery } from 'react-responsive';
 import CloseIcon from '@mui/icons-material/Close';
 import * as SC from './Header.styled';
 
 export const Header = () => {
   const [menu, setMenu] = useState(false);
 
-  const toggleMenu = () => setMenu(value => !value);
-  const closeMenu = () => setMenu(false);
+  useEffect(() => {
+    menu ? disableBodyScroll(document) : enableBodyScroll(document);
+  }, [menu]);
 
   const beforeTablet = useMediaQuery({ query: '(max-width: 767px)' });
   const tablet = useMediaQuery({ query: '(min-width: 768px)' });
   const beforeDesktop = useMediaQuery({ query: '(max-width: 1279px)' });
   const desktop = useMediaQuery({ query: '(min-width: 1280px)' });
+
+  useEffect(() => {
+    desktop && setMenu(false);
+  }, [desktop]);
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const toggleMenu = () => setMenu(value => !value);
+  const closeMenu = () => setMenu(false);
 
   return (
     <SC.Header>
@@ -28,12 +43,13 @@ export const Header = () => {
           <SC.LogoContainer onClick={closeMenu}>
             <Logo />
           </SC.LogoContainer>
+
+          {/* tablet user nav */}
           {!menu && tablet && beforeDesktop && (
-            <>
-              <AuthNav />
-              <UserNav />
-            </>
+            <>{isLoggedIn === false ? <AuthNav /> : <UserNav />}</>
           )}
+
+          {/* mobile & tablet burger icon */}
           {beforeDesktop && (
             <IconButton color="inherit" onClick={toggleMenu}>
               {!menu ? (
@@ -43,22 +59,25 @@ export const Header = () => {
               )}
             </IconButton>
           )}
+
+          {/* desktop nav, user nav */}
           {desktop && (
             <>
               <Nav />
-              <AuthNav />
-              <UserNav />
+              {isLoggedIn === false ? <AuthNav /> : <UserNav />}
             </>
           )}
         </SC.ToolBar>
 
+        {/* mobile burger menu */}
         {menu && beforeTablet && (
           <Box onClick={closeMenu} height={'100vh'} marginTop={'46px'}>
-            <AuthNav />
-            <UserNav />
+            {isLoggedIn === false ? <AuthNav /> : <UserNav />}
             <Nav />
           </Box>
         )}
+
+        {/* tablet burger menu */}
         {menu && tablet && beforeDesktop && (
           <Box onClick={closeMenu} height={'100vh'} marginTop={'88px'}>
             <Nav />

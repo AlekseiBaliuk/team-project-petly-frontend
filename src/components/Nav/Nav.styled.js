@@ -10,6 +10,7 @@ export const Link = styled(NavLink)`
   font-weight: ${theme.fontWeights.fw500};
   line-height: 1.375;
   letter-spacing: 0.04em;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     color: ${theme.colors.accent};
   }
