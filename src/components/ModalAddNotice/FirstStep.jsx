@@ -82,7 +82,7 @@ export const FirstStep = ({
   return createPortal(
     <Wrapper onClick={handleModalClick}>
       <Form onSubmit={formik.handleSubmit}>
-        <BtnClose type="button" onClick={() => adminModal('none')}>
+        <BtnClose type="button" onClick={() => adminModal('none', true)}>
           <Close />
         </BtnClose>
         <Title>Add pet</Title>
@@ -100,7 +100,7 @@ export const FirstStep = ({
             <BtnStep type="submit">Next</BtnStep>
           </li>
           <li>
-            <BtnStep type="button" onClick={() => adminModal('none')}>
+            <BtnStep type="button" onClick={() => adminModal('none', true)}>
               Cancel
             </BtnStep>
           </li>

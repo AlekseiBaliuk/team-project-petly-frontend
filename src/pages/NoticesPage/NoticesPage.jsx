@@ -16,6 +16,7 @@ const NoticesPage = () => {
   const [isBtnCategory, setBtnCategory] = useState('none');
   const [isShown, setIsShown] = useState(false);
   const [filter, setFilter] = useState('');
+  const [category, setCategory] = useState('');
   const initialValuesModalData = {
     category: '',
     title: '',
@@ -30,6 +31,11 @@ const NoticesPage = () => {
   };
   const [modalData, setModalData] = useState(initialValuesModalData);
 
+  const categoryChange = category => {
+    localStorage.setItem('categoryLocal', JSON.stringify(category));
+    setCategory(category);
+  };
+
   const adminModal = (type, value) => {
     setIsShown(!value);
     setIsModalShow(type);
@@ -38,7 +44,6 @@ const NoticesPage = () => {
   const findCategoryNotice = category => {
     setBtnCategory(category);
   };
-
   return (
     <Main>
       <section>
@@ -66,9 +71,9 @@ const NoticesPage = () => {
                 modalData={modalData}
               />
             )}
-            <NoticesCategoriesNav />
+            <NoticesCategoriesNav categoryChange={categoryChange} />
           </PetSearchNav>
-          <NoticeCategoryList search={filter} />
+          <NoticeCategoryList search={filter} category={category} />
         </Container>
       </section>
     </Main>

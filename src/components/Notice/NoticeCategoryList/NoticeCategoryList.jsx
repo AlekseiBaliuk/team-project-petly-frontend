@@ -12,7 +12,7 @@ const {
   // selectErrorMessage,
 } = selectors;
 
-export const NoticeCategoryList = ({ search }) => {
+export const NoticeCategoryList = ({ search, category }) => {
   const noticesList = useSelector(selectNotices);
   // const isLoading = useSelector(selectLoadingStatus);
   // const error = useSelector(selectErrorMessage);
@@ -20,11 +20,20 @@ export const NoticeCategoryList = ({ search }) => {
 
   useEffect(() => {
     const fetch = async () => {
-      await dispatch(fetchNotices());
-      await dispatch(getFavorites());
+      const categoryLocal = await localStorage.getItem('categoryLocal');
+
+      if (category === '') {
+        (await categoryLocal) === null
+          ? dispatch(fetchNotices('sell'))
+          : dispatch(fetchNotices(categoryLocal.replace(/['"]+/g, '')));
+      } else await dispatch(fetchNotices(category));
+
+      // (await category) === ''
+      //   ? dispatch(fetchNotices(categoryLocal))
+      //   : dispatch(fetchNotices(category));
     };
     fetch();
-  }, [dispatch]);
+  }, [category, dispatch]);
 
   function filterNotice() {
     if (search.length === 0) {

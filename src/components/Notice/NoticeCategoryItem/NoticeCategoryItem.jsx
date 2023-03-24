@@ -29,8 +29,24 @@ const {
 } = style;
 
 export const NoticeCategoryItem = ({ fetch }) => {
-  const { title, breed, location, birthday, avatarURL, _id, favorite, owner } =
-    fetch;
+  const {
+    title,
+    breed,
+    location,
+    birthday,
+    avatarURL,
+    _id,
+    favorite,
+    owner,
+    category,
+  } = fetch;
+
+  const categoryName = () => {
+    const uppercase = category.charAt().toUpperCase() + category.slice(1);
+    const result =
+      uppercase === 'Lost-found' ? uppercase.replace('-', '/') : uppercase;
+    return result.replaceAll('-', ' ');
+  };
 
   const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
@@ -78,7 +94,7 @@ export const NoticeCategoryItem = ({ fetch }) => {
   };
   return (
     <Card>
-      <Category>Sell</Category>
+      <Category>{categoryName()}</Category>
       <Like type="button" onClick={handleFavoriteToggle}>
         {addedToFav ? <HeartIconFav /> : <HeartIcon />}
       </Like>
