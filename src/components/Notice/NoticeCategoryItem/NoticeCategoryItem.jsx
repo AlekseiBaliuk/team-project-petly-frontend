@@ -25,6 +25,7 @@ const {
   HeartIcon,
   HeartIconFav,
   ButtonWrap,
+  Del,
 } = style;
 
 export const NoticeCategoryItem = ({ fetch }) => {
@@ -102,7 +103,10 @@ export const NoticeCategoryItem = ({ fetch }) => {
           Learn more
         </Loadmore>
         {owner._id === user?.id && (
-          <Delete onClick={handleDelete}>Delete</Delete>
+          <Delete onClick={handleDelete}>
+            Delete
+            <Del />
+          </Delete>
         )}
       </ButtonWrap>
 

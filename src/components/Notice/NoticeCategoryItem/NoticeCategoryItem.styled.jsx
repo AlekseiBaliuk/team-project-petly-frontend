@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 import { ReactComponent as Heart } from 'staticImages/Heart.svg';
+import { ReactComponent as IconDel } from 'staticImages/Del.svg';
+
+const Del = styled(IconDel)`
+  margin-left: 15px;
+  fill: ${props => props.theme.colors.accent};
+`;
 
 const Card = styled('li')`
   position: relative;
@@ -129,7 +135,9 @@ const Loadmore = styled('button')`
 `;
 
 const Delete = styled('button')`
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 250px;
   height: 38px;
   border: ${props => props.theme.borders.main};
@@ -170,6 +178,7 @@ const style = {
   HeartIcon,
   HeartIconFav,
   ButtonWrap,
+  Del,
 };
 
 export default style;
