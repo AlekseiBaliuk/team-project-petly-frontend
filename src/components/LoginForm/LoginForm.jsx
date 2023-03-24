@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom';
+
 import { logIn } from '../../redux/auth/authOperations';
 import CustomField from '../CustomAuthField';
-import { ButtonRegister } from '../RegisterForm/RegisterForm/RegisterForm.styled';
+import { ButtonLogin } from '../RegisterForm/RegisterForm/RegisterForm.styled';
+
 import eyeClosed from 'staticImages/eye-closed.png';
 import eyeOpen from 'staticImages/eye-open.png';
 import {
@@ -15,7 +17,14 @@ import {
 } from '../RegisterForm/RegisterSteps/StepOne/stepOne.styled';
 
 const schema = yup.object().shape({
-  email: yup.string().email().required(),
+  email: yup
+    .string()
+    .email()
+    .required()
+    .matches(
+      /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+      'Email must much the following "example@mail.com"',
+    ),
   password: yup.string().min(7, 'Too short!').max(32, 'Too lond!').required(),
 });
 
@@ -35,10 +44,8 @@ export const LoginForm = () => {
     }
   }
 
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(logIn(values));
-    navigate('/user');
-    resetForm();
+  const handleSubmit = values => {
+    dispatch(logIn({ credentials: values, navigate }));
   };
 
   return (
@@ -56,7 +63,6 @@ export const LoginForm = () => {
             <CustomField
               type="text"
               name="email"
-              // onChange={console.log(12345)}
               placeholder="email"
               errors={errors}
               touched={touched}
@@ -79,7 +85,7 @@ export const LoginForm = () => {
             />
             <ValidationMessage name="password" component="div" />
           </Label>
-          <ButtonRegister type="submit">Login</ButtonRegister>
+          <ButtonLogin type="submit">Login</ButtonLogin>
         </Form>
       )}
     </Formik>

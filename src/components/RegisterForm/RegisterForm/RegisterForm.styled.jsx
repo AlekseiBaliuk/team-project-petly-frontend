@@ -50,3 +50,7 @@ export const ButtonPrevius = styled(ButtonRegister)`
 export const ButtonNext = styled(ButtonRegister)`
   margin: 0px auto 40px;
 `;
+
+export const ButtonLogin = styled(ButtonRegister)`
+  margin: 0px auto 40px;
+`;

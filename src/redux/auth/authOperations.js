@@ -14,13 +14,15 @@ const clearAuthHeader = () => {
 
 export const signup = createAsyncThunk(
   'auth/register',
-  async (credentials, thunkAPI) => {
+  async (data, thunkAPI) => {
+    const { credentials, navigate } = data;
     try {
       const res = await axios.post('/auth/register', credentials);
       setAuthHeader(res.data.token);
       toast.success(
         'Congratulations, your account has been successfully created.',
       );
+      navigate('/user');
       return res.data;
     } catch (error) {
       const errorData = error.response.data;
@@ -36,28 +38,28 @@ export const signup = createAsyncThunk(
   },
 );
 
-export const logIn = createAsyncThunk(
-  'auth/login',
-  async (credentials, thunkAPI) => {
-    try {
-      const res = await axios.post('/auth/login', credentials);
-      setAuthHeader(res.data.token);
-      toast.success('Login Success!');
-      return res.data;
-    } catch (error) {
-      if (error.response) {
-        toast.error(
-          `such user is not registered or incorrect username or password`,
-        );
-      } else if (error.request) {
-        toast.error('unknown error, please try again');
-      } else {
-        toast.error('unknown error, please try again');
-      }
-      return thunkAPI.rejectWithValue(error.message);
+export const logIn = createAsyncThunk('auth/login', async (data, thunkAPI) => {
+  const { credentials, navigate } = data;
+
+  try {
+    const res = await axios.post('/auth/login', credentials);
+    setAuthHeader(res.data.token);
+    toast.success('Login Success!');
+    navigate('/user');
+    return res.data;
+  } catch (error) {
+    if (error.response) {
+      toast.error(
+        `such user is not registered or incorrect username or password`,
+      );
+    } else if (error.request) {
+      toast.error('unknown error, please try again');
+    } else {
+      toast.error('unknown error, please try again');
     }
-  },
-);
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
