@@ -10,9 +10,9 @@ export const SexLists = ({ formik }) => {
           <InputSex
             type="radio"
             name="sex"
-            value="Male"
+            value="male"
             onChange={formik.handleChange}
-            checked={formik.values.sex === 'Male'}
+            checked={formik.values.sex === 'male'}
           />
           <Men />
           Male
@@ -23,9 +23,9 @@ export const SexLists = ({ formik }) => {
           <InputSex
             type="radio"
             name="sex"
-            value="Female"
+            value="female"
             onChange={formik.handleChange}
-            checked={formik.values.sex === 'Female'}
+            checked={formik.values.sex === 'female'}
           />
           <Women />
           Female

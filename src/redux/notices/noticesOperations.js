@@ -70,3 +70,17 @@ export const deleteUserPet = createAsyncThunk(
     }
   },
 );
+
+export const addNotice = createAsyncThunk(
+  '/notices/addNoticePet',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `https://team-project-petly-backend.onrender.com/api/notices/`,
+      );
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
