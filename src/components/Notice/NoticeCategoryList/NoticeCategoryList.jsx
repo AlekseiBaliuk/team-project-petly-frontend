@@ -12,7 +12,7 @@ const {
   // selectErrorMessage,
 } = selectors;
 
-export const NoticeCategoryList = () => {
+export const NoticeCategoryList = ({ search }) => {
   const noticesList = useSelector(selectNotices);
   // const isLoading = useSelector(selectLoadingStatus);
   // const error = useSelector(selectErrorMessage);
@@ -26,13 +26,27 @@ export const NoticeCategoryList = () => {
     fetch();
   }, [dispatch]);
 
+  function filterNotice() {
+    if (search.length === 0) {
+      return noticesList;
+    }
+
+    const normalizeSearch = search.toLocaleLowerCase();
+    const filterList = noticesList.filter(({ title }) =>
+      title.toLowerCase().includes(normalizeSearch),
+    );
+    return filterList;
+  }
+
+  const filterNoticeList = filterNotice();
+
   return (
     <>
       {/* {error && <p>Not found</p>} */}
       {/* {isLoading && <Loader />} */}
       <Grid>
-        {noticesList.length > 0 &&
-          noticesList.map(notice => {
+        {filterNoticeList.length > 0 &&
+          filterNoticeList.map(notice => {
             return <NoticeCategoryItem key={notice._id} fetch={notice} />;
           })}
       </Grid>
