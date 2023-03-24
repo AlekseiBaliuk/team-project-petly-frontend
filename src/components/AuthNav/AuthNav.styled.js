@@ -15,6 +15,8 @@ export const Link = styled(NavLink)`
   border: ${theme.borders.main};
   border-radius: 40px;
   background-color: ${theme.colors.white};
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   @media ${device.tablet} {
     font-size: ${theme.fontSizes.fs20};
     padding-top: 10px;
