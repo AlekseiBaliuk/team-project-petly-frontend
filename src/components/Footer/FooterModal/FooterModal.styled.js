@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../../constants/theme';
 import { device } from '../../../devices';
 
 export const List = styled.ul`
@@ -11,5 +12,21 @@ export const List = styled.ul`
   }
   @media ${device.desktop} {
     grid-template-columns: repeat(4, 1fr);
+  }
+`;
+export const ListItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const IconSet = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+export const SocialLink = styled.a`
+  color: ${theme.colors.mainText};
+  &:hover {
+    color: ${theme.colors.accent};
   }
 `;
