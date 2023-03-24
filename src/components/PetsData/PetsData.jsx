@@ -12,7 +12,7 @@ import {
   NonPetWrapper,
 } from './PetsData.styled';
 import { PetList } from 'components/PetsList/PetsList.styled';
-import { ModalAddsPet } from 'components/ModalAddsPet/ModalAddsPet';
+import { ModalAddsPet } from 'components/UserPage/ModalAddsPet/ModalAddsPet';
 
 export default function PetsData({ pets, setPets, petsData }) {
   // const isPets = Boolean(petsData.length);
