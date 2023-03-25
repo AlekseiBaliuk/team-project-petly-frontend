@@ -8,14 +8,15 @@ import {
   getMyNotices,
 } from 'redux/notices/noticesOperations';
 import NoticeCategoryItem from '../NoticeCategoryItem';
-import { Grid } from './NoticeCategoryList.styled';
+import style from './NoticeCategoryList.styled';
 
 const { selectNotices, selectIsAdded } = selectors;
 
 export const NoticeCategoryList = ({ search }) => {
+  const { Grid, Scroll } = style;
+
   const noticesList = useSelector(selectNotices);
   const isAdded = useSelector(selectIsAdded);
-  console.log(isAdded);
 
   const { activeCategory } = useCategory();
   const dispatch = useDispatch();
@@ -49,6 +50,14 @@ export const NoticeCategoryList = ({ search }) => {
     return filterList;
   }
 
+  const scrollTo = () => {
+    return window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <>
       <Grid>
@@ -57,6 +66,7 @@ export const NoticeCategoryList = ({ search }) => {
             <NoticeCategoryItem key={notice._id} fetch={notice} />
           ))}
       </Grid>
+      {<Scroll onClick={scrollTo} />}
     </>
   );
 };

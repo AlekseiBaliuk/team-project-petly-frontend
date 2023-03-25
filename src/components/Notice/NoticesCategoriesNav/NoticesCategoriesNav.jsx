@@ -4,7 +4,6 @@ import {
   CategoryItem,
 } from './NoticesCategoriesNav.styled';
 import { useAuth } from 'hooks/useAuth';
-import { useCategory } from 'hooks/useCategory';
 import { useDispatch } from 'react-redux';
 import { updateCategory } from 'redux/pets/petsSlice';
 
@@ -18,7 +17,6 @@ export const NoticesCategoriesNav = () => {
         <Link
           to="/notices/lost-found"
           onClick={() => dispatch(updateCategory('lost-found'))}
-          // onClick={() => categoryChange('lost-found')}
         >
           lost/found
         </Link>

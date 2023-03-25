@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { device } from '../../../devices';
+import { device } from 'devices';
 
 export const CategoriesList = styled('ul')`
   display: flex;
