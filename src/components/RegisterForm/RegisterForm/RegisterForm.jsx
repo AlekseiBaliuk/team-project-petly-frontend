@@ -50,7 +50,7 @@ export const RegisterForm = () => {
               .email()
               .required('Email is required')
               .matches(
-                /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
                 'Email must much the following "example@mail.com"',
               ),
             password: yup
