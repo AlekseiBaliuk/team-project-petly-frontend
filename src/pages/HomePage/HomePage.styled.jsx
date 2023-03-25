@@ -75,5 +75,20 @@ export const Heart = styled.img`
     position: absolute;
     top: 0;
     right: 487px;
+    animation: heartBit 1s infinite;
+  }
+
+  @keyframes heartBit {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
   }
 `;
