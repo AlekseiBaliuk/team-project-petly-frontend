@@ -22,7 +22,7 @@ const schema = yup.object().shape({
     .email()
     .required()
     .matches(
-      /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+      /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
       'Email must much the following "example@mail.com"',
     ),
   password: yup.string().min(7, 'Too short!').max(32, 'Too lond!').required(),
