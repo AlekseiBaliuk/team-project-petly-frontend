@@ -1,4 +1,4 @@
-import participants from '../participants/participants.json';
+import participants from '../../../participants/participants.json';
 import { FooterModalItem } from './FooterModalItem';
 
 import Typography from '@mui/material/Typography';
@@ -16,7 +16,7 @@ export const FooterModal = ({ open, handleClose }) => {
     >
       <SC.ModalContainer>
         <SC.ModalHeader>
-          Te<SC.ModalSpan>a</SC.ModalSpan>m 9
+          Te<SC.ModalSpan>a</SC.ModalSpan>m 9 (чернетка)
         </SC.ModalHeader>
         <Typography id="modal-modal-title" variant="h6" component="h2">
           <SC.List

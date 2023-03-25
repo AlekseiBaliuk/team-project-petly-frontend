@@ -13,7 +13,7 @@ export const ModalContainer = styled.div`
   overflow-y: scroll;
   height: 100%;
   text-align: center;
-  @media ${device.desktop} {
+  @media ${device.tablet} {
     padding: 30px;
   }
 `;
@@ -25,7 +25,7 @@ export const List = styled.ul`
     grid-template-columns: repeat(3, 1fr);
   }
   @media ${device.desktop} {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 `;
 export const ListItem = styled.li`
@@ -41,15 +41,27 @@ export const ListItem = styled.li`
   background-color: ${theme.colors.white};
   transform: scale(1);
   transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  &:not(:last-child) {
-    margin-bottom: 10px;
+  @media ${device.beforeTablet} {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
   }
   &:hover {
     transform: scale(1.2);
     z-index: 9;
   }
+  @media ${device.beforeDesktop} {
+    &:last-child {
+      grid-column-start: 2;
+    }
+  }
   @media ${device.tablet} {
     width: 200px;
+  }
+  @media ${device.desktop} {
+    &:nth-child(13) {
+      grid-column-start: 2;
+    }
   }
 `;
 export const ModalHeader = styled.p`

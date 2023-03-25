@@ -17,9 +17,15 @@ export const FooterModalItem = ({
       <p>{position}</p>
       <p>{part}</p>
       <SC.IconSet>
-        <SC.SocialLink href={github} target="_blank" rel="noreferrer noopener">
-          <GitHubIcon />
-        </SC.SocialLink>
+        {github && (
+          <SC.SocialLink
+            href={github}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <GitHubIcon />
+          </SC.SocialLink>
+        )}
         <SC.SocialLink
           href={linkedin}
           target="_blank"
