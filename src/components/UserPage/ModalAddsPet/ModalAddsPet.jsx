@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { ReactComponent as Close } from 'staticImages/Close.svg';
 import * as SC from './ModalAddsPet.styled';
 import { StepTwo } from './StepTwo';
 import { StepOne } from './StepOne';
 
+const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
 
 export const ModalAddsPet = ({ onClose }) => {
@@ -18,8 +20,12 @@ export const ModalAddsPet = ({ onClose }) => {
   const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
+    disableBodyScroll(body);
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      enableBodyScroll(body);
+    };
   });
 
   const handleKeyDown = e => {

@@ -15,6 +15,7 @@ import {
   NonPetWrapper,
 } from './PetsData.styled';
 import { PetList } from 'components/UserPage/PetsList/PetsList.styled';
+import { ModalAddsPet } from '../ModalAddsPet/ModalAddsPet';
 
 const PetsData = ({ pets, setPets }) => {
   // const isLoading = useSelector(getLoading);
@@ -39,7 +40,7 @@ const PetsData = ({ pets, setPets }) => {
         <UserPetsTitle>Pets:</UserPetsTitle>
         <PetBtnWrapper>
           <AddPetTitleBtn>Add</AddPetTitleBtn>
-          <AddPetBtn onClick={() => setIsOpen(true)} />
+          <AddPetBtn onClick={() => setIsAddModalShown(true)} />
         </PetBtnWrapper>
       </PetsTitleWrapper>
       {isAddModalShown && <ModalAddsPet onClose={toggleModal} />}

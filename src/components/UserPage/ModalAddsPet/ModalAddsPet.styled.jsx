@@ -1,6 +1,8 @@
 import { device } from 'devices';
 import { Form, Field } from 'formik';
 import styled from 'styled-components';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -109,6 +111,25 @@ export const Input = styled(Field)`
   }
 `;
 
+export const DateInput = styled(DatePicker)`
+  width: 100%;
+  padding: 11px 14px 12px;
+  box-sizing: border-box;
+  background-color: ${p => p.theme.colors.background};
+  border: ${p => p.theme.borders.auth};
+  border-radius: ${p => p.theme.radii.br20};
+  font-family: ${p => p.theme.fonts.main};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.fw400};
+  font-size: ${p => p.theme.fontSizes.fs14};
+  line-height: 1.36;
+  @media ${device.tablet} {
+    padding: 11px 16px 10px;
+    font-size: ${p => p.theme.fontSizes.fs16};
+    line-height: 1.66;
+  }
+`;
+
 export const BirthInput = styled(Field)`
   opacity: 0;
   position: absolute;
@@ -148,6 +169,9 @@ export const CommentTextarea = styled.textarea`
   background-color: ${p => p.theme.colors.background};
   border: ${p => p.theme.borders.auth};
   border-radius: ${p => p.theme.radii.br20};
+  @media ${device.tablet} {
+    padding: ${p => p.theme.space[2]}px;
+  }
 `;
 
 export const BtnContainer = styled.div`

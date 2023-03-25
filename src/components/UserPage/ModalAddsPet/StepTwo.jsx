@@ -51,8 +51,10 @@ export const StepTwo = props => {
           </UploadLabel>
           <Label>
             <Subtitle>Comments</Subtitle>
-            <Field name="comments" placeholder="Type breed">
-              {({ field }) => <CommentTextarea {...field} />}
+            <Field name="comments">
+              {({ field }) => (
+                <CommentTextarea placeholder="Type breed" {...field} />
+              )}
             </Field>
             <ErrorMessage name="comments" />
           </Label>
