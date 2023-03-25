@@ -4,13 +4,12 @@ import {
   Wrapper,
   Form,
   Title,
-  Subtitle,
   LabelList,
   BtnStepList,
   BtnStep,
   BtnClose,
   Label,
-  TitlePoint,
+  TitleSex,
   AddDiv,
   Textarea,
   ItemWrapper,
@@ -145,8 +144,7 @@ export const SecondStep = ({
           <Close />
         </BtnClose>
         <Title>Add pet</Title>
-        <Subtitle>Please, fill the data about the pet</Subtitle>
-        <TitlePoint>The sex:</TitlePoint>
+        <TitleSex>The sex:</TitleSex>
         <SexLists formik={formik} />
         <LabelList>
           <li>

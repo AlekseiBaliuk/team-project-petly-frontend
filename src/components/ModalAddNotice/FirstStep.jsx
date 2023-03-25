@@ -28,6 +28,8 @@ export const FirstStep = ({
   isBtnCategory,
   setModalData,
   modalData,
+  initialValuesModalData,
+  setBtnCategory,
 }) => {
   useEffect(() => {
     disableBodyScroll(body);
@@ -97,6 +99,12 @@ export const FirstStep = ({
     },
   });
 
+  useEffect(() => {
+    if (adminModal === 'none') {
+      setModalData(initialValuesModalData);
+    }
+  }, [adminModal, initialValuesModalData, setModalData, setBtnCategory]);
+
   return createPortal(
     <Wrapper onClick={handleModalClick}>
       <Form onSubmit={formik.handleSubmit}>
@@ -117,7 +125,13 @@ export const FirstStep = ({
             </BtnStep>
           </li>
           <li>
-            <BtnStep type="button" onClick={() => adminModal('none', true)}>
+            <BtnStep
+              type="button"
+              onClick={() => {
+                adminModal('none', true);
+                setBtnCategory('none');
+              }}
+            >
               Cancel
             </BtnStep>
           </li>
