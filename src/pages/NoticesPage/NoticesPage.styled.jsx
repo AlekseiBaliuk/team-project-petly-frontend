@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { device } from 'devices';
 
-export const Main = styled('main')`
+export const Section = styled('section')`
   padding-bottom: 100px;
   @media ${device.desktop} {
     padding-bottom: 200px;
