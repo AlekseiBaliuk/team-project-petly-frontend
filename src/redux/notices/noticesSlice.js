@@ -71,6 +71,12 @@ const onRejectedReducer = (state, action) => {
   state.error = action.payload;
 };
 
+const onAddNoticeReducer = (state, action) => {
+  state.items.push(action.payload);
+  state.isLoading = false;
+  state.error = null;
+};
+
 const noticesSlice = createSlice({
   name: 'notices',
   initialState: noticesInitialState,
@@ -81,6 +87,7 @@ const noticesSlice = createSlice({
       .addCase(addFavNotice.fulfilled, onAddFavNoticeReducer)
       .addCase(removeFavNotice.fulfilled, onRemoveFavNoticeReducer)
       .addCase(deleteUserPet.fulfilled, onDeleteUserPetReducer)
+      .addCase(addNotice.fulfilled, onAddNoticeReducer)
       .addMatcher(isAnyOf(...getActionsByType('pending')), onPendingReducer)
       .addMatcher(isAnyOf(...getActionsByType('rejected')), onRejectedReducer),
 });
