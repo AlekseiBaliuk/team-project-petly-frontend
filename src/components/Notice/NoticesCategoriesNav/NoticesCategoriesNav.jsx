@@ -5,21 +5,33 @@ import {
 } from './NoticesCategoriesNav.styled';
 import { useAuth } from 'hooks/useAuth';
 
-export const NoticesCategoriesNav = () => {
+export const NoticesCategoriesNav = ({ categoryChange }) => {
   const { isLoggedIn } = useAuth();
 
   return (
     <CategoriesList>
       <CategoryItem>
-        <Link to="/notices/lost-found">lost/found</Link>
+        <Link
+          to="/notices/lost-found"
+          onClick={() => categoryChange('lost-found')}
+        >
+          lost/found
+        </Link>
       </CategoryItem>
 
       <CategoryItem>
-        <Link to="/notices/for-free">in good hands</Link>
+        <Link
+          to="/notices/for-free"
+          onClick={() => categoryChange('in-good-hands')}
+        >
+          in good hands
+        </Link>
       </CategoryItem>
 
       <CategoryItem>
-        <Link to="/notices/sell">sell</Link>
+        <Link to="/notices/sell" onClick={() => categoryChange('sell')}>
+          sell
+        </Link>
       </CategoryItem>
 
       {isLoggedIn && (

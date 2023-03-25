@@ -12,6 +12,7 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
     price,
     comments,
     owner,
+    title,
   } = notice;
   const {
     Image,
@@ -35,7 +36,7 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
       <Image src={avatarURL} alt="dog" />
 
       <WrapperGrid>
-        <Title>Сute dog looking for a home</Title>
+        <Title>{title}</Title>
         <ul>
           <Item>
             <span>Name:</span>

@@ -25,11 +25,28 @@ const {
   HeartIcon,
   HeartIconFav,
   ButtonWrap,
+  Del,
 } = style;
 
 export const NoticeCategoryItem = ({ fetch }) => {
-  const { title, breed, location, birthday, avatarURL, _id, favorite, owner } =
-    fetch;
+  const {
+    title,
+    breed,
+    location,
+    birthday,
+    avatarURL,
+    _id,
+    favorite,
+    owner,
+    category,
+  } = fetch;
+
+  const categoryName = () => {
+    const uppercase = category.charAt().toUpperCase() + category.slice(1);
+    const result =
+      uppercase === 'Lost-found' ? uppercase.replace('-', '/') : uppercase;
+    return result.replaceAll('-', ' ');
+  };
 
   const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
@@ -77,7 +94,7 @@ export const NoticeCategoryItem = ({ fetch }) => {
   };
   return (
     <Card>
-      <Category>Sell</Category>
+      <Category>{categoryName()}</Category>
       <Like type="button" onClick={handleFavoriteToggle}>
         {addedToFav ? <HeartIconFav /> : <HeartIcon />}
       </Like>
@@ -102,7 +119,10 @@ export const NoticeCategoryItem = ({ fetch }) => {
           Learn more
         </Loadmore>
         {owner._id === user?.id && (
-          <Delete onClick={handleDelete}>Delete</Delete>
+          <Delete onClick={handleDelete}>
+            Delete
+            <Del />
+          </Delete>
         )}
       </ButtonWrap>
 

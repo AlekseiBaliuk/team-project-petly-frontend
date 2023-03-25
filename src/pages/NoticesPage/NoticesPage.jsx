@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from 'components/Container/Container.styled';
 import NoticesCategoriesNav from 'components/Notice/NoticesCategoriesNav';
 import AddNoticeButton from 'components/Notice/AddNoticeButton';
@@ -16,19 +16,25 @@ const NoticesPage = () => {
   const [isBtnCategory, setBtnCategory] = useState('none');
   const [isShown, setIsShown] = useState(false);
   const [filter, setFilter] = useState('');
+  const [category, setCategory] = useState('');
   const initialValuesModalData = {
     category: '',
     title: '',
-    namePet: '',
-    dateOfBirth: '',
+    name: '',
+    birthday: '',
     breed: '',
-    sex: '',
+    sex: 'none',
     location: '',
     price: '',
-    urlImg: '',
+    image: '',
     comments: '',
   };
   const [modalData, setModalData] = useState(initialValuesModalData);
+
+  const categoryChange = category => {
+    localStorage.setItem('categoryLocal', JSON.stringify(category));
+    setCategory(category);
+  };
 
   const adminModal = (type, value) => {
     setIsShown(!value);
@@ -38,7 +44,6 @@ const NoticesPage = () => {
   const findCategoryNotice = category => {
     setBtnCategory(category);
   };
-
   return (
     <Main>
       <section>
@@ -64,11 +69,12 @@ const NoticesPage = () => {
                 isBtnCategory={isBtnCategory}
                 setModalData={setModalData}
                 modalData={modalData}
+                initialValuesModalData={initialValuesModalData}
               />
             )}
-            <NoticesCategoriesNav />
+            <NoticesCategoriesNav categoryChange={categoryChange} />
           </PetSearchNav>
-          <NoticeCategoryList search={filter} />
+          <NoticeCategoryList search={filter} category={category} />
         </Container>
       </section>
     </Main>

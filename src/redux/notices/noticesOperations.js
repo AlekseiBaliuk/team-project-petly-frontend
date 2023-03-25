@@ -3,10 +3,10 @@ import axios from 'axios';
 
 export const fetchNotices = createAsyncThunk(
   'notices/category',
-  async (_, thunkAPI) => {
+  async (category, thunkAPI) => {
     try {
       const response = await axios.get(
-        'https://team-project-petly-backend.onrender.com/api/notices/category/sell',
+        `https://team-project-petly-backend.onrender.com/api/notices/category/${category}`,
       );
       return response.data.notices;
     } catch (e) {
@@ -63,6 +63,20 @@ export const deleteUserPet = createAsyncThunk(
     try {
       const response = await axios.delete(
         `https://team-project-petly-backend.onrender.com/api/notices/${petId}`,
+      );
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
+export const addNotice = createAsyncThunk(
+  '/notices/addNoticePet',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `https://team-project-petly-backend.onrender.com/api/notices/`,
       );
       return response.data;
     } catch (e) {
