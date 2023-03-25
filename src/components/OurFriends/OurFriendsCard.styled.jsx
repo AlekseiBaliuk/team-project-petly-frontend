@@ -19,7 +19,7 @@ export const CardImage = styled.img`
 `;
 
 export const CardTitle = styled.h2`
-  font-family: "Manrope";
+  font-family: ${(h2)=> h2.theme.fonts.main};
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.fw700};
   font-size: ${(p) => p.theme.fontSizes.fs20};
@@ -41,7 +41,7 @@ export const CardTitle = styled.h2`
 `;
 
 export const TitleLink = styled.a`
-  font-family: "Manrope";
+  font-family: ${(a)=> a.theme.fonts.main};;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.fw700};
   font-size: ${(p) => p.theme.fontSizes.fs24};
@@ -81,7 +81,7 @@ export const CardWrap = styled.div`
 `;
 
 export const CardSpan = styled.span`
-  font-family: "Manrope";
+  font-family: ${(span)=> span.theme.fonts.main};;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.fw500};
   font-size: ${(p) => p.theme.fontSizes.fs16};
@@ -100,13 +100,17 @@ export const CardSpan = styled.span`
 `;
 
 export const CardLink = styled.a`
-  font-family: "Manrope";
+  font-family: ${(a)=> a.theme.fonts.main};;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.fw500};
   font-size: ${(p) => p.theme.fontSizes.fs16};
   line-height: 20px;
   display: flex;
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 12px;
   text-decoration-line: none;
   color: ${(p) => p.theme.colors.black};
   @media (max-width: 767px) {
@@ -118,14 +122,15 @@ export const CardLink = styled.a`
     line-height: 19px;
   }
 `;
-export const Time = styled.span`
-  font-family: "Manrope";
+export const Time = styled.div`
+  font-family: ${(div)=> div.theme.fonts.main};;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.fw500};
   font-size: ${(p) => p.theme.fontSizes.fs16};
   line-height: 20px;
   display: flex;
   align-items: center;
+  
   color: ${(p) => p.theme.colors.black};
    @media ${device.mobile} and (max-width: 767px) {
     font-size: ${(p) => p.theme.fontSizes.fs14};
@@ -138,7 +143,7 @@ export const Time = styled.span`
 `;
 
 export const Text = styled.p`
-   font-family: "Manrope";
+   font-family: ${(p)=> p.theme.fonts.main};;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.fw500};
   font-size: ${(p) => p.theme.fontSizes.fs16};
