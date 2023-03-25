@@ -76,7 +76,8 @@ export const addNotice = createAsyncThunk(
   async (modalData, thunkAPI) => {
     try {
       const response = await axios.post(
-        'https://team-project-petly-backend.onrender.com/api/notices/',
+        'https://team-project-petly-backend.onrender.com/api/notices',
+        modalData,
       );
       return response.data;
     } catch (e) {
@@ -90,7 +91,7 @@ export const getMyNotices = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(
-        'https://team-project-petly-backend.onrender.com/api/notices/',
+        'https://team-project-petly-backend.onrender.com/api/notices',
       );
       return response.data;
     } catch (e) {
