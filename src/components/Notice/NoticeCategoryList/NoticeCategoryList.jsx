@@ -21,9 +21,11 @@ export const NoticeCategoryList = ({ search, category }) => {
   useEffect(() => {
     const fetch = async () => {
       const categoryLocal = await localStorage.getItem('categoryLocal');
+      const categoryCheck = null || 'lost-found' || 'in-good-hands';
+      console.log(categoryLocal);
 
       if (category === '') {
-        (await categoryLocal) === null
+        (await categoryLocal) === categoryCheck
           ? dispatch(fetchNotices('sell'))
           : dispatch(fetchNotices(categoryLocal.replace(/['"]+/g, '')));
       } else await dispatch(fetchNotices(category));
