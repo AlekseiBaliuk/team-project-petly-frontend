@@ -72,7 +72,7 @@ const onRejectedReducer = (state, action) => {
 };
 
 const onAddNoticeReducer = (state, action) => {
-  state.items.push(action.payload);
+  // state.items.push(action.payload.notice);
   state.isLoading = false;
   state.error = null;
 };
