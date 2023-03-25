@@ -14,8 +14,8 @@ const SharedLayout = () => {
         <main style={{ flex: 'auto' }}>
           <Outlet />
         </main>
+        <Footer />
       </Suspense>
-      <Footer />
     </div>
   );
 };
