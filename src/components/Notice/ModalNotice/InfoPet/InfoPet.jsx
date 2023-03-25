@@ -1,3 +1,4 @@
+import { categoriesHandler } from 'helpers/categoriesHandler';
 import moment from 'moment';
 import style from './InfoPet.styled';
 
@@ -12,6 +13,8 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
     price,
     comments,
     owner,
+    title,
+    category,
   } = notice;
   const {
     Image,
@@ -31,11 +34,11 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
 
   return (
     <Wrapper>
-      <Category>Sell</Category>
+      <Category>{categoriesHandler(category)}</Category>
       <Image src={avatarURL} alt="dog" />
 
       <WrapperGrid>
-        <Title>Сute dog looking for a home</Title>
+        <Title>{title}</Title>
         <ul>
           <Item>
             <span>Name:</span>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import moment from 'moment';
 import style from './NoticeCategoryItem.styled';
 import Modal from 'components/Notice/ModalNotice';
@@ -8,8 +9,12 @@ import {
   addFavNotice,
   removeFavNotice,
   deleteUserPet,
+  getFavorites,
+  getMyNotices,
 } from 'redux/notices/noticesOperations';
 import { useAuth } from 'hooks/useAuth';
+import { categoriesHandler } from 'helpers/categoriesHandler';
+import { useCategory } from 'hooks/useCategory';
 
 const {
   Image,
@@ -25,26 +30,50 @@ const {
   HeartIcon,
   HeartIconFav,
   ButtonWrap,
+  Del,
 } = style;
 
 export const NoticeCategoryItem = ({ fetch }) => {
-  const { title, breed, location, birthday, avatarURL, _id, favorite, owner } =
-    fetch;
+  const {
+    title,
+    breed,
+    location,
+    birthday,
+    avatarURL,
+    _id,
+    favorite,
+    owner,
+    category,
+  } = fetch;
 
   const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
+  const { activeCategory } = useCategory();
+  const urlPath = useLocation();
 
   const date = moment(birthday, 'DD.MM.YYYY').fromNow(true);
 
+  const favoritePage = urlPath.pathname.includes('favorite');
+  const myNotices = urlPath.pathname.includes('own');
+
   const [showModal, setShowModal] = useState(false);
   const [addedToFav, setAddedToFav] = useState(() => {
-    return isLoggedIn ? favorite.includes(user.id) : false;
+    return isLoggedIn ? favorite?.includes(user.id) : false;
   });
 
   const handleDelete = () => {
     const getNoticesAfterDelete = async () => {
       await dispatch(deleteUserPet(_id));
-      await dispatch(fetchNotices());
+      if (favoritePage) {
+        dispatch(getFavorites());
+        return;
+      }
+      if (myNotices) {
+        dispatch(getMyNotices());
+        return;
+      }
+      dispatch(fetchNotices());
+      await dispatch(fetchNotices(activeCategory));
     };
 
     getNoticesAfterDelete();
@@ -57,6 +86,10 @@ export const NoticeCategoryItem = ({ fetch }) => {
     const removeFavorite = async () => {
       setAddedToFav(false);
       await dispatch(removeFavNotice(_id));
+      if (favoritePage) {
+        dispatch(getFavorites());
+        return;
+      }
     };
     if (addedToFav) {
       removeFavorite();
@@ -77,7 +110,7 @@ export const NoticeCategoryItem = ({ fetch }) => {
   };
   return (
     <Card>
-      <Category>Sell</Category>
+      <Category>{categoriesHandler(category)}</Category>
       <Like type="button" onClick={handleFavoriteToggle}>
         {addedToFav ? <HeartIconFav /> : <HeartIcon />}
       </Like>
@@ -101,8 +134,11 @@ export const NoticeCategoryItem = ({ fetch }) => {
         <Loadmore onClick={toggleModal} type="button">
           Learn more
         </Loadmore>
-        {owner._id === user?.id && (
-          <Delete onClick={handleDelete}>Delete</Delete>
+        {owner?._id === user?.id && (
+          <Delete onClick={handleDelete}>
+            Delete
+            <Del />
+          </Delete>
         )}
       </ButtonWrap>
 

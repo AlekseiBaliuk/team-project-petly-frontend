@@ -45,7 +45,6 @@ const CustomField = props => {
       Object.keys(errors).includes(name) &&
       Object.keys(touched).includes(name)
     ) {
-      console.log('!!!!!');
       return setIsError(true);
     }
 
@@ -56,6 +55,9 @@ const CustomField = props => {
       {...props}
       style={{
         border: isError ? theme.borders.accent : theme.borders.auth,
+        background: isError
+          ? 'rgba(255, 164, 122, 0.034) '
+          : theme.colors.white,
       }}
     />
   );

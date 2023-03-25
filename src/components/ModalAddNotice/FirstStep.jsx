@@ -14,7 +14,10 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { BtnCategoryList } from './BtnCategoryList';
 import { LabelInputList } from './LabelInputList';
 import { useFormik } from 'formik';
-// import * as yup from 'yup';
+import * as yup from 'yup';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { format } from 'date-fns';
+import parseISO from 'date-fns/parseISO';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
@@ -47,34 +50,49 @@ export const FirstStep = ({
     }
   };
 
-  // const validationSchema = yup.object().shape({
-  //   // category: yup.string().required(),
-  //   title: yup
-  //     .string()
-  //     .required('Required')
-  //     .min(2, 'Too Short!')
-  //     .max(28, 'Too Long!'),
-  //   name: yup
-  //     .string()
-  //     .required('Required')
-  //     .min(2, 'Too Short!')
-  //     .max(16, 'Too Long!'),
-  //   dateOfBirth: yup
-  //     .date()
-  //     .default(() => new Date())
-  //     .required('Required'),
-  //   breed: yup
-  //     .string()
-  //     .required('Required')
-  //     .min(2, 'Too Short!')
-  //     .max(24, 'Too Long!'),
-  // });
+  const nameRegExp = /^[A-Za-z\s]+$/;
+
+  const validationSchema = yup.object().shape({
+    title: yup
+      .string()
+      .required('Required')
+      .matches(nameRegExp, 'Only letters!')
+      .min(2, 'Too Short!')
+      .max(28, 'Too Long!'),
+    name: yup
+      .string()
+      .required('Required')
+      .matches(nameRegExp, 'Only letters!')
+      .min(2, 'Too Short!')
+      .max(16, 'Too Long!'),
+    birthday: yup
+      .date()
+      .required('Required')
+      .typeError('DD.MM.YYYY')
+      .max(new Date(), 'Future date not allowed'),
+    breed: yup
+      .string()
+      .required('Required')
+      .matches(nameRegExp, 'Only letters!')
+      .min(2, 'Too Short!')
+      .max(24, 'Too Long!'),
+  });
 
   const formik = useFormik({
     initialValues: modalData,
-    // validationSchema,
+    validationSchema,
     onSubmit: values => {
-      setModalData({ ...values, category: isBtnCategory });
+      const birthday = format(parseISO(values.birthday), 'dd.MM.yyy');
+      setModalData({
+        ...modalData,
+        ...values,
+        category: isBtnCategory,
+        birthday,
+      });
+      if (isBtnCategory === 'none') {
+        Notify.warning('Please select an ad category!');
+        return;
+      }
       adminModal('step2');
     },
   });
@@ -82,14 +100,11 @@ export const FirstStep = ({
   return createPortal(
     <Wrapper onClick={handleModalClick}>
       <Form onSubmit={formik.handleSubmit}>
-        <BtnClose type="button" onClick={() => adminModal('none')}>
+        <BtnClose type="button" onClick={() => adminModal('none', true)}>
           <Close />
         </BtnClose>
         <Title>Add pet</Title>
-        <Subtitle>
-          Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-          consectetur
-        </Subtitle>
+        <Subtitle>Please, fill the data about the pet</Subtitle>
         <BtnCategoryList
           findCategoryNotice={findCategoryNotice}
           isBtnCategory={isBtnCategory}
@@ -100,7 +115,7 @@ export const FirstStep = ({
             <BtnStep type="submit">Next</BtnStep>
           </li>
           <li>
-            <BtnStep type="button" onClick={() => adminModal('none')}>
+            <BtnStep type="button" onClick={() => adminModal('none', true)}>
               Cancel
             </BtnStep>
           </li>

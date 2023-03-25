@@ -109,6 +109,9 @@ export const LabelList = styled.ul`
 `;
 
 export const Label = styled.label`
+  position: relative;
+  height: 100%;
+  display: block;
   font-size: ${props => props.theme.fontSizes.fs18};
   color: ${props => props.theme.colors.mainText};
 
@@ -125,7 +128,7 @@ export const Input = styled.input`
   font-weight: ${props => props.theme.fontWeights.fw400};
   font-size: ${props => props.theme.fontSizes.fs14};
   color: rgba(27, 27, 27, 0.6);
-  padding: 11px 0 12px 14px;
+  padding: 11px 14px 12px 14px;
   width: 100%;
   margin-top: ${props => props.theme.space[1]}px;
 
@@ -133,7 +136,7 @@ export const Input = styled.input`
     margin-top: 12px;
     font-size: ${props => props.theme.fontSizes.fs16};
     color: rgba(17, 17, 17, 0.6);
-    padding: 11px 0 10px 16px;
+    padding: 11px 16px 10px 16px;
   }
 `;
 
@@ -249,12 +252,14 @@ export const LabelSex = styled.label`
 `;
 
 export const ItemWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 12px;
 `;
 
 export const AddDiv = styled.div`
+  position: relative;
   width: 116px;
   height: 116px;
   background-color: ${props => props.theme.colors.background};
@@ -282,10 +287,11 @@ export const AddDiv = styled.div`
 export const AddInput = styled.input`
   opacity: 0;
   position: absolute;
-  z-index: -1;
-  overflow: hidden;
-  width: 0.4px;
-  height: 0.4px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
 `;
 
 export const Textarea = styled.textarea`
@@ -300,5 +306,20 @@ export const Textarea = styled.textarea`
 
   @media ${device.tablet} {
     height: 113px;
+  }
+`;
+
+export const ValidationMessage = styled.div`
+  font-size: ${props => props.theme.fontSizes.fs12};
+  position: absolute;
+  z-index: 999;
+  bottom: -15px;
+  left: 0;
+  color: ${props => props.theme.colors.hoverAccent};
+
+  @media ${device.tablet} {
+    bottom: -20px;
+    left: 0;
+    font-size: ${props => props.theme.fontSizes.fs14};
   }
 `;

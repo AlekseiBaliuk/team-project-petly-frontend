@@ -19,13 +19,13 @@ const NoticesPage = () => {
   const initialValuesModalData = {
     category: '',
     title: '',
-    namePet: '',
-    dateOfBirth: '',
+    name: '',
+    birthday: '',
     breed: '',
-    sex: '',
+    sex: 'none',
     location: '',
     price: '',
-    urlImg: '',
+    image: '',
     comments: '',
   };
   const [modalData, setModalData] = useState(initialValuesModalData);
@@ -38,7 +38,6 @@ const NoticesPage = () => {
   const findCategoryNotice = category => {
     setBtnCategory(category);
   };
-
   return (
     <Main>
       <section>
@@ -64,6 +63,7 @@ const NoticesPage = () => {
                 isBtnCategory={isBtnCategory}
                 setModalData={setModalData}
                 modalData={modalData}
+                initialValuesModalData={initialValuesModalData}
               />
             )}
             <NoticesCategoriesNav />

@@ -1,54 +1,59 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useCategory } from 'hooks/useCategory';
 import selectors from 'redux/notices/noticesSelectors';
-import { fetchNotices, getFavorites } from 'redux/notices/noticesOperations';
+import {
+  fetchNotices,
+  getFavorites,
+  getMyNotices,
+} from 'redux/notices/noticesOperations';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import { Grid } from './NoticeCategoryList.styled';
-// import { Loader } from 'components/Loader/Loader';
 
-const {
-  selectNotices,
-  // selectLoadingStatus,
-  // selectErrorMessage,
-} = selectors;
+const { selectNotices } = selectors;
 
 export const NoticeCategoryList = ({ search }) => {
   const noticesList = useSelector(selectNotices);
-  // const isLoading = useSelector(selectLoadingStatus);
-  // const error = useSelector(selectErrorMessage);
+
+  const { activeCategory } = useCategory();
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetch = async () => {
-      await dispatch(fetchNotices());
-      await dispatch(getFavorites());
+      switch (activeCategory) {
+        case 'favorite':
+          await dispatch(getFavorites());
+          break;
+        case 'my-ads':
+          await dispatch(getMyNotices());
+          break;
+
+        default:
+          await dispatch(fetchNotices(activeCategory));
+          break;
+      }
     };
     fetch();
-  }, [dispatch]);
+  }, [activeCategory, dispatch]);
 
-  function filterNotice() {
+  function filterNotice(list) {
     if (search.length === 0) {
-      return noticesList;
+      return list;
     }
-
     const normalizeSearch = search.toLocaleLowerCase();
-    const filterList = noticesList.filter(({ title }) =>
+    const filterList = list.filter(({ title }) =>
       title.toLowerCase().includes(normalizeSearch),
     );
     return filterList;
   }
 
-  const filterNoticeList = filterNotice();
-
   return (
     <>
-      {/* {error && <p>Not found</p>} */}
-      {/* {isLoading && <Loader />} */}
       <Grid>
-        {filterNoticeList.length > 0 &&
-          filterNoticeList.map(notice => {
-            return <NoticeCategoryItem key={notice._id} fetch={notice} />;
-          })}
+        {filterNotice(noticesList).length > 0 &&
+          filterNotice(noticesList).map(notice => (
+            <NoticeCategoryItem key={notice._id} fetch={notice} />
+          ))}
       </Grid>
     </>
   );
