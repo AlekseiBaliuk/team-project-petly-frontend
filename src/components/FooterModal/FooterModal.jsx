@@ -16,7 +16,7 @@ export const FooterModal = ({ open, handleClose }) => {
     >
       <SC.ModalContainer>
         <SC.ModalHeader>
-          Te<SC.ModalSpan>a</SC.ModalSpan>m 9 (чернетка)
+          Te<SC.ModalSpan>a</SC.ModalSpan>m 9
         </SC.ModalHeader>
         <Typography id="modal-modal-title" variant="h6" component="h2">
           <SC.List
