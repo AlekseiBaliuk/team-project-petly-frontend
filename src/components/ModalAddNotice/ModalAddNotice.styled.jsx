@@ -157,7 +157,10 @@ export const BtnStep = styled.button`
   height: 40px;
   border: 2px solid ${props => props.theme.colors.accent};
   border-radius: 40px;
-  background-color: transparent;
+  background-color: ${props =>
+    props.accent ? props.theme.colors.accent : 'transparent'};
+  color: ${props =>
+    props.accent ? props.theme.colors.white : props.theme.colors.black};
   font-size: ${props => props.theme.fontSizes.fs14};
   transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -169,8 +172,10 @@ export const BtnStep = styled.button`
 
   :hover,
   :focus {
-    background-color: ${props => props.theme.colors.accent};
-    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.hoverAccent};
+    color: ${props =>
+      props.accent ? props.theme.colors.black : props.theme.colors.white};
+    border-color: ${props => props.theme.colors.hoverAccent};
   }
 `;
 
@@ -294,12 +299,19 @@ export const AddInput = styled.input`
   border-radius: 20px;
 `;
 
+export const AddImg = styled.img`
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 20px;
+`;
+
 export const Textarea = styled.textarea`
   padding-top: 16px;
   padding-left: 18px;
   background: ${props => props.theme.colors.background};
   border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 20px;
+  border-radius: 20px;BtnStep
   border: none;
   height: 40px;
   resize: none;

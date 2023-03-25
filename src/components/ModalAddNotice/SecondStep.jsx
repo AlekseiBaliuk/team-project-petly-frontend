@@ -15,6 +15,7 @@ import {
   Textarea,
   ItemWrapper,
   AddInput,
+  AddImg,
 } from './ModalAddNotice.styled';
 import { LabelInput } from './LabelInput';
 import { ReactComponent as Close } from 'staticImages/Close.svg';
@@ -119,9 +120,22 @@ export const SecondStep = ({
   });
 
   const [fieldValue, setFieldValue] = useState({});
+  const [imgSrc, setImageSrc] = useState('');
 
   const handleUpload = e => {
     setFieldValue(e.target.files[0]);
+    const imgFile = e.target.files[0];
+
+    if (imgFile.type && !imgFile.type.startsWith('image/')) {
+      console.log('File is not an image.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.addEventListener('load', event => {
+      setImageSrc(event.target.result);
+    });
+    reader.readAsDataURL(imgFile);
   };
 
   return createPortal(
@@ -167,6 +181,9 @@ export const SecondStep = ({
                   onChange={handleUpload}
                   value={formik.values.image}
                 ></AddInput>
+                {imgSrc.length > 0 ? (
+                  <AddImg src={imgSrc} alt="images" />
+                ) : null}
               </AddDiv>
             </ItemWrapper>
           </li>
@@ -188,7 +205,9 @@ export const SecondStep = ({
         </LabelList>
         <BtnStepList>
           <li>
-            <BtnStep type="submit">Done</BtnStep>
+            <BtnStep type="submit" accent>
+              Done
+            </BtnStep>
           </li>
           <li>
             <BtnStep type="button" onClick={() => adminModal('step1')}>

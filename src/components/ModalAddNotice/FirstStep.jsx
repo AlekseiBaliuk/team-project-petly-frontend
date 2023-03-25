@@ -112,7 +112,9 @@ export const FirstStep = ({
         <LabelInputList formik={formik} />
         <BtnStepList>
           <li>
-            <BtnStep type="submit">Next</BtnStep>
+            <BtnStep type="submit" accent>
+              Next
+            </BtnStep>
           </li>
           <li>
             <BtnStep type="button" onClick={() => adminModal('none', true)}>
