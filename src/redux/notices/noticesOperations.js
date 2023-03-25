@@ -91,8 +91,6 @@ export const getMyNotices = createAsyncThunk(
     try {
       const response = await axios.get(
         'https://team-project-petly-backend.onrender.com/api/notices/',
-        `https://team-project-petly-backend.onrender.com/api/notices`,
-        modalData,
       );
       return response.data;
     } catch (e) {
