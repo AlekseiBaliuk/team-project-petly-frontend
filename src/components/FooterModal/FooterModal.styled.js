@@ -9,7 +9,7 @@ export const ModalContainer = styled.div`
   transform: translate(-50%, -50%);
   background-color: ${theme.colors.white};
   border-radius: 40px;
-  padding: 10px;
+  padding: 20px 10px;
   overflow-y: scroll;
   height: 100%;
   text-align: center;
