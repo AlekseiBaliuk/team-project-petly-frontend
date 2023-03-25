@@ -73,10 +73,11 @@ export const deleteUserPet = createAsyncThunk(
 
 export const addNotice = createAsyncThunk(
   '/notices/addNoticePet',
-  async (_, thunkAPI) => {
+  async (modalData, thunkAPI) => {
     try {
       const response = await axios.post(
         `https://team-project-petly-backend.onrender.com/api/notices/`,
+        modalData,
       );
       return response.data;
     } catch (e) {

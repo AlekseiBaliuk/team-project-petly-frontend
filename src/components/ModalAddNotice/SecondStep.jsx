@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import {
   Wrapper,
@@ -25,8 +25,8 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { ValidationMessage } from './ModalAddNotice.styled';
-// import { useDispatch } from 'react-redux';
-// import { addNotice } from 'redux/notices/noticesOperations';
+import { useDispatch } from 'react-redux';
+import { addNotice } from 'redux/notices/noticesOperations';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
@@ -63,13 +63,13 @@ export const SecondStep = ({
     location: yup
       .string()
       .required('Required')
-      .matches(/[a-zA-zа-яА-яёЁ]$/, 'Country, City!')
+      .matches(/^[A-Za-z\s]+,\s[A-Za-z\s]+$/, 'City, Country!')
       .min(2, 'Too Short!')
       .max(28, 'Too Long!')
       .test({
         name: 'Location type',
         exclusive: true,
-        message: 'You must type your *Country, City*',
+        message: 'You must type your *City, Country*',
         test: value =>
           value.split(' ').length === 2 &&
           value.split(' ')[0].endsWith(',') &&
@@ -84,7 +84,7 @@ export const SecondStep = ({
       .max(120, 'Too Long!'),
   });
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: modalData,
@@ -95,19 +95,38 @@ export const SecondStep = ({
         return;
       }
 
-      setModalData({
+      const requestData = {
         ...modalData,
         ...values,
-      });
-      // dispatch(addNotice(modalData));
+      };
+
+      if (requestData.price === '') delete requestData.price;
+      if (requestData.image === '') delete requestData.image;
+
+      const formData = new FormData();
+
+      for (const key in requestData) {
+        formData.append(`${key}`, requestData[key]);
+      }
+
+      formData.append('image', fieldValue);
+
+      setModalData(requestData);
+      dispatch(addNotice(formData));
       adminModal('none', true);
       setModalData(initialValuesModalData);
     },
   });
 
+  const [fieldValue, setFieldValue] = useState({});
+
+  const handleUpload = e => {
+    setFieldValue(e.target.files[0]);
+  };
+
   return createPortal(
     <Wrapper onClick={handleModalClick}>
-      <Form onSubmit={formik.handleSubmit}>
+      <Form onSubmit={formik.handleSubmit} enctype="multipart/form-data">
         <BtnClose type="button" onClick={() => adminModal('none', true)}>
           <Close />
         </BtnClose>
@@ -130,7 +149,7 @@ export const SecondStep = ({
               <LabelInput
                 title="Price:"
                 name="price"
-                type="number"
+                type="text"
                 placeholder="Type price"
                 formik={formik}
               />
@@ -145,7 +164,7 @@ export const SecondStep = ({
                   type="file"
                   name="image"
                   accept="image/*"
-                  onChange={formik.handleChange}
+                  onChange={handleUpload}
                   value={formik.values.image}
                 ></AddInput>
               </AddDiv>

@@ -50,7 +50,7 @@ export const FirstStep = ({
     }
   };
 
-  const nameRegExp = /[a-zA-zа-яА-яёЁ]$/;
+  const nameRegExp = /^[A-Za-z\s]+$/;
 
   const validationSchema = yup.object().shape({
     title: yup
