@@ -16,7 +16,7 @@ const NoticesPage = () => {
   const [isBtnCategory, setBtnCategory] = useState('none');
   const [isShown, setIsShown] = useState(false);
   const [filter, setFilter] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('sell');
   const initialValuesModalData = {
     category: '',
     title: '',

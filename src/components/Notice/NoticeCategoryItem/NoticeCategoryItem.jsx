@@ -42,10 +42,16 @@ export const NoticeCategoryItem = ({ fetch }) => {
   } = fetch;
 
   const categoryName = () => {
-    const uppercase = category.charAt().toUpperCase() + category.slice(1);
-    const result =
-      uppercase === 'Lost-found' ? uppercase.replace('-', '/') : uppercase;
-    return result.replaceAll('-', ' ');
+    switch (category) {
+      case 'sell':
+        return 'Sell';
+      case 'lost-found':
+        return 'Lost/found';
+      case 'in-good-hands':
+        return 'In good hands';
+      default:
+        break;
+    }
   };
 
   const { isLoggedIn, user } = useAuth();

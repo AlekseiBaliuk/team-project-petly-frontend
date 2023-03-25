@@ -21,18 +21,18 @@ export const NoticeCategoryList = ({ search, category }) => {
   useEffect(() => {
     const fetch = async () => {
       const categoryLocal = await localStorage.getItem('categoryLocal');
-      const categoryCheck = null || 'lost-found' || 'in-good-hands';
-      console.log(categoryLocal);
+      console.log('categoryLocal:', categoryLocal);
+      // console.log('category:', category);
 
-      if (category === '') {
-        (await categoryLocal) === categoryCheck
-          ? dispatch(fetchNotices('sell'))
-          : dispatch(fetchNotices(categoryLocal.replace(/['"]+/g, '')));
-      } else await dispatch(fetchNotices(category));
+      localStorage.getItem('categoryLocal') === 'null'
+        ? await dispatch(fetchNotices(category))
+        : await dispatch(fetchNotices(categoryLocal.replace(/['"]+/g, '')));
 
-      // (await category) === ''
-      //   ? dispatch(fetchNotices(categoryLocal))
-      //   : dispatch(fetchNotices(category));
+      // if (category === 'sell') {
+      //   (await categoryLocal) === null
+      //     ? dispatch(fetchNotices('sell'))
+      //     : dispatch(fetchNotices(categoryLocal.replace(/['"]+/g, '')));
+      // }
     };
     fetch();
   }, [category, dispatch]);
