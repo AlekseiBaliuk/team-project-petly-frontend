@@ -55,6 +55,8 @@ const NoticesPage = () => {
                 isBtnCategory={isBtnCategory}
                 setModalData={setModalData}
                 modalData={modalData}
+                initialValuesModalDat={initialValuesModalData}
+                setBtnCategory={setBtnCategory}
               />
             )}
             {isModalShow === 'step2' && (

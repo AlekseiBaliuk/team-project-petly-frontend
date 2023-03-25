@@ -201,10 +201,11 @@ export const BtnClose = styled.button`
 `;
 
 // SecondForm styles
-export const TitlePoint = styled.p`
+export const TitleSex = styled.p`
   text-align: left;
   font-size: ${props => props.theme.fontSizes.fs18};
   color: ${props => props.theme.colors.mainText};
+  margin-bottom: ${props => props.theme.space[2]}px;
 
   @media ${device.tablet} {
     font-size: ${props => props.theme.fontSizes.fs24};
@@ -216,11 +217,12 @@ export const TitlePoint = styled.p`
 export const SexList = styled.ul`
   display: flex;
   flex-direction: row;
-  gap: ${props => props.theme.space[9]}px;
+  gap: ${props => props.theme.space[5]}px;
   margin-bottom: ${props => props.theme.space[4]}px;
 
   @media ${device.tablet} {
     margin-bottom: ${props => props.theme.space[5]}px;
+    gap: ${props => props.theme.space[9]}px;
   }
 `;
 
@@ -260,7 +262,11 @@ export const ItemWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
+
+  @media ${device.tablet} {
+    gap: 12px;
+  }
 `;
 
 export const AddDiv = styled.div`
@@ -274,7 +280,6 @@ export const AddDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 12px;
   transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
   :hover,
@@ -307,17 +312,21 @@ export const AddImg = styled.img`
 `;
 
 export const Textarea = styled.textarea`
-  padding-top: 16px;
-  padding-left: 18px;
+  padding-top: 11px;
+  padding-left: 14px;
   background: ${props => props.theme.colors.background};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 20px;
-  border: none;
+  border: 1px solid rgba(245, 146, 86, 0.5);
   height: 40px;
   resize: none;
+  font-size: ${props => props.theme.fontSizes.fs14};
 
   @media ${device.tablet} {
     height: 113px;
+    padding-top: 16px;
+    padding-left: 18px;
+    font-size: ${props => props.theme.fontSizes.fs16};
   }
 `;
 
