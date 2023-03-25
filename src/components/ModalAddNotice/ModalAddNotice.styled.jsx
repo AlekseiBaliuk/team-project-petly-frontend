@@ -311,7 +311,7 @@ export const Textarea = styled.textarea`
   padding-left: 18px;
   background: ${props => props.theme.colors.background};
   border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 20px;BtnStep
+  border-radius: 20px;
   border: none;
   height: 40px;
   resize: none;
