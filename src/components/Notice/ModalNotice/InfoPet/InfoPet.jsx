@@ -1,10 +1,8 @@
 import { categoriesHandler } from 'helpers/categoriesHandler';
-import { useCategory } from 'hooks/useCategory';
 import moment from 'moment';
 import style from './InfoPet.styled';
 
 export const InfoPet = ({ notice, toggle, favorite }) => {
-  const { activeCategory } = useCategory();
   const {
     breed,
     location,
@@ -16,6 +14,7 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
     comments,
     owner,
     title,
+    category,
   } = notice;
   const {
     Image,
@@ -35,7 +34,7 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
 
   return (
     <Wrapper>
-      <Category>{categoriesHandler(activeCategory)}</Category>
+      <Category>{categoriesHandler(category)}</Category>
       <Image src={avatarURL} alt="dog" />
 
       <WrapperGrid>

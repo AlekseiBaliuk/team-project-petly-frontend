@@ -76,8 +76,21 @@ export const addNotice = createAsyncThunk(
   async (modalData, thunkAPI) => {
     try {
       const response = await axios.post(
-        `https://team-project-petly-backend.onrender.com/api/notices`,
-        modalData,
+        'https://team-project-petly-backend.onrender.com/api/notices/',
+      );
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
+export const getMyNotices = createAsyncThunk(
+  'notices/myNotices',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        'https://team-project-petly-backend.onrender.com/api/notices/',
       );
       return response.data;
     } catch (e) {
