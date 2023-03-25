@@ -8,7 +8,7 @@ export const AuthNav = () => {
           <SC.Link to="/login">Login</SC.Link>
         </SC.ListItem>
         <SC.ListItem>
-          <SC.Link to="/register">Registartion</SC.Link>
+          <SC.Link to="/register">Registration</SC.Link>
         </SC.ListItem>
       </SC.List>
     </SC.Nav>

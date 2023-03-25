@@ -10,7 +10,7 @@ export const Link = styled(NavLink)`
   font-size: ${theme.fontSizes.fs14};
   line-height: 1.375;
   letter-spacing: 0.04em;
-  padding: 8px 28px;
+  padding: 8px 36px;
   display: flex;
   align-items: center;
   border: ${theme.borders.main};
@@ -20,8 +20,8 @@ export const Link = styled(NavLink)`
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   @media ${device.tablet} {
     font-size: ${theme.fontSizes.fs20};
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-left: 28px;
+    padding-right: 28px;
   }
   &.active,
   &:hover {

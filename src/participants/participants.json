@@ -1,0 +1,126 @@
+[
+  {
+    "id": "id-1",
+    "name": "Oksana Kuzich",
+    "photo": "participants/OksanaKuzich.jpg",
+    "github": "https://github.com/OksanaKuzich",
+    "linkedin": "https://www.linkedin.com/in/oksana-kuzich/",
+    "position": "Front-end Developer"
+  },
+  {
+    "id": "id-2",
+    "name": "Max Siomak",
+    "photo": "participants/MaxSiomak.jpg",
+    "github": "https://github.com/Pleomax07",
+    "linkedin": "https://www.linkedin.com/in/max-siomak/",
+    "position": "Front-end Developer"
+  },
+  {
+    "id": "id-3",
+    "name": "Oleksii Baliuk",
+    "photo": "participants/OleksiiBaliuk.jpg",
+    "github": "https://github.com/AlekseiBaliuk",
+    "linkedin": "https://www.linkedin.com/in/aleksei-baliuk/",
+    "position": "Team Lead, Full-stack Developer"
+  },
+  {
+    "id": "id-4",
+    "name": "Serhiy Koba",
+    "photo": "participants/SerhiyKoba.jpg",
+    "github": "https://github.com/kobaserg",
+    "linkedin": "https://www.linkedin.com/in/serhiy-koba/",
+    "position": "Back-end Developer"
+  },
+  {
+    "id": "id-5",
+    "name": "Yurii Kavuza",
+    "photo": "participants/YuriiKavuza.jpg",
+    "github": "https://github.com/Yurii-Kavuza",
+    "linkedin": "https://www.linkedin.com/in/yurii-kavuza/",
+    "position": "Front-end Developer"
+  },
+  {
+    "id": "id-6",
+    "name": "Dmytro Kobeza",
+    "photo": "participants/DmytroKobeza.jpg",
+    "github": "https://github.com/kobeza1",
+    "linkedin": "https://www.linkedin.com/in/kobeza/",
+    "position": "Front-end Developer"
+  },
+  {
+    "id": "id-7",
+    "name": "Yevhen Ziuskin",
+    "photo": "participants/YevhenZiuskin.jpg",
+    "github": "https://github.com/Yevhenns",
+    "linkedin": "https://linkedin.com/in/yevhen-ziuskin-031b7b23b/",
+    "position": "Front-end Developer"
+  },
+  {
+    "id": "id-8",
+    "name": "Serhii Arkhypiuk",
+    "photo": "participants/SerhiiArkhypiuk.jpg",
+    "github": "https://github.com/serhiiarkhypiuk",
+    "linkedin": "https://www.linkedin.com/in/serhii-arkhypiuk/",
+    "position": "Front-end Developer"
+  },
+  {
+    "id": "id-9",
+    "name": "Anna Matvieieva",
+    "photo": "participants/AnnaMatvieieva.jpg",
+    "github": "https://github.com/annamatvieieva",
+    "linkedin": "https://www.linkedin.com/in/anna-matvieieva-kharkiv/",
+    "position": "Front-end Developer"
+  },
+  {
+    "id": "id-10",
+    "name": "Yurii Shulga",
+    "photo": "participants/YuriiShulga.jpg",
+    "github": "https://github.com/Yurkes2020",
+    "linkedin": "https://www.linkedin.com/in/yurii-shulga-6a39741b9/",
+    "position": "Front-end Developer"
+  },
+  {
+    "id": "id-11",
+    "name": "Tatyana Syrbu",
+    "photo": "participants/TatyanaSyrbu.jpg",
+    "github": "https://github.com/SyTatyana",
+    "linkedin": "https://www.linkedin.com/in/tatyana-syrbu-b11b10240/",
+    "position": "Front-end Developer"
+  },
+  {
+    "id": "id-12",
+    "name": "Anton Ostapenko",
+    "photo": "participants/AntonOstapenko.jpg",
+    "github": "https://github.com/AntonyUser",
+    "linkedin": "https://www.linkedin.com/in/anton-ostapenko-2848b9108/",
+    "position": "Back-end Developer"
+  },
+  {
+    "id": "id-13",
+    "name": "Oleksandr Horbatov",
+    "photo": "participants/OleksandrHorbatov.jpg",
+    "linkedin": "http://www.linkedin.com/in/oleksandr-horbatov-46522a263",
+    "position": "QA Engineer"
+  },
+  {
+    "id": "id-14",
+    "name": "Dmytro Nedilko",
+    "photo": "participants/DmytroNedilko.jpg",
+    "linkedin": "https://www.linkedin.com/in/dmytro-nedilko/",
+    "position": "QA Team Lead, QA Engineer"
+  },
+  {
+    "id": "id-15",
+    "name": "Serhii Harahulia",
+    "photo": "participants/SerhiiHarahulia.jpg",
+    "linkedin": "http://linkedin.com/in/serhii-harahulia",
+    "position": "QA Engineer"
+  },
+  {
+    "id": "id-16",
+    "name": "Irene Zhyhnia",
+    "photo": "participants/IreneZhyhnia.jpg",
+    "linkedin": "https://www.linkedin.com/in/irene-zhyhnia-347789261",
+    "position": "QA Engineer"
+  }
+]
