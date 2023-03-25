@@ -14,6 +14,7 @@ const noticesInitialState = {
   isLoading: false,
   error: null,
   activeCategory: 'sell',
+  isAdded: false,
 };
 
 const extraActions = [
@@ -70,14 +71,17 @@ const onFetchMyNoticesSuccessReducer = (state, action) => {
 const onPendingReducer = state => {
   state.isLoading = true;
   state.error = null;
+  state.isAdded = false;
 };
 const onRejectedReducer = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
+  state.isAdded = false;
 };
 
 const onAddNoticeReducer = (state, action) => {
   // state.items.push(action.payload.notice);
+  state.isAdded = true;
   state.isLoading = false;
   state.error = null;
 };
