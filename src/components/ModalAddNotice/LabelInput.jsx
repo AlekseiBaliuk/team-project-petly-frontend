@@ -13,6 +13,7 @@ export const LabelInput = ({ title, name, type, placeholder, formik }) => {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values[name]}
+        onFocus={name === 'birthday' ? e => (e.target.type = 'date') : null}
       />
       {formik.touched[name] && formik.errors[name] ? (
         <ValidationMessage>{formik.errors[name]}</ValidationMessage>

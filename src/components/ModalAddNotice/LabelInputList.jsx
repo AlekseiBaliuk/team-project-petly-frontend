@@ -18,7 +18,7 @@ export const LabelInputList = ({ formik }) => {
     {
       title: 'Date of birth:',
       name: 'birthday',
-      type: 'date',
+      type: 'text',
       placeholder: 'Type date of birth',
     },
     {
