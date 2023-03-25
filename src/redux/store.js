@@ -6,23 +6,23 @@ import { noticesReducer } from './notices/noticesSlice';
 import { userReducer } from './user/userSlice';
 import { petsReducer } from './pets/petsSlice';
 
-const persistConfig = {
+const persistConfigUser = {
   key: 'auth',
   storage,
   whitelist: ['token', 'isLoggedIn'],
 };
 
-const persistConfig2 = {
+const persistConfigCategory = {
   key: 'category',
   storage,
 };
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(persistConfig, authReducer),
+    auth: persistReducer(persistConfigUser, authReducer),
     user: userReducer,
     notices: noticesReducer,
-    pets: persistReducer(persistConfig2, petsReducer),
+    pets: persistReducer(persistConfigCategory, petsReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
