@@ -10,10 +10,12 @@ import {
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import { Grid } from './NoticeCategoryList.styled';
 
-const { selectNotices } = selectors;
+const { selectNotices, selectIsAdded } = selectors;
 
 export const NoticeCategoryList = ({ search }) => {
   const noticesList = useSelector(selectNotices);
+  const isAdded = useSelector(selectIsAdded);
+  console.log(isAdded);
 
   const { activeCategory } = useCategory();
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ export const NoticeCategoryList = ({ search }) => {
       }
     };
     fetch();
-  }, [activeCategory, dispatch]);
+  }, [activeCategory, dispatch, isAdded]);
 
   function filterNotice(list) {
     if (search.length === 0) {
