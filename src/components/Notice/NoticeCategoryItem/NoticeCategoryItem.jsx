@@ -10,6 +10,7 @@ import {
   deleteUserPet,
 } from 'redux/notices/noticesOperations';
 import { useAuth } from 'hooks/useAuth';
+import { categoriesHandler } from 'helpers/categoriesHandler';
 
 const {
   Image,
@@ -40,13 +41,6 @@ export const NoticeCategoryItem = ({ fetch }) => {
     owner,
     category,
   } = fetch;
-
-  const categoryName = () => {
-    const uppercase = category.charAt().toUpperCase() + category.slice(1);
-    const result =
-      uppercase === 'Lost-found' ? uppercase.replace('-', '/') : uppercase;
-    return result.replaceAll('-', ' ');
-  };
 
   const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
@@ -94,7 +88,7 @@ export const NoticeCategoryItem = ({ fetch }) => {
   };
   return (
     <Card>
-      <Category>{categoryName()}</Category>
+      <Category>{categoriesHandler(category)}</Category>
       <Like type="button" onClick={handleFavoriteToggle}>
         {addedToFav ? <HeartIconFav /> : <HeartIcon />}
       </Like>

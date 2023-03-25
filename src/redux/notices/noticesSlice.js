@@ -14,6 +14,7 @@ const noticesInitialState = {
   favorites: [],
   isLoading: false,
   error: null,
+  activeCategory: 'sell',
 };
 
 const extraActions = [
@@ -37,6 +38,7 @@ const onFetchFavoritesSuccessReducer = (state, action) => {
   state.favorites = action.payload;
   state.isLoading = false;
   state.error = null;
+  state.activeCategory = 'sell';
 };
 
 const onAddFavNoticeReducer = (state, action) => {

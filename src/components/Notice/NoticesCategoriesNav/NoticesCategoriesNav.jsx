@@ -4,16 +4,21 @@ import {
   CategoryItem,
 } from './NoticesCategoriesNav.styled';
 import { useAuth } from 'hooks/useAuth';
+import { useCategory } from 'hooks/useCategory';
+import { useDispatch } from 'react-redux';
+import { updateCategory } from 'redux/pets/petsSlice';
 
-export const NoticesCategoriesNav = ({ categoryChange }) => {
+export const NoticesCategoriesNav = () => {
   const { isLoggedIn } = useAuth();
+  const dispatch = useDispatch();
 
   return (
     <CategoriesList>
       <CategoryItem>
         <Link
           to="/notices/lost-found"
-          onClick={() => categoryChange('lost-found')}
+          onClick={() => dispatch(updateCategory('lost-found'))}
+          // onClick={() => categoryChange('lost-found')}
         >
           lost/found
         </Link>
@@ -22,27 +27,40 @@ export const NoticesCategoriesNav = ({ categoryChange }) => {
       <CategoryItem>
         <Link
           to="/notices/for-free"
-          onClick={() => categoryChange('in-good-hands')}
+          onClick={() => dispatch(updateCategory('in-good-hands'))}
         >
           in good hands
         </Link>
       </CategoryItem>
 
       <CategoryItem>
-        <Link to="/notices/sell" onClick={() => categoryChange('sell')}>
+        <Link
+          to="/notices/sell"
+          onClick={() => dispatch(updateCategory('sell'))}
+        >
           sell
         </Link>
       </CategoryItem>
 
       {isLoggedIn && (
         <CategoryItem>
-          <Link to="/notices/favorite">favorite ads</Link>
+          <Link
+            to="/notices/favorite"
+            onClick={() => dispatch(updateCategory('favorite'))}
+          >
+            favorite ads
+          </Link>
         </CategoryItem>
       )}
 
       {isLoggedIn && (
         <CategoryItem>
-          <Link to="/notices/own">my ads</Link>
+          <Link
+            to="/notices/own"
+            onClick={() => dispatch(updateCategory('my-ads'))}
+          >
+            my ads
+          </Link>
         </CategoryItem>
       )}
     </CategoriesList>
