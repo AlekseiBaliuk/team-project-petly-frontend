@@ -46,14 +46,12 @@ const NewsPage = () => {
 
   return (
     <NewsPageBox>
-      <section>
-        <Container>
-          <PageTitle>News</PageTitle>
-          <Search sendSearch={setFilter} />
-          {news.length > 0 && <NewsList news={searchNews()} />}
-          {isLoading && <Loader />}
-        </Container>
-      </section>
+      <Container>
+        <PageTitle>News</PageTitle>
+        <Search sendSearch={setFilter} />
+        {news.length > 0 && <NewsList news={searchNews()} />}
+        {isLoading && <Loader />}
+      </Container>
     </NewsPageBox>
   );
 };

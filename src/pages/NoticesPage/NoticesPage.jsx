@@ -9,7 +9,7 @@ import { PageTitle } from 'components/PageTitle/PageTitle';
 
 import { Search } from 'components/Search/Search';
 
-import { PetSearchNav, Main } from './NoticesPage.styled';
+import { PetSearchNav, Section } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   const [isModalShow, setIsModalShow] = useState('none');
@@ -39,41 +39,39 @@ const NoticesPage = () => {
     setBtnCategory(category);
   };
   return (
-    <Main>
-      <section>
-        <Container>
-          <PageTitle>Find your favorite pet</PageTitle>
-          <Search sendSearch={setFilter} />
-          <PetSearchNav>
-            {!isShown && (
-              <AddNoticeButton openModal={() => adminModal('step1', false)} />
-            )}
-            {isModalShow === 'step1' && (
-              <FirstStep
-                adminModal={adminModal}
-                findCategoryNotice={findCategoryNotice}
-                isBtnCategory={isBtnCategory}
-                setModalData={setModalData}
-                modalData={modalData}
-                initialValuesModalDat={initialValuesModalData}
-                setBtnCategory={setBtnCategory}
-              />
-            )}
-            {isModalShow === 'step2' && (
-              <SecondStep
-                adminModal={adminModal}
-                isBtnCategory={isBtnCategory}
-                setModalData={setModalData}
-                modalData={modalData}
-                initialValuesModalData={initialValuesModalData}
-              />
-            )}
-            <NoticesCategoriesNav />
-          </PetSearchNav>
-          <NoticeCategoryList search={filter} />
-        </Container>
-      </section>
-    </Main>
+    <Section>
+      <Container>
+        <PageTitle>Find your favorite pet</PageTitle>
+        <Search sendSearch={setFilter} />
+        <PetSearchNav>
+          {!isShown && (
+            <AddNoticeButton openModal={() => adminModal('step1', false)} />
+          )}
+          {isModalShow === 'step1' && (
+            <FirstStep
+              adminModal={adminModal}
+              findCategoryNotice={findCategoryNotice}
+              isBtnCategory={isBtnCategory}
+              setModalData={setModalData}
+              modalData={modalData}
+              initialValuesModalDat={initialValuesModalData}
+              setBtnCategory={setBtnCategory}
+            />
+          )}
+          {isModalShow === 'step2' && (
+            <SecondStep
+              adminModal={adminModal}
+              isBtnCategory={isBtnCategory}
+              setModalData={setModalData}
+              modalData={modalData}
+              initialValuesModalData={initialValuesModalData}
+            />
+          )}
+          <NoticesCategoriesNav />
+        </PetSearchNav>
+        <NoticeCategoryList search={filter} />
+      </Container>
+    </Section>
   );
 };
 

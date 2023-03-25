@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { device } from '../../devices';
 
-export const NewsPageBox = styled.main`
+export const NewsPageBox = styled.section`
   /* padding-top: ${p => p.theme.space[5]}px; */
   padding-bottom: ${p => p.theme.space[10]}px;
 
