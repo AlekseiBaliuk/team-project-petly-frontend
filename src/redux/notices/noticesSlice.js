@@ -5,13 +5,12 @@ import {
   removeFavNotice,
   addNotice,
   getFavorites,
-  // getMyNotices,
+  getMyNotices,
   deleteUserPet,
 } from './noticesOperations';
 
 const noticesInitialState = {
   items: [],
-  favorites: [],
   isLoading: false,
   error: null,
   activeCategory: 'sell',
@@ -23,7 +22,7 @@ const extraActions = [
   removeFavNotice,
   addNotice,
   getFavorites,
-  // getMyNotices,
+  getMyNotices,
   deleteUserPet,
 ];
 const getActionsByType = type => extraActions.map(action => action[type]);
@@ -35,7 +34,7 @@ const onFetchSuccessReducer = (state, action) => {
 };
 
 const onFetchFavoritesSuccessReducer = (state, action) => {
-  state.favorites = action.payload;
+  state.items = action.payload;
   state.isLoading = false;
   state.error = null;
   state.activeCategory = 'sell';
@@ -44,20 +43,26 @@ const onFetchFavoritesSuccessReducer = (state, action) => {
 const onAddFavNoticeReducer = (state, action) => {
   state.isLoading = false;
   state.error = false;
-  const newFavorite = state.favorites.includes(action.payload)
+  const newFavorite = state.items.includes(action.payload)
     ? state.favorites
-    : [...state.favorites, action.payload];
-  state.favorites = newFavorite;
+    : [...state.items, action.payload];
+  state.items = newFavorite;
 };
 
 const onRemoveFavNoticeReducer = (state, action) => {
   state.isLoading = false;
   state.error = false;
-  const newFavorite = state.favorites.filter(item => item !== action.payload);
-  state.favorites = newFavorite;
+  const newFavorite = state.items.filter(item => item !== action.payload);
+  state.items = newFavorite;
 };
 
 const onDeleteUserPetReducer = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+};
+
+const onFetchMyNoticesSuccessReducer = (state, action) => {
+  state.items = action.payload.notices;
   state.isLoading = false;
   state.error = null;
 };
@@ -81,6 +86,7 @@ const noticesSlice = createSlice({
       .addCase(addFavNotice.fulfilled, onAddFavNoticeReducer)
       .addCase(removeFavNotice.fulfilled, onRemoveFavNoticeReducer)
       .addCase(deleteUserPet.fulfilled, onDeleteUserPetReducer)
+      .addCase(getMyNotices.fulfilled, onFetchMyNoticesSuccessReducer)
       .addMatcher(isAnyOf(...getActionsByType('pending')), onPendingReducer)
       .addMatcher(isAnyOf(...getActionsByType('rejected')), onRejectedReducer),
 });
