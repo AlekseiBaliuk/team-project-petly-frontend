@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import { RegisterForm } from '../../components/RegisterForm/RegisterForm/RegisterForm';
 import { Container, Wrapper, Login } from './RegisterPage.styled';
 import { AuthTitle } from '../../components/AuthTitle/AuthTitle';

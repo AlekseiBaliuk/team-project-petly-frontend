@@ -1,10 +1,13 @@
-import { FormikWizard } from 'formik-wizard-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import { FormikWizard } from 'formik-wizard-form';
+import * as yup from 'yup';
+
 import { signup } from '../../../redux/auth/authOperations';
 import RegisterFormStepOne from 'components/RegisterForm/RegisterSteps/StepOne';
 import RegisterFormStepTwo from 'components/RegisterForm/RegisterSteps/StepTwo';
-import * as yup from 'yup';
+
 import {
   ButtonRegister,
   ButtonPrevius,
@@ -22,9 +25,9 @@ export const RegisterForm = () => {
 
     newData['phone'] = phoneNumber.replace(pattern, '+38$1$2$3$4');
     delete newData.confirmPassword;
-    dispatch(signup(newData));
-    navigate('/user');
+    dispatch(signup({ credentials: newData, navigate }));
   };
+
   return (
     <FormikWizard
       initialValues={{
@@ -42,16 +45,23 @@ export const RegisterForm = () => {
           component: RegisterFormStepOne,
 
           validationSchema: yup.object().shape({
-            email: yup.string().email().required('required'),
+            email: yup
+              .string()
+              .email()
+              .required('Email is required')
+              .matches(
+                /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                'Email must much the following "example@mail.com"',
+              ),
             password: yup
               .string()
               .min(7, 'Too short!')
               .max(32, 'Too lond!')
-              .required('required'),
+              .required('Required'),
             confirmPassword: yup
               .string()
               .oneOf([yup.ref('password')], 'Password mismatch')
-              .required('required'),
+              .required('Password is required'),
           }),
         },
         {
@@ -72,14 +82,7 @@ export const RegisterForm = () => {
                 /[a-z, A-Z]{2},\s([a-z, A-Z]{2,64})$/,
                 'Address should be in format: City, Region',
               ),
-
-            phone: yup
-              .string()
-              .required('Phone is required')
-              .matches(
-                /^\+38\(0..\)...-..-../,
-                'Phone should be in format +38(067)123-45-67',
-              ),
+            phone: yup.string().required('Phone is required'),
           }),
         },
       ]}
@@ -127,6 +130,7 @@ export const RegisterForm = () => {
               type="button"
               onClick={() => {
                 validateForm();
+
                 setTouched({
                   email: true,
                   password: true,

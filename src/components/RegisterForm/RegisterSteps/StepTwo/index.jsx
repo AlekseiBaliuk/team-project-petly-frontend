@@ -1,9 +1,12 @@
 import React, { Fragment } from 'react';
+
 import MaskInput from 'components/MaskInput';
 import CustomField from '../../../CustomAuthField';
+
 import { Label, ValidationMessage } from '../StepOne/stepOne.styled';
+
 const RegisterFormStepTwo = props => {
-  const { errors } = props;
+  const { errors, touched } = props;
 
   return (
     <Fragment>
@@ -13,7 +16,7 @@ const RegisterFormStepTwo = props => {
           label="name"
           placeholder="name"
           errors={errors}
-          touched={{}}
+          touched={touched}
         />
         <ValidationMessage name="name" component="div" />
       </Label>
@@ -23,7 +26,7 @@ const RegisterFormStepTwo = props => {
           label="location"
           placeholder="city/region"
           errors={errors}
-          touched={{}}
+          touched={touched}
         />
         <ValidationMessage name="location" component="div" />
       </Label>
@@ -38,7 +41,7 @@ const RegisterFormStepTwo = props => {
           onFocus={MaskInput.onMaskedInputFocus}
           onBlur={MaskInput.onMaskedInputBlur}
           errors={errors}
-          touched={{}}
+          touched={touched}
         />
         <ValidationMessage name="phone" component="div" />
       </Label>

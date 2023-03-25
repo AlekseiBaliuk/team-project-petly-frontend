@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { Form } from 'formik';
+
 import { Icon, Label, ValidationMessage } from './stepOne.styled';
 import CustomField from '../../../CustomAuthField';
 import eyeClosed from 'staticImages/eye-closed.png';
@@ -32,59 +32,57 @@ const RegisterFormStepOne = props => {
   }
 
   const { errors, touched } = props;
-  console.log('PORPS', props);
+
   return (
-    <Form>
-      <Fragment>
-        <Label>
-          <CustomField
-            id="email"
-            name="email"
-            label="email"
-            placeholder="email"
-            errors={errors}
-            touched={touched}
-          />
-          <ValidationMessage name="email" component="div" />
-        </Label>
+    <Fragment>
+      <Label>
+        <CustomField
+          id="email"
+          name="email"
+          label="email"
+          placeholder="email"
+          errors={errors}
+          touched={touched}
+        />
+        <ValidationMessage name="email" component="div" />
+      </Label>
 
-        <Label>
-          <Icon
-            url={spanBgIcon}
-            id="passwordEye"
-            onClick={event => handleToggleBtn(event)}
-          />
-          <CustomField
-            id="password"
-            type={passwordType}
-            name="password"
-            label="password"
-            placeholder="password"
-            errors={errors}
-            touched={touched}
-          />
+      <Label>
+        <Icon
+          url={spanBgIcon}
+          id="passwordEye"
+          onClick={event => handleToggleBtn(event)}
+        />
+        <CustomField
+          id="password"
+          type={passwordType}
+          name="password"
+          label="password"
+          placeholder="password"
+          errors={errors}
+          touched={touched}
+        />
 
-          <ValidationMessage name="password" component="div" />
-        </Label>
-        <Label>
-          <Icon
-            url={spanConfirmBgIcon}
-            id="confirmPassword"
-            onClick={event => handleToggleBtn(event)}
-          />
-          <CustomField
-            id="confirmPassword"
-            type={confirmPasswordType}
-            name="confirmPassword"
-            label="confirmPassword"
-            placeholder="confirm password"
-            errors={errors}
-            touched={touched}
-          />
-          <ValidationMessage name="confirmPassword" component="div" />
-        </Label>
-      </Fragment>
-    </Form>
+        <ValidationMessage name="password" component="div" />
+      </Label>
+      <Label>
+        <Icon
+          url={spanConfirmBgIcon}
+          id="confirmPassword"
+          onClick={event => handleToggleBtn(event)}
+        />
+        <CustomField
+          id="confirmPassword"
+          type={confirmPasswordType}
+          name="confirmPassword"
+          label="confirmPassword"
+          placeholder="confirm password"
+          errors={errors}
+          touched={touched}
+        />
+        <ValidationMessage name="confirmPassword" component="div" />
+      </Label>
+    </Fragment>
   );
 };
 
