@@ -10,6 +10,7 @@ import {
   deleteUserPet,
 } from 'redux/notices/noticesOperations';
 import { useAuth } from 'hooks/useAuth';
+import { categoriesHandler } from 'helpers/categoriesHandler';
 
 const {
   Image,
@@ -40,19 +41,6 @@ export const NoticeCategoryItem = ({ fetch }) => {
     owner,
     category,
   } = fetch;
-
-  const categoryName = () => {
-    switch (category) {
-      case 'sell':
-        return 'Sell';
-      case 'lost-found':
-        return 'Lost/found';
-      case 'in-good-hands':
-        return 'In good hands';
-      default:
-        break;
-    }
-  };
 
   const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
@@ -100,7 +88,7 @@ export const NoticeCategoryItem = ({ fetch }) => {
   };
   return (
     <Card>
-      <Category>{categoryName()}</Category>
+      <Category>{categoriesHandler(category)}</Category>
       <Like type="button" onClick={handleFavoriteToggle}>
         {addedToFav ? <HeartIconFav /> : <HeartIcon />}
       </Like>
