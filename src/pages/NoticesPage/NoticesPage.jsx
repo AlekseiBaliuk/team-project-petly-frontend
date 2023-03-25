@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container } from 'components/Container/Container.styled';
 import NoticesCategoriesNav from 'components/Notice/NoticesCategoriesNav';
 import AddNoticeButton from 'components/Notice/AddNoticeButton';
