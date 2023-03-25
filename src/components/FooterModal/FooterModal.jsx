@@ -1,5 +1,5 @@
-import participants from '../../../participants/participants.json';
-import { FooterModalItem } from './FooterModalItem';
+import participants from '../../participants/participants.json';
+import { FooterModalItem } from './FooterModalItem/FooterModalItem';
 
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
