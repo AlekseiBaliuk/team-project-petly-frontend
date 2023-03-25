@@ -22,11 +22,19 @@ import parseISO from 'date-fns/parseISO';
 registerLocale('uk', uk);
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().min(2, 'Too short name').max(16, 'Too long name'),
-  date: Yup.date(),
+  name: Yup.string()
+    .min(2, 'Too short name')
+    .max(16, 'Too long name')
+    .matches(regExp.nameRegexp, 'Only letters!')
+    .required('This field is required'),
+  birthday: Yup.date()
+    .max(new Date(), 'Future date not allowed')
+    .required('This field is required'),
   breed: Yup.string()
     .min(2, 'Too short name of breed')
-    .max(24, 'Too long name of breed'),
+    .max(24, 'Too long name of breed')
+    .matches(regExp.nameRegexp, 'Only letters!')
+    .required('This field is required'),
 });
 
 export const StepOne = props => {
@@ -52,17 +60,20 @@ export const StepOne = props => {
           <Label>
             <Subtitle>Date of birth</Subtitle>
             <Input
-              name="date"
+              name="birthday"
               type="text"
               placeholder="Type date of birth"
               onFocus={e => (e.target.type = 'date')}
               onBlur={e => {
                 e.target.type = 'text';
-                e.target.value = format(parseISO(e.target.value), 'dd.MM.yyyy');
+                // e.target.value && (e.target.value = format(
+                //   parseISO(e.target.value),
+                //   'dd.MM.yyyy',
+                // ));
               }}
               max={maxDate}
             />
-            <ErrorMessage name="date" />
+            <ErrorMessage name="birthday" />
           </Label>
           <Label>
             <Subtitle>Breed</Subtitle>

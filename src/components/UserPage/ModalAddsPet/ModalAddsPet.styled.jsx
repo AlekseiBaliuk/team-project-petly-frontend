@@ -72,7 +72,10 @@ export const Text = styled.div`
 export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  gap: ${p => p.theme.space[1]}px;
+  gap: ${p => p.theme.space[2]}px;
+  @media ${device.tablet} {
+    gap: 28px;
+  }
 `;
 
 export const Label = styled.label`

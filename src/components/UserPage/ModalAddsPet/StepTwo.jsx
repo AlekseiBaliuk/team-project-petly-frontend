@@ -1,5 +1,6 @@
 import { ErrorMessage, Field, Formik } from 'formik';
 import * as Yup from 'yup';
+import { useState } from 'react';
 import {
   Btn,
   BtnActive,
@@ -16,17 +17,27 @@ import {
 import { ReactComponent as Plus } from 'staticImages/icon-plus.svg';
 
 const validationSchema = Yup.object().shape({
-  photo: Yup.mixed(),
+  // image: Yup.mixed(),
   comments: Yup.string()
     .min(8, 'The message is too short')
     .max(120, 'The message is too long'),
 });
 
 export const StepTwo = props => {
+  // const [avatar, setAvatar] = useState(null);
+
   const handleSubmit = values => {
     props.next(values, true);
     props.onClose();
   };
+
+  // const handleChange = e => {
+  //   e.preventDefault();
+  //   const av = URL.createObjectURL(e.target.files[0]);
+  //   const data = new FormData();
+  //   data.append('image', e.target.files[0]);
+  //   setAvatar(av);
+  // };
 
   return (
     <Formik
@@ -39,10 +50,12 @@ export const StepTwo = props => {
           <Text>Add photo and some comments</Text>
           <UploadLabel>
             <UploadDiv>
+              {/* {values.image ? <img src={values.image}></img> : <Plus />} */}
               <Plus />
               <UploadInput
-                name="photo"
+                name="image"
                 type="file"
+                accept="image/*"
                 onChange={e => {
                   console.dir(e.currentTarget.files[0]);
                 }}

@@ -12,9 +12,9 @@ const modalRoot = document.querySelector('#modal-root');
 export const ModalAddsPet = ({ onClose }) => {
   const [data, setData] = useState({
     name: '',
-    date: '',
+    birthday: '',
     breed: '',
-    photo: '',
+    image: '',
     comments: '',
   });
   const [currentStep, setCurrentStep] = useState(0);
