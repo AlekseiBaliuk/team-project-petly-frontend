@@ -24,6 +24,10 @@ export const ContainerItem = styled.li`
   @media ${device.tablet} and (max-width: 1279px) {
     width: calc(50% - 32px);
   }
+  :hover,
+  :focus {
+    transform: scale(1.05);
+  }
 `;
 
 export const ContainerWrap = styled.div`
