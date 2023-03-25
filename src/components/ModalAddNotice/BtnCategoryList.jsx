@@ -4,7 +4,7 @@ import { BtnCategoryItem } from './BtnCategoryItem';
 export const BtnCategoryList = ({ findCategoryNotice, isBtnCategory }) => {
   const categoryBtns = [
     { name: 'lost/found', data: 'lost-found' },
-    { name: 'in good hands', data: 'for-free' },
+    { name: 'in good hands', data: 'in-good-hands' },
     { name: 'sell', data: 'sell' },
   ];
 
