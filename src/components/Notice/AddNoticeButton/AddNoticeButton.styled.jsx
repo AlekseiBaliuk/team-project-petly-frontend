@@ -20,6 +20,10 @@ export const Button = styled('button')`
   border: none;
   cursor: pointer;
 
+  // :hover {
+  //   background-color: ${props => props.theme.colors.hoverAccent};
+  // }
+
   @media ${device.beforeTablet} {
     position: fixed;
     right: 15px;
