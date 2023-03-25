@@ -15,6 +15,7 @@ import {
   NonPetWrapper,
 } from './PetsData.styled';
 import { PetList } from 'components/UserPage/PetsList/PetsList.styled';
+import { ModalAddsPet } from '../ModalAddsPet/ModalAddsPet';
 
 const PetsData = ({ pets, setPets }) => {
   // const isLoading = useSelector(getLoading);
@@ -23,12 +24,15 @@ const PetsData = ({ pets, setPets }) => {
   // const isPets = Boolean(petsData.length);
   const isPets = false;
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isAddModalShown, setIsAddModalShown] = useState(false);
   // const dispatch = useDispatch();
   //
   // useEffect(() => {
   //   dispatch(getPetInfo());
   // }, [dispatch]);
+   const toggleModal = () => {
+     setIsAddModalShown(state => !state);
+   };
 
   return (
     <PetsWrapper>
@@ -36,18 +40,10 @@ const PetsData = ({ pets, setPets }) => {
         <UserPetsTitle>Pets:</UserPetsTitle>
         <PetBtnWrapper>
           <AddPetTitleBtn>Add</AddPetTitleBtn>
-          <AddPetBtn onClick={() => setIsOpen(true)} />
+          <AddPetBtn onClick={() => setIsAddModalShown(true)} />
         </PetBtnWrapper>
       </PetsTitleWrapper>
-      {/*{isOpen*/}
-      {/*  ? <ModalAddsPetApp*/}
-      {/*    petsData={pets}*/}
-      {/*    setPets={setPets}*/}
-      {/*    onOpenModal={isOpen}*/}
-      {/*    onCloseModal={() => setIsOpen(false)}*/}
-      {/*  />*/}
-      {/*  : null*/}
-      {/*}*/}
+      {isAddModalShown && <ModalAddsPet onClose={toggleModal} />}
       {isPets ? (
         <PetList />
       ) : (
