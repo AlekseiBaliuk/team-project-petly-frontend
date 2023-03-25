@@ -66,10 +66,11 @@ export const StepOne = props => {
               onFocus={e => (e.target.type = 'date')}
               onBlur={e => {
                 e.target.type = 'text';
-                // e.target.value && (e.target.value = format(
-                //   parseISO(e.target.value),
-                //   'dd.MM.yyyy',
-                // ));
+                e.target.value &&
+                  (e.target.value = format(
+                    parseISO(e.target.value),
+                    'dd.MM.yyyy',
+                  ));
               }}
               max={maxDate}
             />
