@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
@@ -18,18 +17,10 @@ import * as SC from './Header.styled';
 export const Header = () => {
   const [menu, setMenu] = useState(false);
 
-  useEffect(() => {
-    menu ? disableBodyScroll(document) : enableBodyScroll(document);
-  }, [menu]);
-
   const beforeTablet = useMediaQuery({ query: '(max-width: 767px)' });
   const tablet = useMediaQuery({ query: '(min-width: 768px)' });
   const beforeDesktop = useMediaQuery({ query: '(max-width: 1279px)' });
   const desktop = useMediaQuery({ query: '(min-width: 1280px)' });
-
-  useEffect(() => {
-    desktop && setMenu(false);
-  }, [desktop]);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 

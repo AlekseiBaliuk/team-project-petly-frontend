@@ -1,4 +1,4 @@
-import * as SC from './FooterModal.styled';
+import * as SC from './FooterModalItem.styled';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
@@ -23,7 +23,7 @@ export const FooterModalItem = ({
             target="_blank"
             rel="noreferrer noopener"
           >
-            <GitHubIcon />
+            <GitHubIcon fontSize="large" />
           </SC.SocialLink>
         )}
         <SC.SocialLink
@@ -31,7 +31,7 @@ export const FooterModalItem = ({
           target="_blank"
           rel="noreferrer noopener"
         >
-          <LinkedInIcon />
+          <LinkedInIcon fontSize="large" />
         </SC.SocialLink>
       </SC.IconSet>
     </SC.ListItem>

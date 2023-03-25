@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Container } from 'components/Container/Container.styled';
-import { FooterModal } from './FooterModal/FooterModal';
+import { FooterModal } from '../FooterModal/FooterModal';
 import PetsIcon from '@mui/icons-material/Pets';
 import * as SC from './Footer.styled';
 

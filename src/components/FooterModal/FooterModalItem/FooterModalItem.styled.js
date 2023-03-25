@@ -1,33 +1,7 @@
 import styled from 'styled-components';
-import { theme } from '../../../constants/theme';
+import { theme } from '../../../constants/index';
 import { device } from '../../../devices';
 
-export const ModalContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: ${theme.colors.white};
-  border-radius: 40px;
-  padding: 10px;
-  overflow-y: scroll;
-  height: 100%;
-  text-align: center;
-  @media ${device.tablet} {
-    padding: 30px;
-  }
-`;
-export const List = styled.ul`
-  @media ${device.tablet} {
-    display: grid;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media ${device.desktop} {
-    grid-template-columns: repeat(6, 1fr);
-  }
-`;
 export const ListItem = styled.li`
   width: 300px;
   display: flex;
@@ -43,7 +17,7 @@ export const ListItem = styled.li`
   transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
   @media ${device.beforeTablet} {
     &:not(:last-child) {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
   }
   &:hover {
@@ -64,25 +38,10 @@ export const ListItem = styled.li`
     }
   }
 `;
-export const ModalHeader = styled.p`
-  color: ${theme.colors.mainText};
-  font-family: ${theme.fonts.logo};
-  font-weight: ${theme.fontWeights.fw700};
-  font-size: ${theme.fontSizes.fs28};
-  line-height: 1.5;
-  letter-spacing: 0.07em;
-  margin-bottom: 20px;
-  @media ${device.tablet} {
-    font-size: ${theme.fontSizes.fs32};
-  }
-`;
-export const ModalSpan = styled.span`
-  color: ${theme.colors.accent};
-`;
-
 export const IconSet = styled.div`
   display: flex;
   gap: 10px;
+  margin-top: auto;
 `;
 export const SocialLink = styled.a`
   color: ${theme.colors.mainText};
