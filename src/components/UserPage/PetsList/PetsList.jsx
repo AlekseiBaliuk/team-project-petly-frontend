@@ -10,10 +10,6 @@ import {
   PetDescriptionInfo,
   DeleteBtn,
 } from './PetsList.styled';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogTitle from '@mui/material/DialogTitle';
 import PropTypes from 'prop-types';
 import { ApproveRemovingModal } from 'components/SharedComponents/ApproveRemovingModal/ApproveRemovingModal';
 
@@ -69,24 +65,11 @@ const PetsList = ({ dataPets }) => {
             </PetItem>
           </PetList>
           <DeleteBtn variant="outlined" onClick={() => handleClickOpen(_id)} />
-          <ApproveRemovingModal modalOpen={open} yesAction={removePet} noAction={handleClose} />
-          {/* <Dialog open={open} aria-labelledby="alert-dialog-title">
-            <DialogTitle id="alert-dialog-title">
-              Are you sure you want to remove?
-            </DialogTitle>
-            <DialogActions>
-              <Button onClick={handleClose} style={{ color: '#F59256' }}>
-                No
-              </Button>
-              <Button
-                onClick={removePet}
-                autoFocus
-                style={{ color: '#F59256' }}
-              >
-                Yes
-              </Button>
-            </DialogActions>
-          </Dialog> */}
+          <ApproveRemovingModal
+            modalOpen={open}
+            yesAction={removePet}
+            noAction={handleClose}
+          />
         </PetWrapper>
       );
     },
