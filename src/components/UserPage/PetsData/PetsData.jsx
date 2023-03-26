@@ -15,7 +15,8 @@ import {
   NonPetWrapper,
 } from './PetsData.styled';
 import { PetList } from 'components/UserPage/PetsList/PetsList.styled';
-import { ModalAddsPet } from '../ModalAddsPet/ModalAddsPet';
+import { FirstStep } from '../ModalAddsPet/FirstStep';
+import { SecondStep } from '../ModalAddsPet/SecondStep';
 
 const PetsData = ({ pets, setPets }) => {
   // const isLoading = useSelector(getLoading);
@@ -23,16 +24,26 @@ const PetsData = ({ pets, setPets }) => {
   // const petsData = useSelector(getPets);
   // const isPets = Boolean(petsData.length);
   const isPets = false;
+  const [isModalShow, setIsModalShow] = useState('none');
+  const [isShown, setIsShown] = useState(false);
+  const initialValuesModalData = {
+    name: '',
+    birthday: '',
+    breed: '',
+    image: '',
+    comments: '',
+  };
+  const [modalData, setModalData] = useState(initialValuesModalData);
 
-  const [isAddModalShown, setIsAddModalShown] = useState(false);
   // const dispatch = useDispatch();
   //
   // useEffect(() => {
   //   dispatch(getPetInfo());
   // }, [dispatch]);
-   const toggleModal = () => {
-     setIsAddModalShown(state => !state);
-   };
+  const adminModal = (type, value) => {
+    setIsShown(!value);
+    setIsModalShow(type);
+  };
 
   return (
     <PetsWrapper>
@@ -40,10 +51,25 @@ const PetsData = ({ pets, setPets }) => {
         <UserPetsTitle>Pets:</UserPetsTitle>
         <PetBtnWrapper>
           <AddPetTitleBtn>Add</AddPetTitleBtn>
-          <AddPetBtn onClick={() => setIsAddModalShown(true)} />
+          <AddPetBtn onClick={() => adminModal('step1', false)} />
         </PetBtnWrapper>
       </PetsTitleWrapper>
-      {isAddModalShown && <ModalAddsPet onClose={toggleModal} />}
+      {isModalShow === 'step1' && (
+        <FirstStep
+          adminModal={adminModal}
+          setModalData={setModalData}
+          modalData={modalData}
+          initialValuesModalDat={initialValuesModalData}
+        />
+      )}
+      {isModalShow === 'step2' && (
+        <SecondStep
+          adminModal={adminModal}
+          setModalData={setModalData}
+          modalData={modalData}
+          initialValuesModalData={initialValuesModalData}
+        />
+      )}
       {isPets ? (
         <PetList />
       ) : (

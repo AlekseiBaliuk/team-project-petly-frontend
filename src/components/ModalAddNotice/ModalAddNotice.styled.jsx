@@ -311,6 +311,50 @@ export const AddImg = styled.img`
   border-radius: 20px;
 `;
 
+export const UploadDiv = styled.div`
+  display: inline-flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 12px;
+`;
+
+export const AddDiv2 = styled.div`
+  width: 208px;
+  height: 208px;
+  display: inline-flex;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+  background-color: ${props => props.theme.colors.background};
+  border-radius: 20px;
+  border: none;
+  margin-bottom: 12px;  
+  transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover,
+  :focus {
+    border: 1px ${props => props.theme.colors.accent} solid;
+  }
+
+  @media ${device.tablet} {
+    width: 182px;
+    height: 182px;
+    margin-bottom: 0;
+  }
+`;
+
+export const AddImg2 = styled.img`
+  width: 208px;
+  height: 208px;
+  object-fit: cover;
+  border-radius: 20px;
+  @media ${device.tablet} {
+    width: 182px;
+    height: 182px;
+  }
+`;
+
 export const Textarea = styled.textarea`
   padding-top: 11px;
   padding-left: 14px;
