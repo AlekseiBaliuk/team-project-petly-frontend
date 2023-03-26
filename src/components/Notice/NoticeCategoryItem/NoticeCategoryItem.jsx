@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import moment from 'moment';
+import EllipsisText from 'react-ellipsis-text';
+import { Notify } from 'notiflix';
 import style from './NoticeCategoryItem.styled';
 import Modal from 'components/Notice/ModalNotice';
 import {
@@ -81,6 +83,7 @@ export const NoticeCategoryItem = ({ fetch }) => {
 
   const handleFavoriteToggle = () => {
     if (!isLoggedIn) {
+      Notify.failure('Please, log in to add favorites');
       return;
     }
     const removeFavorite = async () => {
@@ -115,7 +118,9 @@ export const NoticeCategoryItem = ({ fetch }) => {
         {addedToFav ? <HeartIconFav /> : <HeartIcon />}
       </Like>
       <Image src={avatarURL} alt="dog" />
-      <ItemTitle>{title}</ItemTitle>
+      <ItemTitle>
+        <EllipsisText text={title} length={37} />
+      </ItemTitle>
       <List>
         <Item>
           <Span>Breed:</Span>
