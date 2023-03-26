@@ -26,10 +26,19 @@ export const Icon = styled.span`
   right: 0;
   top: -4px;
   cursor: pointer;
+  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    scale: 0.45;
+  }
 
   @media ${device.tablet} {
     scale: 0.5;
     top: 2px;
+
+    &:hover {
+      scale: 0.55;
+    }
   }
 `;
 

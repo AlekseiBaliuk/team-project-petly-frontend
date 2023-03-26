@@ -7,7 +7,6 @@ import * as yup from 'yup';
 import { signup } from '../../../redux/auth/authOperations';
 import RegisterFormStepOne from 'components/RegisterForm/RegisterSteps/StepOne';
 import RegisterFormStepTwo from 'components/RegisterForm/RegisterSteps/StepTwo';
-// import checkPassword from '../../passwordСomplexityСheck';
 
 import {
   ButtonRegister,
