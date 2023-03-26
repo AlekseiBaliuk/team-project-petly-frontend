@@ -284,7 +284,7 @@ export const AddDiv = styled.div`
 
   :hover,
   :focus {
-    border: 1px ${props => props.theme.colors.accent} solid;
+    outline: 1px ${props => props.theme.colors.accent} solid;
   }
 
   @media ${device.tablet} {
@@ -305,8 +305,8 @@ export const AddInput = styled.input`
 `;
 
 export const AddImg = styled.img`
-  width: 140px;
-  height: 140px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 20px;
 `;

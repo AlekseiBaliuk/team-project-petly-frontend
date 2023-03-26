@@ -65,6 +65,7 @@ const NoticesPage = () => {
               setModalData={setModalData}
               modalData={modalData}
               initialValuesModalData={initialValuesModalData}
+              setBtnCategory={setBtnCategory}
             />
           )}
           <NoticesCategoriesNav />

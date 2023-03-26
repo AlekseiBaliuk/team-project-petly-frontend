@@ -27,6 +27,8 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { ValidationMessage } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { addNotice } from 'redux/notices/noticesOperations';
+import { format } from 'date-fns';
+import parseISO from 'date-fns/parseISO';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
@@ -37,7 +39,11 @@ export const SecondStep = ({
   setModalData,
   modalData,
   initialValuesModalData,
+  setBtnCategory,
 }) => {
+  const [fieldValue, setFieldValue] = useState({});
+  const [imgSrc, setImageSrc] = useState('');
+
   useEffect(() => {
     disableBodyScroll(body);
     window.addEventListener('keydown', handleKeyDown);
@@ -50,12 +56,14 @@ export const SecondStep = ({
   function handleKeyDown(e) {
     if (e.code === 'Escape') {
       adminModal('none', true);
+      setBtnCategory('none');
     }
   }
 
   const handleModalClick = e => {
     if (e.currentTarget === e.target) {
       adminModal('none', true);
+      setBtnCategory('none');
     }
   };
 
@@ -63,19 +71,27 @@ export const SecondStep = ({
     location: yup
       .string()
       .required('Required')
-      .matches(/^[A-Za-z\s]+,\s[A-Za-z\s]+$/, 'City, Country!')
-      .min(2, 'Too Short!')
-      .max(28, 'Too Long!')
       .test({
         name: 'Location type',
         exclusive: true,
-        message: 'You must type your *City, Country*',
+        message: 'You must type your *City, Region*',
         test: value =>
           value.split(' ').length === 2 &&
           value.split(' ')[0].endsWith(',') &&
           value.indexOf(',') === value.lastIndexOf(','),
+      })
+      .matches(/^[A-Za-z\s]+,\s[A-Za-z\s]+$/, 'City, Region!')
+      .min(2, 'Too Short!')
+      .max(28, 'Too Long!'),
+    price: yup
+      .string()
+      .matches(/^\d+$/, 'Please enter only number!')
+      .test({
+        name: 'First number not zero',
+        exclusive: true,
+        message: 'Please enter number, not from zero first!',
+        test: value => value && Number(value.split('')[0]) !== 0,
       }),
-    price: yup.number().notOneOf([0], 'Please enter another number').positive(),
     // image: yup.string().url().nullable().required('Required'),
     comments: yup
       .string()
@@ -94,13 +110,26 @@ export const SecondStep = ({
         Notify.warning('Please select the gender of your pet!');
         return;
       }
+      if (isBtnCategory === 'sell' && values.price === '') {
+        Notify.warning('Please enter a price!');
+        return;
+      }
+
+      if (!fieldValue.size) {
+        Notify.warning('Please select a photo!');
+        return;
+      }
+
+      const birthday = format(parseISO(modalData.birthday), 'dd.MM.yyy');
 
       const requestData = {
         ...modalData,
         ...values,
+        birthday,
       };
 
       if (requestData.price === '') delete requestData.price;
+
       if (requestData.image === '') delete requestData.image;
 
       const formData = new FormData();
@@ -108,18 +137,15 @@ export const SecondStep = ({
       for (const key in requestData) {
         formData.append(`${key}`, requestData[key]);
       }
-
       formData.append('image', fieldValue);
 
       setModalData(requestData);
       dispatch(addNotice(formData));
       adminModal('none', true);
+      setBtnCategory('none');
       setModalData(initialValuesModalData);
     },
   });
-
-  const [fieldValue, setFieldValue] = useState({});
-  const [imgSrc, setImageSrc] = useState('');
 
   const handleUpload = e => {
     setFieldValue(e.target.files[0]);
@@ -171,7 +197,7 @@ export const SecondStep = ({
             <ItemWrapper>
               <Label>Load the pet’s image:</Label>
               <AddDiv>
-                <Plus />
+                {imgSrc.length === 0 ? <Plus /> : null}
                 <AddInput
                   type="file"
                   name="image"
