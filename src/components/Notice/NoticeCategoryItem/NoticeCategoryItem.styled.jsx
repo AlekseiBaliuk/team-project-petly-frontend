@@ -73,6 +73,7 @@ const Like = styled('button')`
 
 const Image = styled('img')`
   height: 290px;
+  width: 100%;
   object-fit: cover;
   margin-bottom: 20px;
 `;

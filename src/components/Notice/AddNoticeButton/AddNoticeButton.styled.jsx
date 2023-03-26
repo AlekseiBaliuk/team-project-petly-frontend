@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { ReactComponent as Plus } from '../../../staticImages/Plus.svg';
-import { ReactComponent as Plus_Mobile } from '../../../staticImages/Plus-mobile.svg';
+import { ReactComponent as Plus } from 'staticImages/Plus.svg';
+import { ReactComponent as Plus_Mobile } from 'staticImages/Plus-mobile.svg';
 
-import { device } from '../../../devices';
+import { device } from 'devices';
 
 export const PlusIcon = styled(Plus)``;
 

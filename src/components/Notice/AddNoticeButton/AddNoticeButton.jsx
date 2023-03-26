@@ -8,20 +8,7 @@ import {
   Text,
   ButtonWrapper,
 } from './AddNoticeButton.styled';
-import { deviceWindows } from '../../../devices';
-
-// export const AddNoticeButton = ({openModal}) => {
-//   return (
-//     <ButtonWrapper>
-//       {!deviceWindows.beforeTablet && <Text>Add pet</Text>}
-//       <Button type="button" onClick={openModal}>
-//         {deviceWindows.beforeTablet ? <PlusIconS /> : <PlusIcon />}
-
-//         {deviceWindows.beforeTablet && <Text>Add pet</Text>}
-//       </Button>
-//     </ButtonWrapper>
-//   );
-// };
+import { deviceWindows } from 'devices';
 
 export const AddNoticeButton = ({ openModal }) => {
   const { isLoggedIn } = useAuth();
