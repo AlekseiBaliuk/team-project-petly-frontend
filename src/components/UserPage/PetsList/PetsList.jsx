@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { getPetInfo, deletePet } from 'redux/pets/petsOperations';
+import { useDispatch } from 'react-redux';
+import { removeUserPet, getUserPets } from 'redux/user/userOperations';
 import {
   PetWrapper,
   PetAvatar,
@@ -17,17 +17,18 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 const PetsList = ({ dataPets }) => {
   const [open, setOpen] = useState(false);
-  // const [petId, setPetId] = useState('');
+  const [petId, setPetId] = useState('');
+  const dispatch = useDispatch();
 
-  // const removePet = () => {
-  //   const action = deletePet(petId);
-  //   dispatch(action);
-  //   dispatch(getPetInfo());
-  // };
+  const removePet = () => {
+    const action = removeUserPet(petId);
+    dispatch(action);
+    dispatch(getUserPets());
+  };
 
   const handleClickOpen = id => {
     setOpen(true);
-    // setPetId(id);
+    setPetId(id);
   };
 
   const handleClose = () => {
@@ -75,7 +76,7 @@ const PetsList = ({ dataPets }) => {
                 No
               </Button>
               <Button
-                // onClick={removePet}
+                onClick={removePet}
                 autoFocus
                 style={{ color: '#F59256' }}
               >

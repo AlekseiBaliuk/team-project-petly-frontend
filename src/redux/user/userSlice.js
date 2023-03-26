@@ -53,17 +53,22 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.user = payload.user;
-      })
-      .addCase(getUserPets.fulfilled, (state, { payload }) => {
         state.userPets = payload.userPets;
       })
+      // .addCase(getUserPets.fulfilled, (state, { payload }) => {
+      //   state.userPets = payload.userPets;
+      // })
       .addCase(addUserPet.fulfilled, (state, { payload }) => {
         state.userPets.push(payload.newPet);
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(removeUserPet.fulfilled, (state, { payload }) => {
         const index = state.userPets.findIndex(pet => pet._id === payload);
 
         state.userPets.splice(index, 1);
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(updateUserData.fulfilled, (state, { payload }) => {
         state.isLoading = false;

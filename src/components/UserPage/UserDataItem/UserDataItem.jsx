@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { updateUserData } from 'redux/user/userOperations';
 import { useDispatch } from 'react-redux';
 
@@ -13,7 +13,7 @@ import {
 const UserDataItem = ({
   typeInput,
   nameInput,
-  valueUser,
+  valueUser = '',
   activeBtn,
   setActiveBtn,
   // paramValid,
@@ -23,6 +23,11 @@ const UserDataItem = ({
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(valueUser);
+
+  useEffect(() => {
+    setEditedValue(valueUser);
+  }, [valueUser]);
+
   const handleEdit = e => {
     e.preventDefault();
     setIsEditing(true);
@@ -41,6 +46,9 @@ const UserDataItem = ({
       return;
     }
 
+    setActiveBtn(true);
+    setIsEditing(false);
+
     if (nameInput === 'birthday') {
       setActiveBtn(true);
       setIsEditing(false);
@@ -49,15 +57,13 @@ const UserDataItem = ({
           [nameInput]: editedValue.split('-').reverse().join('.'),
         }),
       );
+    } else {
+      dispatch(
+        updateUserData({
+          [nameInput]: editedValue,
+        }),
+      );
     }
-
-    setActiveBtn(true);
-    setIsEditing(false);
-    dispatch(
-      updateUserData({
-        [nameInput]: editedValue,
-      }),
-    );
   };
 
   return (
