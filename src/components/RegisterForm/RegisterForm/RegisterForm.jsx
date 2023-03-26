@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import { signup } from '../../../redux/auth/authOperations';
 import RegisterFormStepOne from 'components/RegisterForm/RegisterSteps/StepOne';
 import RegisterFormStepTwo from 'components/RegisterForm/RegisterSteps/StepTwo';
+// import checkPassword from '../../passwordСomplexityСheck';
 
 import {
   ButtonRegister,
@@ -57,7 +58,9 @@ export const RegisterForm = () => {
               .string()
               .min(7, 'Too short!')
               .max(32, 'Too lond!')
-              .required('Required'),
+              .required('Required')
+              .matches(/^\S*$/, 'Not white space'),
+
             confirmPassword: yup
               .string()
               .oneOf([yup.ref('password')], 'Password mismatch')
