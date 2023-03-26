@@ -35,7 +35,6 @@ const onFetchSuccessReducer = (state, action) => {
   state.total = action.payload.total;
   state.isLoading = false;
   state.error = null;
-  console.log(action.payload.total);
 };
 
 const onFetchFavoritesSuccessReducer = (state, action) => {

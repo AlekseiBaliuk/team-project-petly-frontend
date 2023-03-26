@@ -76,7 +76,7 @@ export const NoticeCategoryItem = ({ fetch }) => {
         return;
       }
       dispatch(fetchNotices());
-      await dispatch(fetchNotices(activeCategory));
+      await dispatch(fetchNotices({ activeCategory }));
     };
 
     getNoticesAfterDelete();
