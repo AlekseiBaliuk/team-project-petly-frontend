@@ -50,12 +50,12 @@ export const logIn = createAsyncThunk('auth/login', async (data, thunkAPI) => {
   } catch (error) {
     if (error.response) {
       Notify.failure(
-        `such user is not registered or incorrect username or password`,
+        `Such user is not registered or incorrect username or password`,
       );
     } else if (error.request) {
-      Notify.failure('unknown error, please try again');
+      Notify.failure('Unknown error, please try again');
     } else {
-      Notify.failure('unknown error, please try again');
+      Notify.failure('Unknown error, please try again');
     }
     return thunkAPI.rejectWithValue(error.message);
   }
