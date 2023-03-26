@@ -16,8 +16,6 @@ import { LabelInputList } from './LabelInputList';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { format } from 'date-fns';
-import parseISO from 'date-fns/parseISO';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
@@ -43,12 +41,14 @@ export const FirstStep = ({
   function handleKeyDown(e) {
     if (e.code === 'Escape') {
       adminModal('none', true);
+      setBtnCategory('none');
     }
   }
 
   const handleModalClick = e => {
     if (e.currentTarget === e.target) {
       adminModal('none', true);
+      setBtnCategory('none');
     }
   };
 
@@ -60,7 +60,7 @@ export const FirstStep = ({
       .required('Required')
       .matches(nameRegExp, 'Only letters!')
       .min(2, 'Too Short!')
-      .max(28, 'Too Long!'),
+      .max(48, 'Too Long!'),
     name: yup
       .string()
       .required('Required')
@@ -84,12 +84,11 @@ export const FirstStep = ({
     initialValues: modalData,
     validationSchema,
     onSubmit: values => {
-      const birthday = format(parseISO(values.birthday), 'dd.MM.yyy');
       setModalData({
         ...modalData,
         ...values,
         category: isBtnCategory,
-        birthday,
+        // birthday,
       });
       if (isBtnCategory === 'none') {
         Notify.warning('Please select an ad category!');
