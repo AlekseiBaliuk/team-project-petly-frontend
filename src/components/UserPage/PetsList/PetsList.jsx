@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
+import PropTypes from 'prop-types';
 
 const PetsList = ({ dataPets }) => {
   const [open, setOpen] = useState(false);
@@ -93,3 +94,7 @@ const PetsList = ({ dataPets }) => {
 };
 
 export default PetsList;
+
+PetsList.propTypes = {
+  petsData: PropTypes.array,
+};
