@@ -15,6 +15,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import PropTypes from 'prop-types';
+import { ApproveRemovingModal } from 'components/SharedComponents/ApproveRemovingModal/ApproveRemovingModal';
 
 const PetsList = ({ dataPets }) => {
   const [open, setOpen] = useState(false);
@@ -68,7 +69,8 @@ const PetsList = ({ dataPets }) => {
             </PetItem>
           </PetList>
           <DeleteBtn variant="outlined" onClick={() => handleClickOpen(_id)} />
-          <Dialog open={open} aria-labelledby="alert-dialog-title">
+          <ApproveRemovingModal modalOpen={open} yesAction={removePet} noAction={handleClose} />
+          {/* <Dialog open={open} aria-labelledby="alert-dialog-title">
             <DialogTitle id="alert-dialog-title">
               Are you sure you want to remove?
             </DialogTitle>
@@ -84,7 +86,7 @@ const PetsList = ({ dataPets }) => {
                 Yes
               </Button>
             </DialogActions>
-          </Dialog>
+          </Dialog> */}
         </PetWrapper>
       );
     },
