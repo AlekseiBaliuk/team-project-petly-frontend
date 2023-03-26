@@ -10,15 +10,13 @@ export const Container = styled.section`
   background-repeat: no-repeat;
   background-position: right 0% bottom 0%;
   background-size: contain;
-  height: calc(100vh - 100px);
+  height: 100%;
 
   @media ${device.tablet} {
     background-image: url(${bgM});
-    height: calc(100vh - 160px);
     margin-top: 80px;
   }
   @media ${device.desktop} {
-    height: calc(100vh - 75px);
     background-image: url(${bgL});
   }
 `;
