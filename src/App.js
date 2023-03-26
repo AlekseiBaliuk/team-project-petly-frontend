@@ -24,7 +24,7 @@ const UserPage = lazy(() => import('pages/UserPage/UserPage'));
 
 function App() {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+  const { isRefreshing, isLoggedIn } = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -42,7 +42,10 @@ function App() {
           <Route path="/friends" element={<OurFriendsPage />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/notices/:categoryName" element={<NoticesPage />} />
-          <Route path="/user" element={<UserPage />} />
+          <Route
+            path="/user"
+            element={isLoggedIn ? <UserPage /> : <Navigate to="/" />}
+          />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
