@@ -10,19 +10,14 @@ import {
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import style from './NoticeCategoryList.styled';
 
-const {
-  selectNotices,
-  selectIsAdded,
-  // selectTotal
-} = selectors;
+const { selectNotices, selectIsAdded, selectTotal } = selectors;
 
 export const NoticeCategoryList = ({ search }) => {
   const noticesList = useSelector(selectNotices);
   const isAdded = useSelector(selectIsAdded);
-  // const total = useSelector(selectTotal);
+  const total = useSelector(selectTotal);
 
   const [page, setPage] = useState(1);
-  // const [pets, setPets] = useState(noticesList);
   const { Grid, Scroll } = style;
 
   const { activeCategory } = useCategory();
@@ -37,7 +32,6 @@ export const NoticeCategoryList = ({ search }) => {
         case 'my-ads':
           await dispatch(getMyNotices(page));
           break;
-
         default:
           await dispatch(fetchNotices({ activeCategory, page }));
           break;
@@ -57,16 +51,18 @@ export const NoticeCategoryList = ({ search }) => {
     return filterList;
   }
 
-  // const handleScroll = () => {
-  //   if (
-  //     window.innerHeight + document.documentElement.scrollTop + 1 >=
-  //     document.documentElement.scrollHeight
-  //   ) {
-  //     setPage(prev => prev + 1);
-  //   }
-  // };
+  const handleScroll = () => {
+    return (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+        document.documentElement.scrollHeight &&
+      noticesList.length < total &&
+      setPage(page + 1)
+    );
+  };
 
-  // useEffect(() => window.addEventListener('scroll', handleScroll));
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  });
 
   const scrollTo = () => {
     setPage(1);
@@ -83,7 +79,7 @@ export const NoticeCategoryList = ({ search }) => {
         {filterNotice(noticesList).length > 0 &&
           // filterNotice(pets).length <= total &&
           filterNotice(noticesList).map(notice => (
-            <NoticeCategoryItem key={notice._id} fetch={notice} />
+            <NoticeCategoryItem key={notice._id} fetch={notice} page={page} />
           ))}
       </Grid>
       {<Scroll onClick={scrollTo} />}

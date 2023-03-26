@@ -31,7 +31,10 @@ const extraActions = [
 const getActionsByType = type => extraActions.map(action => action[type]);
 
 const onFetchSuccessReducer = (state, action) => {
-  state.items = action.payload.notices;
+  state.items =
+    Number(action.payload.page) === 1
+      ? action.payload.notices
+      : [...state.items, ...action.payload.notices];
   state.total = action.payload.total;
   state.isLoading = false;
   state.error = null;
