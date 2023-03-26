@@ -24,7 +24,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { ValidationMessage } from '../../ModalAddNotice/ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
-import { addNotice } from 'redux/notices/noticesOperations';
+import { addUserPet } from 'redux/user/userOperations';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
@@ -86,8 +86,7 @@ export const SecondStep = ({
       formData.append('image', fieldValue);
 
       setModalData(requestData);
-      //dispatch(addNotice(formData));
-      console.log(formData);
+      dispatch(addUserPet(formData));
       adminModal('none', true);
       setModalData(initialValuesModalData);
     },
