@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { updateUserData } from 'redux/user/userOperations';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {
   Input,
@@ -9,6 +10,7 @@ import {
   PencilBtn,
   DeactivatedBtn,
 } from './UserDataItem.styled';
+import { Notify } from 'notiflix';
 
 const UserDataItem = ({
   typeInput,
@@ -16,7 +18,7 @@ const UserDataItem = ({
   valueUser = '',
   activeBtn,
   setActiveBtn,
-  // paramValid,
+  paramValid,
   min,
   max,
 }) => {
@@ -46,23 +48,26 @@ const UserDataItem = ({
       return;
     }
 
-    setActiveBtn(true);
-    setIsEditing(false);
-
-    if (nameInput === 'birthday') {
+    if (!paramValid.test(editedValue)) {
+      Notify.warning(`Invalid ${nameInput}`);
+    } else {
       setActiveBtn(true);
       setIsEditing(false);
-      dispatch(
-        updateUserData({
-          [nameInput]: editedValue.split('-').reverse().join('.'),
-        }),
-      );
-    } else {
-      dispatch(
-        updateUserData({
-          [nameInput]: editedValue,
-        }),
-      );
+      if (nameInput === 'birthday') {
+        setActiveBtn(true);
+        setIsEditing(false);
+        dispatch(
+          updateUserData({
+            [nameInput]: editedValue.split('-').reverse().join('.'),
+          }),
+        );
+      } else {
+        dispatch(
+          updateUserData({
+            [nameInput]: editedValue,
+          }),
+        );
+      }
     }
   };
 
@@ -95,3 +100,14 @@ const UserDataItem = ({
 };
 
 export default UserDataItem;
+
+UserDataItem.propTypes = {
+  typeInput: PropTypes.string.isRequired,
+  nameInput: PropTypes.string.isRequired,
+  valueUser: PropTypes.string,
+  activeBtn: PropTypes.bool,
+  setActiveBtn: PropTypes.func,
+  paramValid: PropTypes.instanceOf(RegExp),
+  min: PropTypes.string,
+  max: PropTypes.string,
+};

@@ -1,16 +1,6 @@
 import styled from 'styled-components';
 import plusUser from 'staticImages/userPage/plusUser.svg';
 
-// export const UserInfoWrapper = styled.div`
-//   @media screen and (min-width: 768px) {
-//     width: 100%;
-//     margin-right: 52px;
-//   }
-//   @media screen and (min-width: 1280px) {
-//     margin-right: 0;
-//   }
-// `;
-
 export const AvatarInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -32,6 +22,7 @@ export const AvatarImg = styled.img`
   border-radius: ${p => p.theme.radii.round};
   width: 233px;
   height: 233px;
+  max-width: none;
   margin: auto auto 12px;
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
   @media screen and (min-width: 768px) {
