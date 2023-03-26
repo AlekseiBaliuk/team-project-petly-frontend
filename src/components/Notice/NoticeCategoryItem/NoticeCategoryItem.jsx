@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import moment from 'moment';
-import EllipsisText from 'react-ellipsis-text';
+import LinesEllipsis from 'react-lines-ellipsis';
 import { Notify } from 'notiflix';
 import style from './NoticeCategoryItem.styled';
 import Modal from 'components/Notice/ModalNotice';
@@ -54,6 +54,7 @@ export const NoticeCategoryItem = ({ fetch }) => {
   const urlPath = useLocation();
 
   const date = moment(birthday, 'DD.MM.YYYY').fromNow(true);
+  const longText = title;
 
   const favoritePage = urlPath.pathname.includes('favorite');
   const myNotices = urlPath.pathname.includes('own');
@@ -119,7 +120,7 @@ export const NoticeCategoryItem = ({ fetch }) => {
       </Like>
       <Image src={avatarURL} alt="dog" />
       <ItemTitle>
-        <EllipsisText text={title} length={37} />
+        <LinesEllipsis text={longText} maxLine={2} ellipsis="..." trimRight />
       </ItemTitle>
       <List>
         <Item>
