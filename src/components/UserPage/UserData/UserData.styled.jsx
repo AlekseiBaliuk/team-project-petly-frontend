@@ -23,8 +23,6 @@ export const UserDataTitle = styled.h2`
 
 export const UserDataWrapper = styled.div`
   margin-bottom: 40px;
-  margin-right: 20px;
-  margin-left: 20px;
   padding: 20px 12px 20px 16px;
   background-color: ${p => p.theme.colors.white};
   border-radius: 20px;

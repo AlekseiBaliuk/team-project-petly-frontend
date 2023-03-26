@@ -2,16 +2,8 @@ import styled from 'styled-components';
 import plus from 'staticImages/userPage/plus.svg';
 
 export const PetsWrapper = styled.div`
-  margin-right: 20px;
-  margin-left: 20px;
-  @media screen and (min-width: 768px) {
-    margin-right: 32px;
-    margin-left: 32px;
-  }
   @media screen and (min-width: 1280px) {
     width: 100%;
-    margin-right: 16px;
-    margin-left: 0;
   }
 `;
 
