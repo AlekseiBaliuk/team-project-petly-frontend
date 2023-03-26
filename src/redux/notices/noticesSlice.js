@@ -11,6 +11,8 @@ import {
 
 const noticesInitialState = {
   items: [],
+  favorite: [],
+  total: null,
   isLoading: false,
   error: null,
   activeCategory: 'sell',
@@ -29,15 +31,18 @@ const extraActions = [
 const getActionsByType = type => extraActions.map(action => action[type]);
 
 const onFetchSuccessReducer = (state, action) => {
-  state.items = action.payload;
+  state.items = action.payload.notices;
+  state.total = action.payload.total;
   state.isLoading = false;
   state.error = null;
+  console.log(action.payload.total);
 };
 
 const onFetchFavoritesSuccessReducer = (state, action) => {
-  state.items = action.payload;
+  state.items = action.payload.notices;
   state.isLoading = false;
   state.error = null;
+  state.total = action.payload.total;
   state.activeCategory = 'sell';
 };
 
@@ -45,16 +50,16 @@ const onAddFavNoticeReducer = (state, action) => {
   state.isLoading = false;
   state.error = false;
   const newFavorite = state.items.includes(action.payload)
-    ? state.favorites
-    : [...state.items, action.payload];
-  state.items = newFavorite;
+    ? state.favorite
+    : [...state.favorite, action.payload];
+  state.favorite = newFavorite;
 };
 
 const onRemoveFavNoticeReducer = (state, action) => {
   state.isLoading = false;
   state.error = false;
   const newFavorite = state.items.filter(item => item !== action.payload);
-  state.items = newFavorite;
+  state.favorite = newFavorite;
 };
 
 const onDeleteUserPetReducer = (state, action) => {
@@ -66,6 +71,7 @@ const onFetchMyNoticesSuccessReducer = (state, action) => {
   state.items = action.payload.notices;
   state.isLoading = false;
   state.error = null;
+  state.total = action.payload.total;
 };
 
 const onPendingReducer = state => {
@@ -102,4 +108,5 @@ const noticesSlice = createSlice({
       .addMatcher(isAnyOf(...getActionsByType('pending')), onPendingReducer)
       .addMatcher(isAnyOf(...getActionsByType('rejected')), onRejectedReducer),
 });
+
 export const noticesReducer = noticesSlice.reducer;

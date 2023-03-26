@@ -3,12 +3,13 @@ import axios from 'axios';
 
 export const fetchNotices = createAsyncThunk(
   'notices/category',
-  async (category, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
+      const { activeCategory, page } = data;
       const response = await axios.get(
-        `https://team-project-petly-backend.onrender.com/api/notices/category/${category}`,
+        `https://team-project-petly-backend.onrender.com/api/notices/category/${activeCategory}?page=${page}&limit=8`,
       );
-      return response.data.notices;
+      return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -17,12 +18,12 @@ export const fetchNotices = createAsyncThunk(
 
 export const getFavorites = createAsyncThunk(
   'notices/user/favorites',
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
       const response = await axios.get(
-        'https://team-project-petly-backend.onrender.com/api/notices/user/favorites',
+        `https://team-project-petly-backend.onrender.com/api/notices/user/favorites?page=${page}&limit=20`,
       );
-      return response.data.notices;
+      return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -88,10 +89,10 @@ export const addNotice = createAsyncThunk(
 
 export const getMyNotices = createAsyncThunk(
   'notices/myNotices',
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
       const response = await axios.get(
-        'https://team-project-petly-backend.onrender.com/api/notices',
+        `https://team-project-petly-backend.onrender.com/api/notices?page=${page}&limit=8`,
       );
       return response.data;
     } catch (e) {
