@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as Cat } from 'staticImages/catUp.svg';
+import { device } from '../../../devices';
 
 const Grid = styled('ul')`
   display: grid;
@@ -14,10 +15,20 @@ const Scroll = styled(Cat)`
   fill: ${props => props.theme.colors.accent};
   border-radius: 50%;
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: 15px;
+  right: 35px;
   cursor: pointer;
   transition: 0.3s all;
+
+  :hover,
+  :focus {
+    filter: drop-shadow(0px 0px 30px red);
+  }
+
+  @media ${device.tablet} {
+    bottom: 50px;
+    right: 50px;
+  }
 `;
 
 const style = { Scroll, Grid };
