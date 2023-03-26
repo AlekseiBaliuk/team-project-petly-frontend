@@ -85,6 +85,7 @@ export const SecondStep = ({
       .max(28, 'Too Long!'),
     price: yup
       .string()
+      .default('1')
       .matches(/^\d+$/, 'Please enter only number!')
       .test({
         name: 'First number not zero',
@@ -106,6 +107,9 @@ export const SecondStep = ({
     initialValues: modalData,
     validationSchema,
     onSubmit: values => {
+      if (!isBtnCategory === 'sell') {
+        values.price = '1';
+      }
       if (values.sex === 'none') {
         Notify.warning('Please select the gender of your pet!');
         return;
@@ -114,7 +118,6 @@ export const SecondStep = ({
         Notify.warning('Please enter a price!');
         return;
       }
-
       if (!fieldValue.size) {
         Notify.warning('Please select a photo!');
         return;
@@ -129,7 +132,6 @@ export const SecondStep = ({
       };
 
       if (requestData.price === '') delete requestData.price;
-
       if (requestData.image === '') delete requestData.image;
 
       const formData = new FormData();
