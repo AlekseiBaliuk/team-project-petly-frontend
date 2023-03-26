@@ -1,5 +1,5 @@
 import { device } from 'devices';
-import { Form, Field } from 'formik';
+import { Form, Field, ErrorMessage } from 'formik';
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -79,6 +79,7 @@ export const StyledForm = styled(Form)`
 `;
 
 export const Label = styled.label`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: ${p => p.theme.space[0]}px;
@@ -186,6 +187,19 @@ export const BtnContainer = styled.div`
     flex-direction: row;
     justify-content: center;
     gap: ${p => p.theme.space[3]}px;
+  }
+`;
+
+export const Error = styled(ErrorMessage)`
+  position: absolute;
+  bottom: -15px;
+  left: 0px;
+  font-size: 12px;
+  line-height: 1.36;
+  color: rgb(255, 97, 1);
+  @media ${device.tablet} {
+    bottom: -20px;
+    font-size: 14px;
   }
 `;
 

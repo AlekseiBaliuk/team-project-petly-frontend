@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Formik } from 'formik';
+import { Field, Formik } from 'formik';
 import { useState } from 'react';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -9,6 +9,7 @@ import {
   BtnActive,
   BtnContainer,
   DateInput,
+  Error,
   Input,
   Label,
   StyledForm,
@@ -55,7 +56,7 @@ export const StepOne = props => {
           <Label>
             <Subtitle>Name pet</Subtitle>
             <Input name="name" type="text" placeholder="Type name pet" />
-            <ErrorMessage name="name" />
+            <Error name="name" component="div" />
           </Label>
           <Label>
             <Subtitle>Date of birth</Subtitle>
@@ -74,12 +75,12 @@ export const StepOne = props => {
               }}
               max={maxDate}
             />
-            <ErrorMessage name="birthday" />
+            <Error name="birthday" component="div" />
           </Label>
           <Label>
             <Subtitle>Breed</Subtitle>
             <Input name="breed" type="text" placeholder="Type breed" />
-            <ErrorMessage name="breed" />
+            <Error name="breed" component="div" />
           </Label>
           <BtnContainer>
             <Btn type="button" onClick={() => props.onClose()}>

@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Formik } from 'formik';
+import { Field, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
 import {
@@ -6,6 +6,7 @@ import {
   BtnActive,
   BtnContainer,
   CommentTextarea,
+  Error,
   Label,
   StyledForm,
   Subtitle,
@@ -20,7 +21,8 @@ const validationSchema = Yup.object().shape({
   // image: Yup.mixed(),
   comments: Yup.string()
     .min(8, 'The message is too short')
-    .max(120, 'The message is too long'),
+    .max(120, 'The message is too long')
+    .required('This field is required'),
 });
 
 export const StepTwo = props => {
@@ -69,7 +71,7 @@ export const StepTwo = props => {
                 <CommentTextarea placeholder="Type breed" {...field} />
               )}
             </Field>
-            <ErrorMessage name="comments" />
+            <Error name="comments" component="div" />
           </Label>
           <BtnContainer>
             <Btn type="button" onClick={() => props.prev(values)}>
