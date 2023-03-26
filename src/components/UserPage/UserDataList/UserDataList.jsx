@@ -161,7 +161,7 @@ const UserDataList = () => {
               valueUser={user.birthday}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
-              pattern={regExp.bdayRegexp}
+              paramValid={regExp.bdayRegexp}
               min="1935-01-01"
               max="2015-12-31"
             />
@@ -184,7 +184,7 @@ const UserDataList = () => {
               valueUser={user.phone}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
-              pattern={regExp.mobile}
+              paramValid={regExp.mobile}
             />
           ) : (
             <UserDataItem

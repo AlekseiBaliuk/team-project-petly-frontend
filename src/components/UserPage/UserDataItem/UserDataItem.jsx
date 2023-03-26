@@ -9,6 +9,7 @@ import {
   PencilBtn,
   DeactivatedBtn,
 } from './UserDataItem.styled';
+import { Notify } from 'notiflix';
 
 const UserDataItem = ({
   typeInput,
@@ -16,7 +17,7 @@ const UserDataItem = ({
   valueUser = '',
   activeBtn,
   setActiveBtn,
-  // paramValid,
+  paramValid,
   min,
   max,
 }) => {
@@ -46,23 +47,26 @@ const UserDataItem = ({
       return;
     }
 
-    setActiveBtn(true);
-    setIsEditing(false);
-
-    if (nameInput === 'birthday') {
+    if (!paramValid.test(editedValue)) {
+      Notify.warning(`Invalid ${nameInput}`);
+    } else {
       setActiveBtn(true);
       setIsEditing(false);
-      dispatch(
-        updateUserData({
-          [nameInput]: editedValue.split('-').reverse().join('.'),
-        }),
-      );
-    } else {
-      dispatch(
-        updateUserData({
-          [nameInput]: editedValue,
-        }),
-      );
+      if (nameInput === 'birthday') {
+        setActiveBtn(true);
+        setIsEditing(false);
+        dispatch(
+          updateUserData({
+            [nameInput]: editedValue.split('-').reverse().join('.'),
+          }),
+        );
+      } else {
+        dispatch(
+          updateUserData({
+            [nameInput]: editedValue,
+          }),
+        );
+      }
     }
   };
 

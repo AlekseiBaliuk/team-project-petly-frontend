@@ -44,7 +44,7 @@ const PetsData = () => {
       <PetsTitleWrapper>
         <UserPetsTitle>Pets:</UserPetsTitle>
         <PetBtnWrapper onClick={() => adminModal('step1', false)}>
-          <AddPetTitleBtn>Add</AddPetTitleBtn>
+          <AddPetTitleBtn>Add pet</AddPetTitleBtn>
           <AddPetBtn />
         </PetBtnWrapper>
       </PetsTitleWrapper>
