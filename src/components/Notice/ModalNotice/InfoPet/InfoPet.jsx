@@ -74,10 +74,12 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
               </a>
             </ItemText>
           </Item>
-          <Item>
-            <span>Price:</span>
-            <ItemText>{price}$</ItemText>
-          </Item>
+          {price && (
+            <Item>
+              <span>Price:</span>
+              <ItemText>{price}$</ItemText>
+            </Item>
+          )}
         </ul>
       </WrapperGrid>
       <Text>

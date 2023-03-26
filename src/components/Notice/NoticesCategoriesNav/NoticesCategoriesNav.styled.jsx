@@ -50,6 +50,7 @@ export const CategoryItem = styled('li')`
   }
 
   @media ${device.tabletOnly} {
+    :nth-child(3),
     :nth-child(4),
     :nth-child(5) {
       margin-top: 16px;
