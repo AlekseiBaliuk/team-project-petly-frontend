@@ -20,12 +20,17 @@ const schema = yup.object().shape({
   email: yup
     .string()
     .email()
-    .required()
+    .required('Email required')
     .matches(
       /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
       'Email must much the following "example@mail.com"',
     ),
-  password: yup.string().min(7, 'Too short!').max(32, 'Too lond!').required(),
+  password: yup
+    .string()
+    .min(7, 'Too short!')
+    .max(32, 'Too lond!')
+    .required('Password required')
+    .matches(/^\S*$/, 'Not white space'),
 });
 
 export const LoginForm = () => {
