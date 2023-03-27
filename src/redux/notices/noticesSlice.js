@@ -41,7 +41,10 @@ const onFetchSuccessReducer = (state, action) => {
 };
 
 const onFetchFavoritesSuccessReducer = (state, action) => {
-  state.items = action.payload.notices;
+  state.items =
+    Number(action.payload.page) === 1
+      ? action.payload.notices
+      : [...state.items, ...action.payload.notices];
   state.isLoading = false;
   state.error = null;
   state.total = action.payload.total;
@@ -70,7 +73,10 @@ const onDeleteUserPetReducer = (state, action) => {
 };
 
 const onFetchMyNoticesSuccessReducer = (state, action) => {
-  state.items = action.payload.notices;
+  state.items =
+    Number(action.payload.page) === 1
+      ? action.payload.notices
+      : [...state.items, ...action.payload.notices];
   state.isLoading = false;
   state.error = null;
   state.total = action.payload.total;
