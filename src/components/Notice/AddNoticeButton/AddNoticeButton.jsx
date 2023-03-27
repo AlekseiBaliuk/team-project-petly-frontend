@@ -13,7 +13,6 @@ import { deviceWindows } from 'devices';
 export const AddNoticeButton = ({ openModal }) => {
   const { isLoggedIn } = useAuth();
   const modalOpener = () => {
-    console.log('modalOpenerisRunning');
     isLoggedIn
       ? openModal()
       : Notify.failure('Please, log in to add favorites');

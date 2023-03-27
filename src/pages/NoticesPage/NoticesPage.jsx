@@ -29,6 +29,7 @@ const NoticesPage = () => {
     comments: '',
   };
   const [modalData, setModalData] = useState(initialValuesModalData);
+  const [page, setPage] = useState(1);
 
   const adminModal = (type, value) => {
     setIsShown(!value);
@@ -68,9 +69,9 @@ const NoticesPage = () => {
               setBtnCategory={setBtnCategory}
             />
           )}
-          <NoticesCategoriesNav />
+          <NoticesCategoriesNav page={page} setPage={setPage} />
         </PetSearchNav>
-        <NoticeCategoryList search={filter} />
+        <NoticeCategoryList page={page} setPage={setPage} search={filter} />
       </Container>
     </Section>
   );

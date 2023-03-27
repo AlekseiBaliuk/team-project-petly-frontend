@@ -147,7 +147,6 @@ const Link = styled('a')`
 
 const Image = styled('img')`
   grid-area: image;
-  width: 240px;
   height: 240px;
   margin-bottom: 16px;
   object-fit: cover;

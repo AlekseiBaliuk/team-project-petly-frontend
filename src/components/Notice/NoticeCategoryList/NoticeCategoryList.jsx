@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Hearts } from 'react-loader-spinner';
 import { useCategory } from 'hooks/useCategory';
@@ -14,14 +14,13 @@ import style from './NoticeCategoryList.styled';
 const { selectNotices, selectIsAdded, selectTotal, selectLoadingStatus } =
   selectors;
 
-export const NoticeCategoryList = ({ search }) => {
+export const NoticeCategoryList = ({ search, page, setPage }) => {
   const noticesList = useSelector(selectNotices);
   const isAdded = useSelector(selectIsAdded);
   const total = useSelector(selectTotal);
   const isLoading = useSelector(selectLoadingStatus);
   const { activeCategory } = useCategory();
 
-  const [page, setPage] = useState(1);
   const { Grid, Scroll } = style;
 
   const dispatch = useDispatch();
