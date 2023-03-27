@@ -33,8 +33,6 @@ const authSlice = createSlice({
         state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
-
-        setTimeout(() => console.log('Time Out'), 5000);
       })
       .addCase(logIn.rejected, (state, { payload }) => {
         state.error = payload;
