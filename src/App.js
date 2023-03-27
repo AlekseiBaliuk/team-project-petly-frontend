@@ -38,7 +38,10 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/friends" element={<OurFriendsPage />} />
           <Route path="/news" element={<NewsPage />} />
-          <Route path="/notices/:categoryName" element={<NoticesPage />} />
+          <Route path="/notices/">
+            <Route index element={<Navigate to="/notices/sell" />} />
+            <Route path=":categoryName" element={<NoticesPage />} />
+          </Route>
           <Route
             path="/user"
             element={isLoggedIn ? <UserPage /> : <Navigate to="/" />}
