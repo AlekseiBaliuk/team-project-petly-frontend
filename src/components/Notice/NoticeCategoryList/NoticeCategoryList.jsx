@@ -55,9 +55,6 @@ export const NoticeCategoryList = ({ search }) => {
   }
 
   const handleScroll = () => {
-    console.log('inner', window.innerHeight);
-    console.log('top', document.documentElement.scrollTop);
-    console.log('heigth', document.documentElement.scrollHeight);
     return (
       window.innerHeight + document.documentElement.scrollTop + 1 >=
         document.documentElement.scrollHeight &&
