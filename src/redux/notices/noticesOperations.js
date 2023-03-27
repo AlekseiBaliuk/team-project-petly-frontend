@@ -21,7 +21,7 @@ export const getFavorites = createAsyncThunk(
   async (page, thunkAPI) => {
     try {
       const response = await axios.get(
-        `https://team-project-petly-backend.onrender.com/api/notices/user/favorites?page=${page}&limit=20`,
+        `https://team-project-petly-backend.onrender.com/api/notices/user/favorites?page=${page}&limit=8`,
       );
       return response.data;
     } catch (e) {

@@ -36,7 +36,7 @@ const {
   Del,
 } = style;
 
-export const NoticeCategoryItem = ({ fetch }) => {
+export const NoticeCategoryItem = ({ fetch, page }) => {
   const {
     title,
     breed,
@@ -70,15 +70,15 @@ export const NoticeCategoryItem = ({ fetch }) => {
     const getNoticesAfterDelete = async () => {
       await dispatch(deleteUserPet(_id));
       if (favoritePage) {
-        dispatch(getFavorites());
+        dispatch(getFavorites({ page }));
         return;
       }
       if (myNotices) {
-        dispatch(getMyNotices());
+        dispatch(getMyNotices({ page }));
         return;
       }
       dispatch(fetchNotices());
-      await dispatch(fetchNotices(activeCategory));
+      await dispatch(fetchNotices({ activeCategory, page }));
     };
 
     getNoticesAfterDelete();

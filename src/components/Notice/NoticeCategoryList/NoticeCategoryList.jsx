@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Hearts } from 'react-loader-spinner';
 import { useCategory } from 'hooks/useCategory';
 import selectors from 'redux/notices/noticesSelectors';
 import {
@@ -10,22 +11,19 @@ import {
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import style from './NoticeCategoryList.styled';
 
-const {
-  selectNotices,
-  selectIsAdded,
-  // selectTotal
-} = selectors;
+const { selectNotices, selectIsAdded, selectTotal, selectLoadingStatus } =
+  selectors;
 
 export const NoticeCategoryList = ({ search }) => {
   const noticesList = useSelector(selectNotices);
   const isAdded = useSelector(selectIsAdded);
-  // const total = useSelector(selectTotal);
+  const total = useSelector(selectTotal);
+  const isLoading = useSelector(selectLoadingStatus);
+  const { activeCategory } = useCategory();
 
   const [page, setPage] = useState(1);
-  // const [pets, setPets] = useState(noticesList);
   const { Grid, Scroll } = style;
 
-  const { activeCategory } = useCategory();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,7 +35,6 @@ export const NoticeCategoryList = ({ search }) => {
         case 'my-ads':
           await dispatch(getMyNotices(page));
           break;
-
         default:
           await dispatch(fetchNotices({ activeCategory, page }));
           break;
@@ -57,21 +54,24 @@ export const NoticeCategoryList = ({ search }) => {
     return filterList;
   }
 
-  // const handleScroll = () => {
-  //   if (
-  //     window.innerHeight + document.documentElement.scrollTop + 1 >=
-  //     document.documentElement.scrollHeight
-  //   ) {
-  //     setPage(prev => prev + 1);
-  //   }
-  // };
+  const handleScroll = () => {
+    return (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+        document.documentElement.scrollHeight &&
+      noticesList.length < total &&
+      setPage(page + 1)
+    );
+  };
 
-  // useEffect(() => window.addEventListener('scroll', handleScroll));
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  });
 
   const scrollTo = () => {
     setPage(1);
     return window.scrollTo({
-      top: 0,
+      top: 50,
       left: 0,
       behavior: 'smooth',
     });
@@ -81,11 +81,20 @@ export const NoticeCategoryList = ({ search }) => {
     <>
       <Grid>
         {filterNotice(noticesList).length > 0 &&
-          // filterNotice(pets).length <= total &&
           filterNotice(noticesList).map(notice => (
-            <NoticeCategoryItem key={notice._id} fetch={notice} />
+            <NoticeCategoryItem key={notice._id} fetch={notice} page={page} />
           ))}
       </Grid>
+      {isLoading && (
+        <Hearts
+          height="80"
+          width="80"
+          color="#cb9622"
+          ariaLabel="hearts-loading"
+          wrapperStyle={{ textAlign: 'center', display: 'block' }}
+          visible={true}
+        />
+      )}
       {<Scroll onClick={scrollTo} />}
     </>
   );

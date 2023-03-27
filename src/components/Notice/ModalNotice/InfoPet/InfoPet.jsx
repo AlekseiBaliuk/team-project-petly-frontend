@@ -1,5 +1,4 @@
 import { categoriesHandler } from 'helpers/categoriesHandler';
-import moment from 'moment';
 import style from './InfoPet.styled';
 
 export const InfoPet = ({ notice, toggle, favorite }) => {
@@ -30,8 +29,6 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
     Category,
   } = style;
 
-  const date = moment(birthday, 'DD.MM.YYYY').fromNow(true);
-
   return (
     <Wrapper>
       <Category>{categoriesHandler(category)}</Category>
@@ -46,7 +43,7 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
           </Item>
           <Item>
             <span>Birthday:</span>
-            <ItemText>{date}</ItemText>
+            <ItemText>{birthday}</ItemText>
           </Item>
           <Item>
             <span>Breed:</span>
