@@ -4,6 +4,7 @@ import { ReactComponent as Heart } from 'staticImages/Heart.svg';
 
 const Wrapper = styled('div')`
   padding: 60px 20px 40px;
+
   @media ${device.tablet} {
     padding: 32px 20px 20px;
     display: grid;
@@ -57,7 +58,11 @@ const Item = styled('li')`
   font-size: ${props => props.theme.fontSizes.fs14};
   line-height: 1.375;
   display: grid;
+  overflow: scroll;
+
   grid-template-columns: 2fr 3fr;
+  // grid-template-columns: 140px 300px;
+
   :not(:last-child) {
     padding-bottom: 8px;
   }
@@ -67,6 +72,7 @@ const Item = styled('li')`
 `;
 
 const ItemText = styled('span')`
+  max-width: 200px;
   font-weight: ${props => props.theme.fontWeights.fw500};
   & > a {
     color: ${props => props.theme.colors.mainText};

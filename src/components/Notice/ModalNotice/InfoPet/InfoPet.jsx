@@ -54,7 +54,7 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
             <ItemText>{location}</ItemText>
           </Item>
           <Item>
-            <span>The sex:</span>
+            <span>Sex:</span>
             <ItemText>{sex}</ItemText>
           </Item>
           <Item>
