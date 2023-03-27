@@ -7,16 +7,20 @@ import { useAuth } from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { updateCategory } from 'redux/pets/petsSlice';
 
-export const NoticesCategoriesNav = () => {
+export const NoticesCategoriesNav = ({ page, setPage }) => {
   const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
 
+  // console.log(setPage);
   return (
     <CategoriesList>
       <CategoryItem>
         <Link
           to="/notices/lost-found"
-          onClick={() => dispatch(updateCategory('lost-found'))}
+          onClick={() => {
+            setPage(1);
+            dispatch(updateCategory('lost-found'));
+          }}
         >
           lost/found
         </Link>
@@ -25,7 +29,10 @@ export const NoticesCategoriesNav = () => {
       <CategoryItem>
         <Link
           to="/notices/for-free"
-          onClick={() => dispatch(updateCategory('in-good-hands'))}
+          onClick={() => {
+            setPage(1);
+            dispatch(updateCategory('in-good-hands'));
+          }}
         >
           in good hands
         </Link>
@@ -34,7 +41,10 @@ export const NoticesCategoriesNav = () => {
       <CategoryItem>
         <Link
           to="/notices/sell"
-          onClick={() => dispatch(updateCategory('sell'))}
+          onClick={() => {
+            setPage(1);
+            dispatch(updateCategory('sell'));
+          }}
         >
           sell
         </Link>
@@ -44,7 +54,10 @@ export const NoticesCategoriesNav = () => {
         <CategoryItem>
           <Link
             to="/notices/favorite"
-            onClick={() => dispatch(updateCategory('favorite'))}
+            onClick={() => {
+              setPage(1);
+              dispatch(updateCategory('favorite'));
+            }}
           >
             favorite ads
           </Link>
@@ -55,7 +68,10 @@ export const NoticesCategoriesNav = () => {
         <CategoryItem>
           <Link
             to="/notices/own"
-            onClick={() => dispatch(updateCategory('my-ads'))}
+            onClick={() => {
+              setPage(1);
+              dispatch(updateCategory('my-ads'));
+            }}
           >
             my ads
           </Link>
