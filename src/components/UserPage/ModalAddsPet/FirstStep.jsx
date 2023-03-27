@@ -9,25 +9,22 @@ import {
   BtnStepList,
   BtnStep,
   BtnClose,
-} from './ModalAddNotice.styled';
+} from '../../ModalAddNotice/ModalAddNotice.styled';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { BtnCategoryList } from './BtnCategoryList';
-import { LabelInputList } from './LabelInputList';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { format } from 'date-fns';
+import parseISO from 'date-fns/parseISO';
+import { LabelInputList } from './LabelInputList';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
 
 export const FirstStep = ({
   adminModal,
-  findCategoryNotice,
-  isBtnCategory,
   setModalData,
   modalData,
   initialValuesModalData,
-  setBtnCategory,
 }) => {
   useEffect(() => {
     disableBodyScroll(body);
@@ -41,26 +38,18 @@ export const FirstStep = ({
   function handleKeyDown(e) {
     if (e.code === 'Escape') {
       adminModal('none', true);
-      setBtnCategory('none');
     }
   }
 
   const handleModalClick = e => {
     if (e.currentTarget === e.target) {
       adminModal('none', true);
-      setBtnCategory('none');
     }
   };
 
   const nameRegExp = /^[A-Za-z\s]+$/;
 
   const validationSchema = yup.object().shape({
-    title: yup
-      .string()
-      .required('Required')
-      .matches(nameRegExp, 'Only letters!')
-      .min(2, 'Too Short!')
-      .max(48, 'Too Long!'),
     name: yup
       .string()
       .required('Required')
@@ -84,16 +73,12 @@ export const FirstStep = ({
     initialValues: modalData,
     validationSchema,
     onSubmit: values => {
+      const birthday = format(parseISO(values.birthday), 'dd.MM.yyy');
       setModalData({
         ...modalData,
         ...values,
-        category: isBtnCategory,
-        // birthday,
+        birthday,
       });
-      if (isBtnCategory === 'none') {
-        Notify.warning('Please select an ad category!');
-        return;
-      }
       adminModal('step2');
     },
   });
@@ -102,7 +87,7 @@ export const FirstStep = ({
     if (adminModal === 'none') {
       setModalData(initialValuesModalData);
     }
-  }, [adminModal, initialValuesModalData, setModalData, setBtnCategory]);
+  }, [adminModal, initialValuesModalData, setModalData]);
 
   return createPortal(
     <Wrapper onClick={handleModalClick}>
@@ -111,11 +96,6 @@ export const FirstStep = ({
           <Close />
         </BtnClose>
         <Title>Add pet</Title>
-        <Subtitle>Please, fill the data about the pet</Subtitle>
-        <BtnCategoryList
-          findCategoryNotice={findCategoryNotice}
-          isBtnCategory={isBtnCategory}
-        />
         <LabelInputList formik={formik} />
         <BtnStepList>
           <li>
@@ -128,7 +108,6 @@ export const FirstStep = ({
               type="button"
               onClick={() => {
                 adminModal('none', true);
-                setBtnCategory('none');
               }}
             >
               Cancel

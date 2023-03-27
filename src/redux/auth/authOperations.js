@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 axios.defaults.baseURL = 'https://team-project-petly-backend.onrender.com/api';
 
@@ -19,7 +19,7 @@ export const signup = createAsyncThunk(
     try {
       const res = await axios.post('/auth/register', credentials);
       setAuthHeader(res.data.token);
-      toast.success(
+      Notify.success(
         'Congratulations, your account has been successfully created.',
       );
       navigate('/user');
@@ -32,7 +32,7 @@ export const signup = createAsyncThunk(
       } else {
         errorMessage = errorData.message;
       }
-      toast.error(errorMessage);
+      Notify.failure(errorMessage);
       return thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -44,18 +44,18 @@ export const logIn = createAsyncThunk('auth/login', async (data, thunkAPI) => {
   try {
     const res = await axios.post('/auth/login', credentials);
     setAuthHeader(res.data.token);
-    toast.success('Login Success!');
+    Notify.success('Login Success!');
     navigate('/user');
     return res.data;
   } catch (error) {
     if (error.response) {
-      toast.error(
-        `such user is not registered or incorrect username or password`,
+      Notify.failure(
+        `Such user is not registered or incorrect username or password`,
       );
     } else if (error.request) {
-      toast.error('unknown error, please try again');
+      Notify.failure('Unknown error, please try again');
     } else {
-      toast.error('unknown error, please try again');
+      Notify.failure('Unknown error, please try again');
     }
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -66,7 +66,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.get('/auth/logout');
     clearAuthHeader();
   } catch (error) {
-    toast.error(error.response.data.message);
+    Notify.failure(error.response.data.message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -86,7 +86,7 @@ export const refreshUser = createAsyncThunk(
       const res = await axios.get('/users/current');
       return res.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      Notify.failure(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   },

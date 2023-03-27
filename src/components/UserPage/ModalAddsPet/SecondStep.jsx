@@ -9,41 +9,32 @@ import {
   BtnStep,
   BtnClose,
   Label,
-  TitleSex,
-  AddDiv,
+  AddDiv2,
   Textarea,
   ItemWrapper,
   AddInput,
-  AddImg,
-} from './ModalAddNotice.styled';
-import { LabelInput } from './LabelInput';
+  Subtitle,
+  UploadDiv,
+  AddImg2,
+} from '../../ModalAddNotice/ModalAddNotice.styled';
 import { ReactComponent as Close } from 'staticImages/Close.svg';
 import { ReactComponent as Plus } from 'staticImages/icon-plus.svg';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { SexLists } from './SexList';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { ValidationMessage } from './ModalAddNotice.styled';
+import { ValidationMessage } from '../../ModalAddNotice/ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
-import { addNotice } from 'redux/notices/noticesOperations';
-import { format } from 'date-fns';
-import parseISO from 'date-fns/parseISO';
+import { addUserPet } from 'redux/user/userOperations';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
 
 export const SecondStep = ({
   adminModal,
-  isBtnCategory,
   setModalData,
   modalData,
   initialValuesModalData,
-  setBtnCategory,
 }) => {
-  const [fieldValue, setFieldValue] = useState({});
-  const [imgSrc, setImageSrc] = useState('');
-
   useEffect(() => {
     disableBodyScroll(body);
     window.addEventListener('keydown', handleKeyDown);
@@ -56,44 +47,16 @@ export const SecondStep = ({
   function handleKeyDown(e) {
     if (e.code === 'Escape') {
       adminModal('none', true);
-      setBtnCategory('none');
     }
   }
 
   const handleModalClick = e => {
     if (e.currentTarget === e.target) {
       adminModal('none', true);
-      setBtnCategory('none');
     }
   };
 
   const validationSchema = yup.object().shape({
-    location: yup
-      .string()
-      .required('Required')
-      .test({
-        name: 'Location type',
-        exclusive: true,
-        message: 'You must type your *City, Region*',
-        test: value =>
-          value.split(' ').length === 2 &&
-          value.split(' ')[0].endsWith(',') &&
-          value.indexOf(',') === value.lastIndexOf(','),
-      })
-      .matches(/^[A-Za-z\s]+,\s[A-Za-z\s]+$/, 'City, Region!')
-      .min(2, 'Too Short!')
-      .max(28, 'Too Long!'),
-    price: yup
-      .string()
-      .default('1')
-      .matches(/^\d+$/, 'Please enter only number!')
-      .test({
-        name: 'First number not zero',
-        exclusive: true,
-        message: 'Please enter number, not from zero first!',
-        test: value => value && Number(value.split('')[0]) !== 0,
-      }),
-    // image: yup.string().url().nullable().required('Required'),
     comments: yup
       .string()
       .required('Required')
@@ -107,31 +70,11 @@ export const SecondStep = ({
     initialValues: modalData,
     validationSchema,
     onSubmit: values => {
-      if (!isBtnCategory === 'sell') {
-        values.price = '1';
-      }
-      if (values.sex === 'none') {
-        Notify.warning('Please select the gender of your pet!');
-        return;
-      }
-      if (isBtnCategory === 'sell' && values.price === '') {
-        Notify.warning('Please enter a price!');
-        return;
-      }
-      if (!fieldValue.size) {
-        Notify.warning('Please select a photo!');
-        return;
-      }
-
-      const birthday = format(parseISO(modalData.birthday), 'dd.MM.yyy');
-
       const requestData = {
         ...modalData,
         ...values,
-        birthday,
       };
 
-      if (requestData.price === '') delete requestData.price;
       if (requestData.image === '') delete requestData.image;
 
       const formData = new FormData();
@@ -139,15 +82,18 @@ export const SecondStep = ({
       for (const key in requestData) {
         formData.append(`${key}`, requestData[key]);
       }
+
       formData.append('image', fieldValue);
 
       setModalData(requestData);
-      dispatch(addNotice(formData));
+      dispatch(addUserPet(formData));
       adminModal('none', true);
-      setBtnCategory('none');
       setModalData(initialValuesModalData);
     },
   });
+
+  const [fieldValue, setFieldValue] = useState({});
+  const [imgSrc, setImageSrc] = useState('');
 
   const handleUpload = e => {
     setFieldValue(e.target.files[0]);
@@ -172,45 +118,26 @@ export const SecondStep = ({
           <Close />
         </BtnClose>
         <Title>Add pet</Title>
-        <TitleSex>The sex:</TitleSex>
-        <SexLists formik={formik} />
+        <Subtitle>Add photo and some comments</Subtitle>
         <LabelList>
           <li>
-            <LabelInput
-              title="Location:"
-              name="location"
-              type="text"
-              placeholder="Type location"
-              formik={formik}
-            />
-          </li>
-          {isBtnCategory === 'sell' && (
-            <li>
-              <LabelInput
-                title="Price:"
-                name="price"
-                type="text"
-                placeholder="Type price"
-                formik={formik}
-              />
-            </li>
-          )}
-          <li>
             <ItemWrapper>
-              <Label>Load the pet’s image:</Label>
-              <AddDiv>
-                {imgSrc.length === 0 ? <Plus /> : null}
-                <AddInput
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  onChange={handleUpload}
-                  value={formik.values.image}
-                ></AddInput>
-                {imgSrc.length > 0 ? (
-                  <AddImg src={imgSrc} alt="images" />
-                ) : null}
-              </AddDiv>
+              <Label></Label>
+              <UploadDiv>
+                <AddDiv2>
+                  <Plus />
+                  <AddInput
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    onChange={handleUpload}
+                    value={formik.values.image}
+                  ></AddInput>
+                  {imgSrc.length > 0 ? (
+                    <AddImg2 src={imgSrc} alt="images" />
+                  ) : null}
+                </AddDiv2>
+              </UploadDiv>
             </ItemWrapper>
           </li>
           <li>

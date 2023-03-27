@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { getPetInfo } from 'redux/pets/petsOperations';
-// import { getLoading, getError, getPets } from 'redux/pets/petsSelectors';
-// import ModalAddPet from 'components/ModalAddPet/ModalAddPet';
-// import { Loader } from 'components/Loader/Loader';
-// import PetsList from 'components/UserPage/PetsList/PetsList';
+import React, { useEffect, useState } from 'react';
+import { Loader } from 'components/Loader/Loader';
+import PetsList from 'components/UserPage/PetsList/PetsList';
 import {
   PetsWrapper,
   PetsTitleWrapper,
@@ -15,46 +11,67 @@ import {
   NonPetWrapper,
 } from './PetsData.styled';
 import { PetList } from 'components/UserPage/PetsList/PetsList.styled';
-import { ModalAddsPet } from '../ModalAddsPet/ModalAddsPet';
+import { FirstStep } from '../ModalAddsPet/FirstStep';
+import { SecondStep } from '../ModalAddsPet/SecondStep';
+import { useUser } from '../../../hooks/useUser';
 
-const PetsData = ({ pets, setPets }) => {
-  // const isLoading = useSelector(getLoading);
-  // const error = useSelector(getError);
-  // const petsData = useSelector(getPets);
-  // const isPets = Boolean(petsData.length);
-  const isPets = false;
+const PetsData = () => {
+  const { isLoading, error, userPets } = useUser();
+  const [pets, setPets] = useState([]);
 
-  const [isAddModalShown, setIsAddModalShown] = useState(false);
-  // const dispatch = useDispatch();
-  //
-  // useEffect(() => {
-  //   dispatch(getPetInfo());
-  // }, [dispatch]);
-   const toggleModal = () => {
-     setIsAddModalShown(state => !state);
-   };
+  useEffect(() => {
+    if (pets !== userPets && userPets !== undefined) {
+      setPets(userPets);
+    }
+  }, [userPets]);
+
+  const [isModalShow, setIsModalShow] = useState('none');
+  const initialValuesModalData = {
+    name: '',
+    birthday: '',
+    breed: '',
+    image: '',
+    comments: '',
+  };
+  const [modalData, setModalData] = useState(initialValuesModalData);
+
+  const adminModal = (type, value) => {
+    setIsModalShow(type);
+  };
 
   return (
     <PetsWrapper>
       <PetsTitleWrapper>
         <UserPetsTitle>Pets:</UserPetsTitle>
-        <PetBtnWrapper>
-          <AddPetTitleBtn>Add</AddPetTitleBtn>
-          <AddPetBtn onClick={() => setIsAddModalShown(true)} />
+        <PetBtnWrapper onClick={() => adminModal('step1', false)}>
+          <AddPetTitleBtn>Add pet</AddPetTitleBtn>
+          <AddPetBtn />
         </PetBtnWrapper>
       </PetsTitleWrapper>
-      {isAddModalShown && <ModalAddsPet onClose={toggleModal} />}
-      {isPets ? (
+      {isModalShow === 'step1' && (
+        <FirstStep
+          adminModal={adminModal}
+          setModalData={setModalData}
+          modalData={modalData}
+          initialValuesModalDat={initialValuesModalData}
+        />
+      )}
+      {isModalShow === 'step2' && (
+        <SecondStep
+          adminModal={adminModal}
+          setModalData={setModalData}
+          modalData={modalData}
+          initialValuesModalData={initialValuesModalData}
+        />
+      )}
+      {userPets.length ? (
         <PetList />
       ) : (
         <NonPetWrapper>
           <p>No pets</p>
         </NonPetWrapper>
       )}
-      {/*{isLoading && !error*/}
-      {/*  ? <Loader />*/}
-      {/*  : <PetsList dataPets={pets} setDataPets={setPets} />*/}
-      {/*}*/}
+      {isLoading && !error ? <Loader /> : <PetsList dataPets={pets} />}
     </PetsWrapper>
   );
 };

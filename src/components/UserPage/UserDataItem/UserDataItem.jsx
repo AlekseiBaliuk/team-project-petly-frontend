@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { updateUserData } from 'redux/user/userOperations';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {
   Input,
@@ -9,20 +10,26 @@ import {
   PencilBtn,
   DeactivatedBtn,
 } from './UserDataItem.styled';
+import { Notify } from 'notiflix';
 
 const UserDataItem = ({
   typeInput,
   nameInput,
-  valueUser,
+  valueUser = '',
   activeBtn,
   setActiveBtn,
-  // paramValid,
+  paramValid,
   min,
   max,
 }) => {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(valueUser);
+
+  useEffect(() => {
+    setEditedValue(valueUser);
+  }, [valueUser]);
+
   const handleEdit = e => {
     e.preventDefault();
     setIsEditing(true);
@@ -41,23 +48,27 @@ const UserDataItem = ({
       return;
     }
 
-    if (nameInput === 'birthday') {
+    if (!paramValid.test(editedValue)) {
+      Notify.warning(`Invalid ${nameInput}`);
+    } else {
       setActiveBtn(true);
       setIsEditing(false);
-      dispatch(
-        updateUserData({
-          [nameInput]: editedValue.split('-').reverse().join('.'),
-        }),
-      );
+      if (nameInput === 'birthday') {
+        setActiveBtn(true);
+        setIsEditing(false);
+        dispatch(
+          updateUserData({
+            [nameInput]: editedValue.split('-').reverse().join('.'),
+          }),
+        );
+      } else {
+        dispatch(
+          updateUserData({
+            [nameInput]: editedValue,
+          }),
+        );
+      }
     }
-
-    setActiveBtn(true);
-    setIsEditing(false);
-    dispatch(
-      updateUserData({
-        [nameInput]: editedValue,
-      }),
-    );
   };
 
   return (
@@ -89,3 +100,14 @@ const UserDataItem = ({
 };
 
 export default UserDataItem;
+
+UserDataItem.propTypes = {
+  typeInput: PropTypes.string.isRequired,
+  nameInput: PropTypes.string.isRequired,
+  valueUser: PropTypes.string,
+  activeBtn: PropTypes.bool,
+  setActiveBtn: PropTypes.func,
+  paramValid: PropTypes.instanceOf(RegExp),
+  min: PropTypes.string,
+  max: PropTypes.string,
+};

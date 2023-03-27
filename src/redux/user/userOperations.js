@@ -69,10 +69,8 @@ export const updateUserAvatar = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/auth/changeData', credentials);
-      console.log({ data });
       return data;
     } catch (error) {
-      console.log({ error });
       return rejectWithValue(error.message);
     }
   },

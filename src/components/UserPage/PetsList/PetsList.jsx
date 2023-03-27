@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { getPetInfo, deletePet } from 'redux/pets/petsOperations';
+import { useDispatch } from 'react-redux';
+import { removeUserPet, getUserPets } from 'redux/user/userOperations';
 import {
   PetWrapper,
   PetAvatar,
@@ -10,24 +10,23 @@ import {
   PetDescriptionInfo,
   DeleteBtn,
 } from './PetsList.styled';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogTitle from '@mui/material/DialogTitle';
+import PropTypes from 'prop-types';
+import { ApproveRemovingModal } from 'components/SharedComponents/ApproveRemovingModal/ApproveRemovingModal';
 
 const PetsList = ({ dataPets }) => {
   const [open, setOpen] = useState(false);
-  // const [petId, setPetId] = useState('');
+  const [petId, setPetId] = useState('');
+  const dispatch = useDispatch();
 
-  // const removePet = () => {
-  //   const action = deletePet(petId);
-  //   dispatch(action);
-  //   dispatch(getPetInfo());
-  // };
+  const removePet = () => {
+    const action = removeUserPet(petId);
+    dispatch(action);
+    dispatch(getUserPets());
+  };
 
   const handleClickOpen = id => {
     setOpen(true);
-    // setPetId(id);
+    setPetId(id);
   };
 
   const handleClose = () => {
@@ -66,23 +65,11 @@ const PetsList = ({ dataPets }) => {
             </PetItem>
           </PetList>
           <DeleteBtn variant="outlined" onClick={() => handleClickOpen(_id)} />
-          <Dialog open={open} aria-labelledby="alert-dialog-title">
-            <DialogTitle id="alert-dialog-title">
-              Are you sure you want to remove?
-            </DialogTitle>
-            <DialogActions>
-              <Button onClick={handleClose} style={{ color: '#F59256' }}>
-                No
-              </Button>
-              <Button
-                // onClick={removePet}
-                autoFocus
-                style={{ color: '#F59256' }}
-              >
-                Yes
-              </Button>
-            </DialogActions>
-          </Dialog>
+          <ApproveRemovingModal
+            modalOpen={open}
+            yesAction={removePet}
+            noAction={handleClose}
+          />
         </PetWrapper>
       );
     },
@@ -92,3 +79,7 @@ const PetsList = ({ dataPets }) => {
 };
 
 export default PetsList;
+
+PetsList.propTypes = {
+  petsData: PropTypes.array,
+};

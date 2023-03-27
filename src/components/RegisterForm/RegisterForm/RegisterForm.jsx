@@ -57,7 +57,9 @@ export const RegisterForm = () => {
               .string()
               .min(7, 'Too short!')
               .max(32, 'Too lond!')
-              .required('Required'),
+              .required('Required')
+              .matches(/^\S*$/, 'Not white space'),
+
             confirmPassword: yup
               .string()
               .oneOf([yup.ref('password')], 'Password mismatch')

@@ -17,6 +17,7 @@ import {
 import { useAuth } from 'hooks/useAuth';
 import { categoriesHandler } from 'helpers/categoriesHandler';
 import { useCategory } from 'hooks/useCategory';
+import { ApproveRemovingModal } from 'components/SharedComponents/ApproveRemovingModal/ApproveRemovingModal';
 
 const {
   Image,
@@ -60,6 +61,7 @@ export const NoticeCategoryItem = ({ fetch, page }) => {
   const myNotices = urlPath.pathname.includes('own');
 
   const [showModal, setShowModal] = useState(false);
+  const [showApproveModal, setShowApproveModal] = useState(false);
   const [addedToFav, setAddedToFav] = useState(() => {
     return isLoggedIn ? favorite?.includes(user.id) : false;
   });
@@ -141,7 +143,7 @@ export const NoticeCategoryItem = ({ fetch, page }) => {
           Learn more
         </Loadmore>
         {owner?._id === user?.id && (
-          <Delete onClick={handleDelete}>
+          <Delete onClick={() => setShowApproveModal(true)}>
             Delete
             <Del />
           </Delete>
@@ -156,6 +158,12 @@ export const NoticeCategoryItem = ({ fetch, page }) => {
           fav={addedToFav}
         />
       )}
+
+      <ApproveRemovingModal
+        modalOpen={showApproveModal}
+        yesAction={handleDelete}
+        noAction={() => setShowApproveModal(false)}
+      />
     </Card>
   );
 };

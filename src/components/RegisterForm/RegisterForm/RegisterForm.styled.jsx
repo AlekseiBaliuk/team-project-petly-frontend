@@ -3,7 +3,7 @@ import { theme } from '../../../constants/theme';
 import { device } from '../../../devices';
 
 export const ButtonRegister = styled.button`
-  color: ${theme.colors.white};
+  color: ${theme.colors.navText};
   font-family: ${theme.fonts.main};
   font-weight: ${theme.fontWeights.fw500};
   font-size: ${theme.fontSizes.fs20};
@@ -17,7 +17,13 @@ export const ButtonRegister = styled.button`
   width: 280px;
   height: 44px;
   margin: 0px auto 12px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+
+  &:focus,
+  &:hover {
+    color: ${theme.colors.accent};
+  }
 
   @media ${device.tablet} {
     width: 448px;

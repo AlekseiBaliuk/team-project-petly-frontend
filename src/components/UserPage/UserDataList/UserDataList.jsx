@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   FormWrapper,
   UserInfoList,
@@ -21,11 +21,58 @@ const UserDataList = () => {
   const {
     userData: { id, name, email, location, phone, birthday, avatarURL },
   } = useUser();
+
+  const [user, setUser] = useState({
+    id: null,
+    name: null,
+    email: null,
+    location: null,
+    phone: null,
+    birthday: null,
+    avatarURL: null,
+  });
+
+  useEffect(() => {
+    setUser(prevUser => {
+      const newUser = { ...prevUser };
+
+      if (id !== undefined && prevUser.id !== id) {
+        newUser.id = id;
+      }
+      if (name !== undefined && prevUser.name !== name) {
+        newUser.name = name;
+      }
+      if (email !== undefined && prevUser.email !== email) {
+        newUser.email = email;
+      }
+      if (location !== undefined && prevUser.location !== location) {
+        newUser.location = location;
+      }
+      if (phone !== undefined && prevUser.phone !== phone) {
+        newUser.phone = phone;
+      }
+      if (birthday !== undefined && prevUser.birthday !== birthday) {
+        newUser.birthday = birthday;
+      }
+      if (avatarURL !== undefined && prevUser.avatarURL !== avatarURL) {
+        newUser.avatarURL = avatarURL;
+      }
+
+      return newUser;
+    });
+  }, [id, name, email, location, phone, birthday, avatarURL]);
+
   const [activeBtn, setActiveBtn] = useState(true);
   const updateBtn = useRef(null);
   const dispatch = useDispatch();
 
-  const [ava, setAva] = useState(null);
+  const [ava, setAva] = useState();
+  useEffect(() => {
+    if (avatarURL !== undefined && avatarURL !== ava) {
+      setAva(avatarURL);
+    }
+  }, [avatarURL]);
+
   const onButtonClick = e => {
     e.preventDefault();
     updateBtn.current.click();
@@ -52,10 +99,10 @@ const UserDataList = () => {
             onChange={handleChange}
             ref={updateBtn}
           />
-          {avatarURL ? (
-            <AvatarImg src={avatarURL} alt="uploaded" />
+          {ava ? (
+            <AvatarImg src={ava} alt="uploaded" />
           ) : (
-            <AvatarImg src={ava} />
+            <AvatarImg src={avatarURL} />
           )}
           <LabelEditPhoto type="button" onClick={onButtonClick}>
             <SVG src={editAvatar} />
@@ -66,12 +113,12 @@ const UserDataList = () => {
       <UserInfoList>
         <UserInfoItem>
           <UserInfoTitle>Name:</UserInfoTitle>
-          {name ? (
+          {user.name ? (
             <UserDataItem
-              userId={id}
+              userId={user.id}
               typeInput="name"
               nameInput="name"
-              valueUser={name}
+              valueUser={user.name}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
               paramValid={regExp.nameRegexp}
@@ -79,6 +126,7 @@ const UserDataList = () => {
           ) : (
             <UserDataItem
               typeInput="name"
+              nameInput="name"
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
             />
@@ -86,11 +134,11 @@ const UserDataList = () => {
         </UserInfoItem>
         <UserInfoItem>
           <UserInfoTitle>Email:</UserInfoTitle>
-          {email ? (
+          {user.email ? (
             <UserDataItem
               typeInput="email"
               nameInput="email"
-              valueUser={email}
+              valueUser={user.email}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
               paramValid={regExp.email}
@@ -98,6 +146,7 @@ const UserDataList = () => {
           ) : (
             <UserDataItem
               typeInput="email"
+              nameInput="email"
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
             />
@@ -105,20 +154,21 @@ const UserDataList = () => {
         </UserInfoItem>
         <UserInfoItem>
           <UserInfoTitle>Birthday:</UserInfoTitle>
-          {birthday ? (
+          {user.birthday ? (
             <UserDataItem
               typeInput="date"
               nameInput="birthday"
-              valueUser={birthday}
+              valueUser={user.birthday}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
-              pattern={regExp.bdayRegexp}
+              paramValid={regExp.bdayRegexp}
               min="1935-01-01"
               max="2015-12-31"
             />
           ) : (
             <UserDataItem
               typeInput="date"
+              nameInput="birthday"
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
             />
@@ -127,18 +177,19 @@ const UserDataList = () => {
 
         <UserInfoItem>
           <UserInfoTitle>Phone:</UserInfoTitle>
-          {phone ? (
+          {user.phone ? (
             <UserDataItem
               typeInput="phone"
               nameInput="phone"
-              valueUser={phone}
+              valueUser={user.phone}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
-              pattern={regExp.bdayRegexp}
+              paramValid={regExp.mobile}
             />
           ) : (
             <UserDataItem
               typeInput="phone"
+              nameInput="phone"
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
             />
@@ -147,11 +198,11 @@ const UserDataList = () => {
 
         <UserInfoItem>
           <UserInfoTitle>City:</UserInfoTitle>
-          {location ? (
+          {user.location ? (
             <UserDataItem
               typeInput="text"
               nameInput="location"
-              valueUser={location.split(',').splice(0, 1)}
+              valueUser={user.location}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
               paramValid={regExp.location}
@@ -159,6 +210,7 @@ const UserDataList = () => {
           ) : (
             <UserDataItem
               typeInput="text"
+              nameInput="location"
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
             />
