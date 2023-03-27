@@ -22,11 +22,6 @@ const authSlice = createSlice({
         state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
-
-        setTimeout(() => {
-          state.token = null;
-          state.isLoggedIn = false;
-        }, 10000);
       })
       .addCase(signup.rejected, (state, { payload }) => {
         state.error = payload;
