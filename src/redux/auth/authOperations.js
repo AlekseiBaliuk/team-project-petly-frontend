@@ -86,6 +86,8 @@ export const refreshUser = createAsyncThunk(
       const res = await axios.get('/users/current');
       return res.data;
     } catch (error) {
+      state.auth.isLoggedIn = false;
+      state.auth.token = null;
       Notify.failure(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }

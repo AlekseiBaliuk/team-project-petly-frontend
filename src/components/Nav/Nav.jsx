@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux';
+
 import { updateCategory } from 'redux/pets/petsSlice';
+
 import * as SC from './Nav.styled';
 
 export const Nav = () => {
@@ -12,8 +14,10 @@ export const Nav = () => {
         </SC.ListItem>
         <SC.ListItem>
           <SC.Link
-            to="/notices/sell"
-            onClick={() => dispatch(updateCategory('sell'))}
+            to="/notices"
+            onClick={() => {
+              dispatch(updateCategory('sell'));
+            }}
           >
             Find pet
           </SC.Link>
