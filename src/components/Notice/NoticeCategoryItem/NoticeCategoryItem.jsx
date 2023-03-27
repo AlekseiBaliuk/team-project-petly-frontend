@@ -68,13 +68,14 @@ export const NoticeCategoryItem = ({ fetch, page }) => {
 
   const handleDelete = () => {
     const getNoticesAfterDelete = async () => {
+      console.log(favoritePage);
       await dispatch(deleteUserPet(_id));
       if (favoritePage) {
-        dispatch(getFavorites({ page }));
+        dispatch(getFavorites(page));
         return;
       }
       if (myNotices) {
-        dispatch(getMyNotices({ page }));
+        dispatch(getMyNotices(page));
         return;
       }
       dispatch(fetchNotices());
@@ -93,7 +94,7 @@ export const NoticeCategoryItem = ({ fetch, page }) => {
       setAddedToFav(false);
       await dispatch(removeFavNotice(_id));
       if (favoritePage) {
-        dispatch(getFavorites());
+        dispatch(getFavorites(page));
         return;
       }
     };
