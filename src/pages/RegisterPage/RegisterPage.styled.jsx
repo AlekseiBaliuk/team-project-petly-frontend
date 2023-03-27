@@ -14,10 +14,11 @@ export const Container = styled.section`
 
   @media ${device.tablet} {
     background-image: url(${bgM});
-    margin-top: 80px;
   }
+
   @media ${device.desktop} {
     background-image: url(${bgL});
+    margin-top: -40px;
   }
 `;
 
