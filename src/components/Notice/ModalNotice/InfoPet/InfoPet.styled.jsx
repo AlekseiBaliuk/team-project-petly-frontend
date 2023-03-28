@@ -58,7 +58,6 @@ const Item = styled('li')`
   font-size: ${props => props.theme.fontSizes.fs14};
   line-height: 1.375;
   display: grid;
-  overflow: scroll;
 
   grid-template-columns: 2fr 3fr;
   // grid-template-columns: 140px 300px;
@@ -73,6 +72,7 @@ const Item = styled('li')`
 
 const ItemText = styled('span')`
   max-width: 200px;
+  overflow: auto;
   font-weight: ${props => props.theme.fontWeights.fw500};
   & > a {
     color: ${props => props.theme.colors.mainText};
