@@ -50,22 +50,19 @@ const OurFriendsCard = ({ data }) => {
   return (
     <Card>
       <CardTitle>
-        <TitleLink href={url} target={"_blank"}>
+        <TitleLink href={url} rel="noreferrer" target="_blank">
           {title}
         </TitleLink>
       </CardTitle>
       <CardWrap>
-          <CardImage
-            src={imageUrl}
-            alt={title}
-          />
+        <CardImage src={imageUrl} alt={title} />
         <CardList>
           <CardItem>
             <CardLink
               onMouseOver={handleMouseOver}
               onMouseOut={handleMouseOut}
               style={{
-                color: workDays && isHoveringTime && "#f59256",
+                color: workDays && isHoveringTime && '#f59256',
               }}
             >
               {workDays === null || workDays === undefined ? (
@@ -97,27 +94,29 @@ const OurFriendsCard = ({ data }) => {
           <CardItem>
             <CardLink
               href={address && addressUrl}
-              target={"_blank"}
+              target={'_blank'}
               onMouseOver={handleMouseOverAdress}
               onMouseOut={handleMouseOutAsress}
               style={{
-                color: address && isHoveringAdress && "#f59256",
+                color: address && isHoveringAdress && '#f59256',
               }}
             >
-              Address: <br /> {address ? address : "-----------------"}
+              Address: <br /> {address ? address : '-----------------'}
             </CardLink>
           </CardItem>
           <CardItem>
             <CardLink
               href={email && `mailto:${email}`}
+              rel="noreferrer"
+              target="_blank"
               onMouseOver={handleMouseOverEmail}
               onMouseOut={handleMouseOutEmail}
               style={{
-                color: email && isHoveringEmail && "#f59256",
+                color: email && isHoveringEmail && '#f59256',
               }}
             >
               Email: <br />
-              {email ? email : "-----------------"}
+              {email ? email : '-----------------'}
             </CardLink>
           </CardItem>
           <CardItem>
@@ -126,11 +125,11 @@ const OurFriendsCard = ({ data }) => {
               onMouseOver={handleMouseOverPhone}
               onMouseOut={handleMouseOutPhone}
               style={{
-                color: phone && isHoveringPhone && "#f59256",
+                color: phone && isHoveringPhone && '#f59256',
               }}
             >
               Phone: <br />
-              {phone ? phone : "-----------------"}{" "}
+              {phone ? phone : '-----------------'}{' '}
             </CardLink>
           </CardItem>
         </CardList>
