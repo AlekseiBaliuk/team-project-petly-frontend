@@ -4,8 +4,14 @@ import { device } from '../../../devices';
 
 const Grid = styled('ul')`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 288px);
+  grid-template-columns: repeat(auto-fill, 280px);
   grid-gap: 32px;
+  @media ${device.tablet} {
+    grid-template-columns: repeat(auto-fill, 336px);
+  }
+  @media ${device.desktop} {
+    grid-template-columns: repeat(auto-fill, 288px);
+  }
 `;
 
 const Scroll = styled(Cat)`

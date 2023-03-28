@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ReactComponent as Heart } from 'staticImages/Heart.svg';
 import { ReactComponent as IconDel } from 'staticImages/Del.svg';
+import { device } from 'devices';
 
 const Del = styled(IconDel)`
   margin-left: 15px;
@@ -9,12 +10,18 @@ const Del = styled(IconDel)`
 
 const Card = styled('li')`
   position: relative;
-  width: 290px;
+  width: 280px;
   padding-bottom: 10px;
   border-radius: 0px 0px 20px 20px;
   background: ${props => props.theme.colors.white};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  @media ${device.tablet} {
+    width: 336px;
+  }
+  @media ${device.desktop} {
+    width: 288px;
+  }
 `;
 
 const Category = styled('span')`
