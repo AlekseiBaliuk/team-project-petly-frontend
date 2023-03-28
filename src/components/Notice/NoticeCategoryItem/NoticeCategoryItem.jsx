@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import moment from 'moment';
+import converter from 'number-to-words';
 import LinesEllipsis from 'react-lines-ellipsis';
 import { Notify } from 'notiflix';
 import style from './NoticeCategoryItem.styled';
@@ -55,6 +56,21 @@ export const NoticeCategoryItem = ({ fetch, page }) => {
   const urlPath = useLocation();
 
   const date = moment(birthday, 'DD.MM.YYYY').fromNow(true);
+  const agePet = () => {
+    const arr = date.split(' ');
+
+    if (arr[0] === 'a') {
+      arr.shift();
+      arr.unshift('one');
+    } else {
+      const num = converter.toWords(Number(arr[0]));
+      arr.shift();
+      arr.unshift(num);
+    }
+    const age = arr.join(' ');
+    return age;
+  };
+
   const longText = title;
 
   const favoritePage = urlPath.pathname.includes('favorite');
@@ -136,7 +152,7 @@ export const NoticeCategoryItem = ({ fetch, page }) => {
         </Item>
         <Item>
           <Span>Age:</Span>
-          <Span>{date}</Span>
+          <Span>{agePet()}</Span>
         </Item>
       </List>
       <ButtonWrap>
