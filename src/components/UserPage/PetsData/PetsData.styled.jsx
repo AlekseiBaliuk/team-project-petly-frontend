@@ -37,11 +37,12 @@ export const PetBtnWrapper = styled.div`
   }
 `;
 export const AddPetTitleBtn = styled.h3`
+  cursor: pointer;
   margin-right: 15px;
   font-family: ${p => p.theme.fonts.main};
   color: ${p => p.theme.colors.black};
   font-size: ${p => p.theme.fontSizes.fs20};
-  font-weight: ${p => p.theme.fontWeights.fw600};
+  font-weight: ${p => p.theme.fontWeights.fw500};
   line-height: 1.35;
 `;
 
@@ -50,16 +51,13 @@ export const AddPetBtn = styled.button`
   background-image: url(${plus});
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 24px 24px;
+  background-size: 16px 16px;
   background-color: ${p => p.theme.colors.accent};
   border-radius: ${p => p.theme.radii.round};
   border: ${p => p.theme.borders.none};
   width: 40px;
   height: 40px;
   transition: 0.2s;
-  &:hover {
-    transform: scale(1.1);
-  }
 `;
 
 export const NonPetWrapper = styled.div`
