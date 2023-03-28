@@ -5,7 +5,6 @@ import {
   Wrapper,
   Form,
   Title,
-  Subtitle,
   BtnStepList,
   BtnStep,
   BtnClose,
