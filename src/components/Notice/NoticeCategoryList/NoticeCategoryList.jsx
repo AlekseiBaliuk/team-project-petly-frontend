@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Hearts } from 'react-loader-spinner';
 import { useCategory } from 'hooks/useCategory';
@@ -15,6 +15,7 @@ const { selectNotices, selectIsAdded, selectTotal, selectLoadingStatus } =
   selectors;
 
 export const NoticeCategoryList = ({ search, page, setPage }) => {
+  const [showTopButton, setShowTopButton] = useState(false);
   const noticesList = useSelector(selectNotices);
   const isAdded = useSelector(selectIsAdded);
   const total = useSelector(selectTotal);
@@ -54,6 +55,7 @@ export const NoticeCategoryList = ({ search, page, setPage }) => {
   }
 
   const handleScroll = () => {
+    setShowTopButton(window.scrollY > 100);
     return (
       window.innerHeight + document.documentElement.scrollTop + 1 >=
         document.documentElement.scrollHeight &&
@@ -68,9 +70,8 @@ export const NoticeCategoryList = ({ search, page, setPage }) => {
   });
 
   const scrollTo = () => {
-    setPage(1);
     return window.scrollTo({
-      top: 50,
+      top: 0,
       left: 0,
       behavior: 'smooth',
     });
@@ -94,7 +95,7 @@ export const NoticeCategoryList = ({ search, page, setPage }) => {
           visible={true}
         />
       )}
-      {<Scroll onClick={scrollTo} />}
+      {showTopButton && <Scroll onClick={scrollTo} />}
     </>
   );
 };
