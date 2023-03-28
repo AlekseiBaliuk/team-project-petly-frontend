@@ -65,7 +65,6 @@ const UserDataItem = ({
           }),
         );
       } else {
-        console.log('we are here');
         dispatch(
           updateUserData({
             [nameInput]: editedValue,
