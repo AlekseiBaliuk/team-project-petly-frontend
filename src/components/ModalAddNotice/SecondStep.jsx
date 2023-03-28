@@ -26,6 +26,7 @@ import * as yup from 'yup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { ValidationMessage } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { addNotice } from 'redux/notices/noticesOperations';
 import { format } from 'date-fns';
 import parseISO from 'date-fns/parseISO';
@@ -102,6 +103,7 @@ export const SecondStep = ({
   });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: modalData,
@@ -143,6 +145,7 @@ export const SecondStep = ({
 
       setModalData(requestData);
       dispatch(addNotice(formData));
+      navigate('/notices/own');
       adminModal('none', true);
       setBtnCategory('none');
       setModalData(initialValuesModalData);
