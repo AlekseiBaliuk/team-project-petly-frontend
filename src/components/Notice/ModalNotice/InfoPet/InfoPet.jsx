@@ -60,7 +60,13 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
           <Item>
             <span>Email:</span>
             <ItemText>
-              <a href={`mailto: ${owner.email}`}>{owner.email}</a>
+              <a
+                href={`mailto: ${owner.email}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {owner.email}
+              </a>
             </ItemText>
           </Item>
           <Item>
