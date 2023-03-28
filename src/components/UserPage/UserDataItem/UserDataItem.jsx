@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { updateUserData } from 'redux/user/userOperations';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+// import { format, parse } from 'date-fns';
+// import parseISO from 'date-fns/parseISO';
 
 import {
   Input,
@@ -42,14 +44,15 @@ const UserDataItem = ({
 
   const handleSubmit = e => {
     e.preventDefault();
+    // console.log('editedValue:', editedValue);
     if (!editedValue) {
       setActiveBtn(true);
       setIsEditing(false);
       return;
     }
-
     if (!paramValid.test(editedValue)) {
-      Notify.warning(`Invalid ${nameInput}`);
+      Notify.failure(`Invalid ${nameInput}. Please, try again.`);
+      return;
     } else {
       setActiveBtn(true);
       setIsEditing(false);
@@ -70,6 +73,9 @@ const UserDataItem = ({
       }
     }
   };
+
+  // if (isEditing && nameInput === 'birthday')
+  //   setEditedValue(format(parseISO(valueUser), 'dd.MM.yyy'));
 
   return (
     <InputWrapper>

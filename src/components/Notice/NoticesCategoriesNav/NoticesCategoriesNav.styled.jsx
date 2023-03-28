@@ -43,6 +43,12 @@ export const CategoryItem = styled('li')`
     }
   }
 
+  @media ${device.beforeDesktop} {
+    :nth-child(3) {
+      margin-right: 0px;
+    }
+  }
+
   @media ${device.beforeTablet} {
     :nth-last-child(-n + 4) {
       margin-top: 12px;
@@ -50,7 +56,6 @@ export const CategoryItem = styled('li')`
   }
 
   @media ${device.tabletOnly} {
-    :nth-child(3),
     :nth-child(4),
     :nth-child(5) {
       margin-top: 16px;
