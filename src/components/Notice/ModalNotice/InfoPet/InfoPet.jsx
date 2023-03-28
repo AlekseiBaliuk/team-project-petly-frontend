@@ -62,14 +62,17 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
             <span>Email:</span>
             <ItemText>
               <a
-
                 rel="noreferrer"
                 target="_blank"
                 href={`mailto: ${owner.email}`}
               >
-                <marquee scrollamount="1" behavior="alternate">
-                  {owner.email}
-                </marquee>
+                {owner.email.length > 24 ? (
+                  <marquee scrollamount="1" behavior="alternate">
+                    {owner.email}
+                  </marquee>
+                ) : (
+                  owner.email
+                )}
               </a>
             </ItemText>
           </Item>
