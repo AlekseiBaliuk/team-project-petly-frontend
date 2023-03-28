@@ -72,7 +72,6 @@ const Item = styled('li')`
 
 const ItemText = styled('span')`
   max-width: 200px;
-  overflow: auto;
   font-weight: ${props => props.theme.fontWeights.fw500};
   & > a {
     color: ${props => props.theme.colors.mainText};

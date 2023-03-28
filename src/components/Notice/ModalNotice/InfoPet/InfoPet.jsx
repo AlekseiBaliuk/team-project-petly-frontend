@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-distracting-elements */
 import { categoriesHandler } from 'helpers/categoriesHandler';
 import style from './InfoPet.styled';
 
@@ -61,20 +62,21 @@ export const InfoPet = ({ notice, toggle, favorite }) => {
             <span>Email:</span>
             <ItemText>
               <a
-                href={`mailto: ${owner.email}`}
-                target="_blank"
+
                 rel="noreferrer"
+                target="_blank"
+                href={`mailto: ${owner.email}`}
               >
-                {owner.email}
+                <marquee scrollamount="1" behavior="alternate">
+                  {owner.email}
+                </marquee>
               </a>
             </ItemText>
           </Item>
           <Item>
             <span>Phone:</span>
             <ItemText>
-              <a rel="noreferrer" target="_blank" href={`tel: ${owner.phone}`}>
-                {owner.phone}
-              </a>
+              <a href={`tel: ${owner.phone}`}>{owner.phone}</a>
             </ItemText>
           </Item>
           {price && (
