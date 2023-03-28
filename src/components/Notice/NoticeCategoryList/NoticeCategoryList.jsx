@@ -71,7 +71,7 @@ export const NoticeCategoryList = ({ search, page, setPage }) => {
 
   const scrollTo = () => {
     return window.scrollTo({
-      top: 50,
+      top: 0,
       left: 0,
       behavior: 'smooth',
     });
