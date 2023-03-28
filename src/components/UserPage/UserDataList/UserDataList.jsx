@@ -16,8 +16,8 @@ import UserDataItem from 'components/UserPage/UserDataItem/UserDataItem';
 import { updateUserData } from 'redux/user/userOperations';
 import editAvatar from 'staticImages/userPage/editAvatar.svg';
 import { regExp } from 'helpers/regExp';
-import { format } from 'date-fns';
-import parseISO from 'date-fns/parseISO';
+// import { format } from 'date-fns';
+// import parseISO from 'date-fns/parseISO';
 
 const UserDataList = () => {
   const {
