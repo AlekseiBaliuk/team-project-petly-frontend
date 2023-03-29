@@ -42,8 +42,6 @@ const UserDataItem = ({
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('editedValue:', editedValue);
-    console.log(editedValue.split('-').reverse().join('.'));
     if (!editedValue) {
       setActiveBtn(true);
       setIsEditing(false);

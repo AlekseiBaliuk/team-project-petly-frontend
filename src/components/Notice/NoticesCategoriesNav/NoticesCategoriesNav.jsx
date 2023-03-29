@@ -11,7 +11,6 @@ export const NoticesCategoriesNav = ({ page, setPage }) => {
   const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
 
-  // console.log(setPage);
   return (
     <CategoriesList>
       <CategoryItem>
