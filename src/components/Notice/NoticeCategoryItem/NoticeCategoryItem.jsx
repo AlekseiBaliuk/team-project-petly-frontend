@@ -84,7 +84,6 @@ export const NoticeCategoryItem = ({ fetch, page }) => {
 
   const handleDelete = () => {
     const getNoticesAfterDelete = async () => {
-      console.log(favoritePage);
       await dispatch(deleteUserPet(_id));
       if (favoritePage) {
         dispatch(getFavorites(page));
