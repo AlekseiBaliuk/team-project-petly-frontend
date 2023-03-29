@@ -23,7 +23,7 @@ const PetsData = () => {
     if (pets !== userPets && userPets !== undefined) {
       setPets(userPets);
     }
-  }, [userPets]);
+  }, [pets, userPets]);
 
   const [isModalShow, setIsModalShow] = useState('none');
   const initialValuesModalData = {

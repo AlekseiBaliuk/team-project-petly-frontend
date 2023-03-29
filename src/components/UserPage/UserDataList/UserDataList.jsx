@@ -16,8 +16,6 @@ import UserDataItem from 'components/UserPage/UserDataItem/UserDataItem';
 import { updateUserData } from 'redux/user/userOperations';
 import editAvatar from 'staticImages/userPage/editAvatar.svg';
 import { regExp } from 'helpers/regExp';
-// import { format } from 'date-fns';
-// import parseISO from 'date-fns/parseISO';
 
 const UserDataList = () => {
   const {
@@ -88,16 +86,6 @@ const UserDataList = () => {
     setAva(av);
     dispatch(updateUserData(data));
   };
-
-  // const birthdayDate = () => {
-  //   if (user.birthday) {
-  //     const newArray = user.birthday.replaceAll('.', ' ').split(' ').reverse();
-  //     return format(
-  //       new Date(newArray[0], newArray[1] - 1, newArray[2]),
-  //       'MM/dd/yyyy',
-  //     );
-  //   }
-  // };
 
   return (
     <>
