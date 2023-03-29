@@ -10,7 +10,10 @@ export const Container = styled.section`
   background-repeat: no-repeat;
   background-position: right 0% bottom 0%;
   background-size: contain;
-  height: 100%;
+  padding-bottom: 60px;
+  @media ${device.desktop} {
+    padding-bottom: 150px;
+  }
 
   @media ${device.tablet} {
     background-image: url(${bgM});
@@ -18,7 +21,6 @@ export const Container = styled.section`
 
   @media ${device.desktop} {
     background-image: url(${bgL});
-    margin-top: -40px;
   }
 `;
 

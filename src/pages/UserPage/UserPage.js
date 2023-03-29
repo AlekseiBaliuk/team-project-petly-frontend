@@ -6,12 +6,14 @@ import { Container } from '../../components/Container/Container.styled';
 
 const UserPage = () => {
   return (
-    <Container>
-      <UserPageWrapper>
-        <UserData />
-        <PetsData />
-      </UserPageWrapper>
-    </Container>
+    <section>
+      <Container>
+        <UserPageWrapper>
+          <UserData />
+          <PetsData />
+        </UserPageWrapper>
+      </Container>
+    </section>
   );
 };
 
