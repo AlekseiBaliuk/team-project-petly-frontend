@@ -28,6 +28,7 @@ import { ValidationMessage } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addNotice } from 'redux/notices/noticesOperations';
+import { updateCategory } from 'redux/pets/petsSlice';
 import { format } from 'date-fns';
 import parseISO from 'date-fns/parseISO';
 
@@ -146,6 +147,7 @@ export const SecondStep = ({
       setModalData(requestData);
       dispatch(addNotice(formData));
       navigate('/notices/own');
+      dispatch(updateCategory('my-ads'));
       adminModal('none', true);
       setBtnCategory('none');
       setModalData(initialValuesModalData);
