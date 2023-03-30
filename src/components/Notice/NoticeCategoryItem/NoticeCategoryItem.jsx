@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-distracting-elements */
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -151,7 +152,15 @@ export const NoticeCategoryItem = ({ fetch, page }) => {
         </Item>
         <Item>
           <Span>Age:</Span>
-          <Span>{agePet()}</Span>
+          <Span>
+            {agePet().length > 24 ? (
+              <marquee scrollamount="1" behavior="alternate">
+                {agePet()}
+              </marquee>
+            ) : (
+              agePet()
+            )}
+          </Span>
         </Item>
       </List>
       <ButtonWrap>
