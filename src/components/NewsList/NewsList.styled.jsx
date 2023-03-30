@@ -96,3 +96,8 @@ export const NewsLink = styled.a`
     text-decoration-line: none;
   }
 `;
+
+export const Message = styled.p`
+  font-size: ${p => p.theme.fontSizes.fs28};
+  text-align: center;
+`;
