@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import { ReactComponent as Cat } from 'staticImages/catUp.svg';
 import { device } from '../../../devices';
 
+const ImageBc = styled('img')`
+  width: 100%;
+  height: 100%;
+`;
+
 const Grid = styled('ul')`
   display: grid;
   grid-template-columns: repeat(auto-fill, 280px);
@@ -37,6 +42,6 @@ const Scroll = styled(Cat)`
   }
 `;
 
-const style = { Scroll, Grid };
+const style = { Scroll, Grid, ImageBc };
 
 export default style;

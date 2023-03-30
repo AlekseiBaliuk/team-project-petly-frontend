@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Hearts } from 'react-loader-spinner';
 import { useCategory } from 'hooks/useCategory';
 import selectors from 'redux/notices/noticesSelectors';
+import paint from 'staticImages/bc.jpg';
 import {
   fetchNotices,
   getFavorites,
@@ -22,7 +23,7 @@ export const NoticeCategoryList = ({ search, page, setPage }) => {
   const isLoading = useSelector(selectLoadingStatus);
   const { activeCategory } = useCategory();
 
-  const { Grid, Scroll } = style;
+  const { Grid, Scroll, ImageBc } = style;
 
   const dispatch = useDispatch();
 
@@ -79,12 +80,15 @@ export const NoticeCategoryList = ({ search, page, setPage }) => {
 
   return (
     <>
-      <Grid>
-        {filterNotice(noticesList).length > 0 &&
-          filterNotice(noticesList).map(notice => (
+      {filterNotice(noticesList).length > 0 ? (
+        <Grid>
+          {filterNotice(noticesList).map(notice => (
             <NoticeCategoryItem key={notice._id} fetch={notice} page={page} />
           ))}
-      </Grid>
+        </Grid>
+      ) : (
+        <ImageBc src={paint} alt={paint} />
+      )}
       {isLoading && (
         <Hearts
           height="80"
