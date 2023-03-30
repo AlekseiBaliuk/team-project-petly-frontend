@@ -42,6 +42,7 @@ export const SecondStep = ({
   modalData,
   initialValuesModalData,
   setBtnCategory,
+  clearData,
 }) => {
   const [fieldValue, setFieldValue] = useState({});
   const [imgSrc, setImageSrc] = useState('');
@@ -57,15 +58,13 @@ export const SecondStep = ({
 
   function handleKeyDown(e) {
     if (e.code === 'Escape') {
-      adminModal('none', true);
-      setBtnCategory('none');
+      clearData();
     }
   }
 
   const handleModalClick = e => {
     if (e.currentTarget === e.target) {
-      adminModal('none', true);
-      setBtnCategory('none');
+      clearData();
     }
   };
 
@@ -95,7 +94,6 @@ export const SecondStep = ({
         message: 'Please enter number, not from zero first!',
         test: value => value && Number(value.split('')[0]) !== 0,
       }),
-    // image: yup.string().url().nullable().required('Required'),
     comments: yup
       .string()
       .required('Required')
@@ -173,7 +171,7 @@ export const SecondStep = ({
   return createPortal(
     <Wrapper onClick={handleModalClick}>
       <Form onSubmit={formik.handleSubmit} enctype="multipart/form-data">
-        <BtnClose type="button" onClick={() => adminModal('none', true)}>
+        <BtnClose type="button" onClick={clearData}>
           <Close />
         </BtnClose>
         <Title>Add pet</Title>

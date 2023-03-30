@@ -28,6 +28,7 @@ export const FirstStep = ({
   modalData,
   initialValuesModalData,
   setBtnCategory,
+  clearData,
 }) => {
   useEffect(() => {
     disableBodyScroll(body);
@@ -40,15 +41,13 @@ export const FirstStep = ({
 
   function handleKeyDown(e) {
     if (e.code === 'Escape') {
-      adminModal('none', true);
-      setBtnCategory('none');
+      clearData();
     }
   }
 
   const handleModalClick = e => {
     if (e.currentTarget === e.target) {
-      adminModal('none', true);
-      setBtnCategory('none');
+      clearData();
     }
   };
 
@@ -88,7 +87,6 @@ export const FirstStep = ({
         ...modalData,
         ...values,
         category: isBtnCategory,
-        // birthday,
       });
       if (isBtnCategory === 'none') {
         Notify.warning('Please select an ad category!');
@@ -107,7 +105,7 @@ export const FirstStep = ({
   return createPortal(
     <Wrapper onClick={handleModalClick}>
       <Form onSubmit={formik.handleSubmit}>
-        <BtnClose type="button" onClick={() => adminModal('none', true)}>
+        <BtnClose type="button" onClick={clearData}>
           <Close />
         </BtnClose>
         <Title>Add pet</Title>
@@ -124,13 +122,7 @@ export const FirstStep = ({
             </BtnStep>
           </li>
           <li>
-            <BtnStep
-              type="button"
-              onClick={() => {
-                adminModal('none', true);
-                setBtnCategory('none');
-              }}
-            >
+            <BtnStep type="button" onClick={clearData}>
               Cancel
             </BtnStep>
           </li>

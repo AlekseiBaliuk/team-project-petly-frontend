@@ -24,6 +24,7 @@ export const FirstStep = ({
   setModalData,
   modalData,
   initialValuesModalData,
+  clearData,
 }) => {
   useEffect(() => {
     disableBodyScroll(body);
@@ -36,13 +37,13 @@ export const FirstStep = ({
 
   function handleKeyDown(e) {
     if (e.code === 'Escape') {
-      adminModal('none', true);
+      clearData();
     }
   }
 
   const handleModalClick = e => {
     if (e.currentTarget === e.target) {
-      adminModal('none', true);
+      clearData();
     }
   };
 
@@ -91,7 +92,7 @@ export const FirstStep = ({
   return createPortal(
     <Wrapper onClick={handleModalClick}>
       <Form onSubmit={formik.handleSubmit}>
-        <BtnClose type="button" onClick={() => adminModal('none', true)}>
+        <BtnClose type="button" onClick={clearData}>
           <Close />
         </BtnClose>
         <Title>Add pet</Title>
@@ -103,12 +104,7 @@ export const FirstStep = ({
             </BtnStep>
           </li>
           <li>
-            <BtnStep
-              type="button"
-              onClick={() => {
-                adminModal('none', true);
-              }}
-            >
+            <BtnStep type="button" onClick={clearData}>
               Cancel
             </BtnStep>
           </li>

@@ -36,6 +36,12 @@ const NoticesPage = () => {
     setIsModalShow(type);
   };
 
+  const clearData = () => {
+    adminModal('none', true);
+    setBtnCategory('none');
+    setModalData({ ...initialValuesModalData });
+  };
+
   const findCategoryNotice = category => {
     setBtnCategory(category);
   };
@@ -57,6 +63,7 @@ const NoticesPage = () => {
               modalData={modalData}
               initialValuesModalDat={initialValuesModalData}
               setBtnCategory={setBtnCategory}
+              clearData={clearData}
             />
           )}
           {isModalShow === 'step2' && (
@@ -67,6 +74,7 @@ const NoticesPage = () => {
               modalData={modalData}
               initialValuesModalData={initialValuesModalData}
               setBtnCategory={setBtnCategory}
+              clearData={clearData}
             />
           )}
           <NoticesCategoriesNav page={page} setPage={setPage} />
