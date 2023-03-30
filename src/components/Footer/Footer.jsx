@@ -14,7 +14,7 @@ export const Footer = () => {
       <Container style={{ paddingTop: '10px', paddingBottom: '10px' }}>
         <SC.Button onClick={handleOpen} sx={{ textAlign: 'center' }}>
           <PetsIcon />
-          <SC.ButtonText>Team 9</SC.ButtonText>
+          <SC.ButtonText>Reactotouille</SC.ButtonText>
           <PetsIcon />
         </SC.Button>
         <FooterModal open={open} handleClose={handleClose} />

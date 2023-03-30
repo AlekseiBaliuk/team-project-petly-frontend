@@ -23,7 +23,7 @@ export const FooterModal = ({ open, handleClose }) => {
     >
       <SC.ModalContainer>
         <SC.ModalHeader>
-          Te<SC.ModalSpan>a</SC.ModalSpan>m 9
+          React<SC.ModalSpan>o</SC.ModalSpan>touille
         </SC.ModalHeader>
         <IconButton
           color="inherit"
