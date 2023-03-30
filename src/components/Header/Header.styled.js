@@ -20,9 +20,9 @@ export const ToolBar = styled.div`
   @media ${device.tablet} {
     padding-top: 24px;
   }
-  @media ${device.desktop} {
+  /* @media ${device.desktop} {
     margin-bottom: 20px;
-  }
+  } */
 `;
 export const LogoContainer = styled.div`
   @media ${device.tablet} {
