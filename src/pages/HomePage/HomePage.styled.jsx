@@ -28,7 +28,7 @@ export const Container = styled.div`
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  padding-top: ${props => props.theme.space[4]}px;
+  padding-top: 0px;
   padding-left: ${props => props.theme.space[3]}px;
   padding-right: ${props => props.theme.space[3]}px;
   width: 320px;
