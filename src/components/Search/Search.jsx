@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import {
   SearchInput,
   SearchForm,
@@ -11,22 +13,25 @@ export const Search = ({ sendSearch }) => {
   const [search, setSearch] = useState('');
   const [input, setInput] = useState(false);
 
+  const urlPath = useLocation();
+
+  const petsPage = urlPath.pathname.includes('notices');
+
   const handleSubmit = e => {
     e.preventDefault();
-    setTimeout(() => setInput(true), 500);
-    sendSearch(search);
-  };
+    if (petsPage) {
+      sendSearch(search);
+    }
+    setTimeout(() => setInput(true), 3000);
 
+    setSearch(search);
+  };
   const handleChange = e => {
     if (input === true) {
       setTimeout(() => setInput(false), 500);
     }
 
     const filter = e.target.value;
-
-    if (!filter) {
-      setTimeout(() => sendSearch(filter), 500);
-    }
 
     setSearch(filter);
   };

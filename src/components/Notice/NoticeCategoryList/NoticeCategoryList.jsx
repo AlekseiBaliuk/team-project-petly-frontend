@@ -7,6 +7,7 @@ import {
   fetchNotices,
   getFavorites,
   getMyNotices,
+  searchNotice,
 } from 'redux/notices/noticesOperations';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import style from './NoticeCategoryList.styled';
@@ -14,7 +15,7 @@ import style from './NoticeCategoryList.styled';
 const { selectNotices, selectIsAdded, selectTotal, selectLoadingStatus } =
   selectors;
 
-export const NoticeCategoryList = ({ search, page, setPage }) => {
+export const NoticeCategoryList = ({ page, setPage, search }) => {
   const [showTopButton, setShowTopButton] = useState(false);
   const noticesList = useSelector(selectNotices);
   const isAdded = useSelector(selectIsAdded);
@@ -28,35 +29,34 @@ export const NoticeCategoryList = ({ search, page, setPage }) => {
 
   useEffect(() => {
     const fetch = async () => {
-      switch (activeCategory) {
-        case 'favorite':
-          await dispatch(getFavorites(page));
-          break;
-        case 'my-ads':
-          await dispatch(getMyNotices(page));
-          break;
-        default:
-          await dispatch(fetchNotices({ activeCategory, page }));
-          break;
+      if (search) {
+        const searchPet = async () => {
+          await dispatch(searchNotice({ activeCategory, page, search }));
+        };
+        searchPet();
+      }
+
+      if (!search) {
+        switch (activeCategory) {
+          case 'favorite':
+            await dispatch(getFavorites(page));
+            break;
+          case 'my-ads':
+            await dispatch(getMyNotices(page));
+            break;
+          default:
+            await dispatch(fetchNotices({ activeCategory, page }));
+            break;
+        }
       }
     };
-    fetch();
-  }, [activeCategory, dispatch, isAdded, page]);
 
-  function filterNotice(list) {
-    if (search.length === 0) {
-      return list;
-    }
-    const normalizeSearch = search.toLocaleLowerCase();
-    const filterList = list.filter(({ title }) =>
-      title.toLowerCase().includes(normalizeSearch),
-    );
-    return filterList;
-  }
+    fetch();
+  }, [activeCategory, dispatch, isAdded, page, search]);
 
   const handleScroll = () => {
     setShowTopButton(window.scrollY > 100);
-    if (filterNotice(noticesList).length === 0) return;
+    if (noticesList.length === 0) return;
     return (
       window.innerHeight + document.documentElement.scrollTop + 1 >=
         document.documentElement.scrollHeight &&
@@ -80,14 +80,14 @@ export const NoticeCategoryList = ({ search, page, setPage }) => {
 
   return (
     <>
-      {filterNotice(noticesList).length > 0 && (
+      {noticesList.length > 0 && (
         <Grid>
-          {filterNotice(noticesList).map(notice => (
+          {noticesList.map(notice => (
             <NoticeCategoryItem key={notice._id} fetch={notice} page={page} />
           ))}
         </Grid>
       )}
-      {filterNotice(noticesList).length === 0 && !isLoading && (
+      {noticesList.length === 0 && !isLoading && (
         <Noads>There are no ads</Noads>
       )}
       {isLoading && (

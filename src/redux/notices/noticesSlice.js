@@ -7,6 +7,7 @@ import {
   getFavorites,
   getMyNotices,
   deleteUserPet,
+  searchNotice,
 } from './noticesOperations';
 
 const noticesInitialState = {
@@ -27,10 +28,21 @@ const extraActions = [
   getFavorites,
   getMyNotices,
   deleteUserPet,
+  searchNotice,
 ];
 const getActionsByType = type => extraActions.map(action => action[type]);
 
 const onFetchSuccessReducer = (state, action) => {
+  state.items =
+    Number(action.payload.page) === 1
+      ? action.payload.notices
+      : [...state.items, ...action.payload.notices];
+  state.total = action.payload.total;
+  state.isLoading = false;
+  state.error = null;
+};
+
+const onSearchSuccessReducer = (state, action) => {
   state.items =
     Number(action.payload.page) === 1
       ? action.payload.notices
@@ -94,7 +106,6 @@ const onRejectedReducer = (state, action) => {
 };
 
 const onAddNoticeReducer = (state, action) => {
-  // state.items.push(action.payload.notice);
   state.isAdded = true;
   state.isLoading = false;
   state.error = null;
@@ -112,7 +123,7 @@ const noticesSlice = createSlice({
       .addCase(deleteUserPet.fulfilled, onDeleteUserPetReducer)
       .addCase(getMyNotices.fulfilled, onFetchMyNoticesSuccessReducer)
       .addCase(addNotice.fulfilled, onAddNoticeReducer)
-
+      .addCase(searchNotice.fulfilled, onSearchSuccessReducer)
       .addMatcher(isAnyOf(...getActionsByType('pending')), onPendingReducer)
       .addMatcher(isAnyOf(...getActionsByType('rejected')), onRejectedReducer),
 });
