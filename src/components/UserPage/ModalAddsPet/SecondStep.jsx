@@ -25,6 +25,8 @@ import * as yup from 'yup';
 import { ValidationMessage } from '../../ModalAddNotice/ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { addUserPet } from 'redux/user/userOperations';
+import { format } from 'date-fns';
+import parseISO from 'date-fns/parseISO';
 
 const body = document.getElementsByTagName('body')[0];
 const modalRoot = document.querySelector('#modal-root');
@@ -71,9 +73,11 @@ export const SecondStep = ({
     initialValues: modalData,
     validationSchema,
     onSubmit: values => {
+      const birthday = format(parseISO(modalData.birthday), 'dd.MM.yyy');
       const requestData = {
         ...modalData,
         ...values,
+        birthday,
       };
 
       if (requestData.image === '') delete requestData.image;

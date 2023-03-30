@@ -12,8 +12,6 @@ import {
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { format } from 'date-fns';
-import parseISO from 'date-fns/parseISO';
 import { LabelInputList } from './LabelInputList';
 
 const body = document.getElementsByTagName('body')[0];
@@ -73,11 +71,9 @@ export const FirstStep = ({
     initialValues: modalData,
     validationSchema,
     onSubmit: values => {
-      const birthday = format(parseISO(values.birthday), 'dd.MM.yyy');
       setModalData({
         ...modalData,
         ...values,
-        birthday,
       });
       adminModal('step2');
     },
