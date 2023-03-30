@@ -58,6 +58,9 @@ export const FirstStep = ({
       .date()
       .required('Required')
       .typeError('DD.MM.YYYY')
+      .min(
+        new Date(1900, 0, 1),
+        'Date earlier than 1st of January 1900 is not allowed!')
       .max(new Date(), 'Future date not allowed'),
     breed: yup
       .string()

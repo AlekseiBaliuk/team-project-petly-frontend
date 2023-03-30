@@ -68,6 +68,10 @@ export const FirstStep = ({
       .max(16, 'Too Long!'),
     birthday: yup
       .date()
+      .min(
+        new Date(1900, 0, 1),
+        'Date earlier than 1st of January 1900 is not allowed!',
+      )
       .required('Required')
       .typeError('DD.MM.YYYY')
       .max(new Date(), 'Future date not allowed'),

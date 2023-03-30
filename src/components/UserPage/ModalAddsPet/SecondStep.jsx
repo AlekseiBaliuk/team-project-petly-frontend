@@ -22,6 +22,7 @@ import { ReactComponent as Plus } from 'staticImages/icon-plus.svg';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { ValidationMessage } from '../../ModalAddNotice/ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { addUserPet } from 'redux/user/userOperations';
@@ -79,6 +80,11 @@ export const SecondStep = ({
         ...values,
         birthday,
       };
+
+      if (!fieldValue.size) {
+        Notify.warning('Please select a photo!');
+        return;
+      }
 
       if (requestData.image === '') delete requestData.image;
 
