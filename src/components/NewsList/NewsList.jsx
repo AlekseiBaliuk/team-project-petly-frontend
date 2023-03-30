@@ -8,6 +8,7 @@ import {
   NewsMoreInfo,
   NewsDate,
   NewsLink,
+  Message,
 } from './NewsList.styled';
 
 export const NewsList = ({ news }) => {
@@ -26,36 +27,34 @@ export const NewsList = ({ news }) => {
   });
 
   return (
-    <News>
-      {sortNews.length > 0 ? (
-        sortNews.map(({ _id, title, url, description, date }) => {
-          const formatDate = format(new Date(date), 'dd/MM/yyyy');
-          return (
-            <NewsCard key={_id}>
-              <NewsTitle>
-                {ellipsize(title, titleLength, { chars: ' ' })}
-              </NewsTitle>
-              <NewsDescription>
-                {ellipsize(description, descriptLength, { chars: ' ' })}
-              </NewsDescription>
-              <NewsMoreInfo>
-                {date === null ? (
-                  <NewsDate>no date</NewsDate>
-                ) : (
-                  <NewsDate>{formatDate}</NewsDate>
-                )}
-                <NewsLink href={url} target="_blank">
-                  Read more
-                </NewsLink>
-              </NewsMoreInfo>
-            </NewsCard>
-          );
-        })
-      ) : (
-        <li>
-          <p>{message}</p>
-        </li>
-      )}
-    </News>
+    <>
+      <News>
+        {sortNews.length > 0 &&
+          sortNews.map(({ _id, title, url, description, date }) => {
+            const formatDate = format(new Date(date), 'dd/MM/yyyy');
+            return (
+              <NewsCard key={_id}>
+                <NewsTitle>
+                  {ellipsize(title, titleLength, { chars: ' ' })}
+                </NewsTitle>
+                <NewsDescription>
+                  {ellipsize(description, descriptLength, { chars: ' ' })}
+                </NewsDescription>
+                <NewsMoreInfo>
+                  {date === null ? (
+                    <NewsDate>no date</NewsDate>
+                  ) : (
+                    <NewsDate>{formatDate}</NewsDate>
+                  )}
+                  <NewsLink href={url} target="_blank">
+                    Read more
+                  </NewsLink>
+                </NewsMoreInfo>
+              </NewsCard>
+            );
+          })}
+      </News>
+      {sortNews.length === 0 && <Message>{message}</Message>}
+    </>
   );
 };
