@@ -88,7 +88,6 @@ export const refreshUser = createAsyncThunk(
     } catch (error) {
       state.auth.isLoggedIn = false;
       state.auth.token = null;
-      Notify.failure(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   },
