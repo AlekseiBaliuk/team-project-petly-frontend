@@ -39,6 +39,11 @@ const PetsData = () => {
     setIsModalShow(type);
   };
 
+   const clearData = () => {
+     adminModal('none', true);
+     setModalData({ ...initialValuesModalData });
+   };
+
   return (
     <PetsWrapper>
       <PetsTitleWrapper>
@@ -54,6 +59,7 @@ const PetsData = () => {
           setModalData={setModalData}
           modalData={modalData}
           initialValuesModalDat={initialValuesModalData}
+          clearData={clearData}
         />
       )}
       {isModalShow === 'step2' && (
@@ -62,6 +68,7 @@ const PetsData = () => {
           setModalData={setModalData}
           modalData={modalData}
           initialValuesModalData={initialValuesModalData}
+          clearData={clearData}
         />
       )}
       {userPets.length ? (
