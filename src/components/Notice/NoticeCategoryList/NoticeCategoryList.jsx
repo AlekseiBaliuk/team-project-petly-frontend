@@ -8,6 +8,8 @@ import {
   getFavorites,
   getMyNotices,
   searchNotice,
+  searchFavorite,
+  searchMyPets,
 } from 'redux/notices/noticesOperations';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import style from './NoticeCategoryList.styled';
@@ -31,7 +33,17 @@ export const NoticeCategoryList = ({ page, setPage, search }) => {
     const fetch = async () => {
       if (search) {
         const searchPet = async () => {
-          await dispatch(searchNotice({ activeCategory, page, search }));
+          switch (activeCategory) {
+            case 'favorite':
+              await dispatch(searchFavorite({ page, search }));
+              break;
+            case 'my-ads':
+              await dispatch(searchMyPets({ page, search }));
+              break;
+            default:
+              await dispatch(searchNotice({ activeCategory, page, search }));
+              break;
+          }
         };
         searchPet();
       }

@@ -32,6 +32,37 @@ export const searchNotice = createAsyncThunk(
   },
 );
 
+export const searchFavorite = createAsyncThunk(
+  'notices/user/favorites',
+  async (data, thunkAPI) => {
+    try {
+      const { page, search } = data;
+      const response = await axios.get(
+        `https://team-project-petly-backend.onrender.com/api/notices/user/favorites/title/${search}?page=${page}&limit=8`,
+      );
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
+export const searchMyPets = createAsyncThunk(
+  'notices/user/favorites',
+  async (data, thunkAPI) => {
+    try {
+      const { page, search } = data;
+      const response = await axios.get(
+        `https://team-project-petly-backend.onrender.com/api/notices/title/${search}?page=${page}&limit=8`,
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
 export const getFavorites = createAsyncThunk(
   'notices/user/favorites',
   async (page, thunkAPI) => {

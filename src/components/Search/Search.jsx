@@ -24,7 +24,7 @@ export const Search = ({ sendSearch }) => {
     }
     setTimeout(() => setInput(true), 3000);
 
-    setSearch(search);
+    sendSearch(search);
   };
   const handleChange = e => {
     if (input === true) {
@@ -33,6 +33,9 @@ export const Search = ({ sendSearch }) => {
 
     const filter = e.target.value;
 
+    if (!filter) {
+      setTimeout(() => sendSearch(filter), 500);
+    }
     setSearch(filter);
   };
 
