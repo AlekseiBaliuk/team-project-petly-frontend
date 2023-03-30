@@ -27,6 +27,8 @@ function App() {
     dispatch(refreshUser());
   }, [dispatch]);
 
+  const shouldRedirect = !isLoggedIn && !isRefreshing;
+
   return isRefreshing ? (
     <Loader />
   ) : (
@@ -44,7 +46,7 @@ function App() {
           </Route>
           <Route
             path="/user"
-            element={isLoggedIn ? <UserPage /> : <Navigate to="/" />}
+            element={shouldRedirect ? <Navigate to="/" /> : <UserPage />}
           />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
