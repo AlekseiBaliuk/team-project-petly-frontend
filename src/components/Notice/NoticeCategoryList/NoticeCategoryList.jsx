@@ -57,6 +57,7 @@ export const NoticeCategoryList = ({ search, page, setPage }) => {
 
   const handleScroll = () => {
     setShowTopButton(window.scrollY > 100);
+    if (filterNotice(noticesList).length === 0) return;
     return (
       window.innerHeight + document.documentElement.scrollTop + 1 >=
         document.documentElement.scrollHeight &&
