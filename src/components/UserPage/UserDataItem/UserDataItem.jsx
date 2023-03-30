@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { updateUserData } from 'redux/user/userOperations';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 import {
   Input,
@@ -9,6 +13,7 @@ import {
   InputWrapper,
   PencilBtn,
   DeactivatedBtn,
+  StyledDatePicker,
 } from './UserDataItem.styled';
 import { Notify } from 'notiflix';
 
@@ -37,7 +42,11 @@ const UserDataItem = ({
   };
 
   const handleChange = e => {
-    setEditedValue(e.target.value);
+    if (nameInput === 'birthday') {
+      setEditedValue(new Date(e).toLocaleDateString().split('T')[0]);
+    } else {
+      setEditedValue(e.target.value);
+    }
   };
 
   const handleSubmit = e => {
@@ -74,9 +83,23 @@ const UserDataItem = ({
 
   return (
     <InputWrapper>
-      {isEditing ? (
+      {isEditing && nameInput === 'birthday' && (
+        <>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <StyledDatePicker
+              autoOk
+              format="DD.MM.YYYY"
+              fullWidth
+              onChange={value => handleChange(value.$d)}
+            />
+          </LocalizationProvider>
+          <UpdateBtn onClick={handleSubmit} />
+        </>
+      )}
+      {isEditing && nameInput !== 'birthday' && (
         <>
           <Input
+            id={nameInput}
             type={typeInput}
             name={nameInput}
             value={editedValue}
@@ -86,9 +109,10 @@ const UserDataItem = ({
           />
           <UpdateBtn onClick={handleSubmit} />
         </>
-      ) : (
+      )}
+      {!isEditing && (
         <>
-          <Input name={nameInput} value={valueUser} disabled />
+          <Input id={nameInput} name={nameInput} value={valueUser} disabled />
           {activeBtn ? (
             <PencilBtn onClick={handleEdit} />
           ) : (

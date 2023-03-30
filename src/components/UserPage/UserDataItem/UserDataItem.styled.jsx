@@ -2,11 +2,55 @@ import styled from 'styled-components';
 import pencil from 'staticImages/userPage/pencil.svg';
 import pencilDeactivated from 'staticImages/userPage/pencilDeactivated.svg';
 import btnOk from 'staticImages/userPage/btnOk.svg';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export const InputWrapper = styled.form`
   display: flex;
   justify-content: flex-end;
   width: 100%;
+`;
+
+export const StyledDatePicker = styled(DatePicker)`
+  & button {
+    padding: 0;
+  }
+  & fieldset {
+    border: none;
+  }
+  & input {
+    padding: 0;
+    overflow: visible;
+    float: left;
+    width: 68%;
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    height: 24px;
+    font-family: ${p => p.theme.fonts.main};
+    font-weight: ${p => p.theme.fontWeights.fw400};
+    font-size: ${p => p.theme.fontSizes.fs12};
+    color: ${p => p.theme.colors.black};
+    line-height: 1.33;
+    letter-spacing: 0.04em;
+    background: ${p => p.theme.colors.background};
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    border-radius: 40px;
+    text-indent: 10px;
+    &:disabled {
+      border: ${p => p.theme.borders.none};
+      background-color: inherit;
+      & ~ button {
+        background-image: url(${pencil});
+      }
+    }
+    @media screen and (min-width: 768px) {
+      width: 60%;
+      height: 32px;
+      margin-left: 75px;
+      font-size: ${p => p.theme.fontSizes.fs16};
+      line-height: 1.38;
+    }
+  }
 `;
 
 export const Input = styled.input`
