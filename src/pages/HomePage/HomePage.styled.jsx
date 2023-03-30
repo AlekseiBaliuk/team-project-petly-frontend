@@ -5,18 +5,36 @@ import bgM from '../../staticImages/home-decore-m.png';
 import bgL from '../../staticImages/home-decore-l.png';
 
 export const Home = styled.section`
+  background: url(${bgS});
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media ${device.tablet} {
+    background: url(${bgM});
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  @media ${device.desktop} {
+    background: url(${bgL});
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+`;
+export const Container = styled.div`
   position: relative;
   margin-left: auto;
   margin-right: auto;
   padding-top: ${props => props.theme.space[4]}px;
   padding-left: ${props => props.theme.space[3]}px;
   padding-right: ${props => props.theme.space[3]}px;
-  background: url(${bgS}) no-repeat bottom;
   width: 320px;
 
   @media ${device.tablet} {
     width: 768px;
-    background: url(${bgM}) no-repeat;
     padding-left: ${props => props.theme.space[4]}px;
     padding-right: ${props => props.theme.space[4]}px;
     padding-top: ${props => props.theme.space[5]}px;
@@ -24,7 +42,6 @@ export const Home = styled.section`
 
   @media ${device.desktop} {
     width: 1248px;
-    background: url(${bgL}) no-repeat bottom;
     padding-left: ${props => props.theme.space[2]}px;
     padding-right: ${props => props.theme.space[2]}px;
     display: flex;
@@ -58,7 +75,7 @@ export const Img = styled.img`
     padding-left: ${props => props.theme.space[9]}px;
   }
 
-  @media ${device.tablet} {
+  @media ${device.desktop} {
     width: 524px;
   }
 
