@@ -24,7 +24,6 @@ export const searchNotice = createAsyncThunk(
       const response = await axios.get(
         `https://team-project-petly-backend.onrender.com/api/notices/title/${activeCategory}/${search}?page=${page}&limit=8`,
       );
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
