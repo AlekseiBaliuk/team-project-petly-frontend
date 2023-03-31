@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import OurFriendsCard from "./OurFriendsCard";
-import { ContainerList, ContainerItem, ContainerWrap } from "./OurFriendsContainer.styled";
+import OurFriendsCard from './OurFriendsCard';
+import {
+  ContainerList,
+  ContainerItem,
+  ContainerWrap,
+} from './OurFriendsContainer.styled';
 import { getFriends } from '../../services';
-
 
 const OurFriendsContainer = () => {
   const [friendsData, setFriendsData] = useState([]);
-  
+
+  const listVariants = {
+    visible: i => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.2,
+      },
+    }),
+    hidden: { opacity: 0, y: 100 },
+  };
+
   useEffect(() => {
-     async function fetchFriends() {
+    async function fetchFriends() {
       let response;
       try {
         response = await getFriends();
@@ -22,13 +36,18 @@ const OurFriendsContainer = () => {
     }
     fetchFriends();
   }, []);
-  
-  
+
   return (
     <ContainerWrap>
       <ContainerList>
-        {friendsData.map((friend) => (
-          <ContainerItem key={friend._id}>
+        {friendsData.map((friend, i) => (
+          <ContainerItem
+            key={friend._id}
+            variants={listVariants}
+            initial="hidden"
+            animate="visible"
+            custom={i}
+          >
             <OurFriendsCard data={friend} />
           </ContainerItem>
         ))}
@@ -36,6 +55,5 @@ const OurFriendsContainer = () => {
     </ContainerWrap>
   );
 };
-
 
 export default OurFriendsContainer;

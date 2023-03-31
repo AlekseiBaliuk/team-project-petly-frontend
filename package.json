@@ -18,6 +18,7 @@
     "ellipsize": "^0.5.1",
     "formik": "^2.2.9",
     "formik-wizard-form": "^2.1.0",
+    "framer-motion": "^10.10.0",
     "modern-normalize": "^1.1.0",
     "moment": "^2.29.4",
     "notiflix": "^3.2.6",

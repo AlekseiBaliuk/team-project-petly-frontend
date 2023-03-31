@@ -1,5 +1,6 @@
 import { device } from '../../devices';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const ContainerList = styled.ul`
   max-width: 1280px;
@@ -10,7 +11,7 @@ export const ContainerList = styled.ul`
   flex-wrap: wrap;
 `;
 
-export const ContainerItem = styled.li`
+export const ContainerItem = styled(motion.li)`
   border-radius: 40px;
   background: ${p => p.theme.colors.white};
   margin: 16px;
